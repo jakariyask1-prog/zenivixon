@@ -1,0 +1,36 @@
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="450" fill="#F8FAFC"/>
+  <!-- Top Bar -->
+  <rect x="24" y="24" width="752" height="44" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <circle cx="48" cy="46" r="4.5" fill="#2563EB"/>
+  <text x="64" y="51" fill="#0F172A" font-family="sans-serif" font-size="12" font-weight="700">Custom CRM AI Assistant Integration // Embedded Sidebar</text>
+  <rect x="660" y="34" width="100" height="24" rx="6" fill="#EFF6FF" stroke="#BFDBFE"/>
+  <text x="672" y="50" fill="#1D4ED8" font-family="monospace" font-size="11" font-weight="600">Zero Context-Switch</text>
+
+  <!-- Split Screen: Left CRM, Right AI Copilot -->
+  <rect x="24" y="80" width="460" height="346" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="44" y="112" fill="#0F172A" font-family="sans-serif" font-size="13" font-weight="700">Internal CRM Deal Record</text>
+  
+  <rect x="44" y="128" width="420" height="48" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <text x="56" y="148" fill="#0F172A" font-family="sans-serif" font-size="12" font-weight="600">Opportunity: Vanguard Health &bull; $180,000</text>
+  <text x="56" y="166" fill="#64748B" font-family="sans-serif" font-size="10">Stage: Security Review &bull; Last Contact: 2 days ago</text>
+
+  <rect x="44" y="186" width="420" height="120" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <text x="56" y="206" fill="#0F172A" font-family="sans-serif" font-size="11" font-weight="600">Meeting Transcript (Zoom Recording Sync):</text>
+  <text x="56" y="226" fill="#64748B" font-family="sans-serif" font-size="10">"Client requested clarification on HIPAA compliance in Section 4.2..."</text>
+  <text x="56" y="244" fill="#64748B" font-family="sans-serif" font-size="10">"They need a customized BAA before Friday signing."</text>
+
+  <!-- Right AI Assistant Panel -->
+  <rect x="496" y="80" width="280" height="346" rx="8" fill="#EFF6FF" stroke="#BFDBFE"/>
+  <text x="516" y="112" fill="#1E40AF" font-family="sans-serif" font-size="13" font-weight="700">AI Deal Assistant</text>
+  
+  <rect x="516" y="128" width="240" height="110" rx="6" fill="#FFFFFF" stroke="#DBEAFE"/>
+  <text x="526" y="148" fill="#0F172A" font-family="sans-serif" font-size="11" font-weight="700">Recommended Action:</text>
+  <text x="526" y="168" fill="#334155" font-family="sans-serif" font-size="10">Drafted HIPAA BAA addendum matching legal repository v3.1.</text>
+  <rect x="526" y="196" width="220" height="28" rx="4" fill="#2563EB"/>
+  <text x="564" y="214" fill="#FFFFFF" font-family="sans-serif" font-size="10" font-weight="600">Approve &amp; Send to Rep</text>
+
+  <rect x="516" y="250" width="240" height="70" rx="6" fill="#FFFFFF" stroke="#DBEAFE"/>
+  <text x="526" y="270" fill="#0F172A" font-family="sans-serif" font-size="11" font-weight="700">Probability Forecast:</text>
+  <text x="526" y="290" fill="#059669" font-family="monospace" font-size="11">88% Close Probability (+14%)</text>
+</svg>

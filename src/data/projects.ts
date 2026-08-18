@@ -1,0 +1,306 @@
+import { Project } from "@/types/project";
+
+export const PROJECTS_DATA: Project[] = [
+  {
+    slug: "jakariya-ai-studio",
+    title: "Jakariya AI Studio",
+    subtitle: "AI-Powered Creative Generation & Prompt Studio Platform",
+    category: "software-web-development",
+    categoryLabel: "AI Software & Web Platform",
+    summary:
+      "A specialized AI studio product engineered by ZENIVIXON for creative prompt engineering, multimodal image generation workflows, and automated asset generation.",
+    problem:
+      "Creative teams and digital creators struggle with inconsistent generation outputs, fragmented prompting tools, and cumbersome manual asset sorting across multiple disconnected AI models.",
+    solution:
+      "Engineered an integrated AI studio application combining multi-model prompting interfaces, automated prompt enhancement agents, unified asset library management, and real-time generation queues.",
+    valueDelivered: [
+      "Unified interface for multi-model creative experimentation",
+      "Automated prompt refinement reducing generation failures",
+      "Centralized media asset organization with metadata indexing",
+      "Optimized API orchestration minimizing compute latency",
+    ],
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Python",
+      "FastAPI",
+      "Stable Diffusion / Midjourney APIs",
+      "PostgreSQL",
+    ],
+    featured: true,
+    image: "/images/projects/jakariya-ai-studio.svg",
+    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Video demonstration link available
+    deliverables: [
+      "End-to-end web application architecture",
+      "Prompt optimizer agent module",
+      "High-throughput generation queue engine",
+      "Asset gallery with tag-based filtering",
+    ],
+    status: "Production System",
+  },
+  {
+    slug: "autonomous-customer-support-agent",
+    title: "Autonomous Support & Triage Agent",
+    subtitle: "Multi-Channel Intelligent Customer Ingestion & Resolution Agent",
+    category: "ai-agents",
+    categoryLabel: "AI Agent Development",
+    summary:
+      "A deterministic, tool-augmented AI agent engineered to ingest incoming customer tickets, verify customer account records, resolve common issues, and route complex edge cases to human specialists.",
+    problem:
+      "A fast-growing service business faced severe ticket backlogs during peak hours, leading to delayed response times and high manual overhead for repetitive account inquiries.",
+    solution:
+      "Designed and deployed an autonomous AI support agent integrated directly into the company's ticketing platform and internal customer database with strict guardrails and human escalation triggers.",
+    valueDelivered: [
+      "Immediate automated first response across 100% of incoming tickets",
+      "Autonomous resolution of routine billing and account verification inquiries",
+      "Structured ticket summaries and sentiment classification provided to human agents",
+      "Significant reduction in manual ticket triage effort",
+    ],
+    technologies: [
+      "Python",
+      "LangChain",
+      "OpenAI API",
+      "FastAPI",
+      "Zendesk API",
+      "Redis",
+      "PostgreSQL",
+    ],
+    featured: true,
+    image: "/images/projects/support-agent.svg",
+    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    deliverables: [
+      "Autonomous triage agent pipeline",
+      "Database query adapter with security sanitation",
+      "Human handoff and escalation dashboard",
+      "Conversation telemetry and accuracy analytics",
+    ],
+    status: "Production Deployment",
+  },
+  {
+    slug: "intelligent-document-invoice-pipeline",
+    title: "Intelligent Document & Invoice Automation",
+    subtitle: "Automated Multi-Format Ingestion & ERP Reconciliation Pipeline",
+    category: "ai-automation",
+    categoryLabel: "AI Automation",
+    summary:
+      "An automated document extraction and reconciliation pipeline that processes unstructured supplier invoices, PDF receipts, and bills of lading into validated ERP records.",
+    problem:
+      "Operations staff manually retyped financial data from hundreds of multi-layout PDF invoices and email attachments weekly, resulting in processing delays and periodic data entry errors.",
+    solution:
+      "Engineered an automated ingestion pipeline that monitors incoming inbox folders, extracts key invoice line items using vision-language models, validates arithmetic totals, and posts directly to accounting software.",
+    valueDelivered: [
+      "Zero manual data entry required for standard supplier invoices",
+      "Automated discrepancy alerts for tax mismatches and unregistered line items",
+      "End-to-end processing turnaround reduced from days to seconds",
+      "Audit trail generated for every processed transaction",
+    ],
+    technologies: [
+      "Python",
+      "Pydantic",
+      "Vision LLMs",
+      "Docker",
+      "Webhook Automation",
+      "QuickBooks / Xero API",
+      "AWS S3",
+    ],
+    featured: true,
+    image: "/images/projects/document-pipeline.svg",
+    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    deliverables: [
+      "Email listener and PDF parser microservice",
+      "Schema validation and arithmetic discrepancy detector",
+      "Accounting software sync integration",
+      "Operator review interface for flagged exceptions",
+    ],
+    status: "Production Deployment",
+  },
+  {
+    slug: "enterprise-knowledge-rag-integration",
+    title: "Enterprise Knowledge & Semantic RAG System",
+    subtitle: "Custom Vector Search & Retrieval Layer for Internal Documentation",
+    category: "ai-integration",
+    categoryLabel: "AI Integration",
+    summary:
+      "A custom vector search and retrieval-augmented generation (RAG) system embedded directly into an internal corporate portal, enabling instant natural language search across thousands of technical SOPs.",
+    problem:
+      "Engineers and support personnel struggled to locate relevant operating procedures and historical troubleshooting guides stored across disparate wiki pages, shared drives, and PDF repositories.",
+    solution:
+      "Built a secure vector embedding pipeline with hybrid keyword-semantic search and citation-backed answer generation embedded directly into the company's existing intranet portal.",
+    valueDelivered: [
+      "Instant, cited answers extracted directly from verified company documentation",
+      "No disruption or replacement required for existing document storage systems",
+      "Strict access control ensuring users only query documents matching their permission tier",
+      "Accelerated onboarding and faster internal issue resolution",
+    ],
+    technologies: [
+      "TypeScript",
+      "Python",
+      "Qdrant Vector Database",
+      "FastAPI",
+      "Next.js",
+      "Tailwind CSS",
+      "Embeddings API",
+    ],
+    featured: false,
+    image: "/images/projects/rag-system.svg",
+    videoUrl: "",
+    deliverables: [
+      "Continuous document ingestion & chunking pipeline",
+      "Vector database cluster setup and index optimization",
+      "Internal query web component for intranet embedding",
+      "Role-based access filtering layer",
+    ],
+    status: "Production Integration",
+  },
+  {
+    slug: "multi-source-intelligence-agent",
+    title: "Autonomous Market & Research Intelligence Swarm",
+    subtitle: "Multi-Source Document Synthesis & Competitive Intelligence Agent",
+    category: "ai-agents",
+    categoryLabel: "AI Agent Development",
+    summary:
+      "An autonomous multi-agent swarm that scans financial filings, industry press, regulatory updates, and pricing changes across the web to generate structured executive daily briefs.",
+    problem:
+      "Strategic leadership and research analysts spent 15+ hours each week manually monitoring competing product roadmaps, pricing alterations, and complex regulatory compliance updates.",
+    solution:
+      "Constructed a multi-agent orchestration pipeline with dedicated ingestion agents, verification crawlers, and an executive briefing synthesizer that feeds formatted digests directly into private Slack channels.",
+    valueDelivered: [
+      "Autonomous 24/7 market monitoring across 50+ industry sources",
+      "Elimination of 15+ hours per week of manual web research",
+      "Deterministic citation tracking linking every summary bullet to primary source evidence",
+      "Zero-latency alerts for critical competitor price shifts and regulatory announcements",
+    ],
+    technologies: [
+      "Python",
+      "AutoGen / CrewAI",
+      "Playwright Headless",
+      "FastAPI",
+      "PostgreSQL",
+      "Slack Webhooks",
+      "OpenAI GPT-4o",
+    ],
+    featured: false,
+    image: "/images/projects/multi-source-intelligence-agent.svg",
+    videoUrl: "",
+    deliverables: [
+      "Multi-agent task orchestrator and scraper queue",
+      "Hallucination verification and source attribution module",
+      "Slack and email executive dispatch service",
+      "Searchable knowledge graph dashboard",
+    ],
+    status: "Active System",
+  },
+  {
+    slug: "inbound-lead-enrichment-automation",
+    title: "Automated Inbound Lead Enrichment & Routing",
+    subtitle: "Real-Time Company Intelligence & CRM Workflow Automation",
+    category: "ai-automation",
+    categoryLabel: "AI Automation",
+    summary:
+      "An automated workflow that instantly enriches incoming form submissions with firmographic data, evaluates ICP fit using AI criteria, and assigns prioritized follow-ups in the CRM.",
+    problem:
+      "Sales development reps spent hours researching prospective companies before outreach, leading to slow response times and inconsistent lead qualification scoring.",
+    solution:
+      "Architected an automated webhook pipeline that enriches raw email domains with verified company data, generates executive summaries of the prospect's tech stack, and notifies the account owner via Slack with suggested outreach points.",
+    valueDelivered: [
+      "Instant enrichment and scoring within 3 seconds of form submission",
+      "Sales reps receive contextual briefing documents before every discovery call",
+      "Accurate routing of high-value tier-1 enterprise prospects",
+      "Consistent qualification criteria applied across all incoming leads",
+    ],
+    technologies: [
+      "Node.js",
+      "TypeScript",
+      "HubSpot API",
+      "Slack API",
+      "OpenAI API",
+      "Serverless Functions",
+    ],
+    featured: false,
+    image: "/images/projects/lead-enrichment.svg",
+    videoUrl: "",
+    deliverables: [
+      "Webhook receiver and payload validator",
+      "AI analysis and qualification logic module",
+      "CRM custom properties mapping and synchronization",
+      "Slack alert generator with actionable buttons",
+    ],
+    status: "Production Pipeline",
+  },
+  {
+    slug: "ecommerce-catalog-enrichment",
+    title: "Intelligent Multi-Channel Catalog & Pricing Sync",
+    subtitle: "Automated SKU Normalization & Multi-Platform Product Syndication",
+    category: "ai-automation",
+    categoryLabel: "AI Automation",
+    summary:
+      "An AI automation engine that ingests messy supplier CSV/EDI catalogs, normalizes messy product specs, generates optimized copy and metadata, and syncs across Shopify Plus and Amazon.",
+    problem:
+      "An e-commerce distributor managing 50,000+ SKUs faced constant errors in product categorization, missing technical attributes, and sluggish manual updates when suppliers revised price sheets.",
+    solution:
+      "Developed an end-to-end catalog transformation pipeline with vision-enhanced attribute extraction, automated category mapping, and webhook triggers syncing inventory changes across sales channels.",
+    valueDelivered: [
+      "Catalog onboarding time reduced from 3 weeks to under 2 hours",
+      "99.4% classification accuracy across 50,000+ multi-variant SKUs",
+      "Automated SEO title, description, and alt tag generation",
+      "Zero manual data entry required for recurring supplier price sheets",
+    ],
+    technologies: [
+      "Python",
+      "FastAPI",
+      "Shopify GraphQL API",
+      "Amazon SP-API",
+      "PostgreSQL",
+      "Redis Queue",
+      "OpenAI Vision API",
+    ],
+    featured: false,
+    image: "/images/projects/catalog-enrichment.svg",
+    videoUrl: "",
+    deliverables: [
+      "Supplier feed ingestion & validation parser",
+      "AI categorization and taxonomy engine",
+      "Shopify and marketplace sync connectors",
+      "Discrepancy review interface for catalog managers",
+    ],
+    status: "Active System",
+  },
+  {
+    slug: "custom-crm-ai-assistant-integration",
+    title: "Custom CRM AI Assistant Integration",
+    subtitle: "Embedded AI Action Bar for Existing Business Software",
+    category: "ai-integration",
+    categoryLabel: "AI Integration",
+    summary:
+      "A lightweight, secure UI widget and backend integration adding natural language deal summaries, automated email drafting, and meeting action-item extraction directly into a proprietary CRM.",
+    problem:
+      "A mid-sized consultancy used a custom internal CRM without native AI features, forcing account managers to manually transcribe meeting notes and compose status updates outside the system.",
+    solution:
+      "Engineered an embedded React overlay and backend API connector that reads deal timelines, extracts action items from uploaded transcripts, and generates contextual email drafts within the existing CRM UI.",
+    valueDelivered: [
+      "Zero changes needed to existing CRM database schemas",
+      "Automated extraction of action items and stakeholder sentiments",
+      "Consistent client update drafts produced in seconds",
+      "High adoption rate among non-technical account managers",
+    ],
+    technologies: [
+      "React",
+      "TypeScript",
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "RESTful API Connectors",
+    ],
+    featured: false,
+    image: "/images/projects/crm-assistant.svg",
+    videoUrl: "",
+    deliverables: [
+      "Drop-in React interface component",
+      "Secure backend token authentication layer",
+      "Transcript summarization & action-item parser",
+      "Email draft generator with tone adjustment controls",
+    ],
+    status: "Production Integration",
+  },
+];

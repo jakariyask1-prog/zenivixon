@@ -1,0 +1,45 @@
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="450" fill="#F8FAFC"/>
+  <!-- Top Bar -->
+  <rect x="24" y="24" width="752" height="44" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <circle cx="48" cy="46" r="4.5" fill="#EF4444"/>
+  <circle cx="64" cy="46" r="4.5" fill="#F59E0B"/>
+  <circle cx="80" cy="46" r="4.5" fill="#10B981"/>
+  <text x="104" y="51" fill="#475569" font-family="monospace" font-size="12">jakariya.ai // Prompt Engineering &amp; Multi-Model Synthesis Studio</text>
+  <rect x="680" y="34" width="80" height="24" rx="6" fill="#2563EB"/>
+  <text x="696" y="50" fill="#FFFFFF" font-family="sans-serif" font-size="11" font-weight="600">Export</text>
+
+  <!-- Left Sidebar -->
+  <rect x="24" y="80" width="220" height="346" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="44" y="112" fill="#0F172A" font-family="sans-serif" font-size="14" font-weight="700">Project Architectures</text>
+  <rect x="44" y="128" width="180" height="32" rx="6" fill="#EFF6FF" stroke="#BFDBFE"/>
+  <text x="56" y="148" fill="#1D4ED8" font-family="sans-serif" font-size="12" font-weight="600">&bull; Claude 3.7 Sonnet Chain</text>
+  <rect x="44" y="168" width="180" height="32" rx="6" fill="#F8FAFC"/>
+  <text x="56" y="188" fill="#475569" font-family="sans-serif" font-size="12">&bull; GPT-4o Multi-Modal Pipeline</text>
+  <rect x="44" y="208" width="180" height="32" rx="6" fill="#F8FAFC"/>
+  <text x="56" y="228" fill="#475569" font-family="sans-serif" font-size="12">&bull; Flux.1 Pro Image Generator</text>
+  <rect x="44" y="248" width="180" height="32" rx="6" fill="#F8FAFC"/>
+  <text x="56" y="268" fill="#475569" font-family="sans-serif" font-size="12">&bull; DeepSeek R1 Reasoning</text>
+
+  <!-- Main Canvas / Workspace -->
+  <rect x="256" y="80" width="520" height="346" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <rect x="280" y="104" width="472" height="120" rx="8" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <text x="296" y="130" fill="#0F172A" font-family="sans-serif" font-size="13" font-weight="600">Prompt Formulation &amp; Context Assembly</text>
+  <text x="296" y="152" fill="#64748B" font-family="monospace" font-size="11">system: "You are a deterministic creative synthesis agent for enterprise brand assets."</text>
+  <text x="296" y="172" fill="#64748B" font-family="monospace" font-size="11">temperature: 0.2 &bull; context_window: 128k &bull; output_format: structured_json</text>
+  
+  <!-- Synthesis Stream Output -->
+  <rect x="280" y="236" width="472" height="166" rx="8" fill="#F1F5F9" stroke="#CBD5E1"/>
+  <text x="296" y="262" fill="#0F172A" font-family="sans-serif" font-size="12" font-weight="700">Synthesized Vector Pipeline Output (Live)</text>
+  <rect x="296" y="278" width="140" height="110" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <circle cx="366" cy="325" r="24" fill="#EFF6FF" stroke="#2563EB" stroke-width="2"/>
+  <text x="340" y="365" fill="#2563EB" font-family="sans-serif" font-size="10" font-weight="600">Asset Pack A</text>
+  
+  <rect x="448" y="278" width="140" height="110" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <circle cx="518" cy="325" r="24" fill="#ECFEFF" stroke="#06B6D4" stroke-width="2"/>
+  <text x="492" y="365" fill="#0891B2" font-family="sans-serif" font-size="10" font-weight="600">Asset Pack B</text>
+
+  <rect x="600" y="278" width="136" height="110" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <circle cx="668" cy="325" r="24" fill="#EEF2FF" stroke="#4F46E5" stroke-width="2"/>
+  <text x="642" y="365" fill="#4338CA" font-family="sans-serif" font-size="10" font-weight="600">Asset Pack C</text>
+</svg>

@@ -1,0 +1,47 @@
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="450" fill="#F8FAFC"/>
+  <!-- Top Bar -->
+  <rect x="24" y="24" width="752" height="44" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <circle cx="48" cy="46" r="4.5" fill="#10B981"/>
+  <text x="64" y="51" fill="#0F172A" font-family="sans-serif" font-size="12" font-weight="700">Autonomous Support &amp; Triage Agent // Live Feed</text>
+  <rect x="660" y="34" width="100" height="24" rx="6" fill="#ECFDF5" stroke="#A7F3D0"/>
+  <text x="674" y="50" fill="#059669" font-family="monospace" font-size="11" font-weight="600">Active (99.8%)</text>
+
+  <!-- Left: Live Ticket Stream -->
+  <rect x="24" y="80" width="360" height="346" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="44" y="112" fill="#0F172A" font-family="sans-serif" font-size="14" font-weight="700">Inbound Inquiries &amp; Triage</text>
+  
+  <rect x="44" y="128" width="320" height="76" rx="6" fill="#EFF6FF" stroke="#BFDBFE"/>
+  <text x="56" y="150" fill="#1E40AF" font-family="sans-serif" font-size="12" font-weight="600">Enterprise Billing API Inquiry</text>
+  <text x="56" y="170" fill="#475569" font-family="sans-serif" font-size="11">Resolved autonomously via Stripe webhook &bull; 1.2s</text>
+  <rect x="290" y="136" width="64" height="18" rx="4" fill="#DBEAFE"/>
+  <text x="296" y="149" fill="#1D4ED8" font-family="monospace" font-size="10">Auto-closed</text>
+
+  <rect x="44" y="214" width="320" height="76" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <text x="56" y="236" fill="#0F172A" font-family="sans-serif" font-size="12" font-weight="600">SSO SAML Authentication Error</text>
+  <text x="56" y="256" fill="#64748B" font-family="sans-serif" font-size="11">Escalated to Tier 3 Security &bull; Context payload attached</text>
+  <rect x="290" y="222" width="64" height="18" rx="4" fill="#FEF3C7"/>
+  <text x="296" y="235" fill="#D97706" font-family="monospace" font-size="10">Escalated</text>
+
+  <rect x="44" y="300" width="320" height="76" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <text x="56" y="322" fill="#0F172A" font-family="sans-serif" font-size="12" font-weight="600">License Seat Upgrade Request</text>
+  <text x="56" y="342" fill="#64748B" font-family="sans-serif" font-size="11">Processed invoice + updated Salesforce record</text>
+  <rect x="290" y="308" width="64" height="18" rx="4" fill="#DBEAFE"/>
+  <text x="296" y="321" fill="#1D4ED8" font-family="monospace" font-size="10">Auto-closed</text>
+
+  <!-- Right: Decision Graph -->
+  <rect x="396" y="80" width="380" height="346" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="416" y="112" fill="#0F172A" font-family="sans-serif" font-size="14" font-weight="700">Agent Reasoning Graph</text>
+  <rect x="416" y="128" width="340" height="276" rx="8" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <circle cx="586" cy="180" r="28" fill="#EFF6FF" stroke="#2563EB" stroke-width="2"/>
+  <text x="566" y="184" fill="#1D4ED8" font-family="sans-serif" font-size="11" font-weight="700">Triage</text>
+
+  <line x1="586" y1="208" x2="500" y2="280" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="586" y1="208" x2="672" y2="280" stroke="#CBD5E1" stroke-width="2"/>
+
+  <circle cx="500" cy="308" r="28" fill="#ECFDF5" stroke="#10B981" stroke-width="2"/>
+  <text x="480" y="312" fill="#047857" font-family="sans-serif" font-size="10" font-weight="700">Resolve</text>
+
+  <circle cx="672" cy="308" r="28" fill="#FFFBEB" stroke="#F59E0B" stroke-width="2"/>
+  <text x="652" y="312" fill="#B45309" font-family="sans-serif" font-size="10" font-weight="700">Escalate</text>
+</svg>

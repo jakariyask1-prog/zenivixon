@@ -1,0 +1,59 @@
+<svg width="500" height="600" viewBox="0 0 500 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg_web" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#082F49" />
+      <stop offset="50%" stop-color="#0C4A6E" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="glow_web" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="hoodie_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0369A1" />
+      <stop offset="100%" stop-color="#075985" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="500" height="600" rx="32" fill="url(#bg_web)" />
+  <circle cx="250" cy="200" r="220" fill="url(#glow_web)" />
+
+  <!-- Code/Tech aesthetic elements -->
+  <text x="40" y="100" fill="#38BDF8" font-family="monospace" font-size="14" opacity="0.3">&lt;FrontendArchitecture /&gt;</text>
+  <text x="40" y="520" fill="#38BDF8" font-family="monospace" font-size="14" opacity="0.3">async function automateWorkflow()</text>
+
+  <!-- Body / Modern Tech Hoodie & Jacket -->
+  <path d="M90 600C90 470 150 410 250 410C350 410 410 470 410 600H90Z" fill="url(#hoodie_grad)" />
+  
+  <!-- Collar & T-Shirt -->
+  <path d="M190 410C190 460 210 480 250 480C290 480 310 460 310 410H190Z" fill="#0F172A" />
+  <path d="M220 410L250 450L280 410H220Z" fill="#38BDF8" />
+
+  <!-- Neck -->
+  <rect x="220" y="340" width="60" height="80" rx="10" fill="#E2E8F0" />
+
+  <!-- Head / Face -->
+  <circle cx="250" cy="270" r="90" fill="#E2E8F0" />
+
+  <!-- Modern Tech Hairstyle -->
+  <path d="M160 250C160 170 190 145 250 145C310 145 340 170 340 250C340 200 320 175 250 175C180 175 160 200 160 250Z" fill="#1E293B" />
+  
+  <!-- Eyes -->
+  <circle cx="215" cy="260" r="6" fill="#0F172A" />
+  <circle cx="285" cy="260" r="6" fill="#0F172A" />
+  <circle cx="217" cy="258" r="2" fill="#FFFFFF" />
+  <circle cx="287" cy="258" r="2" fill="#FFFFFF" />
+
+  <!-- Eyebrows -->
+  <path d="M200 245C210 242 225 245 230 248" stroke="#1E293B" stroke-width="3.5" stroke-linecap="round" />
+  <path d="M300 245C290 242 275 245 270 248" stroke="#1E293B" stroke-width="3.5" stroke-linecap="round" />
+
+  <!-- Confident Smile -->
+  <path d="M225 310C225 325 275 325 275 310" stroke="#475569" stroke-width="4" stroke-linecap="round" />
+
+  <!-- Badge Overlay -->
+  <rect x="30" y="30" width="200" height="32" rx="16" fill="#0F172A" stroke="#06B6D4" stroke-width="1.5" />
+  <circle cx="48" cy="46" r="4" fill="#06B6D4" />
+  <text x="60" y="51" fill="#FFFFFF" font-family="sans-serif" font-size="11" font-weight="700" letter-spacing="1">WEB &amp; AI AUTOMATION</text>
+</svg>

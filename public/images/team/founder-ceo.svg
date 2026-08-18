@@ -1,0 +1,75 @@
+<svg width="500" height="600" viewBox="0 0 500 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg_founder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="50%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#0B1120" />
+    </linearGradient>
+    <linearGradient id="glow_founder" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#06B6D4" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="suit_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="tie_grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <linearGradient id="skin_founder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base with Rounded Corners -->
+  <rect width="500" height="600" rx="32" fill="url(#bg_founder)" />
+  <circle cx="250" cy="200" r="220" fill="url(#glow_founder)" />
+
+  <!-- Grid Tech Lines subtle -->
+  <line x1="50" y1="100" x2="450" y2="100" stroke="#334155" stroke-width="1" stroke-dasharray="4 8" opacity="0.3" />
+  <line x1="50" y1="500" x2="450" y2="500" stroke="#334155" stroke-width="1" stroke-dasharray="4 8" opacity="0.3" />
+  <line x1="100" y1="50" x2="100" y2="550" stroke="#334155" stroke-width="1" stroke-dasharray="4 8" opacity="0.3" />
+  <line x1="400" y1="50" x2="400" y2="550" stroke="#334155" stroke-width="1" stroke-dasharray="4 8" opacity="0.3" />
+
+  <!-- Body / Executive Suit -->
+  <path d="M100 600C100 470 160 410 250 410C340 410 400 470 400 600H100Z" fill="url(#suit_grad)" />
+  
+  <!-- Crisp Shirt & Lapels -->
+  <path d="M210 410L250 510L290 410H210Z" fill="#F8FAFC" />
+  <path d="M242 410L250 540L258 410H242Z" fill="url(#tie_grad)" />
+  
+  <!-- Left Lapel -->
+  <path d="M170 430L220 530L210 410L170 430Z" fill="#334155" />
+  <!-- Right Lapel -->
+  <path d="M330 430L280 530L290 410L330 430Z" fill="#334155" />
+
+  <!-- Neck -->
+  <rect x="220" y="340" width="60" height="80" rx="10" fill="#E2E8F0" />
+
+  <!-- Head / Face -->
+  <circle cx="250" cy="270" r="90" fill="#E2E8F0" />
+
+  <!-- Hair Cut Modern Exec -->
+  <path d="M165 240C165 170 200 150 250 150C300 150 335 170 335 240C335 200 310 180 250 180C190 180 165 200 165 240Z" fill="#0F172A" />
+
+  <!-- Glasses Structure -->
+  <rect x="195" y="245" width="44" height="28" rx="8" stroke="#0F172A" stroke-width="5" fill="#FFFFFF" fill-opacity="0.2" />
+  <rect x="261" y="245" width="44" height="28" rx="8" stroke="#0F172A" stroke-width="5" fill="#FFFFFF" fill-opacity="0.2" />
+  <line x1="239" y1="258" x2="261" y2="258" stroke="#0F172A" stroke-width="5" stroke-linecap="round" />
+
+  <!-- Eyes behind glasses -->
+  <circle cx="217" cy="259" r="6" fill="#0F172A" />
+  <circle cx="283" cy="259" r="6" fill="#0F172A" />
+  <circle cx="219" cy="257" r="2" fill="#FFFFFF" />
+  <circle cx="285" cy="257" r="2" fill="#FFFFFF" />
+
+  <!-- Friendly confident smile -->
+  <path d="M225 315C225 330 275 330 275 315" stroke="#475569" stroke-width="4" stroke-linecap="round" />
+
+  <!-- Executive Badge Overlay -->
+  <rect x="30" y="30" width="140" height="32" rx="16" fill="#1E293B" stroke="#3B82F6" stroke-width="1.5" />
+  <circle cx="48" cy="46" r="4" fill="#3B82F6" />
+  <text x="60" y="51" fill="#FFFFFF" font-family="sans-serif" font-size="12" font-weight="700" letter-spacing="1">FOUNDER &amp; CEO</text>
+</svg>
