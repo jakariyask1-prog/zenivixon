@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { ArrowRight, Database, Bot, Cpu, TrendingUp, CheckCircle2, ArrowUpRight, Sparkles, Globe, Headphones } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export function HeroSection() {
   return (
@@ -11,67 +12,77 @@ export function HeroSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-6">
-          {/* Enhanced Premium Eyebrow Badge */}
-          <div className="inline-flex items-center gap-2.5 px-5 py-2 sm:px-6 sm:py-2.5 rounded-full bg-blue-50/90 border border-blue-200/90 text-blue-800 shadow-sm shadow-blue-500/10 hover:border-blue-300 transition-all">
-            <div className="w-5 h-5 rounded-full bg-blue-600/10 flex items-center justify-center text-blue-600">
-              <Sparkles className="w-3.5 h-3.5" />
+          <ScrollReveal direction="up" delay={0.1}>
+            {/* Enhanced Premium Eyebrow Badge */}
+            <div className="inline-flex items-center justify-center gap-2.5 px-5 py-2 sm:px-6 sm:py-2.5 rounded-full bg-blue-50/90 border border-blue-200/90 text-blue-800 shadow-sm shadow-blue-500/10 hover:border-blue-300 transition-all">
+              <div className="w-5 h-5 rounded-full bg-blue-600/10 flex items-center justify-center text-blue-600">
+                <Sparkles className="w-3.5 h-3.5" />
+              </div>
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-widest font-heading">
+                AI-FIRST TECHNOLOGY COMPANY
+              </span>
             </div>
-            <span className="text-xs sm:text-sm font-bold uppercase tracking-widest font-heading">
-              AI-FIRST TECHNOLOGY COMPANY
-            </span>
-          </div>
+          </ScrollReveal>
 
-          {/* Locked Core Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#0F172A] tracking-tight leading-[1.15] font-heading">
-            Automate Your Business. Engage Customers 24/7. Scale with AI.
-          </h1>
+          <ScrollReveal direction="up" delay={0.2}>
+            {/* Locked Core Headline */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#0F172A] tracking-tight leading-[1.15] font-heading">
+              Automate Your Business. Engage Customers 24/7. Scale with AI.
+            </h1>
+          </ScrollReveal>
 
-          {/* Core Message / Subheadline */}
-          <p className="text-lg sm:text-xl text-slate-600 max-w-3xl leading-relaxed font-normal">
-            ZENIVIXON builds high-performance <strong>modern web applications</strong>, <strong>intelligent workflow automations</strong>, <strong>24/7 AI customer support agents</strong>, and custom integrations that connect seamlessly into your existing business software.
-          </p>
+          <ScrollReveal direction="up" delay={0.3}>
+            {/* Core Message / Subheadline */}
+            <p className="text-lg sm:text-xl text-slate-600 max-w-3xl leading-relaxed font-normal mx-auto">
+              ZENIVIXON builds high-performance <strong>modern web applications</strong>, <strong>intelligent workflow automations</strong>, <strong>24/7 AI customer support agents</strong>, and custom integrations that connect seamlessly into your existing business software.
+            </p>
+          </ScrollReveal>
 
-          {/* Locked Conversion CTAs */}
-          <div className="pt-4 flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto">
-            <Button
-              variant="primary"
-              size="lg"
-              href="/start-a-project"
-              icon={<ArrowRight className="w-4 h-4" />}
-              className="w-full sm:w-auto text-base px-8 py-4 shadow-lg shadow-blue-600/20 font-semibold"
-            >
-              Start Your AI Project
-            </Button>
-            <Button
-              variant="secondary"
-              size="lg"
-              href="/solutions"
-              icon={<ArrowUpRight className="w-4 h-4" />}
-              className="w-full sm:w-auto text-base px-7 py-4 text-slate-700 font-semibold"
-            >
-              Explore Solutions
-            </Button>
-          </div>
+          <ScrollReveal direction="up" delay={0.4}>
+            {/* Locked Conversion CTAs */}
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full sm:w-auto">
+              <Button
+                variant="glowing"
+                size="lg"
+                href="/start-a-project"
+                icon={<ArrowRight className="w-4 h-4" />}
+                className="w-full sm:w-auto text-base px-8 py-4 shadow-lg shadow-blue-600/20 font-semibold"
+              >
+                Start Your AI Project
+              </Button>
+              <Button
+                variant="secondary"
+                size="lg"
+                href="/solutions"
+                icon={<ArrowUpRight className="w-4 h-4" />}
+                className="w-full sm:w-auto text-base px-7 py-4 text-slate-700 font-semibold"
+              >
+                Explore Solutions
+              </Button>
+            </div>
+          </ScrollReveal>
 
-          {/* Trust & Focus Pillars */}
-          <div className="pt-6 flex flex-wrap items-center justify-center gap-y-3 gap-x-6 text-xs sm:text-sm text-slate-600 font-medium">
-            <div className="flex items-center gap-2">
-              <Globe className="w-4 h-4 text-blue-600 shrink-0" />
-              <span>Modern Web &amp; App Development</span>
+          <ScrollReveal direction="up" delay={0.5}>
+            {/* Trust & Focus Pillars */}
+            <div className="pt-6 flex flex-wrap items-center justify-center gap-y-3 gap-x-6 text-xs sm:text-sm text-slate-600 font-medium">
+              <div className="flex items-center gap-2">
+                <Globe className="w-4 h-4 text-blue-600 shrink-0" />
+                <span>Modern Web &amp; App Development</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Cpu className="w-4 h-4 text-cyan-600 shrink-0" />
+                <span>AI Workflow Automation</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Headphones className="w-4 h-4 text-indigo-600 shrink-0" />
+                <span>24/7 AI Customer Support</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Existing System Integration</span>
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <Cpu className="w-4 h-4 text-cyan-600 shrink-0" />
-              <span>AI Workflow Automation</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Headphones className="w-4 h-4 text-indigo-600 shrink-0" />
-              <span>24/7 AI Customer Support</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>Existing System Integration</span>
-            </div>
-          </div>
+          </ScrollReveal>
         </div>
 
         {/* Premium Cover Photo Section */}
