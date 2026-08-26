@@ -15,12 +15,13 @@ export function HeroSection() {
       {/* Premium Neural Network Background Animation */}
       <NeuralNetworkAnimation />
 
+      {/* Full Width Marquee Ticker */}
+      <div className="relative z-10 w-full mb-8">
+        <RotatingTextBanner />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-6">
-          <ScrollReveal direction="up" delay={0.05}>
-            <RotatingTextBanner />
-          </ScrollReveal>
-
           <ScrollReveal direction="up" delay={0.1}>
             {/* Enhanced Premium Eyebrow Badge */}
             <div className="inline-flex items-center justify-center gap-2.5 px-5 py-2 sm:px-6 sm:py-2.5 rounded-full bg-blue-50/90 dark:bg-blue-950/40 border border-blue-200/90 dark:border-blue-800/80 text-blue-800 dark:text-blue-300 shadow-sm shadow-blue-500/10 hover:border-blue-300 dark:hover:border-blue-700 transition-all">
