@@ -6,6 +6,7 @@ import { HowWeWorkSection } from "@/components/sections/HowWeWorkSection";
 import { ProjectShowcaseSection } from "@/components/sections/ProjectShowcaseSection";
 import { WhyZenivixonSection } from "@/components/sections/WhyZenivixonSection";
 import { FinalCtaSection } from "@/components/sections/FinalCtaSection";
+import { IntegrationsSection } from "@/components/sections/IntegrationsSection";
 
 export default function HomePage() {
   return (
@@ -21,6 +22,9 @@ export default function HomePage() {
 
       {/* 04. How We Work */}
       <HowWeWorkSection />
+
+      {/* Integrations / Tech Stack */}
+      <IntegrationsSection />
 
       {/* 05. Project Showcase */}
       <ProjectShowcaseSection />
