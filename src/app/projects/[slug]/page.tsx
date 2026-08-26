@@ -64,22 +64,42 @@ export default async function ProjectDetailPage({ params }: Props) {
           <span>Back to All Projects</span>
         </Link>
 
-        {/* Media Demonstration Area (Supports Image or Video) */}
+        {/* Media Demonstration Area */}
         <div className="rounded-3xl bg-white border border-slate-200 dark:border-slate-800 p-4 sm:p-8 shadow-md overflow-hidden">
-          <div className="aspect-[16/9] w-full relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50">
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover object-top"
-              priority
-            />
-          </div>
+          {project.videoUrl && project.videoUrl.match(/\.(mp4|webm|ogg)$/i) ? (
+            <div className="aspect-[16/9] w-full relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
+              <video
+                src={project.videoUrl}
+                controls
+                className="w-full h-full object-contain"
+              />
+            </div>
+          ) : project.videoUrl && (project.videoUrl.includes("youtube.com") || project.videoUrl.includes("youtu.be")) ? (
+            <div className="aspect-[16/9] w-full relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
+              <iframe
+                src={project.videoUrl.replace("watch?v=", "embed/")}
+                title={`${project.title} demo`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full border-0"
+              />
+            </div>
+          ) : (
+            <div className="aspect-[16/9] w-full relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover object-top"
+                priority
+              />
+            </div>
+          )}
           {project.videoUrl && (
             <div className="mt-4 flex items-center justify-between text-xs text-slate-600 dark:text-slate-400">
               <span className="inline-flex items-center gap-1.5 text-blue-600 font-semibold">
                 <PlayCircle className="w-4 h-4" />
-                Live Video Demonstration Available
+                Live Video Demonstration Included
               </span>
             </div>
           )}

@@ -30,7 +30,7 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: true,
     image: "/images/projects/jakariya-ai-studio.svg",
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Video demonstration link available
+    videoUrl: "/videos/ai_studio.mp4",
     deliverables: [
       "End-to-end web application architecture",
       "Prompt optimizer agent module",
