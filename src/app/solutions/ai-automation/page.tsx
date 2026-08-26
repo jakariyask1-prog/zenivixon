@@ -45,14 +45,14 @@ export default function AiAutomationPage() {
       <div className="py-20 md:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
         {/* Problem vs Solution */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
+          <div className="p-8 rounded-2xl bg-white border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
             <div className="text-xs font-heading text-rose-600 font-bold uppercase tracking-widest">
               The Operational Problem
             </div>
-            <h3 className="text-2xl font-bold text-[#0F172A] font-heading">
+            <h3 className="text-2xl font-bold text-[#0F172A] dark:text-white font-heading">
               The High Cost of Human &apos;Data Glue&apos;
             </h3>
-            <p className="text-sm text-slate-600 leading-relaxed">
+            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
               {solution.problemStatement}
             </p>
           </div>
@@ -61,10 +61,10 @@ export default function AiAutomationPage() {
             <div className="text-xs font-heading text-cyan-700 font-bold uppercase tracking-widest">
               The Zenivixon Approach
             </div>
-            <h3 className="text-2xl font-bold text-[#0F172A] font-heading">
+            <h3 className="text-2xl font-bold text-[#0F172A] dark:text-white font-heading">
               Semantic Document &amp; Event Pipelines
             </h3>
-            <p className="text-sm text-slate-600 leading-relaxed">
+            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
               {solution.solutionApproach}
             </p>
           </div>
@@ -76,7 +76,7 @@ export default function AiAutomationPage() {
             <Badge variant="cyan" size="sm">
               PIPELINES
             </Badge>
-            <h2 className="text-3xl font-bold text-[#0F172A] font-heading">
+            <h2 className="text-3xl font-bold text-[#0F172A] dark:text-white font-heading">
               Intelligent Automation Solutions We Deliver
             </h2>
           </div>
@@ -85,17 +85,17 @@ export default function AiAutomationPage() {
             {solution.features.map((feature, idx) => (
               <div
                 key={idx}
-                className="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-slate-300 hover:shadow-md transition-all space-y-4"
+                className="p-8 rounded-2xl bg-white border border-slate-200 dark:border-slate-800 shadow-sm hover:border-slate-300 hover:shadow-md transition-all space-y-4"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-cyan-50 border border-cyan-200 flex items-center justify-center text-cyan-600">
                     <Cpu className="w-5 h-5" />
                   </div>
-                  <h3 className="text-lg font-bold text-[#0F172A] font-heading">
+                  <h3 className="text-lg font-bold text-[#0F172A] dark:text-white font-heading">
                     {feature.title}
                   </h3>
                 </div>
-                <p className="text-sm text-slate-600 leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                   {feature.description}
                 </p>
                 <div className="pt-2 flex items-center gap-2 text-xs font-heading text-cyan-700 font-semibold">
@@ -115,7 +115,7 @@ export default function AiAutomationPage() {
                 <Badge variant="cyan" size="sm">
                   PROVEN WORK
                 </Badge>
-                <h2 className="text-3xl font-bold text-[#0F172A] font-heading">
+                <h2 className="text-3xl font-bold text-[#0F172A] dark:text-white font-heading">
                   AI Automation Case Studies in Production
                 </h2>
               </div>
@@ -128,10 +128,10 @@ export default function AiAutomationPage() {
               {relevantProjects.map((project) => (
                 <div
                   key={project.slug}
-                  className="rounded-2xl bg-white border border-slate-200 shadow-sm p-6 flex flex-col justify-between hover:border-slate-300 hover:shadow-md transition-all group"
+                  className="rounded-2xl bg-white border border-slate-200 dark:border-slate-800 shadow-sm p-6 flex flex-col justify-between hover:border-slate-300 hover:shadow-md transition-all group"
                 >
                   <div className="space-y-4">
-                    <div className="aspect-[16/9] relative rounded-xl overflow-hidden border border-slate-200 bg-slate-50">
+                    <div className="aspect-[16/9] relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50">
                       <Image
                         src={project.image}
                         alt={project.title}
@@ -142,10 +142,10 @@ export default function AiAutomationPage() {
                     <Badge variant="cyan" size="sm">
                       {project.categoryLabel}
                     </Badge>
-                    <h3 className="text-xl font-bold text-[#0F172A] font-heading group-hover:text-blue-600 transition-colors">
+                    <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading group-hover:text-blue-600 transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">
+                    <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                       {project.summary}
                     </p>
                   </div>
@@ -171,7 +171,7 @@ export default function AiAutomationPage() {
             <Badge variant="blue" size="sm">
               WORKFLOW
             </Badge>
-            <h2 className="text-3xl font-bold text-[#0F172A] font-heading">
+            <h2 className="text-3xl font-bold text-[#0F172A] dark:text-white font-heading">
               Engineering Your Automation Pipeline
             </h2>
           </div>
@@ -180,15 +180,15 @@ export default function AiAutomationPage() {
             {solution.process.map((step) => (
               <div
                 key={step.step}
-                className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3"
+                className="p-6 rounded-2xl bg-white border border-slate-200 dark:border-slate-800 shadow-sm space-y-3"
               >
                 <span className="text-xs font-heading text-cyan-700 font-bold">
                   STEP {step.step}
                 </span>
-                <h4 className="text-base font-bold text-[#0F172A] font-heading">
+                <h4 className="text-base font-bold text-[#0F172A] dark:text-white font-heading">
                   {step.title}
                 </h4>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                   {step.description}
                 </p>
               </div>
@@ -197,11 +197,11 @@ export default function AiAutomationPage() {
         </div>
 
         {/* CTA */}
-        <div className="rounded-2xl bg-[#F7F9FC] border border-slate-200 p-8 sm:p-12 text-center space-y-6 shadow-sm">
-          <h3 className="text-2xl sm:text-3xl font-bold text-[#0F172A] font-heading">
+        <div className="rounded-2xl bg-[#F7F9FC] dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 p-8 sm:p-12 text-center space-y-6 shadow-sm">
+          <h3 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-white font-heading">
             Eliminate repetitive manual bottlenecks today.
           </h3>
-          <p className="text-slate-600 max-w-xl mx-auto text-sm leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-sm leading-relaxed">
             Tell us about your document handling, data entry, or multi-platform reporting needs.
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-2">

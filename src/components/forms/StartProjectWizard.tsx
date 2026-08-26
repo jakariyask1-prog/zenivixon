@@ -83,21 +83,21 @@ export function StartProjectWizard() {
 
   if (submitted) {
     return (
-      <div className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200 text-center space-y-6 max-w-2xl mx-auto shadow-xl">
+      <div className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200 dark:border-slate-800 text-center space-y-6 max-w-2xl mx-auto shadow-xl">
         <div className="w-16 h-16 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center mx-auto">
           <CheckCircle2 className="w-8 h-8" />
         </div>
         <Badge variant="emerald" size="sm">
           BRIEF SUBMITTED
         </Badge>
-        <h3 className="text-2xl sm:text-3xl font-bold text-[#0F172A] font-heading">
+        <h3 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-white font-heading">
           Thank you, {formData.name}.
         </h3>
-        <p className="text-sm text-slate-600 leading-relaxed max-w-lg mx-auto">
+        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed max-w-lg mx-auto">
           We have received your project requirements. A technical architect from ZENIVIXON will review your current workflow and respond with an actionable solution proposal within 24 hours.
         </p>
 
-        <div className="pt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-1 text-left">
+        <div className="pt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-400 space-y-1 text-left">
           <div className="font-semibold text-slate-800">Summary of your brief:</div>
           <div>&bull; Focus Area: {projectTypes.find((p) => p.id === formData.projectType)?.title}</div>
           <div>&bull; Preferred Contact: {formData.email}</div>
@@ -139,7 +139,7 @@ export function StartProjectWizard() {
   }
 
   return (
-    <div className="rounded-3xl bg-white border border-slate-200 p-6 sm:p-10 max-w-3xl mx-auto shadow-xl">
+    <div className="rounded-3xl bg-white border border-slate-200 dark:border-slate-800 p-6 sm:p-10 max-w-3xl mx-auto shadow-xl">
       {/* Visual Step Progress Bar */}
       <div className="flex gap-2 mb-6">
         {[1, 2, 3].map((n) => (
@@ -158,13 +158,13 @@ export function StartProjectWizard() {
           <span className="w-7 h-7 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center">
             {step}
           </span>
-          <span className="text-sm font-bold text-[#0F172A] font-heading">
+          <span className="text-sm font-bold text-[#0F172A] dark:text-white font-heading">
             {step === 1 && "Select Focus Area"}
             {step === 2 && "Describe Your Problem & Current Tools"}
             {step === 3 && "Contact & Timeline Details"}
           </span>
         </div>
-        <span className="text-xs font-heading text-slate-500 font-semibold">Step {step} of 3</span>
+        <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-semibold">Step {step} of 3</span>
       </div>
 
       {/* Error Banner */}
@@ -179,7 +179,7 @@ export function StartProjectWizard() {
         {/* Step 1: Select Type */}
         {step === 1 && (
           <div className="space-y-6">
-            <p className="text-sm text-slate-600">
+            <p className="text-sm text-slate-600 dark:text-slate-400">
               What primary AI capability are you looking to build or integrate?
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" role="radiogroup" aria-label="Project Type Selection">
@@ -200,16 +200,16 @@ export function StartProjectWizard() {
                     }}
                     className={`p-5 rounded-2xl border cursor-pointer transition-all duration-200 flex flex-col justify-between focus:outline-none focus:ring-2 focus:ring-blue-600 ${
                       isSelected
-                        ? "bg-blue-50/50 border-blue-600 text-[#0F172A] shadow-sm ring-1 ring-blue-600"
+                        ? "bg-blue-50/50 border-blue-600 text-[#0F172A] dark:text-white shadow-sm ring-1 ring-blue-600"
                         : "bg-[#F8FAFC] border-slate-200 text-slate-800 hover:border-slate-300 hover:bg-white"
                     }`}
                   >
                     <div>
                       <div className="mb-3">{type.icon}</div>
-                      <h4 className="text-sm font-bold font-heading mb-1 text-[#0F172A]">
+                      <h4 className="text-sm font-bold font-heading mb-1 text-[#0F172A] dark:text-white">
                         {type.title}
                       </h4>
-                      <p className="text-xs text-slate-500 leading-relaxed">
+                      <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
                         {type.desc}
                       </p>
                     </div>
@@ -247,7 +247,7 @@ export function StartProjectWizard() {
                   setFormData({ ...formData, problemDescription: e.target.value })
                 }
                 placeholder="Describe your current manual bottleneck, repetitive task, or what you want the AI system to accomplish..."
-                className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0F172A] text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all resize-none placeholder:text-slate-400"
+                className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all resize-none placeholder:text-slate-400"
               />
             </div>
 
@@ -263,7 +263,7 @@ export function StartProjectWizard() {
                   setFormData({ ...formData, currentTools: e.target.value })
                 }
                 placeholder="e.g. HubSpot, PostgreSQL, Zendesk, Slack, internal custom CRM..."
-                className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0F172A] text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
+                className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
               />
             </div>
 
@@ -308,7 +308,7 @@ export function StartProjectWizard() {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g. Sarah Jenkins"
-                  className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0F172A] text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
+                  className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
                 />
               </div>
               <div className="space-y-1.5">
@@ -323,7 +323,7 @@ export function StartProjectWizard() {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="sarah@enterprise.com"
-                  className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0F172A] text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
+                  className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
                 />
               </div>
             </div>
@@ -340,7 +340,7 @@ export function StartProjectWizard() {
                   value={formData.company}
                   onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                   placeholder="e.g. Apex Logistics"
-                  className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0F172A] text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
+                  className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
                 />
               </div>
               <div className="space-y-1.5">
@@ -351,7 +351,7 @@ export function StartProjectWizard() {
                   id="wizard-timeline"
                   value={formData.timeline}
                   onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0F172A] text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all"
+                  className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all"
                 >
                   <option value="Urgent (< 1 month)">Urgent (&lt; 1 month)</option>
                   <option value="1-2 Months">1-2 Months</option>

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Resend } from "resend";
 
 export async function POST(req: NextRequest) {
   try {
@@ -20,23 +21,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // ─────────────────────────────────────────────────────────────
-    // TODO: Connect your preferred email service here.
-    //
-    // Option A — Resend (recommended, free tier available):
-    //   import { Resend } from "resend";
-    //   const resend = new Resend(process.env.RESEND_API_KEY);
-    //   await resend.emails.send({
-    //     from: "ZENIVIXON <noreply@zenivixon.com>",
-    //     to: "support@zenivixon.com",
-    //     subject: `New Inquiry from ${name} — ${company || "No Company"}`,
-    //     html: `<p><b>Name:</b> ${name}</p><p><b>Email:</b> ${email}</p><p><b>Company:</b> ${company}</p><p><b>Message:</b> ${message}</p>`,
-    //   });
-    //
-    // Option B — Nodemailer (SMTP):
-    //   const transporter = nodemailer.createTransport({ host, port, auth: { user, pass } });
-    //   await transporter.sendMail({ from, to, subject, html });
-    // ─────────────────────────────────────────────────────────────
+    // Send email using Resend
+    if (!process.env.RESEND_API_KEY) {
+      console.warn("[ZENIVIXON] RESEND_API_KEY is not set. Email will not be sent.");
+    } else {
+      const resend = new Resend(process.env.RESEND_API_KEY);
+      await resend.emails.send({
+        from: "ZENIVIXON <noreply@zenivixon.com>",
+        to: "support@zenivixon.com",
+        subject: `New Inquiry from ${name} — ${company || "No Company"}`,
+        html: `<p><b>Name:</b> ${name}</p><p><b>Email:</b> ${email}</p><p><b>Company:</b> ${company}</p><p><b>Message:</b> ${message}</p>`,
+      });
+    }
 
     console.log("[ZENIVIXON Contact Form] New Submission:", {
       name,

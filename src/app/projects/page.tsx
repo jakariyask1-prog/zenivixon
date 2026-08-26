@@ -25,11 +25,11 @@ export default function ProjectsPage() {
         <ProjectsCatalog />
 
         {/* Bottom CTA */}
-        <div className="rounded-2xl bg-[#F7F9FC] border border-slate-200 p-8 sm:p-12 text-center space-y-6 shadow-sm mt-16">
-          <h3 className="text-2xl font-bold text-[#0F172A] font-heading">
+        <div className="rounded-2xl bg-[#F7F9FC] dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 p-8 sm:p-12 text-center space-y-6 shadow-sm mt-16">
+          <h3 className="text-2xl font-bold text-[#0F172A] dark:text-white font-heading">
             Have a project in mind?
           </h3>
-          <p className="text-slate-600 max-w-xl mx-auto text-sm leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-sm leading-relaxed">
             Tell us about your requirements and we will review your current workflow to provide a clear, practical implementation proposal.
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-2">

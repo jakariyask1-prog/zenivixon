@@ -7,7 +7,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export function AutomationGatewaySection() {
   return (
-    <section className="relative py-24 md:py-40 bg-white dark:bg-[#020817] overflow-hidden border-t border-slate-100 dark:border-slate-900/50">
+    <section className="relative py-24 md:py-40 bg-white dark:bg-[#020817] overflow-hidden border-t border-slate-100 dark:border-slate-900/50 transition-colors duration-300">
       
       {/* Scanline / Grid Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]"></div>

@@ -50,22 +50,22 @@ export default function AboutPage() {
             <Badge variant="blue" size="sm" className="font-semibold text-xs tracking-widest">
               OUR POSITIONING
             </Badge>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] font-heading leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] dark:text-white font-heading leading-tight">
               An AI-First Technology Partner for International Business.
             </h2>
-            <p className="text-slate-600 text-base leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed">
               ZENIVIXON was founded to bridge the gap between abstract AI research and practical enterprise operations. While large agencies offer generic retainers and superficial chatbots, we focus deeply on autonomous customer support agents, workflow automation, custom software, and system integrations.
             </p>
-            <p className="text-slate-500 text-sm leading-relaxed">
+            <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
               We serve business owners, CTOs, and operations leaders across the United States, United Kingdom, Europe, Canada, Australia, and other global markets who require focused, expert execution without corporate bureaucracy.
             </p>
           </div>
 
-          <div className="lg:col-span-5 p-8 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-md space-y-6">
+          <div className="lg:col-span-5 p-8 sm:p-10 rounded-3xl bg-white border border-slate-200 dark:border-slate-800 shadow-md space-y-6">
             <div className="text-xs font-heading text-cyan-700 uppercase tracking-widest font-bold">
               Engineering Philosophy
             </div>
-            <p className="text-lg font-bold text-[#0F172A] font-heading leading-snug">
+            <p className="text-lg font-bold text-[#0F172A] dark:text-white font-heading leading-snug">
               &ldquo;{COMPANY_INFO.philosophy}&rdquo;
             </p>
             <div className="space-y-3 pt-4 border-t border-slate-100 text-xs text-slate-700">
@@ -91,18 +91,18 @@ export default function AboutPage() {
             <Badge variant="blue" size="sm" className="font-semibold text-xs tracking-widest">
               EXECUTIVE LEADERSHIP
             </Badge>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] font-heading">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] dark:text-white font-heading">
               Founder &amp; Chief Executive Officer
             </h2>
-            <p className="text-base text-slate-600 max-w-2xl leading-relaxed">
+            <p className="text-base text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
               Driving ZENIVIXON&apos;s strategic vision, engineering quality, and direct international client collaborations.
             </p>
           </div>
 
-          <div className="rounded-3xl bg-white border border-slate-200/90 p-8 sm:p-10 md:p-12 shadow-lg shadow-slate-200/50 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div className="rounded-3xl bg-white border border-slate-200 dark:border-slate-800/90 p-8 sm:p-10 md:p-12 shadow-lg shadow-slate-200/50 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             {/* Founder Large Portrait (5 cols) */}
             <div className="lg:col-span-5 flex flex-col items-center">
-              <div className="w-full max-w-md aspect-[5/6] relative rounded-3xl overflow-hidden border border-slate-200 shadow-md bg-slate-900 group">
+              <div className="w-full max-w-md aspect-[5/6] relative rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-slate-900 group">
                 <Image
                   src={founder.image}
                   alt={founder.name}
@@ -111,7 +111,7 @@ export default function AboutPage() {
                   priority
                 />
               </div>
-              <div className="mt-4 flex items-center gap-2 text-xs font-heading text-slate-500 font-semibold">
+              <div className="mt-4 flex items-center gap-2 text-xs font-heading text-slate-500 dark:text-slate-400 font-semibold">
                 <ShieldCheck className="w-4 h-4 text-blue-600" />
                 <span>Verified Executive Profile &bull; ZENIVIXON</span>
               </div>
@@ -130,12 +130,12 @@ export default function AboutPage() {
                     </span>
                   )}
                 </div>
-                <h3 className="text-3xl font-extrabold text-[#0F172A] font-heading">
+                <h3 className="text-3xl font-extrabold text-[#0F172A] dark:text-white font-heading">
                   {founder.name}
                 </h3>
               </div>
 
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
                 {founder.bio}
               </p>
 
@@ -164,7 +164,7 @@ export default function AboutPage() {
                   {founder.expertise.map((exp) => (
                     <span
                       key={exp}
-                      className="text-xs font-heading px-3 py-1 rounded-lg bg-slate-100 text-slate-800 border border-slate-200 font-semibold"
+                      className="text-xs font-heading px-3 py-1 rounded-lg bg-slate-100 text-slate-800 border border-slate-200 dark:border-slate-800 font-semibold"
                     >
                       {exp}
                     </span>
@@ -201,9 +201,9 @@ export default function AboutPage() {
                 {founder.email && (
                   <a
                     href={`mailto:${founder.email}`}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200 hover:bg-slate-200 hover:text-slate-900 transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200 dark:border-slate-800 hover:bg-slate-200 hover:text-slate-900 transition-colors"
                   >
-                    <Mail className="w-4 h-4 text-slate-500" />
+                    <Mail className="w-4 h-4 text-slate-500 dark:text-slate-400" />
                     <span>Direct Email</span>
                   </a>
                 )}
@@ -218,10 +218,10 @@ export default function AboutPage() {
             <Badge variant="cyan" size="sm" className="font-semibold text-xs tracking-widest">
               ENGINEERING LEADERSHIP &amp; SPECIALISTS
             </Badge>
-            <h2 className="text-3xl font-extrabold text-[#0F172A] font-heading">
+            <h2 className="text-3xl font-extrabold text-[#0F172A] dark:text-white font-heading">
               Technical Specialists &amp; Systems Engineers
             </h2>
-            <p className="text-base text-slate-600 max-w-2xl leading-relaxed">
+            <p className="text-base text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
               Standardized, high-density engineering profiles. Our clients work directly with the technical specialists architecting their systems.
             </p>
           </div>
@@ -231,12 +231,12 @@ export default function AboutPage() {
             {engineeringTeam.map((member) => (
               <div
                 key={member.id}
-                className="rounded-3xl bg-white border border-slate-200/90 shadow-md p-8 sm:p-10 flex flex-col justify-between hover:border-slate-300 hover:shadow-xl transition-all duration-300 group"
+                className="rounded-3xl bg-white border border-slate-200 dark:border-slate-800/90 shadow-md p-8 sm:p-10 flex flex-col justify-between hover:border-slate-300 hover:shadow-xl transition-all duration-300 group"
               >
                 <div className="space-y-6">
                   {/* Large Standard Portrait & Role Header */}
                   <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
-                    <div className="sm:col-span-5 aspect-[5/6] relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-900 shadow-sm">
+                    <div className="sm:col-span-5 aspect-[5/6] relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900 shadow-sm">
                       <Image
                         src={member.image}
                         alt={member.name}
@@ -248,7 +248,7 @@ export default function AboutPage() {
                       <Badge variant="blue" size="sm" className="font-semibold text-xs">
                         {member.department}
                       </Badge>
-                      <h3 className="text-xl font-bold text-[#0F172A] font-heading group-hover:text-blue-600 transition-colors">
+                      <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading group-hover:text-blue-600 transition-colors">
                         {member.name}
                       </h3>
                       <p className="text-xs font-heading text-blue-600 font-semibold">
@@ -263,7 +263,7 @@ export default function AboutPage() {
                   </div>
 
                   {/* Bio */}
-                  <p className="text-sm text-slate-600 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     {member.bio}
                   </p>
 
@@ -294,7 +294,7 @@ export default function AboutPage() {
                       {member.expertise.map((exp) => (
                         <span
                           key={exp}
-                          className="text-xs font-heading px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 border border-slate-200 font-medium"
+                          className="text-xs font-heading px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 border border-slate-200 dark:border-slate-800 font-medium"
                         >
                           {exp}
                         </span>
@@ -345,7 +345,7 @@ export default function AboutPage() {
             <Badge variant="blue" size="sm" className="font-semibold text-xs tracking-widest">
               CORE PRINCIPLES
             </Badge>
-            <h2 className="text-3xl font-bold text-[#0F172A] font-heading">
+            <h2 className="text-3xl font-bold text-[#0F172A] dark:text-white font-heading">
               How We Approach Every Engineering Engagement
             </h2>
           </div>
@@ -354,15 +354,15 @@ export default function AboutPage() {
             {COMPANY_VALUES.map((val, idx) => (
               <div
                 key={idx}
-                className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:border-slate-300 hover:shadow-md transition-all space-y-3"
+                className="p-8 rounded-3xl bg-white border border-slate-200 dark:border-slate-800/90 shadow-sm hover:border-slate-300 hover:shadow-md transition-all space-y-3"
               >
-                <div className="text-xs font-heading text-slate-500 font-bold">
+                <div className="text-xs font-heading text-slate-500 dark:text-slate-400 font-bold">
                   PRINCIPLE 0{idx + 1}
                 </div>
-                <h3 className="text-xl font-bold text-[#0F172A] font-heading">
+                <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading">
                   {val.title}
                 </h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                   {val.description}
                 </p>
               </div>
@@ -371,14 +371,14 @@ export default function AboutPage() {
         </div>
 
         {/* Scalable Growth Statement */}
-        <div className="rounded-3xl bg-[#F7F9FC] border border-slate-200 p-8 sm:p-12 text-center space-y-6 shadow-sm">
-          <p className="text-xs font-heading uppercase tracking-widest text-slate-500 font-bold">
+        <div className="rounded-3xl bg-[#F7F9FC] dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 p-8 sm:p-12 text-center space-y-6 shadow-sm">
+          <p className="text-xs font-heading uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold">
             &ldquo;Focused today. Built for tomorrow.&rdquo;
           </p>
-          <h3 className="text-2xl sm:text-3xl font-bold text-[#0F172A] font-heading">
+          <h3 className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-white font-heading">
             Partner with ZENIVIXON for your AI &amp; Software initiatives.
           </h3>
-          <p className="text-slate-600 max-w-xl mx-auto text-sm leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-sm leading-relaxed">
             Let us review your workflow and discuss how practical AI systems and modern software can elevate your business efficiency.
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-2">

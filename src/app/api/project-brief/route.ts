@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Resend } from "resend";
 
 export async function POST(req: NextRequest) {
   try {
@@ -20,28 +21,27 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // ─────────────────────────────────────────────────────────────
-    // TODO: Connect your preferred email service here.
-    //
-    // Example with Resend:
-    //   import { Resend } from "resend";
-    //   const resend = new Resend(process.env.RESEND_API_KEY);
-    //   await resend.emails.send({
-    //     from: "ZENIVIXON <noreply@zenivixon.com>",
-    //     to: "support@zenivixon.com",
-    //     subject: `New Project Brief from ${name} — ${projectType}`,
-    //     html: `
-    //       <p><b>Name:</b> ${name}</p>
-    //       <p><b>Email:</b> ${email}</p>
-    //       <p><b>Company:</b> ${company}</p>
-    //       <p><b>Project Type:</b> ${projectType}</p>
-    //       <p><b>Problem:</b> ${problemDescription}</p>
-    //       <p><b>Current Tools:</b> ${currentTools}</p>
-    //       <p><b>Timeline:</b> ${timeline}</p>
-    //       <p><b>Preferred Channel:</b> ${preferredChannel}</p>
-    //     `,
-    //   });
-    // ─────────────────────────────────────────────────────────────
+    // Send email using Resend
+    if (!process.env.RESEND_API_KEY) {
+      console.warn("[ZENIVIXON] RESEND_API_KEY is not set. Email will not be sent.");
+    } else {
+      const resend = new Resend(process.env.RESEND_API_KEY);
+      await resend.emails.send({
+        from: "ZENIVIXON <noreply@zenivixon.com>",
+        to: "support@zenivixon.com",
+        subject: `New Project Brief from ${name} — ${projectType}`,
+        html: `
+          <p><b>Name:</b> ${name}</p>
+          <p><b>Email:</b> ${email}</p>
+          <p><b>Company:</b> ${company}</p>
+          <p><b>Project Type:</b> ${projectType}</p>
+          <p><b>Problem:</b> ${problemDescription}</p>
+          <p><b>Current Tools:</b> ${currentTools}</p>
+          <p><b>Timeline:</b> ${timeline}</p>
+          <p><b>Preferred Channel:</b> ${preferredChannel}</p>
+        `,
+      });
+    }
 
     console.log("[ZENIVIXON Project Brief] New Submission:", {
       name,

@@ -39,14 +39,14 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="p-8 rounded-2xl bg-white border border-slate-200 text-center space-y-4 shadow-sm">
+      <div className="p-8 rounded-2xl bg-white border border-slate-200 dark:border-slate-800 text-center space-y-4 shadow-sm">
         <div className="w-12 h-12 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center mx-auto">
           <CheckCircle2 className="w-6 h-6" />
         </div>
-        <h3 className="text-xl font-bold text-[#0F172A] font-heading">
+        <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading">
           Message Received
         </h3>
-        <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+        <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto leading-relaxed">
           Thank you for reaching out, {formData.name}. An engineer from ZENIVIXON will review your inquiry and get back to you within 24 hours.
         </p>
         <button
@@ -84,7 +84,7 @@ export function ContactForm() {
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             placeholder="e.g. Alex Morgan"
-            className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0F172A] text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
+            className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
           />
         </div>
         <div className="space-y-1.5">
@@ -99,7 +99,7 @@ export function ContactForm() {
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             placeholder="alex@company.com"
-            className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0F172A] text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
+            className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
           />
         </div>
       </div>
@@ -115,7 +115,7 @@ export function ContactForm() {
           value={formData.company}
           onChange={(e) => setFormData({ ...formData, company: e.target.value })}
           placeholder="e.g. Acme Technologies Ltd"
-          className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0F172A] text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
+          className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
         />
       </div>
 
@@ -130,7 +130,7 @@ export function ContactForm() {
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           placeholder="Describe what you are trying to solve..."
-          className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0F172A] text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white transition-all resize-none placeholder:text-slate-400"
+          className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white transition-all resize-none placeholder:text-slate-400"
         />
       </div>
 

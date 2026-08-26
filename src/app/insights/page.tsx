@@ -29,24 +29,24 @@ export default function InsightsPage() {
           {INSIGHTS_DATA.map((article) => (
             <div
               key={article.slug}
-              className="rounded-2xl bg-white border border-slate-200/90 shadow-sm p-8 flex flex-col justify-between hover:border-slate-300 hover:shadow-md transition-all duration-300 group"
+              className="rounded-2xl bg-white border border-slate-200 dark:border-slate-800/90 shadow-sm p-8 flex flex-col justify-between hover:border-slate-300 hover:shadow-md transition-all duration-300 group"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <Badge variant="blue" size="sm">
                     {article.category}
                   </Badge>
-                  <div className="flex items-center gap-1.5 text-xs font-heading text-slate-500 font-semibold">
+                  <div className="flex items-center gap-1.5 text-xs font-heading text-slate-500 dark:text-slate-400 font-semibold">
                     <Clock className="w-3.5 h-3.5" />
                     <span>{article.readingTime}</span>
                   </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-[#0F172A] font-heading leading-snug group-hover:text-blue-600 transition-colors">
+                <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading leading-snug group-hover:text-blue-600 transition-colors">
                   {article.title}
                 </h3>
 
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                   {article.summary}
                 </p>
 
@@ -66,7 +66,7 @@ export default function InsightsPage() {
 
               {/* Author, Date & CTA */}
               <div className="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between text-xs font-medium">
-                <span className="text-slate-500">{article.author.name} · {formatDate(article.publishDate)}</span>
+                <span className="text-slate-500 dark:text-slate-400">{article.author.name} · {formatDate(article.publishDate)}</span>
                 <a
                   href={`/insights/${article.slug}`}
                   className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 font-semibold transition-colors"
@@ -79,11 +79,11 @@ export default function InsightsPage() {
         </div>
 
         {/* Bottom CTA */}
-        <div className="rounded-2xl bg-[#F7F9FC] border border-slate-200 p-8 sm:p-12 text-center space-y-6 shadow-sm">
-          <h3 className="text-2xl font-bold text-[#0F172A] font-heading">
+        <div className="rounded-2xl bg-[#F7F9FC] dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 p-8 sm:p-12 text-center space-y-6 shadow-sm">
+          <h3 className="text-2xl font-bold text-[#0F172A] dark:text-white font-heading">
             Want to discuss these concepts for your company?
           </h3>
-          <p className="text-slate-600 max-w-xl mx-auto text-sm leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-sm leading-relaxed">
             Schedule a technical consultation to explore how these architectural patterns apply to your workflow.
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-2">

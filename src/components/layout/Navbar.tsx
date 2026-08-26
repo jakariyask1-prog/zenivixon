@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X, ArrowRight, MessageSquare, Bot, Cpu, Network, Globe } from "lucide-react";
+import { SignInButton, SignUpButton, UserButton, useAuth } from "@clerk/nextjs";
 import { MAIN_NAVIGATION } from "@/data/navigation";
 import { COMPANY_INFO } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
@@ -22,6 +23,7 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [solutionsDropdownOpen, setSolutionsDropdownOpen] = useState(false);
   const pathname = usePathname();
+  const { isSignedIn } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -101,7 +103,7 @@ export function Navbar() {
                       className={`inline-flex items-center gap-1.5 px-3.5 py-2 text-sm font-semibold rounded-lg transition-colors ${
                         isActive
                           ? "text-blue-600 bg-blue-50 dark:bg-blue-900/30 dark:text-blue-400"
-                          : "text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-slate-200 dark:hover:bg-slate-800/50"
+                          : "text-slate-600 dark:text-slate-400 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-slate-200 dark:hover:bg-slate-800/50"
                       }`}
                     >
                       {item.label}
@@ -122,7 +124,7 @@ export function Navbar() {
                     >
                       <div className="rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 p-4 shadow-xl shadow-slate-200/50 dark:shadow-black/50 grid grid-cols-2 gap-2">
                         <div className="col-span-2 px-2 pb-2 mb-2 border-b border-slate-100 dark:border-slate-800/50">
-                          <span className="text-[11px] uppercase tracking-widest text-slate-500 font-bold font-heading">Solutions & Automations</span>
+                          <span className="text-[11px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold font-heading">Solutions & Automations</span>
                         </div>
                         {item.children.map((child) => (
                           <Link
@@ -131,7 +133,7 @@ export function Navbar() {
                             onClick={() => setSolutionsDropdownOpen(false)}
                             className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group border border-transparent hover:border-slate-100 dark:hover:border-slate-700/50"
                           >
-                            <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 group-hover:border-blue-200 dark:group-hover:border-blue-800 transition-colors">
+                            <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 dark:border-slate-700 group-hover:border-blue-200 dark:group-hover:border-blue-800 transition-colors">
                               {solutionIcons[child.href]}
                             </div>
                             <div>
@@ -157,7 +159,7 @@ export function Navbar() {
                   className={`px-3.5 py-2 text-sm font-semibold rounded-lg transition-colors ${
                     isActive
                       ? "text-blue-600 bg-blue-50 dark:bg-blue-900/30 dark:text-blue-400"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-slate-200 dark:hover:bg-slate-800/50"
+                      : "text-slate-600 dark:text-slate-400 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-slate-200 dark:hover:bg-slate-800/50"
                   }`}
                 >
                   {item.label}
@@ -176,10 +178,26 @@ export function Navbar() {
               external
               icon={<MessageSquare className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />}
               iconPosition="left"
-              className="text-slate-600 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
+              className="text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400"
             >
               WhatsApp
             </Button>
+            {!isSignedIn ? (
+              <>
+                <SignInButton mode="modal">
+                  <Button variant="ghost" size="sm" className="hidden sm:inline-flex text-slate-600 dark:text-slate-400 hover:text-slate-900 hover:bg-slate-100 dark:hover:text-slate-200 dark:hover:bg-slate-800">
+                    Sign In
+                  </Button>
+                </SignInButton>
+                <SignUpButton mode="modal">
+                  <Button variant="primary" size="sm">
+                    Sign Up
+                  </Button>
+                </SignUpButton>
+              </>
+            ) : (
+              <UserButton />
+            )}
             <Button
               variant="glowing"
               size="sm"
@@ -238,7 +256,7 @@ export function Navbar() {
                         className={`block px-3 py-2 rounded-lg text-sm transition-colors ${
                           pathname === child.href
                             ? "text-blue-600 dark:text-blue-400 font-semibold"
-                            : "text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200"
+                            : "text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200"
                         }`}
                       >
                         {child.label}
@@ -263,6 +281,24 @@ export function Navbar() {
             >
               Chat on WhatsApp
             </Button>
+            {!isSignedIn ? (
+              <>
+                <SignInButton>
+                  <Button variant="ghost" size="md" className="w-full justify-center">
+                    Sign In
+                  </Button>
+                </SignInButton>
+                <SignUpButton>
+                  <Button variant="primary" size="md" className="w-full justify-center">
+                    Sign Up
+                  </Button>
+                </SignUpButton>
+              </>
+            ) : (
+              <div className="flex justify-center py-2">
+                <UserButton />
+              </div>
+            )}
             <Button
               variant="glowing"
               size="md"

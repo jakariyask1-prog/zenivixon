@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -17,8 +19,8 @@ export function Footer() {
           <div className="lg:col-span-4 space-y-16">
             
             {/* Stay Tuned / Newsletter */}
-            <div className="bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-6 md:p-8 border border-slate-200/60 dark:border-slate-800">
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 mb-4 block font-heading">
+            <div className="bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-6 md:p-8 border border-slate-200 dark:border-slate-800/60 dark:border-slate-800">
+              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 mb-4 block font-heading">
                 STAY UPDATED
               </span>
               <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading mb-3">
@@ -37,14 +39,14 @@ export function Footer() {
                   <Mail className="w-5 h-5" />
                 </button>
               </form>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-slate-500 dark:text-slate-400">
                 Read by ops and engineering leads • Weekly • Unsubscribe anytime
               </p>
             </div>
 
             {/* Get In Touch / Founders */}
             <div>
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 mb-6 block font-heading">
+              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 mb-6 block font-heading">
                 GET IN TOUCH
               </span>
               <div className="space-y-6">
@@ -56,7 +58,7 @@ export function Footer() {
                       <h4 className="text-base font-bold text-[#0F172A] dark:text-white font-heading">Sazib Hossain</h4>
                       <CheckCircle2 className="w-4 h-4 text-blue-500" />
                     </div>
-                    <p className="text-sm text-slate-500">Founder & CEO</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">Founder & CEO</p>
                   </div>
                 </div>
                 {/* Founder 2 */}
@@ -67,7 +69,7 @@ export function Footer() {
                       <h4 className="text-base font-bold text-[#0F172A] dark:text-white font-heading">Sabbir Ahmed</h4>
                       <CheckCircle2 className="w-4 h-4 text-blue-500" />
                     </div>
-                    <p className="text-sm text-slate-500">B2B Sales & Development</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">B2B Sales & Development</p>
                   </div>
                 </div>
               </div>
@@ -84,7 +86,7 @@ export function Footer() {
             
             {/* Free Tools */}
             <div className="space-y-4">
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 block font-heading">
+              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 block font-heading">
                 FREE TOOLS
               </span>
               <ul className="space-y-3.5">
@@ -117,7 +119,7 @@ export function Footer() {
 
             {/* Services */}
             <div className="space-y-4">
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 block font-heading">
+              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 block font-heading">
                 SERVICES
               </span>
               <ul className="space-y-3.5">
@@ -145,7 +147,7 @@ export function Footer() {
 
             {/* Platform Agencies */}
             <div className="space-y-4">
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 block font-heading">
+              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 block font-heading">
                 PLATFORM AGENCIES
               </span>
               <ul className="space-y-3.5">
@@ -173,7 +175,7 @@ export function Footer() {
 
             {/* Resources */}
             <div className="space-y-4">
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 block font-heading">
+              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 block font-heading">
                 RESOURCES
               </span>
               <ul className="space-y-3.5">
@@ -197,7 +199,7 @@ export function Footer() {
               </ul>
 
               <div className="pt-8">
-                <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 block font-heading mb-4">
+                <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 block font-heading mb-4">
                   COMPANY
                 </span>
                 <Link href="/" className="flex items-center gap-2.5 mb-4">
@@ -214,7 +216,7 @@ export function Footer() {
                     {COMPANY_INFO.name}
                   </span>
                 </Link>
-                <p className="text-xs text-slate-500 leading-relaxed max-w-[200px]">
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-[200px]">
                   {COMPANY_INFO.positioning}
                 </p>
               </div>
@@ -224,7 +226,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar with Legal */}
-        <div className="mt-20 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-slate-500">
+        <div className="mt-20 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-slate-500 dark:text-slate-400">
           <div>
             &copy; {new Date().getFullYear()} {COMPANY_INFO.formalName}. All rights reserved.
           </div>

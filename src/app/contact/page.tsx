@@ -30,10 +30,10 @@ export default function ContactPage() {
               <Badge variant="blue" size="sm">
                 COMMUNICATION CHANNELS
               </Badge>
-              <h2 className="text-2xl font-bold text-[#0F172A] font-heading">
+              <h2 className="text-2xl font-bold text-[#0F172A] dark:text-white font-heading">
                 Reach Us Directly
               </h2>
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 We maintain direct, responsive communication channels for business clients worldwide.
               </p>
             </div>
@@ -45,17 +45,17 @@ export default function ContactPage() {
                 href={COMPANY_INFO.channels.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-emerald-500 hover:shadow-md transition-all flex items-center justify-between group"
+                className="p-5 rounded-2xl bg-white border border-slate-200 dark:border-slate-800 shadow-sm hover:border-emerald-500 hover:shadow-md transition-all flex items-center justify-between group"
               >
                 <div className="flex items-center gap-3.5">
                   <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center">
                     <MessageSquare className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-[#0F172A] font-heading group-hover:text-emerald-600 transition-colors">
+                    <h4 className="text-sm font-bold text-[#0F172A] dark:text-white font-heading group-hover:text-emerald-600 transition-colors">
                       WhatsApp Business
                     </h4>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
                       Fastest response for urgent inquiries
                     </p>
                   </div>
@@ -68,17 +68,17 @@ export default function ContactPage() {
               {/* Email */}
               <a
                 href={`mailto:${COMPANY_INFO.channels.email}`}
-                className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-blue-500 hover:shadow-md transition-all flex items-center justify-between group"
+                className="p-5 rounded-2xl bg-white border border-slate-200 dark:border-slate-800 shadow-sm hover:border-blue-500 hover:shadow-md transition-all flex items-center justify-between group"
               >
                 <div className="flex items-center gap-3.5">
                   <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-[#0F172A] font-heading group-hover:text-blue-600 transition-colors">
+                    <h4 className="text-sm font-bold text-[#0F172A] dark:text-white font-heading group-hover:text-blue-600 transition-colors">
                       Business Email
                     </h4>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
                       {COMPANY_INFO.channels.email}
                     </p>
                   </div>
@@ -93,7 +93,7 @@ export default function ContactPage() {
                 href={COMPANY_INFO.channels.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-blue-400 hover:shadow-md transition-all flex items-center justify-between group"
+                className="p-5 rounded-2xl bg-white border border-slate-200 dark:border-slate-800 shadow-sm hover:border-blue-400 hover:shadow-md transition-all flex items-center justify-between group"
               >
                 <div className="flex items-center gap-3.5">
                   <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-700 flex items-center justify-center">
@@ -102,10 +102,10 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-[#0F172A] font-heading group-hover:text-blue-700 transition-colors">
+                    <h4 className="text-sm font-bold text-[#0F172A] dark:text-white font-heading group-hover:text-blue-700 transition-colors">
                       LinkedIn
                     </h4>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
                       Corporate presence &amp; updates
                     </p>
                   </div>
@@ -120,31 +120,31 @@ export default function ContactPage() {
                 href={COMPANY_INFO.channels.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-slate-400 hover:shadow-md transition-all flex items-center justify-between group"
+                className="p-5 rounded-2xl bg-white border border-slate-200 dark:border-slate-800 shadow-sm hover:border-slate-400 hover:shadow-md transition-all flex items-center justify-between group"
               >
                 <div className="flex items-center gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 dark:border-slate-800 text-slate-700 flex items-center justify-center">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02Z"/>
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-[#0F172A] font-heading group-hover:text-slate-900 transition-colors">
+                    <h4 className="text-sm font-bold text-[#0F172A] dark:text-white font-heading group-hover:text-slate-900 transition-colors">
                       Facebook
                     </h4>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
                       Brand page &amp; announcements
                     </p>
                   </div>
                 </div>
-                <span className="text-xs font-heading text-slate-600 font-bold">
+                <span className="text-xs font-heading text-slate-600 dark:text-slate-400 font-bold">
                   Visit &rarr;
                 </span>
               </a>
             </div>
 
             {/* Response Commitment */}
-            <div className="p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 text-xs text-slate-600 space-y-2 shadow-xs">
+            <div className="p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-400 space-y-2 shadow-xs">
               <div className="flex items-center gap-2 text-slate-800 font-bold">
                 <Clock className="w-4 h-4 text-cyan-600" />
                 <span>Response Time SLA</span>
@@ -156,12 +156,12 @@ export default function ContactPage() {
           </div>
 
           {/* Inquiry Form (7 cols) */}
-          <div className="lg:col-span-7 bg-white border border-slate-200 rounded-3xl p-8 sm:p-10 shadow-xl">
+          <div className="lg:col-span-7 bg-white border border-slate-200 dark:border-slate-800 rounded-3xl p-8 sm:p-10 shadow-xl">
             <div className="space-y-2 mb-6">
-              <h3 className="text-xl font-bold text-[#0F172A] font-heading">
+              <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading">
                 Send a Direct Message
               </h3>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-slate-500 dark:text-slate-400">
                 Provide a brief summary of what you are trying to solve.
               </p>
             </div>

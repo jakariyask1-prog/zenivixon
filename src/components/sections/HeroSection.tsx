@@ -6,16 +6,16 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export function HeroSection() {
   return (
-    <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-[#FCFDFE]">
+    <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-[#FCFDFE] dark:bg-[#020817] transition-colors duration-300">
       {/* Background Subtle Depth Elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_10%,#000_70%,transparent_100%)] opacity-40 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_10%,#000_70%,transparent_100%)] opacity-40 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-6">
           <ScrollReveal direction="up" delay={0.1}>
             {/* Enhanced Premium Eyebrow Badge */}
-            <div className="inline-flex items-center justify-center gap-2.5 px-5 py-2 sm:px-6 sm:py-2.5 rounded-full bg-blue-50/90 border border-blue-200/90 text-blue-800 shadow-sm shadow-blue-500/10 hover:border-blue-300 transition-all">
-              <div className="w-5 h-5 rounded-full bg-blue-600/10 flex items-center justify-center text-blue-600">
+            <div className="inline-flex items-center justify-center gap-2.5 px-5 py-2 sm:px-6 sm:py-2.5 rounded-full bg-blue-50/90 dark:bg-blue-950/40 border border-blue-200/90 dark:border-blue-800/80 text-blue-800 dark:text-blue-300 shadow-sm shadow-blue-500/10 hover:border-blue-300 dark:hover:border-blue-700 transition-all">
+              <div className="w-5 h-5 rounded-full bg-blue-600/10 dark:bg-blue-400/20 flex items-center justify-center text-blue-600 dark:text-blue-400">
                 <Sparkles className="w-3.5 h-3.5" />
               </div>
               <span className="text-xs sm:text-sm font-bold uppercase tracking-widest font-heading">
@@ -26,14 +26,14 @@ export function HeroSection() {
 
           <ScrollReveal direction="up" delay={0.2}>
             {/* Locked Core Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#0F172A] tracking-tight leading-[1.15] font-heading">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#0F172A] dark:text-white tracking-tight leading-[1.15] font-heading">
               Automate Your Business. Engage Customers 24/7. Scale with AI.
             </h1>
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.3}>
             {/* Core Message / Subheadline */}
-            <p className="text-lg sm:text-xl text-slate-600 max-w-3xl leading-relaxed font-normal mx-auto">
+            <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed font-normal mx-auto">
               ZENIVIXON builds high-performance <strong>modern web applications</strong>, <strong>intelligent workflow automations</strong>, <strong>24/7 AI customer support agents</strong>, and custom integrations that connect seamlessly into your existing business software.
             </p>
           </ScrollReveal>
@@ -55,7 +55,7 @@ export function HeroSection() {
                 size="lg"
                 href="/solutions"
                 icon={<ArrowUpRight className="w-4 h-4" />}
-                className="w-full sm:w-auto text-base px-7 py-4 text-slate-700 font-semibold"
+                className="w-full sm:w-auto text-base px-7 py-4 font-semibold"
               >
                 Explore Solutions
               </Button>
@@ -64,21 +64,21 @@ export function HeroSection() {
 
           <ScrollReveal direction="up" delay={0.5}>
             {/* Trust & Focus Pillars */}
-            <div className="pt-6 flex flex-wrap items-center justify-center gap-y-3 gap-x-6 text-xs sm:text-sm text-slate-600 font-medium">
+            <div className="pt-6 flex flex-wrap items-center justify-center gap-y-3 gap-x-6 text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium">
               <div className="flex items-center gap-2">
-                <Globe className="w-4 h-4 text-blue-600 shrink-0" />
+                <Globe className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
                 <span>Modern Web &amp; App Development</span>
               </div>
               <div className="flex items-center gap-2">
-                <Cpu className="w-4 h-4 text-cyan-600 shrink-0" />
+                <Cpu className="w-4 h-4 text-cyan-600 dark:text-cyan-400 shrink-0" />
                 <span>AI Workflow Automation</span>
               </div>
               <div className="flex items-center gap-2">
-                <Headphones className="w-4 h-4 text-indigo-600 shrink-0" />
+                <Headphones className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
                 <span>24/7 AI Customer Support</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                 <span>Existing System Integration</span>
               </div>
             </div>
@@ -91,7 +91,7 @@ export function HeroSection() {
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-cyan-400/20 to-purple-500/20 blur-3xl rounded-full scale-90 animate-[glow_4s_ease-in-out_infinite_alternate] z-0" />
           
           {/* Levitating Image Container */}
-          <div className="rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/20 border border-slate-200/60 dark:border-slate-800 relative z-10 animate-[float_6s_ease-in-out_infinite]">
+          <div className="rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/20 border border-slate-200 dark:border-slate-800/60 dark:border-slate-800 relative z-10 animate-[float_6s_ease-in-out_infinite]">
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
             <Image
               src="/cover-photo.png"
@@ -106,18 +106,18 @@ export function HeroSection() {
 
         {/* Premium System Flow Visualization: Business Systems → AI → Automation → Outcome */}
         <div className="mt-20 md:mt-28 max-w-5xl mx-auto">
-          <div className="rounded-3xl bg-white border border-slate-200/90 p-5 sm:p-7 md:p-8 shadow-xl shadow-slate-200/50">
+          <div className="rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 p-5 sm:p-7 md:p-8 shadow-xl shadow-slate-200/50 dark:shadow-none transition-colors duration-300">
             {/* Top Bar Header */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-slate-100 pb-4 mb-6 gap-2">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4 mb-6 gap-2">
               <div className="flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-slate-300" />
-                <div className="w-2.5 h-2.5 rounded-full bg-slate-300" />
-                <div className="w-2.5 h-2.5 rounded-full bg-slate-300" />
-                <span className="text-xs font-heading text-slate-500 ml-2 font-medium">
+                <div className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700" />
+                <div className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700" />
+                <div className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700" />
+                <span className="text-xs font-heading text-slate-500 dark:text-slate-400 ml-2 font-medium">
                   enterprise_transformation_architecture
                 </span>
               </div>
-              <div className="text-xs font-heading text-cyan-700 bg-cyan-50 px-2.5 py-1 rounded-full border border-cyan-200 font-semibold">
+              <div className="text-xs font-heading text-cyan-700 dark:text-cyan-300 bg-cyan-50 dark:bg-cyan-950/40 px-2.5 py-1 rounded-full border border-cyan-200 dark:border-cyan-800 font-semibold">
                 SYSTEM TOPOLOGY: DETERMINISTIC
               </div>
             </div>
@@ -126,114 +126,114 @@ export function HeroSection() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-0 relative">
               {/* Stage 1: Business Systems */}
               <div className="relative">
-                <div className="p-5 rounded-2xl bg-slate-50/80 border border-slate-200 flex flex-col justify-between hover:bg-white hover:border-slate-300 hover:shadow-sm transition-all duration-200">
+                <div className="p-5 rounded-2xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:bg-white dark:hover:bg-slate-850 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-sm transition-all duration-200">
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs font-heading text-slate-500 font-bold uppercase tracking-widest">
+                      <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest">
                         Stage 01
                       </span>
-                      <div className="w-8 h-8 rounded-lg bg-slate-200/70 flex items-center justify-center text-slate-700">
+                      <div className="w-8 h-8 rounded-lg bg-slate-200/70 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300">
                         <Database className="w-4 h-4" />
                       </div>
                     </div>
-                    <h3 className="text-sm font-bold text-[#0F172A] font-heading">
+                    <h3 className="text-sm font-bold text-[#0F172A] dark:text-white font-heading">
                       Business Systems
                     </h3>
-                    <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                    <p className="text-xs text-slate-600 dark:text-slate-400 mt-1.5 leading-relaxed">
                       Existing CRMs, ERPs, databases, websites, customer support inboxes, and APIs.
                     </p>
                   </div>
-                  <div className="mt-4 pt-3 border-t border-slate-200/80 text-xs font-heading text-slate-600 font-medium">
+                  <div className="mt-4 pt-3 border-t border-slate-200/80 dark:border-slate-800 text-xs font-heading text-slate-600 dark:text-slate-400 font-medium">
                     &bull; Zero Disruption to Stack
                   </div>
                 </div>
                 {/* Arrow Connector → */}
-                <div className="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white border border-slate-200 shadow-sm items-center justify-center text-xs text-cyan-600 font-bold">
+                <div className="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-800 dark:border-slate-700 shadow-sm items-center justify-center text-xs text-cyan-600 dark:text-cyan-400 font-bold">
                   →
                 </div>
                 {/* Mobile down arrow */}
-                <div className="md:hidden flex justify-center py-2 text-cyan-600 text-sm font-bold">↓</div>
+                <div className="md:hidden flex justify-center py-2 text-cyan-600 dark:text-cyan-400 text-sm font-bold">↓</div>
               </div>
 
               {/* Stage 2: AI Intelligence */}
               <div className="relative">
-                <div className="p-5 rounded-2xl bg-blue-50/50 border border-blue-200 flex flex-col justify-between hover:bg-blue-50/80 hover:border-blue-300 hover:shadow-sm transition-all duration-200">
+                <div className="p-5 rounded-2xl bg-blue-50/50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/50 flex flex-col justify-between hover:bg-blue-50/80 dark:hover:bg-blue-950/40 hover:border-blue-300 dark:hover:border-blue-800 hover:shadow-sm transition-all duration-200">
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs font-heading text-blue-700 font-bold uppercase tracking-widest">
+                      <span className="text-xs font-heading text-blue-700 dark:text-blue-400 font-bold uppercase tracking-widest">
                         Stage 02
                       </span>
-                      <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-700">
+                      <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center text-blue-700 dark:text-blue-400">
                         <Bot className="w-4 h-4" />
                       </div>
                     </div>
-                    <h3 className="text-sm font-bold text-[#0F172A] font-heading">
+                    <h3 className="text-sm font-bold text-[#0F172A] dark:text-white font-heading">
                       AI Intelligence
                     </h3>
-                    <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                    <p className="text-xs text-slate-600 dark:text-slate-400 mt-1.5 leading-relaxed">
                       Support agents, multi-model reasoning, web interfaces, and validation schemas.
                     </p>
                   </div>
-                  <div className="mt-4 pt-3 border-t border-blue-200/80 text-xs font-heading text-blue-700 font-semibold">
+                  <div className="mt-4 pt-3 border-t border-blue-200/80 dark:border-blue-900/50 text-xs font-heading text-blue-700 dark:text-blue-400 font-semibold">
                     &bull; 24/7 Context &amp; Triage
                   </div>
                 </div>
                 {/* Arrow Connector → */}
-                <div className="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white border border-blue-200 shadow-sm items-center justify-center text-xs text-cyan-600 font-bold">
+                <div className="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-slate-800 border border-blue-200 dark:border-blue-800 shadow-sm items-center justify-center text-xs text-cyan-600 dark:text-cyan-400 font-bold">
                   →
                 </div>
-                <div className="md:hidden flex justify-center py-2 text-cyan-600 text-sm font-bold">↓</div>
+                <div className="md:hidden flex justify-center py-2 text-cyan-600 dark:text-cyan-400 text-sm font-bold">↓</div>
               </div>
 
               {/* Stage 3: Automation */}
               <div className="relative">
-                <div className="p-5 rounded-2xl bg-cyan-50/50 border border-cyan-200 flex flex-col justify-between hover:bg-cyan-50/80 hover:border-cyan-300 hover:shadow-sm transition-all duration-200">
+                <div className="p-5 rounded-2xl bg-cyan-50/50 dark:bg-cyan-950/20 border border-cyan-200 dark:border-cyan-900/50 flex flex-col justify-between hover:bg-cyan-50/80 dark:hover:bg-cyan-950/40 hover:border-cyan-300 dark:hover:border-cyan-800 hover:shadow-sm transition-all duration-200">
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs font-heading text-cyan-700 font-bold uppercase tracking-widest">
+                      <span className="text-xs font-heading text-cyan-700 dark:text-cyan-400 font-bold uppercase tracking-widest">
                         Stage 03
                       </span>
-                      <div className="w-8 h-8 rounded-lg bg-cyan-100 flex items-center justify-center text-cyan-700">
+                      <div className="w-8 h-8 rounded-lg bg-cyan-100 dark:bg-cyan-900/50 flex items-center justify-center text-cyan-700 dark:text-cyan-400">
                         <Cpu className="w-4 h-4" />
                       </div>
                     </div>
-                    <h3 className="text-sm font-bold text-[#0F172A] font-heading">
+                    <h3 className="text-sm font-bold text-[#0F172A] dark:text-white font-heading">
                       Automation
                     </h3>
-                    <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                    <p className="text-xs text-slate-600 dark:text-slate-400 mt-1.5 leading-relaxed">
                       Automated document parsing, ERP sync, email replies, and webhook routing.
                     </p>
                   </div>
-                  <div className="mt-4 pt-3 border-t border-cyan-200/80 text-xs font-heading text-cyan-800 font-semibold">
+                  <div className="mt-4 pt-3 border-t border-cyan-200/80 dark:border-cyan-900/50 text-xs font-heading text-cyan-800 dark:text-cyan-400 font-semibold">
                     &bull; Continuous Execution
                   </div>
                 </div>
                 {/* Arrow Connector → */}
-                <div className="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white border border-cyan-200 shadow-sm items-center justify-center text-xs text-cyan-600 font-bold">
+                <div className="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-slate-800 border border-cyan-200 dark:border-cyan-800 shadow-sm items-center justify-center text-xs text-cyan-600 dark:text-cyan-400 font-bold">
                   →
                 </div>
-                <div className="md:hidden flex justify-center py-2 text-cyan-600 text-sm font-bold">↓</div>
+                <div className="md:hidden flex justify-center py-2 text-cyan-600 dark:text-cyan-400 text-sm font-bold">↓</div>
               </div>
 
               {/* Stage 4: Measurable Outcome */}
-              <div className="p-5 rounded-2xl bg-emerald-50/50 border border-emerald-200 flex flex-col justify-between hover:bg-emerald-50/80 hover:border-emerald-300 hover:shadow-sm transition-all duration-200">
+              <div className="p-5 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/50 flex flex-col justify-between hover:bg-emerald-50/80 dark:hover:bg-emerald-950/40 hover:border-emerald-300 dark:hover:border-emerald-800 hover:shadow-sm transition-all duration-200">
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-heading text-emerald-700 font-bold uppercase tracking-widest">
+                    <span className="text-xs font-heading text-emerald-700 dark:text-emerald-400 font-bold uppercase tracking-widest">
                       Stage 04
                     </span>
-                    <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-700">
+                    <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center text-emerald-700 dark:text-emerald-400">
                       <TrendingUp className="w-4 h-4" />
                     </div>
                   </div>
-                  <h3 className="text-sm font-bold text-[#0F172A] font-heading">
+                  <h3 className="text-sm font-bold text-[#0F172A] dark:text-white font-heading">
                     Business Outcome
                   </h3>
-                  <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1.5 leading-relaxed">
                     Sub-minute customer support, zero manual rekeying, and modern web software.
                   </p>
                 </div>
-                <div className="mt-4 pt-3 border-t border-emerald-200/80 text-xs font-heading text-emerald-700 font-semibold">
+                <div className="mt-4 pt-3 border-t border-emerald-200/80 dark:border-emerald-900/50 text-xs font-heading text-emerald-700 dark:text-emerald-400 font-semibold">
                   &bull; Scalable Business Advantage
                 </div>
               </div>

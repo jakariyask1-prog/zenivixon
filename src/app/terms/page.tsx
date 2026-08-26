@@ -18,9 +18,9 @@ export default function TermsPage() {
         breadcrumbs={[{ label: "Terms of Use" }]}
       />
 
-      <div className="py-16 md:py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-slate-600 text-sm leading-relaxed">
+      <div className="py-16 md:py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
         <section className="space-y-3">
-          <h2 className="text-xl font-bold text-[#0F172A] font-heading">
+          <h2 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading">
             1. Acceptance of Terms
           </h2>
           <p>
@@ -29,7 +29,7 @@ export default function TermsPage() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-xl font-bold text-[#0F172A] font-heading">
+          <h2 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading">
             2. Intellectual Property
           </h2>
           <p>
@@ -38,7 +38,7 @@ export default function TermsPage() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-xl font-bold text-[#0F172A] font-heading">
+          <h2 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading">
             3. Engineering Engagement
           </h2>
           <p>

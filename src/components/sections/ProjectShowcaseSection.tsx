@@ -15,7 +15,7 @@ export function ProjectShowcaseSection() {
   const otherProjects = PROJECTS_DATA.filter((p) => !p.featured);
 
   return (
-    <section className="py-20 md:py-32 border-t border-slate-200/80 bg-[#FFFFFF] relative">
+    <section className="py-20 md:py-32 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#FFFFFF] dark:bg-[#020817] relative transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
@@ -23,10 +23,10 @@ export function ProjectShowcaseSection() {
             <Badge variant="blue" size="sm" className="font-semibold text-xs tracking-widest">
               PROJECT SHOWCASE
             </Badge>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F172A] tracking-tight font-heading leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F172A] dark:text-white tracking-tight font-heading leading-tight">
               Technical Proof. Real Business Results.
             </h2>
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
               We prove our capabilities through concrete production systems. Explore our AI agents, automation pipelines, and enterprise integrations operating in real environments.
             </p>
           </div>
@@ -35,7 +35,7 @@ export function ProjectShowcaseSection() {
             size="md"
             href="/projects"
             icon={<ArrowRight className="w-4 h-4" />}
-            className="shrink-0 self-start md:self-auto text-slate-800 font-semibold"
+            className="shrink-0 self-start md:self-auto font-semibold"
           >
             View All 8 Case Studies
           </Button>
@@ -46,11 +46,11 @@ export function ProjectShowcaseSection() {
           {featuredProjects.map((project) => (
             <div
               key={project.slug}
-              className="rounded-3xl bg-white border border-slate-200/90 shadow-sm overflow-hidden hover:border-slate-300 hover:shadow-lg transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-0"
+              className="rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm dark:shadow-none overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-lg transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-0"
             >
               {/* Visual Preview (Left 7 cols on lg) */}
-              <div className="lg:col-span-7 bg-slate-50/80 p-6 sm:p-8 flex flex-col items-center justify-center border-b lg:border-b-0 lg:border-r border-slate-200/80 relative min-h-[280px] sm:min-h-[360px]">
-                <div className="w-full max-w-xl aspect-[16/9] relative rounded-xl overflow-hidden shadow-md border border-slate-200 bg-white group">
+              <div className="lg:col-span-7 bg-slate-50/80 dark:bg-slate-900/50 p-6 sm:p-8 flex flex-col items-center justify-center border-b lg:border-b-0 lg:border-r border-slate-200/80 dark:border-slate-800 relative min-h-[280px] sm:min-h-[360px]">
+                <div className="w-full max-w-xl aspect-[16/9] relative rounded-xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-800 dark:border-slate-700 bg-white dark:bg-slate-800 group">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -61,9 +61,9 @@ export function ProjectShowcaseSection() {
                     <div className="absolute inset-0 bg-slate-900/20 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <button
                         onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl! })}
-                        className="px-4 py-2 rounded-xl bg-white/95 text-slate-900 font-semibold text-xs flex items-center gap-2 shadow-lg hover:bg-white transition-all transform group-hover:scale-105"
+                        className="px-4 py-2 rounded-xl bg-white/95 dark:bg-slate-900/95 text-slate-900 dark:text-white font-semibold text-xs flex items-center gap-2 shadow-lg hover:bg-white dark:hover:bg-slate-800 transition-all transform group-hover:scale-105"
                       >
-                        <PlayCircle className="w-4 h-4 text-blue-600" />
+                        <PlayCircle className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                         <span>Watch Demo Video</span>
                       </button>
                     </div>
@@ -71,7 +71,7 @@ export function ProjectShowcaseSection() {
                 </div>
 
                 {project.videoUrl && (
-                  <div className="mt-4 flex items-center gap-2 text-xs text-blue-600 font-semibold cursor-pointer" onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl! })}>
+                  <div className="mt-4 flex items-center gap-2 text-xs text-blue-600 dark:text-blue-400 font-semibold cursor-pointer" onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl! })}>
                     <PlayCircle className="w-4 h-4" />
                     <span>Video Demonstration Available</span>
                   </div>
@@ -86,27 +86,27 @@ export function ProjectShowcaseSection() {
                       {project.categoryLabel}
                     </Badge>
                     {project.status && (
-                      <span className="text-xs font-heading text-slate-500 font-semibold">
+                      <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-semibold">
                         {project.status}
                       </span>
                     )}
                   </div>
 
-                  <h3 className="text-2xl font-bold text-[#0F172A] font-heading">
+                  <h3 className="text-2xl font-bold text-[#0F172A] dark:text-white font-heading">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     {project.summary}
                   </p>
 
                   {/* Business Value Highlights */}
                   <div className="pt-2 space-y-2">
-                    <div className="text-xs font-semibold text-slate-700 uppercase tracking-widest font-heading">
+                    <div className="text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-widest font-heading">
                       Measurable Business Value:
                     </div>
                     {project.valueDelivered.slice(0, 3).map((val, idx) => (
-                      <div key={idx} className="flex items-start gap-2 text-xs text-slate-700">
-                        <CheckCircle2 className="w-4 h-4 text-cyan-600 shrink-0 mt-0.5" />
+                      <div key={idx} className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-300">
+                        <CheckCircle2 className="w-4 h-4 text-cyan-600 dark:text-cyan-400 shrink-0 mt-0.5" />
                         <span className="leading-snug">{val}</span>
                       </div>
                     ))}
@@ -117,7 +117,7 @@ export function ProjectShowcaseSection() {
                     {project.technologies.slice(0, 5).map((tech) => (
                       <span
                         key={tech}
-                        className="text-xs font-heading px-3 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200"
+                        className="text-xs font-heading px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 dark:border-slate-700"
                       >
                         {tech}
                       </span>
@@ -125,10 +125,10 @@ export function ProjectShowcaseSection() {
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
                   <Link
                     href={`/projects/${project.slug}`}
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
                   >
                     <span>Read Full Case Study</span>
                     <ArrowUpRight className="w-4 h-4" />
@@ -141,11 +141,11 @@ export function ProjectShowcaseSection() {
 
         {/* Secondary Project Cards Grid (5 additional projects = 8 total) */}
         <div className="space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-            <h3 className="text-xl font-bold text-[#0F172A] font-heading">
+          <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+            <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading">
               Additional Production Systems &amp; Case Studies
             </h3>
-            <span className="text-xs font-heading text-slate-500 font-semibold">
+            <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-semibold">
               Showing {otherProjects.length} Systems
             </span>
           </div>
@@ -154,10 +154,10 @@ export function ProjectShowcaseSection() {
             {otherProjects.map((project) => (
               <div
                 key={project.slug}
-                className="rounded-2xl bg-white border border-slate-200/90 shadow-sm p-6 flex flex-col justify-between hover:border-slate-300 hover:shadow-md transition-all duration-200 group"
+                className="rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm dark:shadow-none p-6 flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-200 group"
               >
                 <div className="space-y-4">
-                  <div className="aspect-[16/9] relative rounded-lg overflow-hidden border border-slate-200 bg-slate-50">
+                  <div className="aspect-[16/9] relative rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
                     <Image
                       src={project.image}
                       alt={project.title}
@@ -170,15 +170,15 @@ export function ProjectShowcaseSection() {
                       {project.categoryLabel}
                     </Badge>
                     {project.status && (
-                      <span className="text-xs font-heading text-slate-500 font-medium">
+                      <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-medium">
                         {project.status}
                       </span>
                     )}
                   </div>
-                  <h4 className="text-lg font-bold text-[#0F172A] font-heading group-hover:text-blue-600 transition-colors">
+                  <h4 className="text-lg font-bold text-[#0F172A] dark:text-white font-heading group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {project.title}
                   </h4>
-                  <p className="text-xs text-slate-600 leading-relaxed line-clamp-3">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
                     {project.summary}
                   </p>
 
@@ -186,7 +186,7 @@ export function ProjectShowcaseSection() {
                     {project.technologies.slice(0, 3).map((tech) => (
                       <span
                         key={tech}
-                        className="text-xs font-heading px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 border border-slate-200"
+                        className="text-xs font-heading px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 dark:border-slate-700"
                       >
                         {tech}
                       </span>
@@ -194,10 +194,10 @@ export function ProjectShowcaseSection() {
                   </div>
                 </div>
 
-                <div className="pt-4 mt-6 border-t border-slate-100 flex items-center justify-between">
+                <div className="pt-4 mt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
                   <Link
                     href={`/projects/${project.slug}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
                   >
                     <span>View Case Study</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -218,20 +218,20 @@ export function ProjectShowcaseSection() {
             aria-label={`Demo: ${activeVideo.title}`}
           >
             <div
-              className="bg-white rounded-2xl max-w-3xl w-full p-6 shadow-2xl space-y-4 border border-slate-200"
+              className="bg-white dark:bg-[#0b1120] rounded-2xl max-w-3xl w-full p-6 shadow-2xl space-y-4 border border-slate-200 dark:border-slate-800"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
                 <div className="flex items-center gap-2">
-                  <PlayCircle className="w-5 h-5 text-blue-600" />
-                  <h4 className="text-base font-bold text-[#0F172A] font-heading">
+                  <PlayCircle className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                  <h4 className="text-base font-bold text-[#0F172A] dark:text-white font-heading">
                     {activeVideo.title} — System Demo
                   </h4>
                 </div>
                 <button
                   onClick={() => setActiveVideo(null)}
                   aria-label="Close video demo"
-                  className="p-1 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-700 transition-colors"
+                  className="p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>

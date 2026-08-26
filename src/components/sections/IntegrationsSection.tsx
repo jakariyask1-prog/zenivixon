@@ -56,7 +56,7 @@ const integrationsData = [
   {
     category: "Outbound & CRM",
     title: "Customer & Sales",
-    badge: { text: "Plug into your accounts", icon: <ShieldCheck className="w-3.5 h-3.5 text-slate-500" /> },
+    badge: { text: "Plug into your accounts", icon: <ShieldCheck className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" /> },
     tools: [
       {
         name: "HubSpot",
@@ -82,7 +82,7 @@ const integrationsData = [
 
 export function IntegrationsSection() {
   return (
-    <section className="py-20 md:py-32 bg-[#FCFDFE] dark:bg-[#020817]">
+    <section className="py-20 md:py-32 bg-[#FCFDFE] dark:bg-[#020817] transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
         
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24">
@@ -109,7 +109,7 @@ export function IntegrationsSection() {
                   <h3 className="text-2xl md:text-3xl font-extrabold text-[#0F172A] dark:text-white font-heading mb-4">
                     {section.title}
                   </h3>
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-600 dark:text-slate-300">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 dark:border-slate-700 text-xs font-semibold text-slate-600 dark:text-slate-300">
                     {section.badge.icon}
                     {section.badge.text}
                   </div>
@@ -120,7 +120,7 @@ export function IntegrationsSection() {
               <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {section.tools.map((tool, toolIdx) => (
                   <ScrollReveal key={tool.name} direction="up" delay={0.1 + toolIdx * 0.1}>
-                    <div className="p-5 md:p-6 rounded-xl bg-white dark:bg-[#0b1120] border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group h-full">
+                    <div className="p-5 md:p-6 rounded-xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group h-full">
                       <div className={`w-12 h-12 rounded-lg ${tool.bgColor} flex items-center justify-center mb-4 transition-transform group-hover:scale-110`}>
                         {tool.icon}
                       </div>

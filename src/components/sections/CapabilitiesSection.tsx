@@ -6,13 +6,13 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export function CapabilitiesSection() {
   return (
-    <section className="py-24 md:py-32 bg-[#FCFDFE] dark:bg-[#020817]">
+    <section className="py-24 md:py-32 bg-[#FCFDFE] dark:bg-[#020817] transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24">
           <ScrollReveal direction="up" delay={0.1}>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold uppercase tracking-[0.2em] mb-6 font-heading">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold uppercase tracking-[0.2em] mb-6 font-heading">
               <div className="w-2 h-2 rounded-full bg-blue-600" />
               OUR CAPABILITIES
             </div>
@@ -43,7 +43,7 @@ export function CapabilitiesSection() {
               
               {/* Fake UI Mockup */}
               <div className="mt-auto bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-6 border border-slate-100 dark:border-slate-800 transition-transform duration-500 group-hover:-translate-y-2">
-                <div className="flex items-center gap-3 bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm mb-4">
+                <div className="flex items-center gap-3 bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-200 dark:border-slate-800 dark:border-slate-700 shadow-sm mb-4">
                   <Search className="w-5 h-5 text-slate-400" />
                   <span className="text-slate-400 font-medium text-sm flex-1">Research anything...</span>
                   <div className="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider">
@@ -51,7 +51,7 @@ export function CapabilitiesSection() {
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-500/50 transition-colors cursor-pointer">
+                  <div className="flex items-center justify-between p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-800/60 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-500/50 transition-colors cursor-pointer">
                     <div className="flex items-center gap-3 text-slate-700 dark:text-slate-200 font-semibold text-sm">
                       <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
                         <PenTool className="w-4 h-4" />
@@ -60,7 +60,7 @@ export function CapabilitiesSection() {
                     </div>
                     <ArrowUpRight className="w-4 h-4 text-blue-500" />
                   </div>
-                  <div className="flex items-center justify-between p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-500/50 transition-colors cursor-pointer">
+                  <div className="flex items-center justify-between p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-800/60 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-500/50 transition-colors cursor-pointer">
                     <div className="flex items-center gap-3 text-slate-700 dark:text-slate-200 font-semibold text-sm">
                       <div className="w-8 h-8 rounded-lg bg-purple-50 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
                         <Users className="w-4 h-4" />

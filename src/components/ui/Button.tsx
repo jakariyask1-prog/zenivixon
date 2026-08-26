@@ -40,13 +40,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       primary:
         "bg-blue-600 hover:bg-blue-700 text-white shadow-sm shadow-blue-600/15 hover:shadow-md hover:shadow-blue-600/25",
       secondary:
-        "bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 shadow-sm hover:border-slate-300",
+        "bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-slate-300 dark:bg-slate-800/80 dark:hover:bg-slate-800 dark:text-slate-100 dark:border-slate-700 dark:hover:border-slate-600",
       whatsapp:
         "bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm shadow-emerald-600/15 hover:shadow-md hover:shadow-emerald-600/25",
       outline:
-        "border border-slate-300 hover:border-slate-400 text-slate-700 hover:bg-slate-50",
+        "border border-slate-300 hover:border-slate-400 text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:hover:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-800/50",
       ghost:
-        "text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-slate-50 dark:hover:bg-slate-800",
+        "text-slate-600 dark:text-slate-400 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-slate-50 dark:hover:bg-slate-800",
       glowing:
         "relative overflow-hidden bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] hover:-translate-y-0.5 border border-blue-400 hover:border-blue-300 group",
     };
