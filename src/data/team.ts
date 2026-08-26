@@ -228,8 +228,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: "b2b-sales-manager",
-    name: "B2B Sales & Business Development Manager",
-    role: "Global Client Acquisition",
+    name: "Sabbir Ahmed",
+    role: "B2B Sales & Business Development Manager",
     titleBadge: "Connecting businesses with the right AI solutions.",
     department: "Operations",
     featured: false,
@@ -248,7 +248,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Solution-oriented selling",
     ],
     bio: "Drives international business growth by connecting global B2B clients with tailored AI technologies. Manages the full sales cycle from discovery calls and lead qualification to strategic proposals and partnerships.",
-    image: "/images/team/placeholder.svg",
+    image: "/images/team/sabbir-ahmed.png",
+    facebook: "https://www.facebook.com/sabbir.ahmed.384700/",
   },
   {
     id: "digital-marketing-seo",
