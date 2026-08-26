@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   },
 };
 
-import { ClerkProvider } from '@clerk/nextjs'
+
 
 export default function RootLayout({
   children,
@@ -62,7 +62,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    
     <html
       lang="en"
       suppressHydrationWarning
@@ -82,6 +82,6 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-    </ClerkProvider>
+    
   );
 }

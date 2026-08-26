@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X, ArrowRight, MessageSquare, Bot, Cpu, Network, Globe } from "lucide-react";
-import { SignInButton, SignUpButton, UserButton, useAuth } from "@clerk/nextjs";
+
 import { MAIN_NAVIGATION } from "@/data/navigation";
 import { COMPANY_INFO } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
@@ -23,7 +23,7 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [solutionsDropdownOpen, setSolutionsDropdownOpen] = useState(false);
   const pathname = usePathname();
-  const { isSignedIn } = useAuth();
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -182,22 +182,6 @@ export function Navbar() {
             >
               WhatsApp
             </Button>
-            {!isSignedIn ? (
-              <>
-                <SignInButton mode="modal">
-                  <Button variant="ghost" size="sm" className="hidden sm:inline-flex text-slate-600 dark:text-slate-400 hover:text-slate-900 hover:bg-slate-100 dark:hover:text-slate-200 dark:hover:bg-slate-800">
-                    Sign In
-                  </Button>
-                </SignInButton>
-                <SignUpButton mode="modal">
-                  <Button variant="primary" size="sm">
-                    Sign Up
-                  </Button>
-                </SignUpButton>
-              </>
-            ) : (
-              <UserButton />
-            )}
             <Button
               variant="glowing"
               size="sm"
@@ -281,24 +265,6 @@ export function Navbar() {
             >
               Chat on WhatsApp
             </Button>
-            {!isSignedIn ? (
-              <>
-                <SignInButton>
-                  <Button variant="ghost" size="md" className="w-full justify-center">
-                    Sign In
-                  </Button>
-                </SignInButton>
-                <SignUpButton>
-                  <Button variant="primary" size="md" className="w-full justify-center">
-                    Sign Up
-                  </Button>
-                </SignUpButton>
-              </>
-            ) : (
-              <div className="flex justify-center py-2">
-                <UserButton />
-              </div>
-            )}
             <Button
               variant="glowing"
               size="md"
