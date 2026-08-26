@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "whatsapp" | "outline" | "ghost";
+  variant?: "primary" | "secondary" | "whatsapp" | "outline" | "ghost" | "glowing";
   size?: "sm" | "md" | "lg";
   href?: string;
   external?: boolean;
@@ -46,7 +46,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       outline:
         "border border-slate-300 hover:border-slate-400 text-slate-700 hover:bg-slate-50",
       ghost:
-        "text-slate-600 hover:text-slate-900 hover:bg-slate-100",
+        "text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-slate-50 dark:hover:bg-slate-800",
+      glowing:
+        "relative overflow-hidden bg-blue-600 text-white shadow-sm hover:scale-105 border border-blue-500 hover:border-blue-400 group",
     };
 
     const combinedClassName = cn(
@@ -58,9 +60,12 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const content = (
       <>
-        {icon && iconPosition === "left" && <span className="shrink-0">{icon}</span>}
-        <span>{children}</span>
-        {icon && iconPosition === "right" && <span className="shrink-0">{icon}</span>}
+        {variant === "glowing" && (
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-transparent to-blue-400/20 animate-pulse pointer-events-none"></div>
+        )}
+        {icon && iconPosition === "left" && <span className="shrink-0 relative z-10">{icon}</span>}
+        <span className="relative z-10">{children}</span>
+        {icon && iconPosition === "right" && <span className="shrink-0 relative z-10">{icon}</span>}
       </>
     );
 
