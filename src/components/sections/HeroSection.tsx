@@ -3,12 +3,16 @@ import Image from "next/image";
 import { ArrowRight, Database, Bot, Cpu, TrendingUp, CheckCircle2, ArrowUpRight, Sparkles, Globe, Headphones } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { NeuralNetworkAnimation } from "@/components/ui/NeuralNetworkAnimation";
 
 export function HeroSection() {
   return (
     <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-[#FCFDFE] dark:bg-[#020817] transition-colors duration-300">
       {/* Background Subtle Depth Elements */}
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_10%,#000_70%,transparent_100%)] opacity-40 pointer-events-none" />
+
+      {/* Premium Neural Network Background Animation */}
+      <NeuralNetworkAnimation />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-6">
