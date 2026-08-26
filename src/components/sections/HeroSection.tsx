@@ -86,16 +86,22 @@ export function HeroSection() {
         </div>
 
         {/* Premium Cover Photo Section */}
-        <div className="mt-16 w-full max-w-6xl mx-auto rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/10 border border-slate-200/60 group relative">
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
-          <Image
-            src="/cover-photo.png"
-            alt="ZENIVIXON Platform Integration"
-            width={1200}
-            height={675}
-            className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-700 ease-in-out"
-            priority
-          />
+        <div className="mt-16 w-full max-w-6xl mx-auto relative group">
+          {/* Animated Glowing Aurora Backdrop */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-cyan-400/20 to-purple-500/20 blur-3xl rounded-full scale-90 animate-[glow_4s_ease-in-out_infinite_alternate] z-0" />
+          
+          {/* Levitating Image Container */}
+          <div className="rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/20 border border-slate-200/60 dark:border-slate-800 relative z-10 animate-[float_6s_ease-in-out_infinite]">
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
+            <Image
+              src="/cover-photo.png"
+              alt="ZENIVIXON Platform Integration"
+              width={1200}
+              height={675}
+              className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+              priority
+            />
+          </div>
         </div>
 
         {/* Premium System Flow Visualization: Business Systems → AI → Automation → Outcome */}

@@ -8,10 +8,20 @@
   --font-sans: var(--font-inter), sans-serif;
   
   --animate-shimmer: shimmer 2s infinite linear;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-glow: glow 4s ease-in-out infinite alternate;
 
   @keyframes shimmer {
     0% { transform: translateX(-100%); }
     100% { transform: translateX(200%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  @keyframes glow {
+    0% { opacity: 0.3; transform: scale(1); }
+    100% { opacity: 0.6; transform: scale(1.1); }
   }
 }
 
