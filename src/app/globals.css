@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --font-heading: var(--font-manrope), sans-serif;
@@ -24,6 +24,19 @@
     --accent-blue-hover: #1D4ED8;
     --accent-cyan: #06B6D4;
   }
+  
+  .dark {
+    --bg-primary: #020817;
+    --bg-secondary: #0f172a;
+    --bg-surface: #1e293b;
+    --bg-card: #0b1120;
+    --bg-card-hover: #1e293b;
+    --border-subtle: #1e293b;
+    --border-strong: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+  }
 
   * {
     box-sizing: border-box;
@@ -36,8 +49,6 @@
   }
 
   body {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
     font-family: var(--font-body);
     min-height: 100vh;
     display: flex;
@@ -66,15 +77,15 @@
 
 /* Light Premium Card */
 .glass-card {
-  background: #FFFFFF;
-  border: 1px solid #E2E8F0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
   border-radius: 20px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover {
-  border-color: #CBD5E1;
+  border-color: var(--border-strong);
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
 }
 
