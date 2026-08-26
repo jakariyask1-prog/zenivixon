@@ -49,7 +49,7 @@ export function Footer() {
               <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 mb-6 block font-heading">
                   GET IN TOUCH
                 </span>
-                <a href={mailto:} className="inline-flex items-center gap-2 mt-2 text-slate-700 dark:text-slate-300 font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                <a href={`mailto:${COMPANY_INFO.channels.email}`} className="inline-flex items-center gap-2 mt-2 text-slate-700 dark:text-slate-300 font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                   <Mail className="w-5 h-5" />
                   {COMPANY_INFO.channels.email}
                 </a>
