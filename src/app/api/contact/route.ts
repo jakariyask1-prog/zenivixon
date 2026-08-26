@@ -22,13 +22,13 @@ export async function POST(req: NextRequest) {
     }
 
     // Send email using Resend
-    if (!process.env.RESEND_API_KEY) {
-      console.warn("[ZENIVIXON] RESEND_API_KEY is not set. Email will not be sent.");
+    if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY === "your_resend_api_key_here") {
+      console.warn("[ZENIVIXON] RESEND_API_KEY is not set or is a placeholder. Email will not be sent.");
     } else {
       const resend = new Resend(process.env.RESEND_API_KEY);
       await resend.emails.send({
         from: "ZENIVIXON <noreply@zenivixon.com>",
-        to: "support@zenivixon.com",
+        to: "zenivixon@gmail.com",
         subject: `New Inquiry from ${name} — ${company || "No Company"}`,
         html: `<p><b>Name:</b> ${name}</p><p><b>Email:</b> ${email}</p><p><b>Company:</b> ${company}</p><p><b>Message:</b> ${message}</p>`,
       });

@@ -17,7 +17,7 @@ export const COMPANY_INFO = {
   ctaPrimary: "Start Your AI Project",
   ctaSecondary: "Explore Solutions",
   channels: {
-    email: "support@zenivixon.com",
+    email: "zenivixon@gmail.com",
     whatsapp: "https://wa.me/8801937685423",
     whatsappNumber: "+8801937685423",
     linkedin: "https://linkedin.com/company/zenivixon",
