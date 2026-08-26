@@ -47,37 +47,13 @@ export function Footer() {
             {/* Get In Touch / Founders */}
             <div>
               <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 mb-6 block font-heading">
-                GET IN TOUCH
-              </span>
-              <div className="space-y-6">
-                {/* Founder 1 */}
-                <div className="flex items-center gap-4">
-                  <Image src="/images/team/md-sazib-hossain.jpeg" alt="Sazib Hossain" width={56} height={56} className="rounded-full bg-slate-200 object-cover w-14 h-14" />
-                  <div>
-                    <div className="flex items-center gap-1.5">
-                      <h4 className="text-base font-bold text-[#0F172A] dark:text-white font-heading">Sazib Hossain</h4>
-                      <CheckCircle2 className="w-4 h-4 text-blue-500" />
-                    </div>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">Founder & CEO</p>
-                  </div>
-                </div>
-                {/* Founder 2 */}
-                <div className="flex items-center gap-4">
-                  <Image src="/images/team/sabbir-ahmed.png" alt="Sabbir Ahmed" width={56} height={56} className="rounded-full bg-slate-200 object-cover w-14 h-14" />
-                  <div>
-                    <div className="flex items-center gap-1.5">
-                      <h4 className="text-base font-bold text-[#0F172A] dark:text-white font-heading">Sabbir Ahmed</h4>
-                      <CheckCircle2 className="w-4 h-4 text-blue-500" />
-                    </div>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">B2B Sales & Development</p>
-                  </div>
-                </div>
+                  GET IN TOUCH
+                </span>
+                <a href={mailto:} className="inline-flex items-center gap-2 mt-2 text-slate-700 dark:text-slate-300 font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  <Mail className="w-5 h-5" />
+                  {COMPANY_INFO.channels.email}
+                </a>
               </div>
-              <a href="mailto:sazibhossain9142@gmail.com" className="inline-flex items-center gap-2 mt-8 text-slate-700 dark:text-slate-300 font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                <Mail className="w-5 h-5" />
-                sazibhossain9142@gmail.com
-              </a>
-            </div>
 
           </div>
 
