@@ -29,7 +29,7 @@ export const PROJECTS_DATA: Project[] = [
       "PostgreSQL",
     ],
     featured: true,
-    image: "/images/projects/jakariya-ai-studio.svg",
+    image: "/images/projects/jakariya-ai-studio.png",
     videoUrl: "/videos/ai_studio.mp4",
     deliverables: [
       "End-to-end web application architecture",

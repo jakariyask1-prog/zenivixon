@@ -70,6 +70,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             <div className="aspect-[16/9] w-full relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
               <video
                 src={project.videoUrl}
+                poster={project.image}
                 controls
                 className="w-full h-full object-contain"
               />
