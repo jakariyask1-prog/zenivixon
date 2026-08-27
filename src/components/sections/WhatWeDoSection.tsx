@@ -3,6 +3,8 @@ import Link from "next/link";
 import { ArrowRight, RefreshCw, Unplug, Headphones, Globe, CheckCircle2 } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { AmbientOrbs } from "@/components/ui/AmbientOrbs";
 
 const pathways = [
   {
@@ -53,8 +55,9 @@ const pathways = [
 
 export function WhatWeDoSection() {
   return (
-    <section className="py-20 md:py-32 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#F7F9FC] dark:bg-[#070d1d] relative transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 md:py-32 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#F7F9FC] dark:bg-[#070d1d] relative transition-colors duration-300 overflow-hidden">
+      <AmbientOrbs />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="max-w-3xl space-y-4 mb-16 md:mb-20">
           <Badge variant="blue" size="sm" className="font-semibold text-xs tracking-widest">
@@ -69,12 +72,12 @@ export function WhatWeDoSection() {
         </div>
 
         {/* 4 Problem-to-Value Pathways Matrix */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative mb-16">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative mb-16">
           {pathways.map((item, idx) => (
-            <div
-              key={idx}
-              className="p-7 rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm dark:shadow-none flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-200 group relative"
-            >
+            <StaggerItem key={idx}>
+              <div
+                className="p-7 rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm dark:shadow-none flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-200 group relative glow-border h-full"
+              >
               <div className="space-y-5">
                 {/* Header with Icon & Category */}
                 <div className="flex items-center justify-between">
@@ -141,9 +144,10 @@ export function WhatWeDoSection() {
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
-            </div>
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
         {/* Primary V1 Focus Callout Banner */}
         <div className="rounded-3xl bg-white dark:bg-[#0b1120] border border-blue-100 dark:border-blue-900/40 p-8 md:p-10 shadow-sm dark:shadow-none flex flex-col md:flex-row items-start md:items-center justify-between gap-6">

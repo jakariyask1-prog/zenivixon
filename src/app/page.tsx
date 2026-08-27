@@ -9,6 +9,7 @@ import { CapabilitiesSection } from "@/components/sections/CapabilitiesSection";
 import { IntegrationsSection } from "@/components/sections/IntegrationsSection";
 import { AutomationGatewaySection } from "@/components/sections/AutomationGatewaySection";
 import { FinalCtaSection } from "@/components/sections/FinalCtaSection";
+import { VideoShowcaseSection } from "@/components/sections/VideoShowcaseSection";
 
 export default function HomePage() {
   return (
@@ -30,6 +31,9 @@ export default function HomePage() {
 
       {/* 05. Project Showcase */}
       <ProjectShowcaseSection />
+
+      {/* 🎬 Video Showcase + Animated Stats */}
+      <VideoShowcaseSection />
 
       {/* Automation Gateway CTA */}
       <AutomationGatewaySection />

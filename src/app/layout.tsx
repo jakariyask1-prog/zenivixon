@@ -5,6 +5,8 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { COMPANY_INFO, SITE_METADATA } from "@/lib/constants";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { CursorGlow } from "@/components/ui/CursorGlow";
+import { PageTransition } from "@/components/providers/PageTransition";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -70,13 +72,16 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[#FCFDFE] dark:bg-[#020817] text-[#0F172A] dark:text-slate-50 selection:bg-blue-100 dark:selection:bg-blue-900 selection:text-blue-900 dark:selection:text-blue-50 transition-colors duration-300">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <CursorGlow />
           {/* Framed Layout Borders */}
           <div className="fixed left-0 top-0 bottom-0 w-3 md:w-5 lg:w-6 bg-[#FCFDFE] dark:bg-[#020817] border-r border-slate-200 dark:border-slate-800 z-[60] pointer-events-none transition-colors duration-300"></div>
           <div className="fixed right-0 top-0 bottom-0 w-3 md:w-5 lg:w-6 bg-[#FCFDFE] dark:bg-[#020817] border-l border-slate-200 dark:border-slate-800 z-[60] pointer-events-none transition-colors duration-300"></div>
           
           <div className="px-3 md:px-5 lg:px-6 flex flex-col min-h-screen">
             <Navbar />
-            <main className="flex-1 flex flex-col">{children}</main>
+            <main className="flex-1 flex flex-col">
+              <PageTransition>{children}</PageTransition>
+            </main>
             <Footer />
           </div>
         </ThemeProvider>

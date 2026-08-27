@@ -1,6 +1,8 @@
 import React from "react";
 import { Badge } from "@/components/ui/Badge";
 import { Target, Wrench, Sliders, MessageCircle, FastForward, Shield } from "lucide-react";
+import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import { AmbientOrbs } from "@/components/ui/AmbientOrbs";
 
 const reasons = [
   {
@@ -43,8 +45,9 @@ const reasons = [
 
 export function WhyZenivixonSection() {
   return (
-    <section className="py-20 md:py-32 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#F7F9FC] dark:bg-[#070d1d] relative transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 md:py-32 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#F7F9FC] dark:bg-[#070d1d] relative transition-colors duration-300 overflow-hidden">
+      <AmbientOrbs />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="max-w-3xl space-y-4 mb-16 md:mb-20">
           <Badge variant="blue" size="sm" className="font-semibold text-xs tracking-widest">
@@ -59,26 +62,25 @@ export function WhyZenivixonSection() {
         </div>
 
         {/* 6 Grid Value Pillars */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reasons.map((item, idx) => (
-            <div
-              key={idx}
-              className="p-8 rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm dark:shadow-none hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-200 flex flex-col justify-between"
-            >
-              <div className="space-y-4">
-                <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 dark:border-slate-700 flex items-center justify-center">
-                  {item.icon}
+            <StaggerItem key={idx}>
+              <div className="p-8 rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm dark:shadow-none hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-200 flex flex-col justify-between glow-border h-full">
+                <div className="space-y-4">
+                  <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 dark:border-slate-700 flex items-center justify-center">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  {item.description}
-                </p>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
         {/* Truthful Credibility Positioning Callout */}
         <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none text-center max-w-2xl mx-auto space-y-2">
@@ -93,3 +95,4 @@ export function WhyZenivixonSection() {
     </section>
   );
 }
+
