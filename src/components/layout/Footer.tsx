@@ -1,12 +1,82 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FOOTER_LINKS } from "@/data/navigation";
 import { COMPANY_INFO } from "@/lib/constants";
-import { ArrowUpRight, Mail, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight, Mail, CheckCircle2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+
+// ─── Newsletter Form ──────────────────────────────────────────────────────────
+function NewsletterForm() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setStatus("loading");
+    setErrorMsg("");
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus("success");
+        setEmail("");
+      } else {
+        setStatus("error");
+        setErrorMsg(data.error || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setStatus("error");
+      setErrorMsg("Network error. Please try again.");
+    }
+  };
+
+  if (status === "success") {
+    return (
+      <div className="flex items-center gap-2 mb-4 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-400 text-sm font-medium">
+        <CheckCircle2 className="w-4 h-4 shrink-0" />
+        You&apos;re subscribed! We&apos;ll be in touch soon.
+      </div>
+    );
+  }
+
+  return (
+    <form className="flex items-center gap-2 mb-4" onSubmit={handleSubmit}>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Enter your email"
+        required
+        disabled={status === "loading"}
+        className="flex-1 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-blue-500 transition-colors disabled:opacity-60"
+      />
+      <button
+        type="submit"
+        disabled={status === "loading"}
+        aria-label="Subscribe to newsletter"
+        className="bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white p-2.5 rounded-lg transition-colors"
+      >
+        {status === "loading" ? (
+          <Loader2 className="w-5 h-5 animate-spin" />
+        ) : (
+          <Mail className="w-5 h-5" />
+        )}
+      </button>
+      {status === "error" && (
+        <p className="text-xs text-red-500 mt-1 absolute">{errorMsg}</p>
+      )}
+    </form>
+  );
+}
 
 export function Footer() {
   return (
@@ -29,16 +99,7 @@ export function Footer() {
               <p className="text-slate-600 dark:text-slate-400 text-sm mb-6 leading-relaxed">
                 Get the latest automation insights, playbooks, and case studies delivered to your inbox. No spam, ever.
               </p>
-              <form className="flex items-center gap-2 mb-4" onSubmit={(e) => e.preventDefault()}>
-                <input 
-                  type="email" 
-                  placeholder="Enter your email" 
-                  className="flex-1 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-blue-500 transition-colors"
-                />
-                <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white p-2.5 rounded-lg transition-colors">
-                  <Mail className="w-5 h-5" />
-                </button>
-              </form>
+              <NewsletterForm />
               <p className="text-xs text-slate-500 dark:text-slate-400">
                 Read by ops and engineering leads • Weekly • Unsubscribe anytime
               </p>
@@ -80,15 +141,15 @@ export function Footer() {
                   "Job Description Generator"
                 ].map((item) => (
                   <li key={item}>
-                    <Link href="#" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">
+                    <span className="text-slate-400 dark:text-slate-500 font-medium cursor-default" title="Coming soon">
                       {item}
-                    </Link>
+                    </span>
                   </li>
                 ))}
                 <li>
-                  <Link href="#" className="text-blue-600 dark:text-blue-400 font-bold text-xs uppercase tracking-wider mt-2 inline-block">
-                    + 5 MORE FREE TOOLS ↗
-                  </Link>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-blue-400 dark:text-blue-500 mt-2 inline-block px-2 py-0.5 rounded-full border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-950/30">
+                    COMING SOON
+                  </span>
                 </li>
               </ul>
             </div>
@@ -100,22 +161,30 @@ export function Footer() {
               </span>
               <ul className="space-y-3.5">
                 {[
-                  "All Services",
-                  "AI Strategy Consulting",
-                  "AI Agent Development",
-                  "Workflow Automation",
-                  "Custom Automation",
-                  "RAG Pipeline Development",
-                  "SaaS MVP Development",
+                  { label: "All Services", href: "/solutions" },
+                  { label: "AI Strategy Consulting", href: "/solutions/ai-agents" },
+                  { label: "AI Agent Development", href: "/solutions/ai-agents" },
+                  { label: "Workflow Automation", href: "/solutions/ai-automation" },
+                  { label: "Custom Automation", href: "/solutions/ai-automation" },
+                  { label: "RAG Pipeline Development", href: "/solutions/ai-integration" },
+                  { label: "SaaS MVP Development", href: "/solutions/software-web-development" },
+                ].map((item) => (
+                  <li key={item.label}>
+                    <Link href={item.href} className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+                {[
                   "AI Workshops",
                   "Engineer Placement",
                   "Custom Training",
                   "Maintenance & Support"
                 ].map((item) => (
                   <li key={item}>
-                    <Link href="#" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">
+                    <span className="text-slate-400 dark:text-slate-500 font-medium cursor-default" title="Coming soon">
                       {item}
-                    </Link>
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -141,11 +210,16 @@ export function Footer() {
                   "v0 Agency"
                 ].map((item) => (
                   <li key={item}>
-                    <Link href="#" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">
+                    <span className="text-slate-400 dark:text-slate-500 font-medium cursor-default" title="Coming soon">
                       {item}
-                    </Link>
+                    </span>
                   </li>
                 ))}
+                <li>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-blue-400 dark:text-blue-500 mt-2 inline-block px-2 py-0.5 rounded-full border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-950/30">
+                    COMING SOON
+                  </span>
+                </li>
               </ul>
             </div>
 
@@ -156,6 +230,16 @@ export function Footer() {
               </span>
               <ul className="space-y-3.5">
                 {[
+                  { label: "Insights", href: "/insights" },
+                  { label: "Contact Us", href: "/contact" },
+                ].map((item) => (
+                  <li key={item.label}>
+                    <Link href={item.href} className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+                {[
                   "Workflows",
                   "Industries",
                   "Blog",
@@ -163,13 +247,12 @@ export function Footer() {
                   "Playbooks",
                   "Courses",
                   "FAQ",
-                  "Contact Us",
-                  "Careers"
+                  "Careers",
                 ].map((item) => (
                   <li key={item}>
-                    <Link href="#" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">
+                    <span className="text-slate-400 dark:text-slate-500 font-medium cursor-default" title="Coming soon">
                       {item}
-                    </Link>
+                    </span>
                   </li>
                 ))}
               </ul>

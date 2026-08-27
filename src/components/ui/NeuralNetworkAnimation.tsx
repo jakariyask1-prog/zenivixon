@@ -8,6 +8,9 @@ export function NeuralNetworkAnimation() {
   const { resolvedTheme } = useTheme();
 
   useEffect(() => {
+    // Respect user's motion preference
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 

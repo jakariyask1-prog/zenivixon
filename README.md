@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+﻿# ZENIVIXON
+
+**AI-First Technology Company** — We build AI agents, intelligent workflow automations, modern web applications, and enterprise AI integrations.
+
+🌐 **Website:** [zenivixon.com](https://zenivixon.com)
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 16.3 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 |
+| Animation | Framer Motion v13 |
+| Theming | next-themes (light/dark) |
+| Email | Resend SDK |
+| Icons | Lucide React |
+| Fonts | Manrope + Inter (Google Fonts) |
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js 20+
+- npm
+
+### Install & Run
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env.local` file:
 
-## Learn More
+```env
+RESEND_API_KEY=your_resend_api_key_here
+```
 
-To learn more about Next.js, take a look at the following resources:
+Get a free Resend API key at [resend.com](https://resend.com).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```
+src/
+├── app/                    # Next.js App Router pages
+│   ├── api/                # API routes (contact, project-brief, newsletter)
+│   ├── about/
+│   ├── contact/
+│   ├── insights/
+│   ├── projects/
+│   ├── solutions/
+│   ├── start-a-project/
+│   ├── layout.tsx          # Root layout (Navbar + Footer)
+│   └── page.tsx            # Home page
+├── components/
+│   ├── layout/             # Navbar, Footer, PageHeader
+│   ├── sections/           # Page section components
+│   ├── ui/                 # Button, Badge, Card, ScrollReveal, etc.
+│   └── providers/          # ThemeProvider
+├── data/                   # Navigation, projects, solutions, team data
+├── lib/                    # Constants, utils
+└── types/                  # TypeScript interfaces
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Pages
+
+| Route | Description |
+|-------|-------------|
+| `/` | Home — Hero, Capabilities, Projects, CTA |
+| `/about` | About ZENIVIXON |
+| `/solutions` | All solutions overview |
+| `/solutions/ai-agents` | AI Agents & Support |
+| `/solutions/ai-automation` | AI Workflow Automation |
+| `/solutions/software-web-development` | Software & Web Dev |
+| `/solutions/ai-integration` | AI Integration & RAG |
+| `/projects` | Project showcase |
+| `/insights` | Insights / blog |
+| `/contact` | Contact form |
+| `/start-a-project` | Project brief form |
+
+---
+
+## Scripts
+
+```bash
+npm run dev      # Start dev server
+npm run build    # Build for production
+npm run start    # Start production server
+npm run lint     # Run ESLint
+```
+
+---
+
+## Deployment
+
+Deployed on **Vercel**. Push to `main` to trigger auto-deploy.
+
+Make sure to set the `RESEND_API_KEY` environment variable in the Vercel dashboard.
+
