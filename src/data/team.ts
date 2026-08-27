@@ -253,8 +253,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: "digital-marketing-seo",
-    name: "Digital Marketing & SEO Specialist",
-    role: "Search Visibility & Growth",
+    name: "Rakib Islam",
+    role: "Digital Marketing & SEO Specialist",
     titleBadge: "Turning search visibility into sustainable global growth.",
     department: "Operations",
     featured: false,
@@ -273,7 +273,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Search visibility optimization",
     ],
     bio: "Leads our digital marketing efforts with a focus on technical and international SEO. Strategies organic lead generation through content, analytics, and targeted B2B marketing to expand our global reach.",
-    image: "/images/team/placeholder.svg",
+    image: "/images/team/rakib-islam.jpeg",
+    facebook: "https://www.facebook.com/share/1DRV6KHmM2/",
   },
 ];
 
