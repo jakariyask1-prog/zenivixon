@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { PROJECTS_DATA } from "@/data/projects";
+import { INSIGHTS_DATA } from "@/data/insights";
 import { SITE_METADATA } from "@/lib/constants";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -34,5 +35,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  return [...staticRoutes, ...projectRoutes];
+  const insightRoutes = INSIGHTS_DATA.map((article) => ({
+    url: `${baseUrl}/insights/${article.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  return [...staticRoutes, ...projectRoutes, ...insightRoutes];
 }
