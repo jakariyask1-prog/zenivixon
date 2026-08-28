@@ -44,45 +44,124 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const { name, email, company, message } = body;
+    const { name, email, company, service, message } = body;
 
-    if (!name || !email || !message) {
+    if (!name || typeof name !== "string" || !name.trim()) {
       return NextResponse.json(
-        { success: false, error: "Name, email, and message are required." },
+        { success: false, error: "Name is required." },
+        { status: 400 }
+      );
+    }
+
+    if (!email || typeof email !== "string" || !email.trim()) {
+      return NextResponse.json(
+        { success: false, error: "Email is required." },
         { status: 400 }
       );
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(email.trim())) {
       return NextResponse.json(
         { success: false, error: "Invalid email address." },
         { status: 400 }
       );
     }
 
-    // Send email using Resend
-    if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY === "your_resend_api_key_here") {
-      console.warn("[ZENIVIXON] RESEND_API_KEY is not set or is a placeholder. Email will not be sent.");
-    } else {
-      const resend = new Resend(process.env.RESEND_API_KEY);
-      await resend.emails.send({
-        from: "ZENIVIXON <noreply@zenivixon.com>",
-        to: "zenivixon@gmail.com",
-        subject: `New Inquiry from ${esc(name)} — ${esc(company || "No Company")}`,
-        html: `
-          <p><b>Name:</b> ${esc(name)}</p>
-          <p><b>Email:</b> ${esc(email)}</p>
-          <p><b>Company:</b> ${esc(company || "N/A")}</p>
-          <p><b>Message:</b><br/>${esc(message).replace(/\n/g, "<br/>")}</p>
-        `,
-      });
+    if (!message || typeof message !== "string" || !message.trim()) {
+      return NextResponse.json(
+        { success: false, error: "Message is required." },
+        { status: 400 }
+      );
     }
 
-    console.log("[ZENIVIXON Contact Form] New Submission:", {
-      name,
-      email,
-      company: company || "N/A",
+    const payload = {
+      name: name.trim(),
+      email: email.trim(),
+      company: typeof company === "string" ? company.trim() : "",
+      service: typeof service === "string" ? service.trim() : "",
+      message: message.trim(),
+    };
+
+    // ─── Forward to n8n Webhook ──────────────────────────────────────────────
+    const webhookUrl =
+      process.env.N8N_WEBHOOK_URL ||
+      "https://zenivixon.app.n8n.cloud/webhook-test/zenivixon-lead";
+
+    let n8nError: string | null = null;
+    try {
+      const webhookRes = await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json, text/plain, */*",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!webhookRes.ok) {
+        const errBody = await webhookRes.text();
+        console.error(
+          `[ZENIVIXON Contact Form] n8n webhook responded with status ${webhookRes.status}:`,
+          errBody
+        );
+        try {
+          const parsed = JSON.parse(errBody);
+          n8nError =
+            parsed.message ||
+            parsed.hint ||
+            `Webhook returned status ${webhookRes.status}`;
+        } catch {
+          n8nError = `Webhook returned status ${webhookRes.status}`;
+        }
+      }
+    } catch (webhookErr) {
+      console.error(
+        "[ZENIVIXON Contact Form] Error connecting to n8n webhook:",
+        webhookErr
+      );
+      n8nError =
+        webhookErr instanceof Error
+          ? webhookErr.message
+          : "Failed to connect to webhook";
+    }
+
+    if (n8nError) {
+      return NextResponse.json(
+        { success: false, error: n8nError },
+        { status: 502 }
+      );
+    }
+
+    // ─── Send email using Resend (if configured) ─────────────────────────────
+    if (
+      process.env.RESEND_API_KEY &&
+      process.env.RESEND_API_KEY !== "your_resend_api_key_here"
+    ) {
+      try {
+        const resend = new Resend(process.env.RESEND_API_KEY);
+        await resend.emails.send({
+          from: "ZENIVIXON <noreply@zenivixon.com>",
+          to: "zenivixon@gmail.com",
+          subject: `New Inquiry from ${esc(payload.name)} — ${esc(payload.company || "No Company")}`,
+          html: `
+            <p><b>Name:</b> ${esc(payload.name)}</p>
+            <p><b>Email:</b> ${esc(payload.email)}</p>
+            <p><b>Company:</b> ${esc(payload.company || "N/A")}</p>
+            <p><b>Service:</b> ${esc(payload.service || "N/A")}</p>
+            <p><b>Message:</b><br/>${esc(payload.message).replace(/\n/g, "<br/>")}</p>
+          `,
+        });
+      } catch (resendErr) {
+        console.warn("[ZENIVIXON Contact Form] Resend email failed:", resendErr);
+      }
+    }
+
+    console.log("[ZENIVIXON Contact Form] New Submission Processed:", {
+      name: payload.name,
+      email: payload.email,
+      company: payload.company || "N/A",
+      service: payload.service || "N/A",
       receivedAt: new Date().toISOString(),
     });
 
