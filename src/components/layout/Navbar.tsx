@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X, ArrowRight, MessageSquare, Bot, Cpu, Network, Globe } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { MAIN_NAVIGATION } from "@/data/navigation";
 import { COMPANY_INFO } from "@/lib/constants";
@@ -23,6 +24,7 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [solutionsDropdownOpen, setSolutionsDropdownOpen] = useState(false);
   const pathname = usePathname();
+  const shouldReduceMotion = useReducedMotion();
   
 
   useEffect(() => {
@@ -64,7 +66,12 @@ export function Navbar() {
             onClick={closeMenu}
             className="flex items-center gap-2.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg"
           >
-            <div className="flex items-center justify-center transition-transform group-hover:scale-105">
+            <motion.div 
+              initial={{ opacity: shouldReduceMotion ? 1 : 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="flex items-center justify-center transition-transform group-hover:scale-105"
+            >
               <Image 
                 src="/logo.png" 
                 alt="ZENIVIXON Logo" 
@@ -73,10 +80,26 @@ export function Navbar() {
                 className="object-contain rounded-lg shadow-sm"
                 priority 
               />
+            </motion.div>
+            <div className="overflow-hidden flex items-center py-1 -my-1">
+              <motion.div
+                initial={{ 
+                  opacity: shouldReduceMotion ? 1 : 0, 
+                  x: shouldReduceMotion ? 0 : -15, 
+                  clipPath: shouldReduceMotion ? "inset(0 0 0 0)" : "inset(0 100% 0 0)" 
+                }}
+                animate={{ opacity: 1, x: 0, clipPath: "inset(0 0 0 0)" }}
+                transition={{ 
+                  duration: 0.7, 
+                  delay: shouldReduceMotion ? 0 : 0.4, 
+                  ease: [0.25, 1, 0.5, 1] 
+                }}
+              >
+                <span className="font-extrabold text-lg tracking-widest text-[#0F172A] dark:text-white font-heading block">
+                  ZENIVIXON
+                </span>
+              </motion.div>
             </div>
-            <span className="font-extrabold text-lg tracking-widest text-[#0F172A] dark:text-white font-heading">
-              ZENIVIXON
-            </span>
           </Link>
 
           {/* Desktop Navigation */}

@@ -7,6 +7,7 @@ import { FOOTER_LINKS } from "@/data/navigation";
 import { COMPANY_INFO } from "@/lib/constants";
 import { ArrowUpRight, Mail, CheckCircle2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { motion, useReducedMotion } from "framer-motion";
 
 // ─── Newsletter Form ──────────────────────────────────────────────────────────
 function NewsletterForm() {
@@ -79,6 +80,7 @@ function NewsletterForm() {
 }
 
 export function Footer() {
+  const shouldReduceMotion = useReducedMotion();
   return (
     <footer className="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#020817] text-sm mt-auto relative z-10 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 py-20 lg:py-24">
@@ -261,19 +263,42 @@ export function Footer() {
                 <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 block font-heading mb-4">
                   COMPANY
                 </span>
-                <Link href="/" className="flex items-center gap-2.5 mb-4">
-                  <div className="flex items-center justify-center">
+                <Link href="/" className="flex items-center gap-2.5 mb-4 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg w-fit">
+                  <motion.div 
+                    initial={{ opacity: shouldReduceMotion ? 1 : 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className="flex items-center justify-center transition-transform group-hover:scale-105"
+                  >
                     <Image 
                       src="/logo.png" 
                       alt="ZENIVIXON Logo" 
                       width={32} 
                       height={32} 
-                      className="object-contain rounded-md"
+                      className="object-contain rounded-md shadow-sm"
                     />
+                  </motion.div>
+                  <div className="overflow-hidden flex items-center py-1 -my-1">
+                    <motion.div
+                      initial={{ 
+                        opacity: shouldReduceMotion ? 1 : 0, 
+                        x: shouldReduceMotion ? 0 : -15, 
+                        clipPath: shouldReduceMotion ? "inset(0 0 0 0)" : "inset(0 100% 0 0)" 
+                      }}
+                      whileInView={{ opacity: 1, x: 0, clipPath: "inset(0 0 0 0)" }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ 
+                        duration: 0.7, 
+                        delay: shouldReduceMotion ? 0 : 0.4, 
+                        ease: [0.25, 1, 0.5, 1] 
+                      }}
+                    >
+                      <span className="font-bold text-lg tracking-widest text-[#0F172A] dark:text-white font-heading block">
+                        {COMPANY_INFO.name}
+                      </span>
+                    </motion.div>
                   </div>
-                  <span className="font-bold text-lg tracking-widest text-[#0F172A] dark:text-white font-heading">
-                    {COMPANY_INFO.name}
-                  </span>
                 </Link>
                 <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-[200px]">
                   {COMPANY_INFO.positioning}
