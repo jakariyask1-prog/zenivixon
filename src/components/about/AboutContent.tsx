@@ -27,6 +27,9 @@ import {
   Briefcase,
   Users,
   Compass,
+  XCircle,
+  Zap,
+  Target,
 } from "lucide-react";
 
 function LinkedInIcon({ className = "w-4 h-4" }: { className?: string }) {
@@ -590,6 +593,80 @@ export function AboutContent() {
               ))}
             </AnimatePresence>
           </motion.div>
+        </section>
+
+        {/* The ZENIVIXON Advantage: Why Choose Us vs Legacy Agencies */}
+        <section className="space-y-10">
+          <ScrollReveal direction="up">
+            <div className="max-w-3xl space-y-3">
+              <Badge variant="blue" size="sm" className="font-semibold text-xs tracking-widest">
+                THE ZENIVIXON ADVANTAGE
+              </Badge>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] dark:text-white font-heading">
+                Why Emerging &amp; Global Enterprises Choose Us Over Big Agencies.
+              </h2>
+              <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+                As a high-density, focused AI engineering company, we strip away the bloated overhead, non-technical middlemen, and months of delay common in traditional consulting firms.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* Comparison Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700 transition-all space-y-4 flex flex-col justify-between">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-2xl bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-900 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                  <Users className="w-5 h-5" />
+                </div>
+                <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading">
+                  Direct Engineer Access
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  No layers of non-technical sales reps or junior outsourcing. You work directly with the senior architects and engineers writing your code.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                100% Transparent Technical Alignment
+              </div>
+            </div>
+
+            <div className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700 transition-all space-y-4 flex flex-col justify-between">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-100 dark:border-emerald-900 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading">
+                  14-Day Zero-Risk Pilot
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  We prove our ROI on your actual business problem before asking for large commitments. If our pilot doesn&apos;t demonstrate value, you owe nothing.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                Zero Risk • Guaranteed Measurable ROI
+              </div>
+            </div>
+
+            <div className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700 transition-all space-y-4 flex flex-col justify-between">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-2xl bg-cyan-50 dark:bg-cyan-950/60 border border-cyan-100 dark:border-cyan-900 text-cyan-600 dark:text-cyan-400 flex items-center justify-center">
+                  <Zap className="w-5 h-5" />
+                </div>
+                <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading">
+                  3x Faster Production Velocity
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Using cutting-edge AI engineering workflows and modern modular stacks, we ship in 1–2 weeks what legacy consultancies spend months debating.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-cyan-600 dark:text-cyan-400 flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                Agile Sprints • Live In Days, Not Quarters
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Company Principles with Number Indicators */}
