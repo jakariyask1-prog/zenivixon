@@ -90,9 +90,12 @@ export function Navbar() {
                 }}
                 animate={{ opacity: 1, x: 0, clipPath: "inset(0 0 0 0)" }}
                 transition={{ 
-                  duration: 0.7, 
+                  duration: 1.2, 
                   delay: shouldReduceMotion ? 0 : 0.4, 
-                  ease: [0.25, 1, 0.5, 1] 
+                  ease: [0.25, 1, 0.5, 1],
+                  repeat: shouldReduceMotion ? 0 : Infinity,
+                  repeatType: "reverse",
+                  repeatDelay: 1
                 }}
               >
                 <span className="font-extrabold text-lg tracking-widest text-[#0F172A] dark:text-white font-heading block">
