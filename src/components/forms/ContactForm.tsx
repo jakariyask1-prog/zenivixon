@@ -73,7 +73,7 @@ export function ContactForm() {
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-1.5">
-          <label htmlFor="contact-name" className="text-xs font-semibold text-slate-700">
+          <label htmlFor="contact-name" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
             Your Name *
           </label>
           <input
@@ -84,11 +84,11 @@ export function ContactForm() {
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             placeholder="e.g. Alex Morgan"
-            className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
+            className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
           />
         </div>
         <div className="space-y-1.5">
-          <label htmlFor="contact-email" className="text-xs font-semibold text-slate-700">
+          <label htmlFor="contact-email" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
             Business Email *
           </label>
           <input
@@ -99,13 +99,13 @@ export function ContactForm() {
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             placeholder="alex@company.com"
-            className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
+            className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
           />
         </div>
       </div>
 
       <div className="space-y-1.5">
-        <label htmlFor="contact-company" className="text-xs font-semibold text-slate-700">
+        <label htmlFor="contact-company" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
           Company Name
         </label>
         <input
@@ -115,12 +115,12 @@ export function ContactForm() {
           value={formData.company}
           onChange={(e) => setFormData({ ...formData, company: e.target.value })}
           placeholder="e.g. Acme Technologies Ltd"
-          className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
+          className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
         />
       </div>
 
       <div className="space-y-1.5">
-        <label htmlFor="contact-message" className="text-xs font-semibold text-slate-700">
+        <label htmlFor="contact-message" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
           How can we help? *
         </label>
         <textarea
@@ -130,7 +130,7 @@ export function ContactForm() {
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           placeholder="Describe what you are trying to solve..."
-          className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white transition-all resize-none placeholder:text-slate-400"
+          className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all resize-none placeholder:text-slate-400"
         />
       </div>
 

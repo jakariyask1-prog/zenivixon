@@ -130,11 +130,18 @@ export function Footer() {
                 FREE TOOLS
               </span>
               <ul className="space-y-3.5">
+                <li>
+                  <Link href="/#roi-calculator" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1.5 transition-colors">
+                    ROI &amp; Savings Calculator
+                    <span className="text-[10px] font-bold px-1.5 py-0.2 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+                      FREE
+                    </span>
+                  </Link>
+                </li>
                 {[
                   "Free AI Models Directory",
                   "AI Model Comparison",
                   "AI Model Pricing Index",
-                  "ROI Calculator",
                   "AI Readiness Assessment",
                   "AI Budget Planner",
                   "Workflow Audit",
