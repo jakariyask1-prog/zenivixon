@@ -1,5 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
+import Link from "next/link";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { INSIGHTS_DATA } from "@/data/insights";
 import { Badge } from "@/components/ui/Badge";
@@ -65,14 +66,14 @@ export default function InsightsPage() {
               </div>
 
               {/* Author, Date & CTA */}
-              <div className="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between text-xs font-medium">
+              <div className="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-medium">
                 <span className="text-slate-500 dark:text-slate-400">{article.author.name} · {formatDate(article.publishDate)}</span>
-                <a
+                <Link
                   href={`/insights/${article.slug}`}
-                  className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 font-semibold transition-colors"
+                  className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-colors"
                 >
                   Read Article →
-                </a>
+                </Link>
               </div>
             </div>
           ))}
