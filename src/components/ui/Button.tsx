@@ -48,7 +48,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       ghost:
         "text-slate-600 dark:text-slate-400 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-slate-50 dark:hover:bg-slate-800",
       glowing:
-        "relative overflow-hidden bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] hover:-translate-y-0.5 border border-blue-400 hover:border-blue-300 group",
+        "relative overflow-hidden bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-[0_0_20px_rgba(250,204,21,0.25)] hover:shadow-[0_0_40px_rgba(250,204,21,0.4)] border-2 border-yellow-400 hover:border-yellow-300 hover:scale-105 group transition-all duration-300",
     };
 
     const combinedClassName = cn(
@@ -61,7 +61,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const content = (
       <>
         {variant === "glowing" && (
-          <span className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-white/25 to-blue-400/0 animate-[shimmer_2s_infinite] -skew-x-12 pointer-events-none"></span>
+          <span className="absolute inset-0 bg-gradient-to-r from-yellow-400/15 via-transparent to-yellow-400/15 animate-pulse pointer-events-none"></span>
         )}
         {icon && iconPosition === "left" && <span className="shrink-0 relative z-10">{icon}</span>}
         <span className="relative z-10 font-bold">{children}</span>

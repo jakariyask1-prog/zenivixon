@@ -20,7 +20,6 @@ const solutionIcons: Record<string, React.ReactNode> = {
 };
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [solutionsDropdownOpen, setSolutionsDropdownOpen] = useState(false);
   const pathname = usePathname();
@@ -28,19 +27,14 @@ export function Navbar() {
   
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setMobileMenuOpen(false);
         setSolutionsDropdownOpen(false);
       }
     };
-    window.addEventListener("scroll", handleScroll);
     window.addEventListener("keydown", handleKeyDown);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
@@ -52,11 +46,7 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full ${
-        isScrolled
-          ? "bg-[#FCFDFE]/80 dark:bg-[#020817]/80 backdrop-blur-md border-b border-slate-200/90 dark:border-slate-800/90 py-3.5 shadow-sm"
-          : "bg-transparent py-5"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 w-full bg-white/80 dark:bg-[#020817]/80 backdrop-blur-md border-b border-slate-200/90 dark:border-slate-800/90 py-3.5 shadow-sm transition-all duration-300"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
         <div className="flex items-center justify-between">
@@ -117,7 +107,7 @@ export function Navbar() {
                 return (
                   <div
                     key={item.label}
-                    className="relative"
+                    className=""
                     onMouseEnter={() => setSolutionsDropdownOpen(true)}
                     onMouseLeave={() => setSolutionsDropdownOpen(false)}
                   >
@@ -142,36 +132,77 @@ export function Navbar() {
 
                     {/* Mega Menu */}
                     <div
-                      className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 transition-all duration-200 origin-top w-[600px] ${
+                      className={`absolute top-[100%] left-0 right-0 z-50 transition-all duration-200 origin-top ${
                         solutionsDropdownOpen
                           ? "opacity-100 scale-y-100 translate-y-0 pointer-events-auto"
                           : "opacity-0 scale-y-95 -translate-y-1 pointer-events-none"
                       }`}
                     >
-                      <div className="rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 p-4 shadow-xl shadow-slate-200/50 dark:shadow-black/50 grid grid-cols-2 gap-2">
-                        <div className="col-span-2 px-2 pb-2 mb-2 border-b border-slate-100 dark:border-slate-800/50">
-                          <span className="text-[11px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold font-heading">Solutions & Automations</span>
-                        </div>
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            onClick={() => setSolutionsDropdownOpen(false)}
-                            className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group border border-transparent hover:border-slate-100 dark:hover:border-slate-700/50"
-                          >
-                            <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 dark:border-slate-700 group-hover:border-blue-200 dark:group-hover:border-blue-800 transition-colors">
-                              {solutionIcons[child.href]}
+                      <div className="bg-white dark:bg-[#0b1120] border-t border-b border-slate-200 dark:border-slate-800 shadow-xl w-full max-h-[calc(100vh-5rem)] overflow-y-auto">
+                        <div className="max-w-7xl mx-auto grid grid-cols-12">
+                          
+                          {/* Left: Services */}
+                          <div className="col-span-12 lg:col-span-8 lg:border-r border-slate-200 dark:border-slate-800 px-6 sm:px-8 lg:px-10 py-6">
+                            <div className="pb-3 mb-3 border-b border-slate-100 dark:border-slate-800/50">
+                              <span className="text-[11px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold font-heading">Solutions & Automations</span>
                             </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                              {item.children.map((child) => (
+                                <Link
+                                  key={child.href}
+                                  href={child.href}
+                                  onClick={() => setSolutionsDropdownOpen(false)}
+                                  className="flex items-start gap-4 p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group border border-transparent hover:border-slate-100 dark:hover:border-slate-700/50"
+                                >
+                                  <div className="p-3 shrink-0 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 group-hover:border-blue-200 dark:group-hover:border-blue-800 transition-colors">
+                                    {solutionIcons[child.href]}
+                                  </div>
+                                  <div>
+                                    <div className="text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors font-heading">
+                                      {child.label}
+                                    </div>
+                                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                      {child.description}
+                                    </p>
+                                  </div>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Right: Featured Content */}
+                          <div className="col-span-12 lg:col-span-4 bg-slate-50/50 dark:bg-slate-900/20 px-6 sm:px-8 lg:px-10 py-6 flex flex-col">
+                            <div className="pb-3 mb-3 border-b border-slate-100 dark:border-slate-800/50">
+                              <span className="text-[11px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold font-heading">Featured Content</span>
+                            </div>
+                            <Link 
+                              href="/start-a-project" 
+                              onClick={() => setSolutionsDropdownOpen(false)}
+                              className="group block relative overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 aspect-[16/10] bg-blue-50/50 dark:bg-blue-900/10 mb-4"
+                            >
+                              <Image 
+                                src="/images/projects/jakariya-ai-studio.png" 
+                                alt="Jakariya AI Studio" 
+                                fill
+                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                              />
+                            </Link>
                             <div>
-                              <div className="text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors font-heading">
-                                {child.label}
-                              </div>
-                              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-                                {child.description}
+                              <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100 mb-1">Start Your AI Journey</h3>
+                              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-3">
+                                Transform your business with custom AI solutions. Ship faster and scale without the overhead.
                               </p>
+                              <Link 
+                                href="/start-a-project" 
+                                onClick={() => setSolutionsDropdownOpen(false)}
+                                className="inline-flex items-center gap-1 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline underline-offset-4"
+                              >
+                                Learn more <ArrowRight className="w-3 h-3" />
+                              </Link>
                             </div>
-                          </Link>
-                        ))}
+                          </div>
+
+                        </div>
                       </div>
                     </div>
                   </div>
