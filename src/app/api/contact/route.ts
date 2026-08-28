@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
     // ─── Forward to n8n Webhook ──────────────────────────────────────────────
     const webhookUrl =
       process.env.N8N_WEBHOOK_URL ||
-      "https://zenivixon.app.n8n.cloud/webhook-test/zenivixon-lead";
+      "https://zenivixon.app.n8n.cloud/webhook/zenivixon-lead";
 
     let n8nError: string | null = null;
     try {
