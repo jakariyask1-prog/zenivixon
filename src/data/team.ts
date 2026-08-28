@@ -204,8 +204,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: "ui-ux-designer",
-    name: "UI/UX & Product Designer",
-    role: "Design Systems & Interfaces",
+    name: "Dipu Sarkar",
+    role: "UI/UX & Product Designer",
     titleBadge: "Designing experiences people understand and love to use.",
     department: "Product & Design",
     featured: false,
@@ -224,7 +224,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Data-driven UX decisions",
     ],
     bio: "Crafts intuitive and aesthetically pleasing interfaces for complex AI SaaS applications and client dashboards. Focuses on accessibility, responsive design systems, and elevating the overall user experience.",
-    image: "/images/team/placeholder.svg",
+    image: "/images/team/dipu-sarkar.png",
+    facebook: "https://www.facebook.com/share/19KfqcqYNN/",
   },
   {
     id: "b2b-sales-manager",
