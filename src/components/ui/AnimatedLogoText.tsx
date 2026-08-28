@@ -3,41 +3,88 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
-const LOGO_TEXTS = ["ZENIVIXON", "ZENIVIXON", "ZENIVIXON"];
+const WORD = "ZENIVIXON";
+const LETTERS = WORD.split("");
 
 export function AnimatedLogoText() {
-  const [index, setIndex] = useState(0);
+  const [key, setKey] = useState(0);
   const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     if (shouldReduceMotion) return;
     const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % LOGO_TEXTS.length);
-    }, 2500);
+      setKey((prev) => prev + 1);
+    }, 5500); // 5.5s loop (spells out, pauses, exits, restarts)
     return () => clearInterval(timer);
   }, [shouldReduceMotion]);
 
   if (shouldReduceMotion) {
     return (
       <span className="font-extrabold text-lg tracking-widest text-[#0F172A] dark:text-white font-heading">
-        ZENIVIXON
+        {WORD}
       </span>
     );
   }
 
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.15 }
+    },
+    exit: {
+      transition: { staggerChildren: 0.08, staggerDirection: 1 }
+    }
+  };
+
+  const letterVariants = {
+    hidden: { 
+      opacity: 0, 
+      x: -25, 
+      y: 15, 
+      rotate: -60,
+      filter: "blur(6px)"
+    },
+    visible: { 
+      opacity: 1, 
+      x: 0, 
+      y: 0,
+      rotate: 0,
+      filter: "blur(0px)",
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 120,
+      }
+    },
+    exit: {
+      opacity: 0,
+      x: 20,
+      filter: "blur(4px)",
+      transition: { duration: 0.4 }
+    }
+  };
+
   return (
-    <div className="relative h-6 w-[120px] flex items-center overflow-hidden" style={{ perspective: "1000px" }}>
-      <AnimatePresence mode="popLayout">
-        <motion.span
-          key={index}
-          initial={{ y: 25, opacity: 0, rotateX: -90 }}
-          animate={{ y: 0, opacity: 1, rotateX: 0 }}
-          exit={{ y: -25, opacity: 0, rotateX: 90 }}
-          transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
-          className="block font-extrabold text-lg tracking-widest text-[#0F172A] dark:text-white font-heading origin-center"
+    <div className="relative flex items-center h-6 overflow-visible w-[140px]">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={key}
+          className="flex"
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          variants={containerVariants}
         >
-          {LOGO_TEXTS[index]}
-        </motion.span>
+          {LETTERS.map((char, i) => (
+            <motion.span
+              key={i}
+              className="inline-block font-extrabold text-lg tracking-widest text-[#0F172A] dark:text-white font-heading"
+              variants={letterVariants}
+            >
+              {char}
+            </motion.span>
+          ))}
+        </motion.div>
       </AnimatePresence>
     </div>
   );
