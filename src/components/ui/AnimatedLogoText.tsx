@@ -65,7 +65,7 @@ export function AnimatedLogoText() {
       <AnimatePresence mode="wait">
         <motion.div
           key={key}
-          className="flex"
+          className="flex bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 dark:from-blue-400 dark:via-indigo-400 dark:to-violet-400 bg-clip-text text-transparent"
           initial="hidden"
           animate="visible"
           exit="exit"
@@ -74,7 +74,7 @@ export function AnimatedLogoText() {
           {LETTERS.map((char, i) => (
             <motion.span
               key={i}
-              className="inline-block font-extrabold text-lg tracking-widest text-[#0F172A] dark:text-white font-heading origin-center"
+              className="inline-block font-extrabold text-lg tracking-widest font-heading origin-center"
               variants={letterVariants}
             >
               {char}
