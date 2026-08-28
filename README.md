@@ -1,6 +1,6 @@
-﻿# ZENIVIXON
+# ZENIVIXON
 
-**AI-First Technology Company** — We build AI agents, intelligent workflow automations, modern web applications, and enterprise AI integrations.
+**AI-First Technology Company** — We engineer purpose-built autonomous AI agents, intelligent workflow automations, custom Next.js web applications, and enterprise AI system integrations.
 
 🌐 **Website:** [zenivixon.com](https://zenivixon.com)
 
@@ -9,15 +9,15 @@
 ## Tech Stack
 
 | Layer | Technology |
-|-------|-----------|
-| Framework | Next.js 16.3 (App Router) |
-| Language | TypeScript |
-| Styling | Tailwind CSS v4 |
-| Animation | Framer Motion v13 |
-| Theming | next-themes (light/dark) |
-| Email | Resend SDK |
-| Icons | Lucide React |
-| Fonts | Manrope + Inter (Google Fonts) |
+|---|---|
+| **Framework** | Next.js 16.3 (App Router, Turbopack) |
+| **Runtime / Language** | React 19, TypeScript 5 |
+| **Styling** | Tailwind CSS v4 |
+| **Animations** | Framer Motion v13, GSAP, Lottie |
+| **Theming** | next-themes (Light & Dark mode support) |
+| **Workflow Automation** | n8n Webhook Integration |
+| **Email Service** | Resend SDK |
+| **Icons & Typography** | Lucide React, Manrope + Inter |
 
 ---
 
@@ -25,87 +25,134 @@
 
 ### Prerequisites
 - Node.js 20+
-- npm
+- npm / yarn / pnpm
 
-### Install & Run
+### Installation & Local Development
 
 ```bash
+# Clone the repository
+git clone https://github.com/jakariyask1-prog/zenivixon.git
+cd zenivixon
+
+# Install dependencies
 npm install
+
+# Start the local development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Environment Variables
+---
 
-Create a `.env.local` file:
+## Environment Variables
+
+Create a `.env.local` file in the root directory:
 
 ```env
+# n8n Webhook Integration (Lead Intake)
+N8N_WEBHOOK_URL=https://zenivixon.app.n8n.cloud/webhook/zenivixon-lead
+
+# Resend Email Delivery (Optional)
 RESEND_API_KEY=your_resend_api_key_here
 ```
 
-Get a free Resend API key at [resend.com](https://resend.com).
+### Key Environment Configuration:
+- **`N8N_WEBHOOK_URL`**: Target n8n webhook URL where contact form and quote inquiries are dispatched via secure server-side POST requests.
+- **`RESEND_API_KEY`**: Optional API key from [resend.com](https://resend.com) for sending notification emails.
+
+---
+
+## Webhook & Lead Automation (`/api/contact`)
+
+When users submit the **Contact / Get a Quote** form, the payload is validated on the server and sent to the configured n8n webhook:
+
+### JSON Payload Schema:
+```json
+{
+  "name": "Alex Morgan",
+  "email": "alex@company.com",
+  "company": "Acme Technologies Ltd",
+  "service": "AI Agents & 24/7 Support",
+  "message": "We need an autonomous AI customer support copilot."
+}
+```
+
+- **Security:** The webhook URL is stored on the backend and is never exposed to client-side code.
+- **Resilience:** Includes IP-based rate limiting, input sanitization, and graceful error handling.
 
 ---
 
 ## Project Structure
 
 ```
-src/
-├── app/                    # Next.js App Router pages
-│   ├── api/                # API routes (contact, project-brief, newsletter)
-│   ├── about/
-│   ├── contact/
-│   ├── insights/
-│   ├── projects/
-│   ├── solutions/
-│   ├── start-a-project/
-│   ├── layout.tsx          # Root layout (Navbar + Footer)
-│   └── page.tsx            # Home page
-├── components/
-│   ├── layout/             # Navbar, Footer, PageHeader
-│   ├── sections/           # Page section components
-│   ├── ui/                 # Button, Badge, Card, ScrollReveal, etc.
-│   └── providers/          # ThemeProvider
-├── data/                   # Navigation, projects, solutions, team data
-├── lib/                    # Constants, utils
-└── types/                  # TypeScript interfaces
+zenivixon/
+├── public/                 # Static assets (images, logos, videos)
+├── src/
+│   ├── app/                # Next.js App Router
+│   │   ├── api/            # API routes
+│   │   │   ├── contact/    # Contact form -> n8n webhook & Resend
+│   │   │   ├── newsletter/ # Newsletter subscription
+│   │   │   └── project-brief/ # Interactive project wizard handler
+│   │   ├── about/          # About page
+│   │   ├── contact/        # Contact & Inquiry page
+│   │   ├── insights/       # Technical articles & blog
+│   │   ├── projects/       # Case studies & project showcase
+│   │   ├── solutions/      # Detailed solution pillars
+│   │   ├── start-a-project/# Multi-step project brief wizard
+│   │   ├── layout.tsx      # Root layout (Navbar, Footer, Providers)
+│   │   └── page.tsx        # Homepage
+│   ├── components/
+│   │   ├── forms/          # ContactForm, StartProjectWizard
+│   │   ├── layout/         # Navbar, Footer, PageHeader
+│   │   ├── sections/       # Hero, Capabilities, ROI Calculator, etc.
+│   │   ├── ui/             # Reusable UI components & animations
+│   │   └── providers/      # Theme and page transition providers
+│   ├── data/               # Static data for solutions, projects, insights
+│   ├── lib/                # Constants and utility functions
+│   └── types/              # TypeScript type definitions
+├── .env.example            # Example environment configuration
+├── .env.local              # Local environment variables (git-ignored)
+└── package.json
 ```
 
 ---
 
-## Pages
+## Available Pages & Routes
 
 | Route | Description |
-|-------|-------------|
-| `/` | Home — Hero, Capabilities, Projects, CTA |
-| `/about` | About ZENIVIXON |
-| `/solutions` | All solutions overview |
-| `/solutions/ai-agents` | AI Agents & Support |
-| `/solutions/ai-automation` | AI Workflow Automation |
-| `/solutions/software-web-development` | Software & Web Dev |
-| `/solutions/ai-integration` | AI Integration & RAG |
-| `/projects` | Project showcase |
-| `/insights` | Insights / blog |
-| `/contact` | Contact form |
-| `/start-a-project` | Project brief form |
+|---|---|
+| `/` | **Homepage** — Hero, problem-first intake, solutions overview, showcase & ROI calculator |
+| `/about` | **About ZENIVIXON** — Mission, technical philosophy, and engineering team |
+| `/solutions` | **Solutions Overview** — Comprehensive breakdown of service offerings |
+| `/solutions/ai-agents` | **AI Agents** — 24/7 Customer Support & Autonomous Decision Copilots |
+| `/solutions/ai-automation` | **AI Automation** — Intelligent Document & Cross-System Workflow Pipelines |
+| `/solutions/software-web-development` | **Software & Web Dev** — High-Performance Next.js Web Platforms & SaaS |
+| `/solutions/ai-integration` | **AI Integration & RAG** — Vector Retrieval, Semantic Search & Legacy Middleware |
+| `/projects` | **Project Catalog** — Real-world case studies and implementations |
+| `/insights` | **Engineering Insights** — Technical deep-dives and automation guides |
+| `/contact` | **Contact Page** — Direct communication channels & n8n integrated inquiry form |
+| `/start-a-project` | **Start a Project** — 3-step interactive project brief intake wizard |
 
 ---
 
-## Scripts
+## Available Scripts
 
 ```bash
-npm run dev      # Start dev server
-npm run build    # Build for production
+npm run dev      # Start development server with Turbopack
+npm run build    # Build optimized production bundle
 npm run start    # Start production server
-npm run lint     # Run ESLint
+npm run lint     # Run ESLint validation
 ```
 
 ---
 
 ## Deployment
 
-Deployed on **Vercel**. Push to `main` to trigger auto-deploy.
+ZENIVIXON is optimized for zero-configuration deployment on **Vercel**:
 
-Make sure to set the `RESEND_API_KEY` environment variable in the Vercel dashboard.
+1. Push to the `main` branch on GitHub.
+2. In the **Vercel Project Dashboard** > **Settings** > **Environment Variables**, configure:
+   - `N8N_WEBHOOK_URL` = `https://zenivixon.app.n8n.cloud/webhook/zenivixon-lead`
+   - `RESEND_API_KEY` = `your_resend_api_key` (optional)
 
