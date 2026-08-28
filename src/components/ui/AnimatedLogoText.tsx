@@ -26,7 +26,7 @@ export function AnimatedLogoText() {
     );
   }
 
-  const containerVariants = {
+  const containerVariants: import("framer-motion").Variants = {
     hidden: {},
     visible: {
       transition: { staggerChildren: 0.15 }
@@ -36,7 +36,7 @@ export function AnimatedLogoText() {
     }
   };
 
-  const letterVariants = {
+  const letterVariants: import("framer-motion").Variants = {
     hidden: { 
       opacity: 0, 
       x: -25, 
