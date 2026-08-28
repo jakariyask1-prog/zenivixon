@@ -1,71 +1,67 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const WORD = "ZENIVIXON";
 const LETTERS = WORD.split("");
 
 export function AnimatedLogoText() {
   const [key, setKey] = useState(0);
-  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (shouldReduceMotion) return;
     const timer = setInterval(() => {
       setKey((prev) => prev + 1);
-    }, 5500); // 5.5s loop (spells out, pauses, exits, restarts)
+    }, 4500); // 4.5s loop
     return () => clearInterval(timer);
-  }, [shouldReduceMotion]);
-
-  if (shouldReduceMotion) {
-    return (
-      <span className="font-extrabold text-lg tracking-widest text-[#0F172A] dark:text-white font-heading">
-        {WORD}
-      </span>
-    );
-  }
+  }, []);
 
   const containerVariants: import("framer-motion").Variants = {
-    hidden: {},
+    hidden: { opacity: 0 },
     visible: {
-      transition: { staggerChildren: 0.15 }
+      opacity: 1,
+      transition: { staggerChildren: 0.15 } // one by one
     },
     exit: {
-      transition: { staggerChildren: 0.08, staggerDirection: 1 }
+      opacity: 0,
+      transition: { staggerChildren: 0.05, staggerDirection: -1 } // back to front
     }
   };
 
   const letterVariants: import("framer-motion").Variants = {
     hidden: { 
       opacity: 0, 
-      x: -25, 
-      y: 15, 
-      rotate: -60,
-      filter: "blur(6px)"
+      x: -20, // comes from left
+      y: 15,  // comes from slightly below
+      rotateY: 90, // 3D spin
+      rotateZ: -20, // tilted
+      filter: "blur(5px)"
     },
     visible: { 
       opacity: 1, 
       x: 0, 
       y: 0,
-      rotate: 0,
+      rotateY: 0,
+      rotateZ: 0,
       filter: "blur(0px)",
       transition: {
         type: "spring",
-        damping: 12,
-        stiffness: 120,
+        damping: 10,
+        stiffness: 100,
       }
     },
     exit: {
       opacity: 0,
+      y: -15,
       x: 20,
-      filter: "blur(4px)",
+      rotateY: -90,
+      filter: "blur(5px)",
       transition: { duration: 0.4 }
     }
   };
 
   return (
-    <div className="relative flex items-center h-6 overflow-visible w-[140px]">
+    <div className="relative flex items-center h-6 overflow-visible w-[140px]" style={{ perspective: "1000px" }}>
       <AnimatePresence mode="wait">
         <motion.div
           key={key}
@@ -78,7 +74,7 @@ export function AnimatedLogoText() {
           {LETTERS.map((char, i) => (
             <motion.span
               key={i}
-              className="inline-block font-extrabold text-lg tracking-widest text-[#0F172A] dark:text-white font-heading"
+              className="inline-block font-extrabold text-lg tracking-widest text-[#0F172A] dark:text-white font-heading origin-center"
               variants={letterVariants}
             >
               {char}
