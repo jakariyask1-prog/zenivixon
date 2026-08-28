@@ -8,6 +8,7 @@ import { COMPANY_INFO } from "@/lib/constants";
 import { ArrowUpRight, Mail, CheckCircle2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { motion, useReducedMotion } from "framer-motion";
+import { AnimatedLogoText } from "@/components/ui/AnimatedLogoText";
 
 // ─── Newsletter Form ──────────────────────────────────────────────────────────
 function NewsletterForm() {
@@ -278,27 +279,8 @@ export function Footer() {
                       className="object-contain rounded-md shadow-sm"
                     />
                   </motion.div>
-                  <div className="overflow-hidden flex items-center py-1 -my-1">
-                    <motion.div
-                      initial={{ 
-                        opacity: shouldReduceMotion ? 1 : 0, 
-                        x: shouldReduceMotion ? 0 : -15, 
-                        clipPath: shouldReduceMotion ? "inset(0 0 0 0)" : "inset(0 100% 0 0)" 
-                      }}
-                      animate={{ opacity: 1, x: 0, clipPath: "inset(0 0 0 0)" }}
-                      transition={{ 
-                        duration: 1.2, 
-                        delay: shouldReduceMotion ? 0 : 0.4, 
-                        ease: [0.25, 1, 0.5, 1],
-                        repeat: shouldReduceMotion ? 0 : Infinity,
-                        repeatType: "reverse",
-                        repeatDelay: 1
-                      }}
-                    >
-                      <span className="font-bold text-lg tracking-widest text-[#0F172A] dark:text-white font-heading block">
-                        {COMPANY_INFO.name}
-                      </span>
-                    </motion.div>
+                  <div className="py-1 -my-1">
+                    <AnimatedLogoText />
                   </div>
                 </Link>
                 <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-[200px]">
