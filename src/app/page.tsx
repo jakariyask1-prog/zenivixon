@@ -1,17 +1,26 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { WhatWeDoSection } from "@/components/sections/WhatWeDoSection";
-import { CoreSolutionsSection } from "@/components/sections/CoreSolutionsSection";
+import { CapabilitiesSection } from "@/components/sections/CapabilitiesSection";
 import { HowWeWorkSection } from "@/components/sections/HowWeWorkSection";
 import { ProjectShowcaseSection } from "@/components/sections/ProjectShowcaseSection";
 import { WhyZenivixonSection } from "@/components/sections/WhyZenivixonSection";
-import { CapabilitiesSection } from "@/components/sections/CapabilitiesSection";
 import { IntegrationsSection } from "@/components/sections/IntegrationsSection";
-import { AutomationGatewaySection } from "@/components/sections/AutomationGatewaySection";
 import { FinalCtaSection } from "@/components/sections/FinalCtaSection";
 import { VideoShowcaseSection } from "@/components/sections/VideoShowcaseSection";
+import { BeforeAfterComparisonSection } from "@/components/sections/BeforeAfterComparisonSection";
+import { RoiCalculatorSection } from "@/components/sections/RoiCalculatorSection";
+import { PilotSprintSection } from "@/components/sections/PilotSprintSection";
+import { FreeAuditModal } from "@/components/ui/FreeAuditModal";
 
 export default function HomePage() {
+  const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
+
+  const openAuditModal = () => setIsAuditModalOpen(true);
+  const closeAuditModal = () => setIsAuditModalOpen(false);
+
   return (
     <>
       {/* 01. Hero Section */}
@@ -20,29 +29,38 @@ export default function HomePage() {
       {/* 02. What We Do */}
       <WhatWeDoSection />
 
-      {/* 03. Capabilities (Mockups & Checklists) */}
+      {/* 03. 🚀 NEW: Before vs After Workflow Transformation */}
+      <BeforeAfterComparisonSection />
+
+      {/* 04. Capabilities (Mockups & Checklists) */}
       <CapabilitiesSection />
 
-      {/* 04. How We Work */}
-      <HowWeWorkSection />
-
-      {/* Integrations / Tech Stack */}
+      {/* 05. Integrations / Tech Stack */}
       <IntegrationsSection />
 
-      {/* 05. Project Showcase */}
+      {/* 06. 💰 NEW: Interactive ROI & Cost-Savings Calculator */}
+      <RoiCalculatorSection onOpenAuditModal={openAuditModal} />
+
+      {/* 07. How We Work */}
+      <HowWeWorkSection />
+
+      {/* 08. Project Showcase */}
       <ProjectShowcaseSection />
 
-      {/* 🎬 Video Showcase + Animated Stats */}
+      {/* 09. 🎬 Video Showcase + Animated Stats */}
       <VideoShowcaseSection />
 
-      {/* Automation Gateway CTA */}
-      <AutomationGatewaySection />
+      {/* 10. 🛡️ NEW: Zero-Risk 14-Day Pilot Sprint Guarantee */}
+      <PilotSprintSection onOpenAuditModal={openAuditModal} />
 
-      {/* 06. Why ZENIVIXON */}
+      {/* 11. Why ZENIVIXON */}
       <WhyZenivixonSection />
 
-      {/* 07. Final CTA */}
+      {/* 12. Final CTA */}
       <FinalCtaSection />
+
+      {/* 🎁 Global 3-Minute Free Video Audit Modal */}
+      <FreeAuditModal isOpen={isAuditModalOpen} onClose={closeAuditModal} />
     </>
   );
 }
