@@ -60,7 +60,7 @@ export function NeuralNetworkAnimation() {
         this.from = from;
         this.to = to;
         this.progress = 0;
-        this.speed = 0.005 + Math.random() * 0.01;
+        this.speed = 0.015 + Math.random() * 0.02; // Faster data packets
       }
     }
 
@@ -85,7 +85,7 @@ export function NeuralNetworkAnimation() {
     let animationFrameId: number;
 
     const render = () => {
-      time += 0.002;
+      time += 0.005; // Increased speed
       ctx.clearRect(0, 0, width, height);
 
       const isDark = resolvedTheme === "dark";
@@ -93,8 +93,8 @@ export function NeuralNetworkAnimation() {
       const lineColor = isDark ? "rgba(14, 165, 233, " : "rgba(2, 132, 199, "; // sky-500 / sky-600
       const particleColor = isDark ? "#38bdf8" : "#0284c7"; // sky-400 / sky-600
 
-      const radiusX = Math.min(width, 1000) * 0.4;
-      const radiusY = Math.min(height, 500) * 0.4;
+      const radiusX = Math.min(width, 1600) * 0.55;
+      const radiusY = Math.min(height, 800) * 0.55;
       const cx = width / 2;
       const cy = height / 2;
 
@@ -126,7 +126,7 @@ export function NeuralNetworkAnimation() {
       });
 
       // Draw connections
-      ctx.lineWidth = 0.6;
+      ctx.lineWidth = 1.0; // Thicker lines
       connections.forEach(([n1, n2]) => {
         const dx = n1.x - n2.x;
         const dy = n1.y - n2.y;
@@ -134,7 +134,7 @@ export function NeuralNetworkAnimation() {
         const maxDist = Math.max(radiusX, radiusY);
 
         if (dist < maxDist) {
-          const alpha = (1 - dist / maxDist) * 0.3 * ((n1.z + n2.z + 2) / 2);
+          const alpha = (1 - dist / maxDist) * 0.6 * ((n1.z + n2.z + 2) / 2); // Deeper clarity
           ctx.strokeStyle = `${lineColor}${alpha})`;
           ctx.beginPath();
           ctx.moveTo(n1.x, n1.y);
@@ -144,7 +144,7 @@ export function NeuralNetworkAnimation() {
       });
 
       // Spawn data particles
-      if (Math.random() < 0.2 && connections.length > 0) {
+      if (Math.random() < 0.3 && connections.length > 0) { // More frequent particles
         const conn = connections[Math.floor(Math.random() * connections.length)];
         packets.push(new Packet(conn[0], conn[1]));
       }
@@ -163,16 +163,16 @@ export function NeuralNetworkAnimation() {
         const py = p.from.y + (p.to.y - p.from.y) * p.progress;
         
         ctx.beginPath();
-        ctx.arc(px, py, 1.2, 0, Math.PI * 2);
+        ctx.arc(px, py, 1.8, 0, Math.PI * 2); // Larger particles
         ctx.fill();
       }
 
       // Draw nodes
       nodes.forEach((node) => {
-        const alpha = 0.2 + ((node.z + 1) / 2) * 0.5;
+        const alpha = 0.4 + ((node.z + 1) / 2) * 0.6; // Brighter nodes
         ctx.fillStyle = `${lineColor}${alpha})`;
         ctx.beginPath();
-        ctx.arc(node.x, node.y, 1.5, 0, Math.PI * 2);
+        ctx.arc(node.x, node.y, 2.0, 0, Math.PI * 2); // Slightly larger nodes
         ctx.fill();
       });
 
@@ -188,10 +188,10 @@ export function NeuralNetworkAnimation() {
   }, [resolvedTheme]);
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center opacity-60">
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center opacity-100">
       {/* Optional: Add a subtle radial gradient mask so the network fades out at the edges */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#FCFDFE_70%)] dark:bg-[radial-gradient(ellipse_at_center,transparent_20%,#020817_70%)] z-10" />
-      <canvas ref={canvasRef} className="w-full h-full max-w-[1000px]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,#FCFDFE_80%)] dark:bg-[radial-gradient(ellipse_at_center,transparent_30%,#020817_80%)] z-10" />
+      <canvas ref={canvasRef} className="w-full h-full" />
     </div>
   );
 }
