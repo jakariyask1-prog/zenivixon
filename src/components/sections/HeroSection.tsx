@@ -16,10 +16,8 @@ export function HeroSection() {
       {/* Background Subtle Depth Elements */}
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_10%,#000_70%,transparent_100%)] opacity-40 pointer-events-none" />
 
-      {/* Premium Neural Network Background Animation with Parallax */}
-      <motion.div style={{ y: useTransform(scrollY, [0, 1000], [0, 200]) }} className="absolute inset-0 pointer-events-none">
-        <NeuralNetworkAnimation />
-      </motion.div>
+      {/* Premium Neural Network Background Animation */}
+      <NeuralNetworkAnimation />
 
       {/* Full Width Marquee Ticker */}
       <div className="relative z-10 w-full mb-8">
@@ -110,7 +108,7 @@ export function HeroSection() {
           <div className="rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/20 border border-slate-200 dark:border-slate-800/60 dark:border-slate-800 relative z-10 animate-[float_6s_ease-in-out_infinite]">
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
             <Image
-              src="/cover-photo-premium.jpg"
+              src="/cover-photo.png"
               alt="ZENIVIXON Platform Integration"
               width={1200}
               height={675}
