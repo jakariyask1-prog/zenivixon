@@ -85,6 +85,29 @@ export default function RootLayout({
               gtag('config', 'G-QVZ1G1JLZQ');
             `}
           </Script>
+          
+          {/* Structured Data for Google (SEO & Business Verification) */}
+          <Script id="structured-data" type="application/ld+json" strategy="beforeInteractive">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "ZENIVIXON TECHNOLOGIES",
+              "legalName": "ZENIVIXON TECHNOLOGIES",
+              "url": SITE_METADATA.url,
+              "logo": \`\${SITE_METADATA.url}/icon.png\`,
+              "description": "Legally Licensed AI-First Technology Company in Bangladesh. Operating under a valid Trade License issued by Khulna City Corporation and a valid e-TIN from the National Board of Revenue (NBR).",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Khulna",
+                "addressCountry": "Bangladesh"
+              },
+              "sameAs": [
+                COMPANY_INFO.channels.linkedin,
+                COMPANY_INFO.channels.facebook,
+                COMPANY_INFO.channels.whatsapp
+              ]
+            })}
+          </Script>
           <CursorGlow />
           {/* Framed Layout Borders */}
           <div className="fixed left-0 top-0 bottom-0 w-3 md:w-5 lg:w-6 bg-[#FCFDFE] dark:bg-[#020817] border-r border-slate-200 dark:border-slate-800 z-[60] pointer-events-none transition-colors duration-300"></div>

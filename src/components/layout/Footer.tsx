@@ -306,8 +306,11 @@ export function Footer() {
 
         {/* Bottom Bar with Legal */}
         <div className="mt-20 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-slate-500 dark:text-slate-400">
-          <div>
-            &copy; {new Date().getFullYear()} {COMPANY_INFO.formalName}. All rights reserved.
+          <div className="flex flex-col items-center sm:items-start gap-1">
+            <p>&copy; {new Date().getFullYear()} {COMPANY_INFO.formalName}. All rights reserved.</p>
+            <p className="text-[10px] text-slate-400 dark:text-slate-500">
+              Legally licensed business operating in Bangladesh (Trade License & e-TIN verified).
+            </p>
           </div>
           <div className="flex items-center gap-6">
             {FOOTER_LINKS.legal.map((link) => (
