@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
@@ -84,13 +83,15 @@ export function DocumentViewerModal({
             </div>
 
             {/* Document Container */}
-            <div className="relative flex-1 overflow-hidden p-4 sm:p-6 md:p-8 bg-slate-50 dark:bg-slate-950/50 flex items-center justify-center">
-              <div className="relative w-full h-[60vh] sm:h-[70vh] shadow-md border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden bg-white dark:bg-slate-900">
-                <Image
+            <div className="relative flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 bg-slate-50 dark:bg-slate-950/50 flex flex-col items-center min-h-[50vh] max-h-[85vh]">
+              <div className="relative w-full max-w-4xl shadow-lg border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden bg-white dark:bg-slate-900 mx-auto">
+                {/* We use a standard img tag here to let the browser naturally calculate the height based on width, 
+                    allowing the user to scroll vertically to read the text clearly. */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={documentSrc}
                   alt={documentAlt}
-                  fill
-                  className="object-contain p-2"
+                  className="w-full h-auto block"
                 />
               </div>
             </div>
