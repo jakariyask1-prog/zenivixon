@@ -7,6 +7,7 @@ import { COMPANY_INFO, SITE_METADATA } from "@/lib/constants";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { CursorGlow } from "@/components/ui/CursorGlow";
 import { PageTransition } from "@/components/providers/PageTransition";
+import Script from "next/script";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -72,6 +73,18 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[#FCFDFE] dark:bg-[#020817] text-[#0F172A] dark:text-slate-50 selection:bg-blue-100 dark:selection:bg-blue-900 selection:text-blue-900 dark:selection:text-blue-50 transition-colors duration-300">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-QVZ1G1JLZQ"
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-QVZ1G1JLZQ');
+            `}
+          </Script>
           <CursorGlow />
           {/* Framed Layout Borders */}
           <div className="fixed left-0 top-0 bottom-0 w-3 md:w-5 lg:w-6 bg-[#FCFDFE] dark:bg-[#020817] border-r border-slate-200 dark:border-slate-800 z-[60] pointer-events-none transition-colors duration-300"></div>
