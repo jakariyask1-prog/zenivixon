@@ -100,21 +100,23 @@ export function HeroSection() {
         </div>
 
         {/* Premium Cover Photo Section with Parallax */}
-        <motion.div style={{ y: useTransform(scrollY, [0, 1000], [0, -100]) }} className="mt-16 w-full max-w-6xl mx-auto relative group">
+        <motion.div style={{ y: useTransform(scrollY, [0, 1000], [0, -100]) }} className="mt-20 w-full max-w-4xl mx-auto relative group px-4 sm:px-6">
           {/* Animated Glowing Aurora Backdrop */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-cyan-400/20 to-purple-500/20 blur-3xl rounded-full scale-90 animate-[glow_4s_ease-in-out_infinite_alternate] z-0" />
+          <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-blue-500/30 via-cyan-400/30 to-indigo-500/30 blur-2xl rounded-[3rem] opacity-70 animate-[glow_4s_ease-in-out_infinite_alternate] z-0" />
           
-          {/* Levitating Image Container */}
-          <div className="rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/20 border border-slate-200 dark:border-slate-800/60 dark:border-slate-800 relative z-10 animate-[float_6s_ease-in-out_infinite]">
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
-            <Image
-              src="/cover-photo.png"
-              alt="ZENIVIXON Platform Integration"
-              width={1200}
-              height={675}
-              className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
-              priority
-            />
+          {/* Levitating Glass Container */}
+          <div className="p-2 sm:p-3 rounded-[2.5rem] bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-white/10 shadow-2xl shadow-blue-900/20 relative z-10 animate-[float_6s_ease-in-out_infinite]">
+            <div className="rounded-3xl overflow-hidden relative border border-slate-200/50 dark:border-slate-800/50 bg-slate-100 dark:bg-slate-900">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
+              <Image
+                src="/cover-photo.png"
+                alt="ZENIVIXON Platform Integration"
+                width={1200}
+                height={675}
+                className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                priority
+              />
+            </div>
           </div>
         </motion.div>
 
