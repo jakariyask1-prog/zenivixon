@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/Button";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { AmbientOrbs } from "@/components/ui/AmbientOrbs";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { BusinessLegalSection } from "@/components/about/BusinessLegalSection";
 import {
   CheckCircle2,
   ArrowUpRight,
@@ -711,6 +712,9 @@ export function AboutContent() {
             ))}
           </div>
         </section>
+
+        {/* Business & Legal Section */}
+        <BusinessLegalSection />
 
         {/* Scalable Growth Statement CTA Banner */}
         <ScrollReveal direction="up">
