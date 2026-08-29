@@ -179,7 +179,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: "project-video-maker-3d-animator",
-    name: "Project Video Maker & 3D Animator",
+    name: "Moushumi Khatun",
     role: "Project Video Maker & 3D Animator",
     titleBadge: "Crafting cinematic product showcases & 3D motion animations.",
     department: "Product & Design",
@@ -200,7 +200,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Fast turnaround & creative precision",
     ],
     bio: "Specializes in producing high-impact project showcase videos, 3D motion animations, and interactive product demos that communicate complex technical workflows and AI architectures with cinematic clarity.",
-    image: "/images/team/placeholder.svg",
+    image: "/images/team/moushumi-khatun.png",
+    facebook: "https://www.facebook.com/share/1EpPALqAbm/",
   },
   {
     id: "ui-ux-designer",
