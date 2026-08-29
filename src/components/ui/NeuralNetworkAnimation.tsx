@@ -126,7 +126,7 @@ export function NeuralNetworkAnimation() {
       });
 
       // Draw connections
-      ctx.lineWidth = 0.5; // Thinner, more elegant lines
+      ctx.lineWidth = 0.65; // User requested exact thickness
       connections.forEach(([n1, n2]) => {
         const dx = n1.x - n2.x;
         const dy = n1.y - n2.y;
@@ -188,7 +188,7 @@ export function NeuralNetworkAnimation() {
   }, [resolvedTheme]);
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center opacity-70">
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center opacity-75">
       {/* Optional: Add a subtle radial gradient mask so the network fades out at the edges */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_70%,transparent_30%,#FCFDFE_80%)] dark:bg-[radial-gradient(ellipse_at_50%_70%,transparent_30%,#020817_80%)] z-10" />
       <canvas ref={canvasRef} className="w-full h-full" />
