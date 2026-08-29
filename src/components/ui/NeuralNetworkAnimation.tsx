@@ -96,7 +96,7 @@ export function NeuralNetworkAnimation() {
       const radiusX = Math.min(width, 1600) * 0.55;
       const radiusY = Math.min(height, 800) * 0.45;
       const cx = width / 2;
-      const cy = (height / 2) + 320; // Shifted further down to perfectly align with the new mt-56 cover photo
+      const cy = (height / 2) + 150; // Aligned with the mt-32 premium size cover photo
 
       // Global rotation
       const cosY = Math.cos(time);
