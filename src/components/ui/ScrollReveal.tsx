@@ -23,9 +23,7 @@ export function ScrollReveal({
   const [hasRendered, setHasRendered] = useState(false);
 
   useEffect(() => {
-    // Ensure content becomes visible even if observer is delayed
-    const timer = setTimeout(() => setHasRendered(true), 100);
-    return () => clearTimeout(timer);
+    // Optional: add logic here if needed, but remove premature setHasRendered
   }, []);
 
   const getVariants = () => {
@@ -48,7 +46,7 @@ export function ScrollReveal({
       <motion.div
         variants={getVariants()}
         initial="hidden"
-        animate={isInView || hasRendered ? "visible" : "hidden"}
+        animate={isInView ? "visible" : "hidden"}
         transition={{ duration: 0.5, delay: delay, ease: [0.16, 1, 0.3, 1] }}
         style={{ width: "100%", height: "100%" }}
       >

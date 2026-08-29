@@ -139,7 +139,7 @@ export function StartProjectWizard() {
   }
 
   return (
-    <div className="rounded-3xl bg-white border border-slate-200 dark:border-slate-800 p-6 sm:p-10 max-w-3xl mx-auto shadow-xl">
+    <div className="rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 p-6 sm:p-10 max-w-3xl mx-auto shadow-xl">
       {/* Visual Step Progress Bar */}
       <div className="flex gap-2 mb-6">
         {[1, 2, 3].map((n) => (
@@ -247,7 +247,7 @@ export function StartProjectWizard() {
                   setFormData({ ...formData, problemDescription: e.target.value })
                 }
                 placeholder="Describe your current manual bottleneck, repetitive task, or what you want the AI system to accomplish..."
-                className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all resize-none placeholder:text-slate-400"
+                className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all resize-none placeholder:text-slate-400"
               />
             </div>
 
@@ -263,7 +263,7 @@ export function StartProjectWizard() {
                   setFormData({ ...formData, currentTools: e.target.value })
                 }
                 placeholder="e.g. HubSpot, PostgreSQL, Zendesk, Slack, internal custom CRM..."
-                className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
+                className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
               />
             </div>
 
@@ -308,7 +308,7 @@ export function StartProjectWizard() {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g. Sarah Jenkins"
-                  className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
+                  className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
                 />
               </div>
               <div className="space-y-1.5">
@@ -323,7 +323,7 @@ export function StartProjectWizard() {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="sarah@enterprise.com"
-                  className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
+                  className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
                 />
               </div>
             </div>
@@ -340,7 +340,7 @@ export function StartProjectWizard() {
                   value={formData.company}
                   onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                   placeholder="e.g. Apex Logistics"
-                  className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all placeholder:text-slate-400"
+                  className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
                 />
               </div>
               <div className="space-y-1.5">
@@ -351,12 +351,12 @@ export function StartProjectWizard() {
                   id="wizard-timeline"
                   value={formData.timeline}
                   onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all"
+                  className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all"
                 >
-                  <option value="Urgent (< 1 month)">Urgent (&lt; 1 month)</option>
-                  <option value="1-2 Months">1-2 Months</option>
-                  <option value="3+ Months">3+ Months</option>
-                  <option value="Flexible / Discovery">Flexible / Discovery</option>
+                  <option value="Urgent (< 1 month)" className="bg-white dark:bg-[#070e1e]">Urgent (&lt; 1 month)</option>
+                  <option value="1-2 Months" className="bg-white dark:bg-[#070e1e]">1-2 Months</option>
+                  <option value="3+ Months" className="bg-white dark:bg-[#070e1e]">3+ Months</option>
+                  <option value="Flexible / Discovery" className="bg-white dark:bg-[#070e1e]">Flexible / Discovery</option>
                 </select>
               </div>
             </div>

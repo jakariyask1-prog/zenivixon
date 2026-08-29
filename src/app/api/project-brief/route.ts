@@ -65,22 +65,26 @@ export async function POST(req: NextRequest) {
     if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY === "your_resend_api_key_here") {
       console.warn("[ZENIVIXON] RESEND_API_KEY is not set or is a placeholder. Email will not be sent.");
     } else {
-      const resend = new Resend(process.env.RESEND_API_KEY);
-      await resend.emails.send({
-        from: "ZENIVIXON <noreply@zenivixon.com>",
-        to: "zenivixon@gmail.com",
-        subject: `New Project Brief from ${esc(name)} — ${esc(projectType || "N/A")}`,
-        html: `
-          <p><b>Name:</b> ${esc(name)}</p>
-          <p><b>Email:</b> ${esc(email)}</p>
-          <p><b>Company:</b> ${esc(company || "N/A")}</p>
-          <p><b>Project Type:</b> ${esc(projectType || "N/A")}</p>
-          <p><b>Problem:</b><br/>${esc(problemDescription).replace(/\n/g, "<br/>")}</p>
-          <p><b>Current Tools:</b> ${esc(currentTools || "N/A")}</p>
-          <p><b>Timeline:</b> ${esc(timeline || "N/A")}</p>
-          <p><b>Preferred Channel:</b> ${esc(preferredChannel || "N/A")}</p>
-        `,
-      });
+      try {
+        const resend = new Resend(process.env.RESEND_API_KEY);
+        await resend.emails.send({
+          from: "ZENIVIXON <noreply@zenivixon.com>",
+          to: "zenivixon@gmail.com",
+          subject: `New Project Brief from ${esc(name)} — ${esc(projectType || "N/A")}`,
+          html: `
+            <p><b>Name:</b> ${esc(name)}</p>
+            <p><b>Email:</b> ${esc(email)}</p>
+            <p><b>Company:</b> ${esc(company || "N/A")}</p>
+            <p><b>Project Type:</b> ${esc(projectType || "N/A")}</p>
+            <p><b>Problem:</b><br/>${esc(problemDescription).replace(/\n/g, "<br/>")}</p>
+            <p><b>Current Tools:</b> ${esc(currentTools || "N/A")}</p>
+            <p><b>Timeline:</b> ${esc(timeline || "N/A")}</p>
+            <p><b>Preferred Channel:</b> ${esc(preferredChannel || "N/A")}</p>
+          `,
+        });
+      } catch (resendErr) {
+        console.warn("[ZENIVIXON Project Brief] Resend email failed:", resendErr);
+      }
     }
 
     console.log("[ZENIVIXON Project Brief] New Submission:", {

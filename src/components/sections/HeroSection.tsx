@@ -5,15 +5,21 @@ import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { NeuralNetworkAnimation } from "@/components/ui/NeuralNetworkAnimation";
 import { RotatingTextBanner } from "@/components/ui/RotatingTextBanner";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export function HeroSection() {
+  const { scrollY } = useScroll();
+
   return (
     <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-[#FCFDFE] dark:bg-[#020817] transition-colors duration-300">
       {/* Background Subtle Depth Elements */}
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_10%,#000_70%,transparent_100%)] opacity-40 pointer-events-none" />
 
-      {/* Premium Neural Network Background Animation */}
-      <NeuralNetworkAnimation />
+      {/* Premium Neural Network Background Animation with Parallax */}
+      <motion.div style={{ y: useTransform(scrollY, [0, 1000], [0, 200]) }} className="absolute inset-0 pointer-events-none">
+        <NeuralNetworkAnimation />
+      </motion.div>
 
       {/* Full Width Marquee Ticker */}
       <div className="relative z-10 w-full mb-8">
@@ -95,8 +101,8 @@ export function HeroSection() {
           </ScrollReveal>
         </div>
 
-        {/* Premium Cover Photo Section */}
-        <div className="mt-16 w-full max-w-6xl mx-auto relative group">
+        {/* Premium Cover Photo Section with Parallax */}
+        <motion.div style={{ y: useTransform(scrollY, [0, 1000], [0, -100]) }} className="mt-16 w-full max-w-6xl mx-auto relative group">
           {/* Animated Glowing Aurora Backdrop */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-cyan-400/20 to-purple-500/20 blur-3xl rounded-full scale-90 animate-[glow_4s_ease-in-out_infinite_alternate] z-0" />
           
@@ -104,7 +110,7 @@ export function HeroSection() {
           <div className="rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/20 border border-slate-200 dark:border-slate-800/60 dark:border-slate-800 relative z-10 animate-[float_6s_ease-in-out_infinite]">
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
             <Image
-              src="/cover-photo.png"
+              src="/cover-photo-premium.jpg"
               alt="ZENIVIXON Platform Integration"
               width={1200}
               height={675}
@@ -112,7 +118,7 @@ export function HeroSection() {
               priority
             />
           </div>
-        </div>
+        </motion.div>
 
         {/* Premium System Flow Visualization: Business Systems → AI → Automation → Outcome */}
         <div className="mt-20 md:mt-28 max-w-5xl mx-auto">
@@ -136,7 +142,7 @@ export function HeroSection() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-0 relative">
               {/* Stage 1: Business Systems */}
               <div className="relative">
-                <div className="p-5 rounded-2xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:bg-white dark:hover:bg-slate-850 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-sm transition-all duration-200">
+                <SpotlightCard className="p-5 bg-slate-50/80 dark:bg-slate-900/50 flex flex-col justify-between hover:bg-white dark:hover:bg-slate-850 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-sm" spotlightColor="rgba(148, 163, 184, 0.15)">
                   <div>
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest">
@@ -156,7 +162,7 @@ export function HeroSection() {
                   <div className="mt-4 pt-3 border-t border-slate-200/80 dark:border-slate-800 text-xs font-heading text-slate-600 dark:text-slate-400 font-medium">
                     &bull; Zero Disruption to Stack
                   </div>
-                </div>
+                </SpotlightCard>
                 {/* Arrow Connector → */}
                 <div className="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-800 dark:border-slate-700 shadow-sm items-center justify-center text-xs text-cyan-600 dark:text-cyan-400 font-bold">
                   →
@@ -167,7 +173,7 @@ export function HeroSection() {
 
               {/* Stage 2: AI Intelligence */}
               <div className="relative">
-                <div className="p-5 rounded-2xl bg-blue-50/50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/50 flex flex-col justify-between hover:bg-blue-50/80 dark:hover:bg-blue-950/40 hover:border-blue-300 dark:hover:border-blue-800 hover:shadow-sm transition-all duration-200">
+                <SpotlightCard className="p-5 bg-blue-50/50 dark:bg-blue-950/20 flex flex-col justify-between hover:bg-blue-50/80 dark:hover:bg-blue-950/40 hover:border-blue-300 dark:hover:border-blue-800 hover:shadow-sm" spotlightColor="rgba(59, 130, 246, 0.15)">
                   <div>
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-xs font-heading text-blue-700 dark:text-blue-400 font-bold uppercase tracking-widest">
@@ -187,7 +193,7 @@ export function HeroSection() {
                   <div className="mt-4 pt-3 border-t border-blue-200/80 dark:border-blue-900/50 text-xs font-heading text-blue-700 dark:text-blue-400 font-semibold">
                     &bull; 24/7 Context &amp; Triage
                   </div>
-                </div>
+                </SpotlightCard>
                 {/* Arrow Connector → */}
                 <div className="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-slate-800 border border-blue-200 dark:border-blue-800 shadow-sm items-center justify-center text-xs text-cyan-600 dark:text-cyan-400 font-bold">
                   →
@@ -197,7 +203,7 @@ export function HeroSection() {
 
               {/* Stage 3: Automation */}
               <div className="relative">
-                <div className="p-5 rounded-2xl bg-cyan-50/50 dark:bg-cyan-950/20 border border-cyan-200 dark:border-cyan-900/50 flex flex-col justify-between hover:bg-cyan-50/80 dark:hover:bg-cyan-950/40 hover:border-cyan-300 dark:hover:border-cyan-800 hover:shadow-sm transition-all duration-200">
+                <SpotlightCard className="p-5 bg-cyan-50/50 dark:bg-cyan-950/20 flex flex-col justify-between hover:bg-cyan-50/80 dark:hover:bg-cyan-950/40 hover:border-cyan-300 dark:hover:border-cyan-800 hover:shadow-sm" spotlightColor="rgba(6, 182, 212, 0.15)">
                   <div>
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-xs font-heading text-cyan-700 dark:text-cyan-400 font-bold uppercase tracking-widest">
@@ -217,7 +223,7 @@ export function HeroSection() {
                   <div className="mt-4 pt-3 border-t border-cyan-200/80 dark:border-cyan-900/50 text-xs font-heading text-cyan-800 dark:text-cyan-400 font-semibold">
                     &bull; Continuous Execution
                   </div>
-                </div>
+                </SpotlightCard>
                 {/* Arrow Connector → */}
                 <div className="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-slate-800 border border-cyan-200 dark:border-cyan-800 shadow-sm items-center justify-center text-xs text-cyan-600 dark:text-cyan-400 font-bold">
                   →
@@ -226,7 +232,7 @@ export function HeroSection() {
               </div>
 
               {/* Stage 4: Measurable Outcome */}
-              <div className="p-5 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/50 flex flex-col justify-between hover:bg-emerald-50/80 dark:hover:bg-emerald-950/40 hover:border-emerald-300 dark:hover:border-emerald-800 hover:shadow-sm transition-all duration-200">
+              <SpotlightCard className="p-5 bg-emerald-50/50 dark:bg-emerald-950/20 flex flex-col justify-between hover:bg-emerald-50/80 dark:hover:bg-emerald-950/40 hover:border-emerald-300 dark:hover:border-emerald-800 hover:shadow-sm" spotlightColor="rgba(16, 185, 129, 0.15)">
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs font-heading text-emerald-700 dark:text-emerald-400 font-bold uppercase tracking-widest">
@@ -246,7 +252,7 @@ export function HeroSection() {
                 <div className="mt-4 pt-3 border-t border-emerald-200/80 dark:border-emerald-900/50 text-xs font-heading text-emerald-700 dark:text-emerald-400 font-semibold">
                   &bull; Scalable Business Advantage
                 </div>
-              </div>
+              </SpotlightCard>
             </div>
           </div>
         </div>

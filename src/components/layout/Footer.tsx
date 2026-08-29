@@ -27,6 +27,9 @@ function NewsletterForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
+      if (!res.ok) {
+        throw new Error("Server error. Please try again.");
+      }
       const data = await res.json();
       if (data.success) {
         setStatus("success");

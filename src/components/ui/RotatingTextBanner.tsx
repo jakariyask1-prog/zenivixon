@@ -21,15 +21,7 @@ export function RotatingTextBanner() {
       <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#FCFDFE] dark:from-[#020817] to-transparent z-10 pointer-events-none" />
 
       {/* Scrolling Container */}
-      <motion.div
-        className="flex whitespace-nowrap items-center w-max"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{
-          duration: 35, // Adjust duration for scrolling speed
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      >
+      <div className="flex whitespace-nowrap items-center w-max animate-marquee hover:[animation-play-state:paused]">
         {/* We duplicate the array to create a seamless infinite loop */}
         {[...STATEMENTS, ...STATEMENTS].map((text, idx) => (
           <div key={idx} className="flex items-center">
@@ -40,7 +32,7 @@ export function RotatingTextBanner() {
             <span className="w-1.5 h-1.5 rounded-full bg-blue-500/40 dark:bg-blue-400/40 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
           </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }
