@@ -36,10 +36,10 @@ export function NeuralNetworkAnimation() {
       basePhase: number;
 
       constructor() {
-        // Random point on a sphere surface or volume
+        // Point strictly on the outer shell of the sphere
         const theta = Math.random() * 2 * Math.PI;
         const phi = Math.acos(Math.random() * 2 - 1);
-        const r = Math.cbrt(Math.random());
+        const r = 0.9 + Math.random() * 0.1; // Hollow shell (0.9 to 1.0) instead of solid volume
         this.ox = r * Math.sin(phi) * Math.cos(theta);
         this.oy = r * Math.sin(phi) * Math.sin(theta);
         this.oz = r * Math.cos(phi);
@@ -47,7 +47,7 @@ export function NeuralNetworkAnimation() {
       }
     }
 
-    const numNodes = width < 768 ? 40 : 70;
+    const numNodes = width < 768 ? 50 : 90; // Increased node count for a richer outer ring
     const nodes = Array.from({ length: numNodes }, () => new Node());
 
     class Packet {
@@ -75,7 +75,7 @@ export function NeuralNetworkAnimation() {
         const dz = nodes[i].oz - nodes[j].oz;
         const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
         // Connect nodes that are relatively close
-        if (dist < 0.6) {
+        if (dist < 0.8) {
           connections.push([nodes[i], nodes[j]]);
         }
       }
