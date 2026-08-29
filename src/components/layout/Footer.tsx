@@ -54,32 +54,34 @@ function NewsletterForm() {
   }
 
   return (
-    <form className="flex items-center gap-2 mb-4" onSubmit={handleSubmit}>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Enter your email"
-        required
-        disabled={status === "loading"}
-        className="flex-1 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-blue-500 transition-colors disabled:opacity-60"
-      />
-      <button
-        type="submit"
-        disabled={status === "loading"}
-        aria-label="Subscribe to newsletter"
-        className="bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white p-2.5 rounded-lg transition-colors"
-      >
-        {status === "loading" ? (
-          <Loader2 className="w-5 h-5 animate-spin" />
-        ) : (
-          <Mail className="w-5 h-5" />
-        )}
-      </button>
+    <div className="relative mb-4">
+      <form className="flex items-center gap-2" onSubmit={handleSubmit}>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter your email"
+          required
+          disabled={status === "loading"}
+          className="flex-1 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-blue-500 transition-colors disabled:opacity-60"
+        />
+        <button
+          type="submit"
+          disabled={status === "loading"}
+          aria-label="Subscribe to newsletter"
+          className="bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white p-2.5 rounded-lg transition-colors"
+        >
+          {status === "loading" ? (
+            <Loader2 className="w-5 h-5 animate-spin" />
+          ) : (
+            <Mail className="w-5 h-5" />
+          )}
+        </button>
+      </form>
       {status === "error" && (
-        <p className="text-xs text-red-500 mt-1 absolute">{errorMsg}</p>
+        <p className="text-xs text-red-500 mt-1">{errorMsg}</p>
       )}
-    </form>
+    </div>
   );
 }
 
