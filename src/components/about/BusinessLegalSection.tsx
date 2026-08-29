@@ -72,12 +72,29 @@ export function BusinessLegalSection() {
                   <h4 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading mb-1">
                     Trade License
                   </h4>
-                  <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
+                  <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">
                     Issuer: Khulna City Corporation
                   </p>
-                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Official business license issued by Khulna City Corporation.
-                  </p>
+                  
+                  <div 
+                    className="w-full h-32 sm:h-40 relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 mb-5 bg-slate-100 dark:bg-slate-800 group-hover:border-blue-400 dark:group-hover:border-blue-500 transition-colors cursor-pointer shadow-inner"
+                    onClick={() => openDocument('/documents/trade.jpeg', 'Trade License', 'ZENIVIXON Trade License issued by Khulna City Corporation')}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img 
+                      src="/documents/trade.jpeg" 
+                      alt="Trade License Preview" 
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" 
+                    />
+                    {/* Add a blur at the bottom to obscure potential personal details in the thumbnail, keeping focus on the top company header */}
+                    <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white dark:from-slate-900 to-transparent backdrop-blur-[2px]" />
+                  </div>
+
+                  <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300 border-l-2 border-blue-500 dark:border-blue-500 pl-3.5 py-1 mb-2">
+                    <p className="flex items-center gap-2"><strong className="text-slate-900 dark:text-slate-100 font-bold min-w-[100px]">Entity Name:</strong> ZENIVIXON TECHNOLOGIES</p>
+                    <p className="flex items-center gap-2"><strong className="text-slate-900 dark:text-slate-100 font-bold min-w-[100px]">Location:</strong> Khulna, Bangladesh</p>
+                    <p className="flex items-center gap-2"><strong className="text-slate-900 dark:text-slate-100 font-bold min-w-[100px]">Status:</strong> Active / Verified</p>
+                  </div>
                 </div>
               </div>
               
@@ -115,12 +132,29 @@ export function BusinessLegalSection() {
                   <h4 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading mb-1">
                     e-TIN Certificate
                   </h4>
-                  <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
+                  <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">
                     Issuer: National Board of Revenue (NBR), Bangladesh
                   </p>
-                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Official tax identification document for the business.
-                  </p>
+
+                  <div 
+                    className="w-full h-32 sm:h-40 relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 mb-5 bg-slate-100 dark:bg-slate-800 group-hover:border-cyan-400 dark:group-hover:border-cyan-500 transition-colors cursor-pointer shadow-inner"
+                    onClick={() => openDocument('/documents/tin.jpeg', 'e-TIN Certificate', 'ZENIVIXON e-TIN Certificate')}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img 
+                      src="/documents/tin.jpeg" 
+                      alt="e-TIN Certificate Preview" 
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" 
+                    />
+                    {/* Add a blur at the bottom to obscure potential personal details in the thumbnail, keeping focus on the top company header */}
+                    <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white dark:from-slate-900 to-transparent backdrop-blur-[2px]" />
+                  </div>
+
+                  <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300 border-l-2 border-cyan-500 dark:border-cyan-500 pl-3.5 py-1 mb-2">
+                    <p className="flex items-center gap-2"><strong className="text-slate-900 dark:text-slate-100 font-bold min-w-[100px]">Entity Name:</strong> ZENIVIXON TECHNOLOGIES</p>
+                    <p className="flex items-center gap-2"><strong className="text-slate-900 dark:text-slate-100 font-bold min-w-[100px]">Tax Region:</strong> Taxes Zone - Khulna</p>
+                    <p className="flex items-center gap-2"><strong className="text-slate-900 dark:text-slate-100 font-bold min-w-[100px]">Status:</strong> Active / Verified</p>
+                  </div>
                 </div>
               </div>
               
