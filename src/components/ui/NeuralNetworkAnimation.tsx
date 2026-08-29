@@ -94,9 +94,9 @@ export function NeuralNetworkAnimation() {
       const particleColor = isDark ? "#38bdf8" : "#0284c7"; // sky-400 / sky-600
 
       const radiusX = Math.min(width, 1600) * 0.55;
-      const radiusY = Math.min(height, 800) * 0.45; // Reduced Y radius slightly so it doesn't get too tall
+      const radiusY = Math.min(height, 800) * 0.45;
       const cx = width / 2;
-      const cy = (height / 2) + 250; // Shifted significantly downwards away from the text
+      const cy = (height / 2) + 320; // Shifted further down to perfectly align with the new mt-56 cover photo
 
       // Global rotation
       const cosY = Math.cos(time);
@@ -190,7 +190,7 @@ export function NeuralNetworkAnimation() {
   return (
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center opacity-100">
       {/* Optional: Add a subtle radial gradient mask so the network fades out at the edges */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_65%,transparent_30%,#FCFDFE_80%)] dark:bg-[radial-gradient(ellipse_at_50%_65%,transparent_30%,#020817_80%)] z-10" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_70%,transparent_30%,#FCFDFE_80%)] dark:bg-[radial-gradient(ellipse_at_50%_70%,transparent_30%,#020817_80%)] z-10" />
       <canvas ref={canvasRef} className="w-full h-full" />
     </div>
   );
