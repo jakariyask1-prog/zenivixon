@@ -60,7 +60,7 @@ export function NeuralNetworkAnimation() {
         this.from = from;
         this.to = to;
         this.progress = 0;
-        this.speed = 0.010 + Math.random() * 0.02; // 2x original speed
+        this.speed = 0.00875 + Math.random() * 0.02; // 1.75x original speed
       }
     }
 
@@ -85,7 +85,7 @@ export function NeuralNetworkAnimation() {
     let animationFrameId: number;
 
     const render = () => {
-      time += 0.0035; // 1.75x original speed (was 0.002 originally)
+      time += 0.003; // 1.5x original speed (was 0.002 originally)
       ctx.clearRect(0, 0, width, height);
 
       const isDark = resolvedTheme === "dark";
