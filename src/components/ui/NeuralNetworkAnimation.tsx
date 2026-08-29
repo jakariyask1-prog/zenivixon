@@ -126,7 +126,7 @@ export function NeuralNetworkAnimation() {
       });
 
       // Draw connections
-      ctx.lineWidth = 1.0; // Thicker lines
+      ctx.lineWidth = 0.5; // Thinner, more elegant lines
       connections.forEach(([n1, n2]) => {
         const dx = n1.x - n2.x;
         const dy = n1.y - n2.y;
@@ -134,7 +134,7 @@ export function NeuralNetworkAnimation() {
         const maxDist = Math.max(radiusX, radiusY);
 
         if (dist < maxDist) {
-          const alpha = (1 - dist / maxDist) * 0.6 * ((n1.z + n2.z + 2) / 2); // Deeper clarity
+          const alpha = (1 - dist / maxDist) * 0.25 * ((n1.z + n2.z + 2) / 2); // Subtle clarity
           ctx.strokeStyle = `${lineColor}${alpha})`;
           ctx.beginPath();
           ctx.moveTo(n1.x, n1.y);
@@ -163,16 +163,16 @@ export function NeuralNetworkAnimation() {
         const py = p.from.y + (p.to.y - p.from.y) * p.progress;
         
         ctx.beginPath();
-        ctx.arc(px, py, 1.8, 0, Math.PI * 2); // Larger particles
+        ctx.arc(px, py, 1.2, 0, Math.PI * 2); // Smaller, elegant particles
         ctx.fill();
       }
 
       // Draw nodes
       nodes.forEach((node) => {
-        const alpha = 0.4 + ((node.z + 1) / 2) * 0.6; // Brighter nodes
+        const alpha = 0.2 + ((node.z + 1) / 2) * 0.4; // Subtle node brightness
         ctx.fillStyle = `${lineColor}${alpha})`;
         ctx.beginPath();
-        ctx.arc(node.x, node.y, 2.0, 0, Math.PI * 2); // Slightly larger nodes
+        ctx.arc(node.x, node.y, 1.2, 0, Math.PI * 2); // Slightly smaller nodes
         ctx.fill();
       });
 
@@ -188,7 +188,7 @@ export function NeuralNetworkAnimation() {
   }, [resolvedTheme]);
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center opacity-100">
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center opacity-70">
       {/* Optional: Add a subtle radial gradient mask so the network fades out at the edges */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_70%,transparent_30%,#FCFDFE_80%)] dark:bg-[radial-gradient(ellipse_at_50%_70%,transparent_30%,#020817_80%)] z-10" />
       <canvas ref={canvasRef} className="w-full h-full" />
