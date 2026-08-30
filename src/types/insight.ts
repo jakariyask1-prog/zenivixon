@@ -2,7 +2,7 @@ export interface InsightArticle {
   slug: string;
   title: string;
   summary: string;
-  category: "AI Agents" | "AI Automation" | "AI Integration" | "Engineering";
+  category: "AI Agents" | "AI Automation" | "AI Integration" | "Engineering" | "AI Architecture" | "Software Engineering";
   readingTime: string;
   publishDate: string;
   author: {

@@ -24,3 +24,17 @@ export function formatDate(dateString: string): string {
     timeZone: "UTC",
   });
 }
+
+export function getYoutubeEmbedUrl(url: string): string {
+  try {
+    const u = new URL(url);
+    const v = u.searchParams.get("v");
+    if (v) {
+      return `https://www.youtube.com/embed/${v}`;
+    }
+    // If it's already an embed URL or doesn't have a 'v' param, just return the original URL
+    return url;
+  } catch {
+    return url;
+  }
+}

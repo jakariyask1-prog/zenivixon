@@ -1,22 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-// ─── Simple in-memory rate limiter (5 requests / 60s per IP) ─────────────────
-const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
-const RATE_LIMIT = 5;
-const WINDOW_MS = 60_000;
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const entry = rateLimitMap.get(ip);
-  if (!entry || now > entry.resetAt) {
-    rateLimitMap.set(ip, { count: 1, resetAt: now + WINDOW_MS });
-    return false;
-  }
-  if (entry.count >= RATE_LIMIT) return true;
-  entry.count++;
-  return false;
-}
+import { checkRateLimit } from "@/lib/rate-limit";
 
 // ─── Sanitize user input to prevent XSS in email HTML ────────────────────────
 function esc(s: string): string {
@@ -35,7 +20,7 @@ export async function POST(req: NextRequest) {
     req.headers.get("x-real-ip") ??
     "unknown";
 
-  if (isRateLimited(ip)) {
+  if (await checkRateLimit(ip)) {
     return NextResponse.json(
       { success: false, error: "Too many requests. Please try again later." },
       { status: 429 }
@@ -69,7 +54,7 @@ export async function POST(req: NextRequest) {
         const resend = new Resend(process.env.RESEND_API_KEY);
         await resend.emails.send({
           from: "ZENIVIXON <noreply@zenivixon.com>",
-          to: "zenivixon@gmail.com",
+          to: process.env.CONTACT_EMAIL || "zenivixon@gmail.com",
           subject: `New Project Brief from ${esc(name)} — ${esc(projectType || "N/A")}`,
           html: `
             <p><b>Name:</b> ${esc(name)}</p>

@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Badge } from "@/components/ui/Badge";
+import { FreeAuditModal } from "@/components/ui/FreeAuditModal";
 import { Button } from "@/components/ui/Button";
 import { AmbientOrbs } from "@/components/ui/AmbientOrbs";
 import {
@@ -15,11 +16,8 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-export function PilotSprintSection({
-  onOpenAuditModal,
-}: {
-  onOpenAuditModal?: () => void;
-}) {
+export function PilotSprintSection() {
+  const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
   return (
     <section className="py-20 md:py-32 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#FCFDFE] dark:bg-[#060b18] relative transition-colors duration-300 overflow-hidden">
       <AmbientOrbs />
@@ -116,7 +114,7 @@ export function PilotSprintSection({
                 <Button
                   variant="outline"
                   size="lg"
-                  onClick={onOpenAuditModal}
+                  onClick={() => setIsAuditModalOpen(true)}
                   className="w-full sm:w-auto justify-center text-white border-white/20 hover:bg-white/10 cursor-pointer"
                 >
                   Request Video Audit First
@@ -126,6 +124,7 @@ export function PilotSprintSection({
           </div>
         </div>
       </div>
+      <FreeAuditModal isOpen={isAuditModalOpen} onClose={() => setIsAuditModalOpen(false)} />
     </section>
   );
 }

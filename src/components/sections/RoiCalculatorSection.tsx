@@ -4,6 +4,7 @@ import React, { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { FreeAuditModal } from "@/components/ui/FreeAuditModal";
 import { AmbientOrbs } from "@/components/ui/AmbientOrbs";
 import {
   Calculator,
@@ -15,11 +16,8 @@ import {
   Sparkles,
 } from "lucide-react";
 
-export function RoiCalculatorSection({
-  onOpenAuditModal,
-}: {
-  onOpenAuditModal?: () => void;
-}) {
+export function RoiCalculatorSection() {
+  const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
   const [teamSize, setTeamSize] = useState<number>(8);
   const [hoursPerWeek, setHoursPerWeek] = useState<number>(12);
   const [hourlyRate, setHourlyRate] = useState<number>(35);
@@ -248,25 +246,20 @@ export function RoiCalculatorSection({
               <Button
                 variant="glowing"
                 size="md"
-                className="w-full sm:flex-1 justify-center cursor-pointer"
-                onClick={onOpenAuditModal}
-                href={onOpenAuditModal ? undefined : "/contact"}
+                onClick={() => setIsAuditModalOpen(true)}
+                className="w-full justify-center shadow-lg shadow-cyan-600/20"
                 icon={<ArrowRight className="w-4 h-4" />}
               >
-                Claim Free 3-Min Video Audit
+                Request Free System Audit
               </Button>
-              <Button
-                variant="outline"
-                size="md"
-                className="w-full sm:w-auto text-white border-white/20 hover:bg-white/10"
-                href="/start-a-project"
-              >
-                Scope Project
-              </Button>
+              <p className="text-center text-[10px] text-slate-500 dark:text-slate-500 font-medium">
+                No credit card required. 100% free technical evaluation.
+              </p>
             </div>
           </div>
         </div>
       </div>
+      <FreeAuditModal isOpen={isAuditModalOpen} onClose={() => setIsAuditModalOpen(false)} />
     </section>
   );
 }

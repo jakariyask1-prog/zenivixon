@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { WhatWeDoSection } from "@/components/sections/WhatWeDoSection";
 import { CapabilitiesSection } from "@/components/sections/CapabilitiesSection";
@@ -13,14 +11,8 @@ import { VideoShowcaseSection } from "@/components/sections/VideoShowcaseSection
 import { BeforeAfterComparisonSection } from "@/components/sections/BeforeAfterComparisonSection";
 import { RoiCalculatorSection } from "@/components/sections/RoiCalculatorSection";
 import { PilotSprintSection } from "@/components/sections/PilotSprintSection";
-import { FreeAuditModal } from "@/components/ui/FreeAuditModal";
 
 export default function HomePage() {
-  const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
-
-  const openAuditModal = () => setIsAuditModalOpen(true);
-  const closeAuditModal = () => setIsAuditModalOpen(false);
-
   return (
     <>
       {/* 01. Hero Section */}
@@ -39,7 +31,7 @@ export default function HomePage() {
       <IntegrationsSection />
 
       {/* 06. 💰 NEW: Interactive ROI & Cost-Savings Calculator */}
-      <RoiCalculatorSection onOpenAuditModal={openAuditModal} />
+      <RoiCalculatorSection />
 
       {/* 07. How We Work */}
       <HowWeWorkSection />
@@ -51,16 +43,13 @@ export default function HomePage() {
       <VideoShowcaseSection />
 
       {/* 10. 🛡️ NEW: 14-Day Pilot Sprint */}
-      <PilotSprintSection onOpenAuditModal={openAuditModal} />
+      <PilotSprintSection />
 
       {/* 11. Why ZENIVIXON */}
       <WhyZenivixonSection />
 
       {/* 12. Final CTA */}
       <FinalCtaSection />
-
-      {/* 🎁 Global 3-Minute Free Video Audit Modal */}
-      <FreeAuditModal isOpen={isAuditModalOpen} onClose={closeAuditModal} />
     </>
   );
 }

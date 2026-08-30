@@ -68,7 +68,7 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: true,
     image: "/images/projects/support-agent.svg",
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    videoUrl: undefined,
     deliverables: [
       "Autonomous triage agent pipeline",
       "Database query adapter with security sanitation",
@@ -106,7 +106,7 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: true,
     image: "/images/projects/document-pipeline.svg",
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    videoUrl: undefined,
     deliverables: [
       "Email listener and PDF parser microservice",
       "Schema validation and arithmetic discrepancy detector",

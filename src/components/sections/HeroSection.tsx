@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { ArrowRight, Database, Bot, Cpu, TrendingUp, CheckCircle2, ArrowUpRight, Sparkles, Globe, Headphones } from "lucide-react";
@@ -260,3 +261,4 @@ export function HeroSection() {
     </section>
   );
 }
+

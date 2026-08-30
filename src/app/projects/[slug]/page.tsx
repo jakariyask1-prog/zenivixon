@@ -8,6 +8,7 @@ import { PROJECTS_DATA } from "@/data/projects";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { CheckCircle2, ArrowLeft, ArrowRight, ArrowUpRight, Layers, Cpu, ShieldCheck, PlayCircle } from "lucide-react";
+import { getYoutubeEmbedUrl } from "@/lib/utils";
 
 interface Props {
   params: Promise<{
@@ -78,7 +79,7 @@ export default async function ProjectDetailPage({ params }: Props) {
           ) : project.videoUrl && (project.videoUrl.includes("youtube.com") || project.videoUrl.includes("youtu.be")) ? (
             <div className="aspect-[16/9] w-full relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900">
               <iframe
-                src={project.videoUrl.replace("watch?v=", "embed/")}
+                src={getYoutubeEmbedUrl(project.videoUrl)}
                 title={`${project.title} demo`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

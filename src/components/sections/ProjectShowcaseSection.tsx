@@ -7,6 +7,7 @@ import { ArrowRight, ArrowUpRight, CheckCircle2, PlayCircle, X } from "lucide-re
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { PROJECTS_DATA } from "@/data/projects";
+import { getYoutubeEmbedUrl } from "@/lib/utils";
 
 export function ProjectShowcaseSection() {
   const [activeVideo, setActiveVideo] = useState<{ title: string; url: string } | null>(null);
@@ -241,7 +242,7 @@ export function ProjectShowcaseSection() {
               <div className="aspect-[16/9] w-full bg-slate-900 rounded-xl overflow-hidden">
                 {activeVideo.url.includes("youtube.com") || activeVideo.url.includes("youtu.be") ? (
                   <iframe
-                    src={activeVideo.url.replace("watch?v=", "embed/")}
+                    src={getYoutubeEmbedUrl(activeVideo.url)}
                     title={`${activeVideo.title} demo`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
