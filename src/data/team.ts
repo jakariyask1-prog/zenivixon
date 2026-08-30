@@ -154,7 +154,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: "ai-cloud-cybersecurity-engineer",
-    name: "AI Systems, Cloud Systems & Cybersecurity Engineer",
+    name: "Antora Tabbassum Nupur",
     role: "AI Systems, Cloud Systems & Cybersecurity Engineer",
     titleBadge: "Hardening intelligent AI infrastructure & cloud systems against threats.",
     department: "AI & Engineering",
@@ -175,7 +175,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "High-reliability AI server uptime",
     ],
     bio: "Architects and secures resilient cloud infrastructure and AI deployment pipelines. Specializes in cybersecurity protocols, zero-trust access control, threat mitigation, and automated DevSecOps to ensure enterprise AI applications remain secure and highly available.",
-    image: "/images/team/placeholder.svg",
+    image: "/images/team/antora-tabbassum-nupur.jpeg",
+    linkedin: "https://www.linkedin.com/in/antoratabassumnupur",
   },
   {
     id: "project-video-maker-3d-animator",
