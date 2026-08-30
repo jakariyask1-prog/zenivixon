@@ -100,7 +100,7 @@ export function HeroSection() {
         </div>
 
         {/* Premium Cover Photo Section */}
-        <motion.div className="mt-32 w-full max-w-5xl mx-auto relative group px-4 sm:px-6">
+        <motion.div className="mt-24 sm:mt-32 w-full max-w-6xl mx-auto relative group px-4 sm:px-6 lg:px-8">
           {/* Animated Glowing Aurora Backdrop */}
           <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-blue-500/30 via-cyan-400/30 to-indigo-500/30 blur-2xl rounded-[3rem] opacity-70 animate-[glow_4s_ease-in-out_infinite_alternate] z-0" />
           
@@ -121,7 +121,7 @@ export function HeroSection() {
         </motion.div>
 
         {/* Premium System Flow Visualization: Business Systems → AI → Automation → Outcome */}
-        <div className="mt-20 md:mt-28 max-w-5xl mx-auto">
+        <div className="mt-20 md:mt-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 p-5 sm:p-7 md:p-8 shadow-xl shadow-slate-200/50 dark:shadow-none transition-colors duration-300">
             {/* Top Bar Header */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4 mb-6 gap-2">
