@@ -22,7 +22,7 @@ export default function Error({
           Something went wrong
         </h2>
         <p className="text-slate-600 dark:text-slate-400 text-sm max-w-md mx-auto">
-          An unexpected error occurred while loading this page. We've been notified and are looking into it.
+          An unexpected error occurred while loading this page. We&apos;ve been notified and are looking into it.
         </p>
       </div>
       <Button variant="primary" size="md" onClick={() => reset()}>

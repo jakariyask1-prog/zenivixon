@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Badge } from "@/components/ui/Badge";
 import { FreeAuditModal } from "@/components/ui/FreeAuditModal";
 import { Button } from "@/components/ui/Button";
@@ -110,16 +110,14 @@ export function PilotSprintSection() {
               >
                 Claim Your 14-Day Pilot Sprint
               </Button>
-              {onOpenAuditModal && (
-                <Button
-                  variant="outline"
-                  size="lg"
-                  onClick={() => setIsAuditModalOpen(true)}
-                  className="w-full sm:w-auto justify-center text-white border-white/20 hover:bg-white/10 cursor-pointer"
-                >
-                  Request Video Audit First
-                </Button>
-              )}
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => setIsAuditModalOpen(true)}
+                className="w-full sm:w-auto justify-center text-white border-white/20 hover:bg-white/10 cursor-pointer"
+              >
+                Request Video Audit First
+              </Button>
             </div>
           </div>
         </div>

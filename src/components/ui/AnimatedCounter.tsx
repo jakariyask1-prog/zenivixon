@@ -27,7 +27,7 @@ export function AnimatedCounter({ from = 0, to, duration = 2, suffix = "", prefi
     }, Math.max(3000, duration * 1000 + 1000));
 
     if (!isInView || startedRef.current) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { setValue(to); startedRef.current = true; return; }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { setTimeout(() => setValue(to), 0); startedRef.current = true; return; }
     startedRef.current = true;
     
     const startTime = performance.now();

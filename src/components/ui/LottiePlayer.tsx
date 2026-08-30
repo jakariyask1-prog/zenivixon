@@ -1,5 +1,5 @@
 "use client";
-// @ts-ignore
+// @ts-expect-error lottie-react types missing
 import Lottie from "lottie-react";
 import { useEffect, useState } from "react";
 

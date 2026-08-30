@@ -17,6 +17,7 @@
 | **Theming** | next-themes (Light & Dark mode support) |
 | **Workflow Automation** | n8n Webhook Integration |
 | **Email Service** | Resend SDK |
+| **Rate Limiting** | Upstash Redis |
 | **Icons & Typography** | Lucide React, Manrope + Inter |
 
 ---
@@ -55,11 +56,16 @@ N8N_WEBHOOK_URL=https://zenivixon.app.n8n.cloud/webhook/zenivixon-lead
 
 # Resend Email Delivery (Optional)
 RESEND_API_KEY=your_resend_api_key_here
+
+# Upstash Redis for Rate Limiting (Optional)
+UPSTASH_REDIS_REST_URL=your_upstash_redis_url
+UPSTASH_REDIS_REST_TOKEN=your_upstash_redis_token
 ```
 
 ### Key Environment Configuration:
 - **`N8N_WEBHOOK_URL`**: Target n8n webhook URL where contact form and quote inquiries are dispatched via secure server-side POST requests.
 - **`RESEND_API_KEY`**: Optional API key from [resend.com](https://resend.com) for sending notification emails.
+- **`UPSTASH_REDIS_REST_URL` / `TOKEN`**: Optional Upstash credentials used for API rate limiting to protect endpoints against spam.
 
 ---
 
@@ -155,4 +161,6 @@ ZENIVIXON is optimized for zero-configuration deployment on **Vercel**:
 2. In the **Vercel Project Dashboard** > **Settings** > **Environment Variables**, configure:
    - `N8N_WEBHOOK_URL` = `https://zenivixon.app.n8n.cloud/webhook/zenivixon-lead`
    - `RESEND_API_KEY` = `your_resend_api_key` (optional)
+   - `UPSTASH_REDIS_REST_URL` = `your_upstash_url` (optional)
+   - `UPSTASH_REDIS_REST_TOKEN` = `your_upstash_token` (optional)
 
