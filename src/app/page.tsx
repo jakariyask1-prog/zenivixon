@@ -50,7 +50,7 @@ export default function HomePage() {
       {/* 09. 🎬 Video Showcase + Animated Stats */}
       <VideoShowcaseSection />
 
-      {/* 10. 🛡️ NEW: Zero-Risk 14-Day Pilot Sprint Guarantee */}
+      {/* 10. 🛡️ NEW: 14-Day Pilot Sprint */}
       <PilotSprintSection onOpenAuditModal={openAuditModal} />
 
       {/* 11. Why ZENIVIXON */}

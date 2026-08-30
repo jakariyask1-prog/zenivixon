@@ -25,7 +25,7 @@ export function PilotSprintSection({
       <AmbientOrbs />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Main Guarantee Banner Container */}
+        {/* Main Pilot Banner Container */}
         <div className="relative rounded-3xl p-8 sm:p-12 lg:p-16 bg-gradient-to-b from-[#0F172A] via-[#0b1120] to-[#020817] text-white border-2 border-yellow-400/40 shadow-2xl overflow-hidden max-w-6xl mx-auto">
           {/* Background Glows */}
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -35,7 +35,7 @@ export function PilotSprintSection({
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-12 relative z-10">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-400/10 text-yellow-300 border border-yellow-400/30 text-xs font-bold font-mono uppercase tracking-widest">
               <ShieldCheck className="w-4 h-4 text-yellow-400" />
-              100% Risk-Free Guarantee
+              14-Day Pilot
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight font-heading leading-tight">
               Test Our Engineering with a{" "}
@@ -48,7 +48,7 @@ export function PilotSprintSection({
             </p>
           </div>
 
-          {/* 3 Pillars of the Guarantee */}
+          {/* 3 Pillars of the Pilot */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 mb-12">
             {/* Pillar 1 */}
             <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-4 hover:border-yellow-400/30 transition-all">
@@ -82,7 +82,7 @@ export function PilotSprintSection({
                 <RefreshCw className="w-6 h-6" />
               </div>
               <h3 className="text-lg font-bold text-white font-heading">
-                3. Zero-Risk Payoff
+                3. Performance Benchmarks
               </h3>
               <p className="text-sm text-slate-300 leading-relaxed">
                 If the deployed automation doesn&apos;t meet your agreed velocity and accuracy benchmarks, you owe $0.

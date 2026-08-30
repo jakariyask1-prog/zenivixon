@@ -4,15 +4,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { Play, Pause, Volume2, VolumeX, Maximize2, Bot, Cpu, Globe, Network } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
-import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { AmbientOrbs } from "@/components/ui/AmbientOrbs";
-
-const stats = [
-  { value: 98, suffix: "%", label: "Client Satisfaction", color: "text-blue-600 dark:text-blue-400" },
-  { value: 24, suffix: "/7", label: "AI Agent Uptime", color: "text-cyan-600 dark:text-cyan-400" },
-  { value: 10, suffix: "x", label: "Faster Than Manual", color: "text-indigo-600 dark:text-indigo-400" },
-  { value: 100, suffix: "%", label: "Custom-Built Systems", color: "text-emerald-600 dark:text-emerald-400" },
-];
 
 const features = [
   { icon: <Bot className="w-4 h-4" />, text: "AI Agents & Customer Support", color: "bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800" },
@@ -168,32 +160,6 @@ export function VideoShowcaseSection() {
               </div>
             </div>
           </div>
-        </motion.div>
-
-        {/* Stats Row */}
-        <motion.div
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          {stats.map((stat, idx) => (
-            <motion.div
-              key={stat.label}
-              className="p-6 rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 text-center stat-card-glow transition-all duration-300 glow-border"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.35 + idx * 0.08 }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-            >
-              <div className={`text-4xl font-extrabold font-heading ${stat.color}`}>
-                <AnimatedCounter to={stat.value} suffix={stat.suffix} duration={2} />
-              </div>
-              <div className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1 font-heading uppercase tracking-wider">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
         </motion.div>
 
         {/* Features Pills */}

@@ -30,7 +30,7 @@ const comparisonData = [
   {
     feature: "Risk & Commitment",
     legacy: "$30k–$60k locked upfront contracts",
-    zenivixon: "14-Day Zero-Risk Pilot Guarantee",
+    zenivixon: "14-Day Pilot",
   },
   {
     feature: "AI Architecture Safety",
@@ -58,11 +58,11 @@ const reasons = [
       "You collaborate directly with the AI architects and senior engineers building your system. No non-technical account managers, no communication bottlenecks, and zero outsourcing.",
   },
   {
-    title: "14-Day Zero-Risk Pilot",
-    badge: "100% RISK-FREE",
+    title: "14-Day Pilot",
+    badge: "EVALUATION PILOT",
     icon: <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />,
     description:
-      "We prove our value before you commit to large budgets. We deploy a working proof-of-concept on your actual workflow in 14 days. If it doesn't solve the bottleneck, you pay nothing.",
+      "Start with a focused pilot before committing to a larger implementation. We deploy a working proof-of-concept on your actual workflow in 14 days.",
   },
   {
     title: "3x Faster Velocity",
@@ -72,7 +72,7 @@ const reasons = [
       "Using modern AI-native engineering pipelines and clean modular architectures, we deliver production-ready systems in weeks that legacy consultancies take months to plan.",
   },
   {
-    title: "Zero-Hallucination AI",
+    title: "Grounded & Validated AI",
     badge: "DETERMINISTIC",
     icon: <Wrench className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />,
     description:

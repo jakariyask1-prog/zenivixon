@@ -55,7 +55,7 @@ const STATS_DATA = [
     value: 100,
     suffix: "%",
     label: "Problem-First Architecture",
-    description: "Zero hallucination, deterministic software design",
+    description: "Grounded & Validated AI, deterministic software design",
   },
   {
     icon: <Cpu className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />,
@@ -75,7 +75,7 @@ const STATS_DATA = [
     icon: <ShieldAlert className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />,
     value: 14,
     suffix: "-Day",
-    label: "Zero-Risk Pilot Sprints",
+    label: "Pilot Sprints",
     description: "Rapid production-grade MVP deployment",
   },
 ];
@@ -638,15 +638,15 @@ export function AboutContent() {
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading">
-                  14-Day Zero-Risk Pilot
+                  14-Day Pilot
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  We prove our ROI on your actual business problem before asking for large commitments. If our pilot doesn&apos;t demonstrate value, you owe nothing.
+                  Start with a focused pilot before committing to a larger implementation. We prove our value on your actual business problem.
                 </p>
               </div>
               <div className="pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                Zero Risk • Guaranteed Measurable ROI
+                14-Day Pilot • Measurable Value
               </div>
             </div>
 

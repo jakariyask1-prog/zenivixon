@@ -9,7 +9,7 @@ export const SOLUTIONS_DATA: SolutionPillar[] = [
     positioning:
       "24/7 AI Customer Support & Autonomous Decision Agents.",
     description:
-      "We engineer purpose-built autonomous AI agents and customer support copilots that interact with internal software, resolve customer inquiries in real time, process complex information, and assist human operators without hallucination or fragility.",
+      "We engineer purpose-built autonomous AI agents and customer support copilots that interact with internal software, resolve customer inquiries in real time, process complex information, and assist human operators using Grounded & Validated AI, without fragility.",
     problemStatement:
       "High-value teams spend disproportionate hours on multi-step customer inquiry triage, repetitive ticket resolution, data synthesis, and manual follow-ups that traditional rule-based chatbots cannot handle.",
     solutionApproach:

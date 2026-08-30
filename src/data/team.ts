@@ -19,7 +19,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "100% Problem-First Strategic Mindset",
       "Deep Enterprise Architecture Expertise",
       "Direct & Transparent Client Engagement",
-      "Commitment to Zero-Hallucination Systems",
+      "Commitment to Grounded & Validated AI Systems",
     ],
     bio: "Guiding ZENIVIXON's mission to bridge the gap between complex AI research and reliable, production-ready business software. Driving the technical vision, executive client relationships, and practical engineering standards across all AI agents, automations, and custom web platforms.",
     image: "/images/team/founder-ceo.jpg",

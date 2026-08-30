@@ -202,6 +202,9 @@ export function RoiCalculatorSection({
                 <p className="text-xs text-slate-400 font-mono">
                   ≈ ${calculations.monthlySavings.toLocaleString()} recovered every month
                 </p>
+                <p className="text-[10px] text-slate-500/80 mt-1.5 leading-snug">
+                  Illustrative estimate. Actual savings vary based on workflow, volume, labor cost, and automation coverage.
+                </p>
               </div>
 
               {/* 3 Metric Breakdown Grid */}
