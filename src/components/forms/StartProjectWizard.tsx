@@ -146,7 +146,7 @@ export function StartProjectWizard() {
           <div
             key={n}
             className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${
-              n <= step ? "bg-blue-600" : "bg-slate-200"
+              n <= step ? "bg-blue-600" : "bg-slate-200 dark:bg-slate-800"
             }`}
           />
         ))}
@@ -190,18 +190,33 @@ export function StartProjectWizard() {
                     key={type.id}
                     role="radio"
                     aria-checked={isSelected}
-                    tabIndex={0}
+                    tabIndex={isSelected ? 0 : -1}
                     onClick={() => setFormData({ ...formData, projectType: type.id })}
                     onKeyDown={(e) => {
                       if (e.key === "Enter" || e.key === " ") {
                         e.preventDefault();
                         setFormData({ ...formData, projectType: type.id });
                       }
+                      // Handle arrow key navigation for better a11y
+                      const radios = Array.from(e.currentTarget.parentElement?.querySelectorAll('[role="radio"]') || []);
+                      const index = radios.indexOf(e.currentTarget);
+                      if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+                        e.preventDefault();
+                        const next = radios[(index + 1) % radios.length] as HTMLElement;
+                        next?.focus();
+                        next?.click();
+                      }
+                      if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+                        e.preventDefault();
+                        const prev = radios[(index - 1 + radios.length) % radios.length] as HTMLElement;
+                        prev?.focus();
+                        prev?.click();
+                      }
                     }}
                     className={`p-5 rounded-2xl border cursor-pointer transition-all duration-200 flex flex-col justify-between focus:outline-none focus:ring-2 focus:ring-blue-600 ${
                       isSelected
                         ? "bg-blue-50/50 border-blue-600 text-[#0F172A] dark:text-white shadow-sm ring-1 ring-blue-600"
-                        : "bg-[#F8FAFC] border-slate-200 text-slate-800 hover:border-slate-300 hover:bg-white"
+                        : "bg-[#F8FAFC] dark:bg-[#070e1e] border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600 hover:bg-white dark:hover:bg-[#0b1120]"
                     }`}
                   >
                     <div>
