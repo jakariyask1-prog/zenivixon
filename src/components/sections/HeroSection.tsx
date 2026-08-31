@@ -8,10 +8,9 @@ import { NeuralNetworkAnimation } from "@/components/ui/NeuralNetworkAnimation";
 import { RotatingTextBanner } from "@/components/ui/RotatingTextBanner";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { motion, useScroll } from "framer-motion";
+import { LiveFloatingElements } from "@/components/ui/LiveFloatingElements";
 
 export function HeroSection() {
-  const { scrollY } = useScroll();
-
   return (
     <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-[#FCFDFE] dark:bg-[#020817] transition-colors duration-300">
       {/* Background Subtle Depth Elements */}
@@ -19,6 +18,9 @@ export function HeroSection() {
 
       {/* Premium Neural Network Background Animation */}
       <NeuralNetworkAnimation />
+
+      {/* 🚀 NEW: Live Floating Premium Elements */}
+      <LiveFloatingElements />
 
       {/* Full Width Marquee Ticker */}
       <div className="relative z-10 w-full mb-8">
@@ -42,7 +44,8 @@ export function HeroSection() {
           <ScrollReveal direction="up" delay={0.2}>
             {/* Locked Core Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#0F172A] dark:text-white tracking-tight leading-[1.15] font-heading">
-              Automate Your Business. Engage Customers 24/7. Scale with AI.
+              Automate Your Business. Engage Customers 24/7. <br className="hidden sm:block" />
+              <span className="text-gradient-animated">Scale with AI.</span>
             </h1>
           </ScrollReveal>
 
