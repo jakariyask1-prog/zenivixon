@@ -8,12 +8,16 @@ import { NeuralNetworkAnimation } from "@/components/ui/NeuralNetworkAnimation";
 import { RotatingTextBanner } from "@/components/ui/RotatingTextBanner";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { motion, useScroll } from "framer-motion";
+import { FluidAuroraBackground } from "@/components/ui/FluidAuroraBackground";
 
 export function HeroSection() {
   return (
-    <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-[#FCFDFE] dark:bg-[#020817] transition-colors duration-300">
+    <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-transparent transition-colors duration-300">
+      {/* 🚀 NEW: Premium Fluid Aurora Background */}
+      <FluidAuroraBackground />
+
       {/* Background Subtle Depth Elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_10%,#000_70%,transparent_100%)] opacity-40 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_10%,#000_70%,transparent_100%)] opacity-40 pointer-events-none z-0" />
 
       {/* Premium Neural Network Background Animation */}
       <NeuralNetworkAnimation />
