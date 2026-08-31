@@ -1,17 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
 
 import { checkRateLimit } from "@/lib/rate-limit";
-
-// ─── Sanitize user input to prevent XSS in email HTML ────────────────────────
-function esc(s: string): string {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
 
 export async function POST(req: NextRequest) {
   // Rate limit by IP
@@ -46,33 +35,74 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Send email using Resend
-    if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY === "your_resend_api_key_here") {
-      console.warn("[ZENIVIXON] RESEND_API_KEY is not set or is a placeholder. Email will not be sent.");
-    } else {
-      try {
-        const resend = new Resend(process.env.RESEND_API_KEY);
-        await resend.emails.send({
-          from: "ZENIVIXON <noreply@zenivixon.com>",
-          to: process.env.CONTACT_EMAIL || "zenivixon@gmail.com",
-          subject: `New Project Brief from ${esc(name)} — ${esc(projectType || "N/A")}`,
-          html: `
-            <p><b>Name:</b> ${esc(name)}</p>
-            <p><b>Email:</b> ${esc(email)}</p>
-            <p><b>Company:</b> ${esc(company || "N/A")}</p>
-            <p><b>Project Type:</b> ${esc(projectType || "N/A")}</p>
-            <p><b>Problem:</b><br/>${esc(problemDescription).replace(/\n/g, "<br/>")}</p>
-            <p><b>Current Tools:</b> ${esc(currentTools || "N/A")}</p>
-            <p><b>Timeline:</b> ${esc(timeline || "N/A")}</p>
-            <p><b>Preferred Channel:</b> ${esc(preferredChannel || "N/A")}</p>
-          `,
-        });
-      } catch (resendErr) {
-        console.warn("[ZENIVIXON Project Brief] Resend email failed:", resendErr);
-      }
+    // Map project-brief fields to the expected n8n contact form fields
+    const mappedMessage = `
+**Problem Description:**
+${problemDescription}
+
+**Current Tools:**
+${currentTools || "N/A"}
+
+**Timeline:**
+${timeline || "N/A"}
+
+**Preferred Channel:**
+${preferredChannel || "N/A"}
+    `.trim();
+
+    const payload = {
+      name: name.trim(),
+      email: email.trim(),
+      company: typeof company === "string" ? company.trim() : "",
+      service: typeof projectType === "string" ? projectType.trim() : "Project Brief",
+      message: mappedMessage,
+    };
+
+    // ─── Forward to n8n Webhook ──────────────────────────────────────────────
+    const webhookUrl = process.env.N8N_WEBHOOK_URL;
+    if (!webhookUrl) {
+      console.error("[ZENIVIXON Project Brief] N8N_WEBHOOK_URL is not configured.");
+      return NextResponse.json(
+        { success: false, error: "Service configuration error." },
+        { status: 503 }
+      );
     }
 
-    console.log("[ZENIVIXON Project Brief] New Submission:", {
+    let n8nError: string | null = null;
+    try {
+      const webhookRes = await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json, text/plain, */*",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!webhookRes.ok) {
+        const errBody = await webhookRes.text();
+        console.error(
+          `[ZENIVIXON Project Brief] n8n webhook responded with status ${webhookRes.status}:`,
+          errBody
+        );
+        n8nError = `Webhook returned status ${webhookRes.status}`;
+      }
+    } catch (webhookErr) {
+      console.error(
+        "[ZENIVIXON Project Brief] Error connecting to n8n webhook:",
+        webhookErr
+      );
+      n8nError = "Failed to connect to webhook";
+    }
+
+    if (n8nError) {
+      return NextResponse.json(
+        { success: false, error: n8nError },
+        { status: 502 }
+      );
+    }
+
+    console.log("[ZENIVIXON Project Brief] New Submission Processed:", {
       name,
       email,
       company: company || "N/A",

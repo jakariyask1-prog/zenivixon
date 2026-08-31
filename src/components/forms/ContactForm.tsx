@@ -19,6 +19,7 @@ export function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (loading) return;
 
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       setError("Please fill in all required fields (Name, Email, Message).");
@@ -180,6 +181,7 @@ export function ContactForm() {
         <textarea
           id="contact-message"
           required
+          maxLength={5000}
           rows={4}
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}

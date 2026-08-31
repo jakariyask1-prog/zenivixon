@@ -1,17 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
 
 import { checkRateLimit } from "@/lib/rate-limit";
-
-// ─── Sanitize user input to prevent XSS in email HTML ────────────────────────
-function esc(s: string): string {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
 
 export async function POST(req: NextRequest) {
   // Rate limit by IP
@@ -56,6 +45,13 @@ export async function POST(req: NextRequest) {
     if (!message || typeof message !== "string" || !message.trim()) {
       return NextResponse.json(
         { success: false, error: "Message is required." },
+        { status: 400 }
+      );
+    }
+
+    if (message.length > 5000) {
+      return NextResponse.json(
+        { success: false, error: "Message is too long. Please limit to 5000 characters." },
         { status: 400 }
       );
     }
@@ -123,29 +119,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // ─── Send email using Resend (if configured) ─────────────────────────────
-    if (
-      process.env.RESEND_API_KEY &&
-      process.env.RESEND_API_KEY !== "your_resend_api_key_here"
-    ) {
-      try {
-        const resend = new Resend(process.env.RESEND_API_KEY);
-        await resend.emails.send({
-          from: "ZENIVIXON <noreply@zenivixon.com>",
-          to: process.env.CONTACT_EMAIL || "zenivixon@gmail.com",
-          subject: `New Inquiry from ${esc(payload.name)} — ${esc(payload.company || "No Company")}`,
-          html: `
-            <p><b>Name:</b> ${esc(payload.name)}</p>
-            <p><b>Email:</b> ${esc(payload.email)}</p>
-            <p><b>Company:</b> ${esc(payload.company || "N/A")}</p>
-            <p><b>Service:</b> ${esc(payload.service || "N/A")}</p>
-            <p><b>Message:</b><br/>${esc(payload.message).replace(/\n/g, "<br/>")}</p>
-          `,
-        });
-      } catch (resendErr) {
-        console.warn("[ZENIVIXON Contact Form] Resend email failed:", resendErr);
-      }
-    }
+
 
     console.log("[ZENIVIXON Contact Form] New Submission Processed:", {
       name: payload.name,

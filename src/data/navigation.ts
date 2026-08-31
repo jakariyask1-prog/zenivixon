@@ -70,7 +70,7 @@ export const FOOTER_LINKS = {
   ],
   connect: [
     { label: "WhatsApp Business", href: "https://wa.me/message/ZENIVIXON", external: true },
-    { label: "Business Email", href: "mailto:zenivixon@gmail.com", external: true },
+    { label: "Business Email", href: "mailto:contact@zenivixon.com", external: true },
     { label: "LinkedIn", href: "https://linkedin.com/company/zenivixon", external: true },
     { label: "Facebook", href: "https://www.facebook.com/share/1Re24w32HP/", external: true },
   ],
