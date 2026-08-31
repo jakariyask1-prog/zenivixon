@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Bot, Cpu, Network, Sparkles, CheckCircle2, ArrowRight, ArrowLeft, Send, Globe, Loader2, AlertCircle } from "lucide-react";
@@ -40,6 +41,7 @@ const projectTypes = [
 ];
 
 export function StartProjectWizard() {
+  const searchParams = useSearchParams();
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -55,12 +57,23 @@ export function StartProjectWizard() {
     preferredChannel: "Email",
   });
 
+  useEffect(() => {
+    const problemParam = searchParams?.get("problem");
+    if (problemParam) {
+      setFormData((prev) => ({
+        ...prev,
+        problemDescription: problemParam,
+      }));
+    }
+  }, [searchParams]);
+
   const handleNext = () => setStep((s) => s + 1);
   const handleBack = () => setStep((s) => s - 1);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email) return;
+    if (loading) return;
+    if (!formData.name.trim() || !formData.email.trim()) return;
     setLoading(true);
     setError(null);
     try {

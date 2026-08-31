@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Metadata } from "next";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { StartProjectWizard } from "@/components/forms/StartProjectWizard";
-import { MessageSquare } from "lucide-react";
+import { MessageSquare, Loader2 } from "lucide-react";
 import { COMPANY_INFO } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -47,7 +47,16 @@ export default function StartAProjectPage() {
         </div>
 
         {/* Multi-step Project Intake Wizard */}
-        <StartProjectWizard />
+        <Suspense
+          fallback={
+            <div className="p-12 text-center text-slate-500 flex items-center justify-center gap-2">
+              <Loader2 className="w-5 h-5 animate-spin" />
+              <span>Loading Project Wizard...</span>
+            </div>
+          }
+        >
+          <StartProjectWizard />
+        </Suspense>
 
         {/* Quick Fast-Track Notice */}
         <div className="p-6 rounded-2xl bg-white border border-slate-200 dark:border-slate-800 max-w-xl mx-auto flex items-center justify-between gap-4 text-xs text-slate-600 dark:text-slate-400 shadow-sm">

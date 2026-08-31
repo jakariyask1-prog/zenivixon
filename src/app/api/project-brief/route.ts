@@ -35,27 +35,48 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Map project-brief fields to the expected n8n contact form fields
-    const mappedMessage = `
-**Problem Description:**
-${problemDescription}
+    const projectTypeLabels: Record<string, string> = {
+      "ai-agents": "AI Agents & 24/7 Customer Support",
+      "ai-automation": "AI Workflow & Business Automation",
+      "software-web-development": "Custom Software & Web Development",
+      "ai-integration": "AI System Integration & Vector RAG",
+      "custom-system": "Comprehensive Architecture Audit",
+    };
 
-**Current Tools:**
-${currentTools || "N/A"}
+    const resolvedService =
+      (typeof projectType === "string" && projectTypeLabels[projectType]) ||
+      (typeof projectType === "string" && projectType.trim() ? projectType.trim() : "AI Project Brief");
 
-**Timeline:**
-${timeline || "N/A"}
+    // Clean, structured message without raw multi-line markdown that could break downstream n8n Resend JSON payloads
+    const messageParts: string[] = [];
+    if (problemDescription && problemDescription.trim()) {
+      messageParts.push(problemDescription.trim());
+    }
+    if (currentTools && currentTools.trim()) {
+      messageParts.push(`Current Tools: ${currentTools.trim()}`);
+    }
+    if (timeline && timeline.trim()) {
+      messageParts.push(`Timeline: ${timeline.trim()}`);
+    }
+    if (preferredChannel && preferredChannel.trim()) {
+      messageParts.push(`Preferred Contact: ${preferredChannel.trim()}`);
+    }
 
-**Preferred Channel:**
-${preferredChannel || "N/A"}
-    `.trim();
+    const cleanMessage = messageParts.join(" | ");
+
+    if (cleanMessage.length > 5000) {
+      return NextResponse.json(
+        { success: false, error: "Message is too long. Please limit to 5000 characters." },
+        { status: 400 }
+      );
+    }
 
     const payload = {
       name: name.trim(),
       email: email.trim(),
       company: typeof company === "string" ? company.trim() : "",
-      service: typeof projectType === "string" ? projectType.trim() : "Project Brief",
-      message: mappedMessage,
+      service: resolvedService,
+      message: cleanMessage,
     };
 
     // ─── Forward to n8n Webhook ──────────────────────────────────────────────
@@ -85,14 +106,25 @@ ${preferredChannel || "N/A"}
           `[ZENIVIXON Project Brief] n8n webhook responded with status ${webhookRes.status}:`,
           errBody
         );
-        n8nError = `Webhook returned status ${webhookRes.status}`;
+        try {
+          const parsed = JSON.parse(errBody);
+          n8nError =
+            parsed.message ||
+            parsed.hint ||
+            `Webhook returned status ${webhookRes.status}`;
+        } catch {
+          n8nError = `Webhook returned status ${webhookRes.status}`;
+        }
       }
     } catch (webhookErr) {
       console.error(
         "[ZENIVIXON Project Brief] Error connecting to n8n webhook:",
         webhookErr
       );
-      n8nError = "Failed to connect to webhook";
+      n8nError =
+        webhookErr instanceof Error
+          ? webhookErr.message
+          : "Failed to connect to webhook";
     }
 
     if (n8nError) {
@@ -103,10 +135,10 @@ ${preferredChannel || "N/A"}
     }
 
     console.log("[ZENIVIXON Project Brief] New Submission Processed:", {
-      name,
-      email,
-      company: company || "N/A",
-      projectType,
+      name: payload.name,
+      email: payload.email,
+      company: payload.company || "N/A",
+      service: payload.service,
       receivedAt: new Date().toISOString(),
     });
 
