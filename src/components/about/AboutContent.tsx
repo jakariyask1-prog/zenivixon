@@ -298,16 +298,20 @@ export function AboutContent() {
 
               {/* Founder Large Portrait (5 cols) */}
               <div className="lg:col-span-5 flex flex-col items-center">
-                <div className="w-full max-w-md aspect-[5/6] relative rounded-3xl overflow-hidden border-2 border-slate-200 dark:border-slate-700/80 shadow-xl bg-slate-950 group">
-                  <Image
-                    src={founder.image}
-                    alt={founder.name}
-                    fill
-                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                    priority
-                  />
-                  {/* Subtle gradient vignette overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="w-full max-w-md aspect-[5/6] relative rounded-3xl shadow-xl bg-slate-950 group overflow-hidden">
+                  {/* Live Rotating Animation Border */}
+                  <div className="absolute -inset-[50%] z-0 animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_180deg,#3b82f6_270deg,#06b6d4_360deg)]" />
+                  <div className="absolute inset-[3px] rounded-[22px] bg-slate-950 z-10 overflow-hidden">
+                    <Image
+                      src={founder.image}
+                      alt={founder.name}
+                      fill
+                      className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                      priority
+                    />
+                    {/* Subtle gradient vignette overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                  </div>
                 </div>
                 <div className="mt-4 flex items-center gap-2 text-xs font-heading text-slate-600 dark:text-slate-300 font-semibold px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
                   <ShieldCheck className="w-4 h-4 text-blue-600 dark:text-blue-400" />
@@ -485,13 +489,17 @@ export function AboutContent() {
                   <div className="space-y-6 relative z-10">
                     {/* Large Standard Portrait & Role Header */}
                     <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
-                      <div className="sm:col-span-5 aspect-[5/6] relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-950 shadow-sm">
-                        <Image
-                          src={member.image}
-                          alt={member.name}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
+                      <div className="sm:col-span-5 aspect-[5/6] relative rounded-2xl bg-slate-950 shadow-sm overflow-hidden group/member">
+                        {/* Live Rotating Animation Border */}
+                        <div className="absolute -inset-[50%] z-0 animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_180deg,#3b82f6_270deg,#06b6d4_360deg)]" />
+                        <div className="absolute inset-[3px] rounded-[14px] bg-slate-950 z-10 overflow-hidden">
+                          <Image
+                            src={member.image}
+                            alt={member.name}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover/member:scale-105"
+                          />
+                        </div>
                       </div>
                       <div className="sm:col-span-7 space-y-2">
                         <Badge variant="blue" size="sm" className="font-semibold text-xs">
