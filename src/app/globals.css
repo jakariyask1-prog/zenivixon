@@ -167,6 +167,27 @@
   100% { background-position: 0% 50%; }
 }
 
+/* --- Always Active Rotating Border ------------------------------- */
+.live-glow-border {
+  position: relative;
+}
+.live-glow-border::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  padding: 3px;
+  background: linear-gradient(135deg, #2563eb, #06b6d4, #7c3aed, #2563eb);
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: gradient-rotate 3s ease infinite;
+  z-index: 10;
+  pointer-events: none;
+}
+
 /* --- Magnetic Button base ---------------------------------------- */
 .magnetic-btn {
   transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);

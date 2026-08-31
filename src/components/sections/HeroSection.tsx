@@ -8,7 +8,6 @@ import { NeuralNetworkAnimation } from "@/components/ui/NeuralNetworkAnimation";
 import { RotatingTextBanner } from "@/components/ui/RotatingTextBanner";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { motion, useScroll } from "framer-motion";
-import { LiveFloatingElements } from "@/components/ui/LiveFloatingElements";
 
 export function HeroSection() {
   return (
@@ -18,9 +17,6 @@ export function HeroSection() {
 
       {/* Premium Neural Network Background Animation */}
       <NeuralNetworkAnimation />
-
-      {/* 🚀 NEW: Live Floating Premium Elements */}
-      <LiveFloatingElements />
 
       {/* Full Width Marquee Ticker */}
       <div className="relative z-10 w-full mb-8">
