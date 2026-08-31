@@ -7,7 +7,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { NeuralNetworkAnimation } from "@/components/ui/NeuralNetworkAnimation";
 import { RotatingTextBanner } from "@/components/ui/RotatingTextBanner";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
-import { motion, useScroll } from "framer-motion";
+import { motion } from "framer-motion";
 import { FluidAuroraBackground } from "@/components/ui/FluidAuroraBackground";
 
 export function HeroSection() {
