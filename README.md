@@ -18,6 +18,7 @@
 | **Workflow Automation** | n8n Webhook Integration |
 | **Email Service** | Resend SDK |
 | **Rate Limiting** | Upstash Redis |
+| **Form Validation** | Zod + React Hook Form |
 | **Icons & Typography** | Lucide React, Manrope + Inter |
 
 ---
@@ -85,7 +86,8 @@ When users submit the **Contact / Get a Quote** form, the payload is validated o
 ```
 
 - **Security:** The webhook URL is stored on the backend and is never exposed to client-side code.
-- **Resilience:** Includes IP-based rate limiting, input sanitization, and graceful error handling.
+- **Resilience:** Includes IP-based rate limiting via Upstash Redis.
+- **Validation:** 100% type-safe shared validation schemas using Zod for both frontend (React Hook Form) and backend APIs.
 
 ---
 

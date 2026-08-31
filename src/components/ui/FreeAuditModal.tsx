@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Sparkles, CheckCircle2, ArrowRight, Loader2, Video, ShieldCheck } from "lucide-react";
+import { X, CheckCircle2, ArrowRight, Loader2, Video, ShieldCheck } from "lucide-react";
 import { Button } from "./Button";
 import { Badge } from "./Badge";
 

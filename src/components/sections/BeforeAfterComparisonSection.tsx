@@ -9,8 +9,6 @@ import {
   Sparkles,
   XCircle,
   CheckCircle2,
-  Clock,
-  DollarSign,
   AlertTriangle,
   Zap,
   ArrowRight,

@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 
 const STATEMENTS = [
   "AI Agents That Work 24/7",

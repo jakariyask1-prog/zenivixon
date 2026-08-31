@@ -4,11 +4,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { INSIGHTS_DATA } from "@/data/insights";
-import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Clock, CheckCircle2, ArrowLeft, Calendar, User, ArrowRight } from "lucide-react";
 import { formatDate } from "@/lib/utils";
-import { COMPANY_INFO } from "@/lib/constants";
 
 interface Props {
   params: Promise<{

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { checkRateLimit } from "@/lib/rate-limit";
+import { projectBriefSchema } from "@/lib/validations";
 
 export async function POST(req: NextRequest) {
   // Rate limit by IP
@@ -18,22 +19,17 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const { projectType, problemDescription, currentTools, timeline, name, email, company, preferredChannel } = body;
+    const parsed = projectBriefSchema.safeParse(body);
 
-    if (!name || !email || !problemDescription) {
+    if (!parsed.success) {
+      const firstError = parsed.error.issues[0]?.message || "Invalid input data.";
       return NextResponse.json(
-        { success: false, error: "Name, email, and problem description are required." },
+        { success: false, error: firstError },
         { status: 400 }
       );
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { success: false, error: "Invalid email address." },
-        { status: 400 }
-      );
-    }
+    const { projectType, problemDescription, currentTools, timeline, name, email, company, preferredChannel } = parsed.data;
 
     const projectTypeLabels: Record<string, string> = {
       "ai-agents": "AI Agents & 24/7 Customer Support",
@@ -43,9 +39,7 @@ export async function POST(req: NextRequest) {
       "custom-system": "Comprehensive Architecture Audit",
     };
 
-    const resolvedService =
-      (typeof projectType === "string" && projectTypeLabels[projectType]) ||
-      (typeof projectType === "string" && projectType.trim() ? projectType.trim() : "AI Project Brief");
+    const resolvedService = projectTypeLabels[projectType] || projectType || "AI Project Brief";
 
     // Clean, structured message without raw multi-line markdown that could break downstream n8n Resend JSON payloads
     const messageParts: string[] = [];

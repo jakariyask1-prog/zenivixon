@@ -25,7 +25,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     image: "/images/team/founder-ceo.jpg",
     linkedin: "https://www.linkedin.com/in/md-jakariya-sheikh-65973618a/",
     facebook: "https://www.facebook.com/jakariya.sk.9295",
-    email: "jakariyask1@gmail.com",
+    email: "contact@zenivixon.com",
   },
   {
     id: "web-ai-automation",

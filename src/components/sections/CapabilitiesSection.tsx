@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Search, TrendingUp, CheckCircle2, ChevronRight, PenTool, Users, ArrowUpRight } from "lucide-react";
+import { Search, TrendingUp, CheckCircle2, PenTool, Users, ArrowUpRight } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export function CapabilitiesSection() {

@@ -1,72 +1,54 @@
 "use client";
 
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/Button";
 import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { contactFormSchema, type ContactFormData } from "@/lib/validations";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submittedName, setSubmittedName] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    service: "",
-    message: "",
+  const [apiError, setApiError] = useState<string | null>(null);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      company: "",
+      service: "",
+      message: "",
+    },
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (loading) return;
-
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-      setError("Please fill in all required fields (Name, Email, Message).");
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email.trim())) {
-      setError("Please provide a valid email address.");
-      return;
-    }
-
-    setLoading(true);
-    setError(null);
+  const onSubmit = async (data: ContactFormData) => {
+    setApiError(null);
 
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name.trim(),
-          email: formData.email.trim(),
-          company: formData.company.trim(),
-          service: formData.service.trim(),
-          message: formData.message.trim(),
-        }),
+        body: JSON.stringify(data),
       });
 
-      const data = await response.json();
+      const resData = await response.json();
 
-      if (!response.ok || !data.success) {
-        throw new Error(data.error || "Failed to send message. Please try again.");
+      if (!response.ok || !resData.success) {
+        throw new Error(resData.error || "Failed to send message. Please try again.");
       }
 
-      setSubmittedName(formData.name.trim());
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        service: "",
-        message: "",
-      });
+      setSubmittedName(data.name);
+      reset();
       setSubmitted(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
+      setApiError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
     }
   };
 
@@ -85,7 +67,7 @@ export function ContactForm() {
         <button
           type="button"
           onClick={() => {
-            setError(null);
+            setApiError(null);
             setSubmitted(false);
           }}
           className="text-xs text-blue-600 dark:text-blue-400 hover:underline pt-2 font-medium cursor-pointer"
@@ -97,11 +79,11 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-      {error && (
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
+      {apiError && (
         <div className="p-3 rounded-lg bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 text-xs flex items-center gap-2 border border-red-200 dark:border-red-900">
           <AlertCircle className="w-4 h-4 shrink-0" />
-          <span>{error}</span>
+          <span>{apiError}</span>
         </div>
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -112,13 +94,12 @@ export function ContactForm() {
           <input
             id="contact-name"
             type="text"
-            required
             autoComplete="name"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             placeholder="e.g. Alex Morgan"
+            {...register("name")}
             className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
           />
+          {errors.name && <span className="text-[10px] text-red-500">{errors.name.message}</span>}
         </div>
         <div className="space-y-1.5">
           <label htmlFor="contact-email" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
@@ -127,13 +108,12 @@ export function ContactForm() {
           <input
             id="contact-email"
             type="email"
-            required
             autoComplete="email"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             placeholder="alex@company.com"
+            {...register("email")}
             className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
           />
+          {errors.email && <span className="text-[10px] text-red-500">{errors.email.message}</span>}
         </div>
       </div>
 
@@ -146,11 +126,11 @@ export function ContactForm() {
             id="contact-company"
             type="text"
             autoComplete="organization"
-            value={formData.company}
-            onChange={(e) => setFormData({ ...formData, company: e.target.value })}
             placeholder="e.g. Acme Technologies Ltd"
+            {...register("company")}
             className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
           />
+          {errors.company && <span className="text-[10px] text-red-500">{errors.company.message}</span>}
         </div>
 
         <div className="space-y-1.5">
@@ -159,8 +139,7 @@ export function ContactForm() {
           </label>
           <select
             id="contact-service"
-            value={formData.service}
-            onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+            {...register("service")}
             className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all"
           >
             <option value="" className="text-slate-400 bg-white dark:bg-[#070e1e]">Select a service / topic...</option>
@@ -171,6 +150,7 @@ export function ContactForm() {
             <option value="Architecture Audit & Consultation" className="bg-white dark:bg-[#070e1e]">Architecture Audit &amp; Consultation</option>
             <option value="Other Inquiry" className="bg-white dark:bg-[#070e1e]">Other Inquiry</option>
           </select>
+          {errors.service && <span className="text-[10px] text-red-500">{errors.service.message}</span>}
         </div>
       </div>
 
@@ -180,25 +160,24 @@ export function ContactForm() {
         </label>
         <textarea
           id="contact-message"
-          required
           maxLength={5000}
           rows={4}
-          value={formData.message}
-          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           placeholder="Describe what you are trying to solve..."
+          {...register("message")}
           className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all resize-none placeholder:text-slate-400"
         />
+        {errors.message && <span className="text-[10px] text-red-500">{errors.message.message}</span>}
       </div>
 
       <Button
         type="submit"
         variant="primary"
         size="md"
-        disabled={loading}
-        icon={loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+        disabled={isSubmitting}
+        icon={isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
         className="w-full justify-center shadow-md shadow-blue-600/15 cursor-pointer disabled:opacity-70"
       >
-        {loading ? "Sending..." : "Send Message"}
+        {isSubmitting ? "Sending..." : "Send Message"}
       </Button>
     </form>
   );

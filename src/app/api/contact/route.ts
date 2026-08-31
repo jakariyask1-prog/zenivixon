@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { checkRateLimit } from "@/lib/rate-limit";
+import { contactFormSchema } from "@/lib/validations";
 
 export async function POST(req: NextRequest) {
   // Rate limit by IP
@@ -18,51 +19,17 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const { name, email, company, service, message } = body;
+    const parsed = contactFormSchema.safeParse(body);
 
-    if (!name || typeof name !== "string" || !name.trim()) {
+    if (!parsed.success) {
+      const firstError = parsed.error.issues[0]?.message || "Invalid input data.";
       return NextResponse.json(
-        { success: false, error: "Name is required." },
+        { success: false, error: firstError },
         { status: 400 }
       );
     }
 
-    if (!email || typeof email !== "string" || !email.trim()) {
-      return NextResponse.json(
-        { success: false, error: "Email is required." },
-        { status: 400 }
-      );
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email.trim())) {
-      return NextResponse.json(
-        { success: false, error: "Invalid email address." },
-        { status: 400 }
-      );
-    }
-
-    if (!message || typeof message !== "string" || !message.trim()) {
-      return NextResponse.json(
-        { success: false, error: "Message is required." },
-        { status: 400 }
-      );
-    }
-
-    if (message.length > 5000) {
-      return NextResponse.json(
-        { success: false, error: "Message is too long. Please limit to 5000 characters." },
-        { status: 400 }
-      );
-    }
-
-    const payload = {
-      name: name.trim(),
-      email: email.trim(),
-      company: typeof company === "string" ? company.trim() : "",
-      service: typeof service === "string" ? service.trim() : "",
-      message: message.trim(),
-    };
+    const payload = parsed.data;
 
     // ─── Forward to n8n Webhook ──────────────────────────────────────────────
     const webhookUrl = process.env.N8N_WEBHOOK_URL;

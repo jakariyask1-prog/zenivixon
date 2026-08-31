@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 interface ScrollRevealProps {
@@ -20,11 +20,6 @@ export function ScrollReveal({
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "50px" });
-  const [hasRendered, setHasRendered] = useState(false);
-
-  useEffect(() => {
-    // Optional: add logic here if needed, but remove premature setHasRendered
-  }, []);
 
   const getVariants = () => {
     switch (direction) {
