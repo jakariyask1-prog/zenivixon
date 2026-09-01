@@ -92,7 +92,7 @@ export function BusinessLegalSection() {
 
                   <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300 border-l-2 border-blue-500 dark:border-blue-500 pl-3.5 py-1 mb-2">
                     <p className="flex items-center gap-2"><strong className="text-slate-900 dark:text-slate-100 font-bold min-w-[100px]">Entity Name:</strong> ZENIVIXON TECHNOLOGIES</p>
-                    <p className="flex items-center gap-2"><strong className="text-slate-900 dark:text-slate-100 font-bold min-w-[100px]">Location:</strong> Khulna, Bangladesh</p>
+                    <p className="flex items-center gap-2"><strong className="text-slate-900 dark:text-slate-100 font-bold min-w-[100px]">Location:</strong> Gollamari - Sonadanga Bypass Rd, Khulna, Bangladesh</p>
                     <p className="flex items-center gap-2"><strong className="text-slate-900 dark:text-slate-100 font-bold min-w-[100px]">Status:</strong> Active / Verified</p>
                   </div>
                 </div>

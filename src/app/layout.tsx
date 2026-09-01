@@ -105,6 +105,7 @@ export default function RootLayout({
                 "description": "Legally Licensed AI-First Technology Company in Bangladesh. Operating under a valid Trade License issued by Khulna City Corporation and a valid e-TIN from the National Board of Revenue (NBR).",
                 "address": {
                   "@type": "PostalAddress",
+                  "streetAddress": "Gollamari - Sonadanga Bypass Rd",
                   "addressLocality": "Khulna",
                   "addressCountry": "Bangladesh"
                 },

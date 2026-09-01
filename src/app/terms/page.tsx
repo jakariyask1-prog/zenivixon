@@ -119,7 +119,7 @@ export default function TermsPage() {
           </p>
           <div className="pt-2">
             <p className="font-semibold text-slate-800 dark:text-slate-200">{COMPANY_INFO.formalName}</p>
-            <p>Khulna, Bangladesh</p>
+            <p>Gollamari - Sonadanga Bypass Rd, Khulna, Bangladesh</p>
             <p>Email: <a href={`mailto:${COMPANY_INFO.channels.email}`} className="text-blue-600 dark:text-blue-400 underline font-medium">{COMPANY_INFO.channels.email}</a></p>
             <p>WhatsApp: <a href={COMPANY_INFO.channels.whatsapp} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 underline font-medium">{COMPANY_INFO.channels.whatsappNumber}</a></p>
           </div>
