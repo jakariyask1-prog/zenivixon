@@ -77,7 +77,7 @@ export function BusinessLegalSection() {
                   </p>
                   
                   <div 
-                    className="w-full h-32 sm:h-40 relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 mb-5 bg-slate-100 dark:bg-slate-800 group-hover:border-blue-400 dark:group-hover:border-blue-500 transition-colors cursor-pointer shadow-inner"
+                    className="w-full h-24 sm:h-40 relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 mb-5 bg-slate-100 dark:bg-slate-800 group-hover:border-blue-400 dark:group-hover:border-blue-500 transition-colors cursor-pointer shadow-inner"
                     onClick={() => openDocument('/documents/trade.jpeg', 'Trade License', 'ZENIVIXON Trade License issued by Khulna City Corporation')}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -87,7 +87,7 @@ export function BusinessLegalSection() {
                       className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" 
                     />
                     {/* Add a blur at the bottom to obscure potential personal details in the thumbnail, keeping focus on the top company header */}
-                    <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white dark:from-slate-900 to-transparent backdrop-blur-[2px]" />
+                    <div className="absolute bottom-0 left-0 right-0 h-16 sm:h-20 bg-gradient-to-t from-white dark:from-slate-900 to-transparent backdrop-blur-md" />
                   </div>
 
                   <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300 border-l-2 border-blue-500 dark:border-blue-500 pl-3.5 py-1 mb-2">
@@ -137,7 +137,7 @@ export function BusinessLegalSection() {
                   </p>
 
                   <div 
-                    className="w-full h-32 sm:h-40 relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 mb-5 bg-slate-100 dark:bg-slate-800 group-hover:border-cyan-400 dark:group-hover:border-cyan-500 transition-colors cursor-pointer shadow-inner"
+                    className="w-full h-24 sm:h-40 relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 mb-5 bg-slate-100 dark:bg-slate-800 group-hover:border-cyan-400 dark:group-hover:border-cyan-500 transition-colors cursor-pointer shadow-inner"
                     onClick={() => openDocument('/documents/tin.jpeg', 'e-TIN Certificate', 'ZENIVIXON e-TIN Certificate')}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -147,7 +147,7 @@ export function BusinessLegalSection() {
                       className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" 
                     />
                     {/* Add a blur at the bottom to obscure potential personal details in the thumbnail, keeping focus on the top company header */}
-                    <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white dark:from-slate-900 to-transparent backdrop-blur-[2px]" />
+                    <div className="absolute bottom-0 left-0 right-0 h-16 sm:h-20 bg-gradient-to-t from-white dark:from-slate-900 to-transparent backdrop-blur-md" />
                   </div>
 
                   <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300 border-l-2 border-cyan-500 dark:border-cyan-500 pl-3.5 py-1 mb-2">
