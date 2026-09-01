@@ -20,7 +20,7 @@ export function RotatingTextBanner() {
       <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#FCFDFE] dark:from-[#020817] to-transparent z-10 pointer-events-none" />
 
       {/* Scrolling Container */}
-      <div className="flex whitespace-nowrap items-center w-max animate-marquee hover:[animation-play-state:paused]">
+      <div className="flex whitespace-nowrap items-center w-max animate-marquee hover:[animation-play-state:paused] will-change-transform [backface-visibility:hidden]">
         {/* We duplicate the array to create a seamless infinite loop */}
         {[...STATEMENTS, ...STATEMENTS].map((text, idx) => (
           <div key={idx} className="flex items-center">
