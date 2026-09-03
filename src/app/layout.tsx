@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { CursorGlow } from "@/components/ui/CursorGlow";
 import { PageTransition } from "@/components/providers/PageTransition";
 import Script from "next/script";
+import ChatWidget from "@/components/ChatWidget";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -129,6 +130,7 @@ export default function RootLayout({
             </main>
             <Footer />
           </div>
+          <ChatWidget />
         </ThemeProvider>
       </body>
     </html>
