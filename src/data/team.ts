@@ -152,7 +152,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     bio: "Builds the foundational backend architecture that powers our AI applications. Specializes in designing robust REST and GraphQL APIs, database management, and seamless integrations with third-party enterprise systems.",
     image: "/images/team/placeholder.svg",
   },
-  {
+  /* {
     id: "ai-cloud-cybersecurity-engineer",
     name: "Antora Tabbassum Nupur",
     role: "AI Systems, Cloud Systems & Cybersecurity Engineer",
@@ -177,7 +177,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     bio: "Architects and secures resilient cloud infrastructure and AI deployment pipelines. Specializes in cybersecurity protocols, zero-trust access control, threat mitigation, and automated DevSecOps to ensure enterprise AI applications remain secure and highly available.",
     image: "/images/team/antora-tabbassum-nupur.jpeg",
     linkedin: "https://www.linkedin.com/in/antoratabassumnupur",
-  },
+  }, */
   {
     id: "project-video-maker-3d-animator",
     name: "Moushumi Khatun",
