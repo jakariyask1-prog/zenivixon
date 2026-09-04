@@ -1,8 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import Image from "next/image";
-import { MessageCircle, X } from "lucide-react";
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,28 +32,65 @@ export default function ChatWidget() {
 
     const userMessage = input.trim();
     setInput("");
+    
+    // Add user message to UI
     setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
+    
+    // Add empty assistant message to UI that we will stream text into
+    setMessages((prev) => [...prev, { role: "assistant", content: "" }]);
     setIsLoading(true);
 
     try {
-      // NOTE: লাইভ করার পর http://127.0.0.1:8000 পরিবর্তন করে আপনার Render/Railway লিংক বসাতে হবে
-      const response = await fetch("https://zenivixon-ai-consultant.onrender.com/api/chat", {
+      const response = await fetch("https://zenivixon-ai-consultant.onrender.com/api/chat/stream", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userMessage, session_id: sessionId }),
       });
 
-      const data = await response.json();
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      setIsLoading(false); // Stop bounce loader once stream starts
       
-      if (response.ok) {
-        setMessages((prev) => [...prev, { role: "assistant", content: data.reply }]);
-      } else {
-        setMessages((prev) => [...prev, { role: "assistant", content: "দুঃখিত, সার্ভারের সাথে কানেক্ট করতে সমস্যা হচ্ছে।" }]);
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder();
+      
+      if (reader) {
+        let done = false;
+        while (!done) {
+          const { value, done: readerDone } = await reader.read();
+          done = readerDone;
+          if (value) {
+            const chunk = decoder.decode(value, { stream: true });
+            const lines = chunk.split("\n\n");
+            
+            for (const line of lines) {
+              if (line.startsWith("data: ")) {
+                try {
+                  const data = JSON.parse(line.substring(6));
+                  if (data.content) {
+                    setMessages((prev) => {
+                      const newMessages = [...prev];
+                      newMessages[newMessages.length - 1].content += data.content;
+                      return newMessages;
+                    });
+                  }
+                } catch (e) {
+                  console.error("Error parsing stream chunk", e);
+                }
+              }
+            }
+          }
+        }
       }
     } catch (error) {
-      setMessages((prev) => [...prev, { role: "assistant", content: "সার্ভার এরর! দয়া করে আপনার লোকাল ব্যাকএন্ড চালু আছে কিনা চেক করুন।" }]);
-    } finally {
       setIsLoading(false);
+      setMessages((prev) => {
+        const newMessages = [...prev];
+        newMessages[newMessages.length - 1].content = "সার্ভার এরর! দয়া করে কিছুক্ষন পর আবার চেষ্টা করুন।";
+        return newMessages;
+      });
     }
   };
 
@@ -68,8 +103,8 @@ export default function ChatWidget() {
           {/* Header */}
           <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-4 text-white flex justify-between items-center shadow-md">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center overflow-hidden">
-                <Image src="/logo.png" alt="Zenivixon AI" width={32} height={32} className="object-contain" />
+              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
               </div>
               <div>
                 <h3 className="font-bold text-sm tracking-wide">ZENIVIXON AI</h3>
@@ -130,21 +165,9 @@ export default function ChatWidget() {
       {/* Floating Action Button (FAB) */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`${isOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"} 
-          transition-all duration-300 w-16 h-16 
-          bg-gradient-to-tr from-blue-600 to-indigo-500 
-          hover:from-blue-700 hover:to-indigo-600 
-          text-white shadow-xl hover:shadow-2xl hover:shadow-blue-500/30 
-          rounded-full flex items-center justify-center 
-          relative group transform hover:-translate-y-1`}
+        className={`${isOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"} transition-all duration-300 bg-gradient-to-r from-blue-600 to-indigo-600 hover:shadow-blue-500/50 text-white p-4 rounded-full shadow-lg flex items-center justify-center`}
       >
-        <MessageCircle size={32} strokeWidth={2} className="group-hover:scale-110 transition-transform duration-300 animate-pulse-slow" />
-        
-        {/* Unread badge / indicator dot */}
-        <span className="absolute top-0 right-0 flex h-4 w-4">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-300 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-4 w-4 bg-blue-400 border-2 border-white dark:border-slate-900"></span>
-        </span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
       </button>
     </div>
   );
