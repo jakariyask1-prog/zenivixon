@@ -58,26 +58,38 @@ export default function ChatWidget() {
       
       if (reader) {
         let done = false;
+        let buffer = "";
         while (!done) {
           const { value, done: readerDone } = await reader.read();
           done = readerDone;
           if (value) {
-            const chunk = decoder.decode(value, { stream: true });
-            const lines = chunk.split("\n\n");
+            buffer += decoder.decode(value, { stream: true });
             
-            for (const line of lines) {
-              if (line.startsWith("data: ")) {
-                try {
-                  const data = JSON.parse(line.substring(6));
-                  if (data.content) {
-                    setMessages((prev) => {
-                      const newMessages = [...prev];
-                      newMessages[newMessages.length - 1].content += data.content;
-                      return newMessages;
-                    });
+            let newlineIndex;
+            // Parse complete events separated by \n\n
+            while ((newlineIndex = buffer.indexOf("\n\n")) >= 0) {
+              const chunk = buffer.slice(0, newlineIndex);
+              buffer = buffer.slice(newlineIndex + 2);
+              
+              // Process each line in the chunk
+              const lines = chunk.split("\n");
+              for (const line of lines) {
+                if (line.trim().startsWith("data: ")) {
+                  const jsonStr = line.trim().substring(6);
+                  if (jsonStr === "[DONE]") continue;
+                  
+                  try {
+                    const data = JSON.parse(jsonStr);
+                    if (data.content) {
+                      setMessages((prev) => {
+                        const newMessages = [...prev];
+                        newMessages[newMessages.length - 1].content += data.content;
+                        return newMessages;
+                      });
+                    }
+                  } catch (e) {
+                    console.error("Error parsing stream chunk:", jsonStr, e);
                   }
-                } catch (e) {
-                  console.error("Error parsing stream chunk", e);
                 }
               }
             }
