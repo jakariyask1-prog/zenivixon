@@ -19,6 +19,9 @@ export default function ChatWidget() {
   // ব্রাউজার রিলোড হলে ইউজারের জন্য একটি ইউনিক সেশন আইডি তৈরি হবে (মেমরির জন্য)
   useEffect(() => {
     setSessionId("session_" + Math.random().toString(36).substring(2, 10));
+    
+    // Render-এর ফ্রি সার্ভার "Sleep" মোড থেকে জাগানোর জন্য (Cold Start কমানোর জন্য) ব্যাকগ্রাউন্ডে একটি রিকোয়েস্ট পাঠানো
+    fetch("https://zenivixon-ai-consultant.onrender.com/").catch(() => {});
   }, []);
 
   // নতুন মেসেজ এলে অটো-স্ক্রল করে নিচে চলে যাবে
