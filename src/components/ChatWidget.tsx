@@ -180,9 +180,27 @@ export default function ChatWidget() {
       {/* Floating Action Button (FAB) */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`${isOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"} transition-all duration-300 bg-gradient-to-r from-blue-600 to-indigo-600 hover:shadow-blue-500/50 text-white p-4 rounded-full shadow-lg flex items-center justify-center`}
+        className={`${isOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"} transition-all duration-500 relative group flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 p-1 rounded-full shadow-2xl hover:shadow-blue-500/50 cursor-pointer`}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
+        <div className="absolute inset-0 bg-white/20 rounded-full blur-md group-hover:blur-lg transition-all animate-pulse" />
+        <div className="relative flex items-center gap-3 bg-slate-900/20 backdrop-blur-md px-5 py-3 rounded-full border border-white/20 overflow-hidden">
+          {/* Shine effect */}
+          <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+          
+          <div className="relative flex items-center justify-center">
+            <div className="absolute inset-0 bg-white/40 rounded-full animate-ping" style={{ animationDuration: '3s' }} />
+            <svg className="text-white relative z-10" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
+          </div>
+          
+          <span className="text-white font-semibold text-sm tracking-wide whitespace-nowrap flex items-center gap-1">
+            Ask anything 
+            <span className="inline-flex gap-0.5">
+              <span className="animate-bounce" style={{ animationDelay: '0ms' }}>.</span>
+              <span className="animate-bounce" style={{ animationDelay: '150ms' }}>.</span>
+              <span className="animate-bounce" style={{ animationDelay: '300ms' }}>.</span>
+            </span>
+          </span>
+        </div>
       </button>
     </div>
   );
