@@ -105,8 +105,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: "ai-solutions-automation",
-    name: "AI Solutions & Automation Engineer",
-    role: "Workflow & Process Automation",
+    name: "Md. Kausar Ahmed",
+    role: "AI Solutions & Automation Engineer",
     titleBadge: "Turning repetitive workflows into intelligent systems.",
     department: "AI & Engineering",
     featured: false,
@@ -126,7 +126,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Operational efficiency",
     ],
     bio: "Transforms complex business processes into streamlined automated workflows. Integrates AI agents with tools like n8n and Make to orchestrate intelligent automations via APIs and webhooks.",
-    image: "/images/team/placeholder.svg",
+    image: "/images/team/md-kausar-ahmed.png",
+    linkedin: "https://www.linkedin.com/in/imkausarbd/",
   },
   {
     id: "ai-integration-backend",
