@@ -17,6 +17,7 @@ export interface TeamMember {
   facebook?: string;
   github?: string;
   email?: string;
+  portfolio?: string;
   image: string;
   featured?: boolean;
 }

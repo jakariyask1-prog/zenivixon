@@ -31,6 +31,7 @@ import {
   XCircle,
   Zap,
   Target,
+  Globe,
 } from "lucide-react";
 
 function LinkedInIcon({ className = "w-4 h-4" }: { className?: string }) {
@@ -409,15 +410,17 @@ export function AboutContent() {
                       <ArrowUpRight className="w-3.5 h-3.5 opacity-80" />
                     </motion.a>
                   )}
-                  {founder.email && (
+                  {founder.portfolio && (
                     <motion.a
                       whileHover={{ scale: 1.04, y: -2 }}
                       whileTap={{ scale: 0.98 }}
-                      href={`mailto:${founder.email}`}
+                      href={founder.portfolio}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
                     >
-                      <Mail className="w-4 h-4 text-slate-500 dark:text-slate-400" />
-                      <span>Direct Email</span>
+                      <Globe className="w-4 h-4 text-slate-500 dark:text-slate-400" />
+                      <span>Personal Portfolio</span>
                     </motion.a>
                   )}
                 </div>
@@ -590,6 +593,19 @@ export function AboutContent() {
                         >
                           <FacebookIcon className="w-3.5 h-3.5" />
                           <span>Facebook</span>
+                        </motion.a>
+                      )}
+                      {member.portfolio && (
+                        <motion.a
+                          whileHover={{ scale: 1.08 }}
+                          whileTap={{ scale: 0.95 }}
+                          href={member.portfolio}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                        >
+                          <Globe className="w-3.5 h-3.5" />
+                          <span>Portfolio</span>
                         </motion.a>
                       )}
                     </div>
