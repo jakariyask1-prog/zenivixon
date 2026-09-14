@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { checkRateLimit } from "@/lib/rate-limit";
 import { projectBriefSchema } from "@/lib/validations";
+import { analyzeLeadWithGemini } from "@/lib/gemini";
+import { appendLeadToSheet } from "@/lib/sheets";
+import { sendLeadEmails } from "@/lib/email";
 
 export async function POST(req: NextRequest) {
   // Rate limit by IP
@@ -41,7 +44,7 @@ export async function POST(req: NextRequest) {
 
     const resolvedService = projectTypeLabels[projectType] || projectType || "AI Project Brief";
 
-    // Clean, structured message without raw multi-line markdown that could break downstream n8n Resend JSON payloads
+    // Clean, structured message
     const messageParts: string[] = [];
     if (problemDescription && problemDescription.trim()) {
       messageParts.push(problemDescription.trim());
@@ -73,68 +76,55 @@ export async function POST(req: NextRequest) {
       message: cleanMessage,
     };
 
-    // ─── Forward to n8n Webhook ──────────────────────────────────────────────
-    const webhookUrl = process.env.N8N_WEBHOOK_URL;
-    if (!webhookUrl) {
-      console.error("[ZENIVIXON Project Brief] N8N_WEBHOOK_URL is not configured.");
-      return NextResponse.json(
-        { success: false, error: "Service configuration error." },
-        { status: 503 }
-      );
-    }
+    // ─── Direct Lead Processing (Replacing n8n) ──────────────────────────────
+    console.log(`[ZENIVIXON Project Brief] Processing new lead for: ${payload.email}`);
 
-    let n8nError: string | null = null;
-    try {
-      const webhookRes = await fetch(webhookUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json, text/plain, */*",
-        },
-        body: JSON.stringify(payload),
-      });
+    // 1. Analyze lead with Gemini AI
+    const aiAnalysis = await analyzeLeadWithGemini(payload);
 
-      if (!webhookRes.ok) {
-        const errBody = await webhookRes.text();
-        console.error(
-          `[ZENIVIXON Project Brief] n8n webhook responded with status ${webhookRes.status}:`,
-          errBody
-        );
-        try {
-          const parsed = JSON.parse(errBody);
-          n8nError =
-            parsed.message ||
-            parsed.hint ||
-            `Webhook returned status ${webhookRes.status}`;
-        } catch {
-          n8nError = `Webhook returned status ${webhookRes.status}`;
-        }
-      }
-    } catch (webhookErr) {
-      console.error(
-        "[ZENIVIXON Project Brief] Error connecting to n8n webhook:",
-        webhookErr
-      );
-      n8nError =
-        webhookErr instanceof Error
-          ? webhookErr.message
-          : "Failed to connect to webhook";
-    }
-
-    if (n8nError) {
-      return NextResponse.json(
-        { success: false, error: n8nError },
-        { status: 502 }
-      );
-    }
-
-    console.log("[ZENIVIXON Project Brief] New Submission Processed:", {
+    // 2. Append to Google Sheets
+    await appendLeadToSheet({
       name: payload.name,
       email: payload.email,
-      company: payload.company || "N/A",
+      company: payload.company || "",
+      service: aiAnalysis.service_category || payload.service,
+      leadPriority: aiAnalysis.lead_priority,
+      businessNeed: aiAnalysis.business_need,
+      recommendedSolution: aiAnalysis.recommended_solution,
+    }).catch(err => console.error("Failed to append to Google Sheets:", err));
+
+    // 3. Send Emails via Resend (To Client and To Admin)
+    await sendLeadEmails({
+      name: payload.name,
+      email: payload.email,
+      company: payload.company || "",
       service: payload.service,
-      receivedAt: new Date().toISOString(),
-    });
+      message: payload.message,
+      clientReplyHtml: aiAnalysis.client_reply,
+    }).catch(err => console.error("Failed to send emails:", err));
+
+    // 4. Send POST request to Render API (zenivixon-ai-consultant)
+    try {
+      await fetch("https://zenivixon-ai-consultant.onrender.com/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: payload.name,
+          email: payload.email,
+          company: payload.company || "",
+          service: payload.service,
+          message: payload.message,
+          lead_priority: aiAnalysis.lead_priority,
+          business_need: aiAnalysis.business_need,
+          recommended_solution: aiAnalysis.recommended_solution,
+        }),
+      });
+      console.log("[ZENIVIXON Render API] Lead forwarded successfully.");
+    } catch (renderErr) {
+      console.error("Failed to forward lead to Render API:", renderErr);
+    }
+
+    console.log("[ZENIVIXON Project Brief] New Submission Processed Successfully.");
 
     return NextResponse.json({ success: true });
   } catch (err) {
