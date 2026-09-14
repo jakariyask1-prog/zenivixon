@@ -17,12 +17,17 @@ export async function sendLeadEmails(data: {
 
   try {
     // 1. Send Email to Client (AI Generated Reply)
-    await resend.emails.send({
+    const clientResponse = await resend.emails.send({
       from: "ZENIVIXON <contact@zenivixon.com>",
       to: [data.email],
       subject: "Thank you for contacting ZENIVIXON",
       html: data.clientReplyHtml.replace(/\n/g, "<br>"),
     });
+
+    if (clientResponse.error) {
+      console.error("[Resend Error - Client Email]:", clientResponse.error);
+      throw new Error(`Client email failed: ${clientResponse.error.message}`);
+    }
 
     // 2. Send Notification Email to Admin
     const adminHtml = `<h2>New Contact Form Submission</h2>
@@ -32,13 +37,18 @@ export async function sendLeadEmails(data: {
 <p><b>Service:</b> ${data.service}</p>
 <p><b>Message:</b> ${data.message}</p>`;
 
-    await resend.emails.send({
+    const adminResponse = await resend.emails.send({
       from: "ZENIVIXON <contact@zenivixon.com>",
       to: ["zenivixon@gmail.com"],
       replyTo: data.email,
       subject: `🟢 New Lead: ${data.name}`,
       html: adminHtml,
     });
+
+    if (adminResponse.error) {
+      console.error("[Resend Error - Admin Email]:", adminResponse.error);
+      throw new Error(`Admin email failed: ${adminResponse.error.message}`);
+    }
 
     console.log("[ZENIVIXON Email] Successfully sent both emails via Resend.");
   } catch (error) {
