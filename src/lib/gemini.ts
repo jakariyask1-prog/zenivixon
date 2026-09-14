@@ -14,7 +14,7 @@ export async function analyzeLeadWithGemini(leadData: {
     throw new Error("GEMINI_API_KEY is not configured.");
   }
 
-  const model = genAI.getGenerativeModel({ model: "gemini-3.0-flash" });
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
   const prompt = `You are ZENIVIXON's AI Business Lead Assistant and Client Communication Consultant.
 
