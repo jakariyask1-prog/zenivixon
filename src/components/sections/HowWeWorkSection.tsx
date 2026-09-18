@@ -64,10 +64,12 @@ export function HowWeWorkSection() {
 
         {/* 5-Step Process Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
-          {steps.map((item) => (
+          {steps.map((item, sIdx) => (
             <div
               key={item.step}
-              className="rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm dark:shadow-none p-6 flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-200"
+              data-aos="fade-up"
+              data-aos-delay={sIdx * 100}
+              className="rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm dark:shadow-none p-6 flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-200 premium-card-hover"
             >
               <div>
                 <div className="flex items-center justify-between mb-5">
@@ -93,7 +95,7 @@ export function HowWeWorkSection() {
         </div>
 
         {/* Psychological Commitment Box */}
-        <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#0b1120] border border-blue-100 dark:border-blue-900/40 shadow-sm dark:shadow-none max-w-3xl mx-auto text-center space-y-2">
+        <div data-aos="fade-up" className="mt-12 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#0b1120] border border-blue-100 dark:border-blue-900/40 shadow-sm dark:shadow-none max-w-3xl mx-auto text-center space-y-2 premium-card-hover">
           <p className="text-xs font-heading uppercase tracking-widest text-blue-700 dark:text-blue-400 font-bold">
             Our Core Engineering Promise
           </p>

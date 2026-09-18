@@ -56,7 +56,7 @@ export function RoiCalculatorSection() {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16 md:mb-20">
           <Badge variant="emerald" size="sm" className="font-semibold text-xs tracking-widest gap-1.5">
-            <Calculator className="w-3.5 h-3.5" />
+            <Calculator className="w-3.5 h-3.5 animate-pulse" />
             ROI & SAVINGS CALCULATOR
           </Badge>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F172A] dark:text-white tracking-tight font-heading leading-tight">
@@ -70,7 +70,7 @@ export function RoiCalculatorSection() {
         {/* Calculator Main Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch max-w-6xl mx-auto">
           {/* Left Column: Interactive Sliders */}
-          <div className="lg:col-span-6 bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm hover:border-slate-300 dark:hover:border-slate-700 transition-all flex flex-col justify-between space-y-8">
+          <div className="lg:col-span-6 bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm hover:border-slate-300 dark:hover:border-slate-700 transition-all flex flex-col justify-between space-y-8 premium-card-hover">
             <div className="space-y-6">
               <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
                 <span className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 font-heading">
@@ -172,7 +172,7 @@ export function RoiCalculatorSection() {
           </div>
 
           {/* Right Column: Dynamic Projected Impact Card */}
-          <div className="lg:col-span-6 bg-gradient-to-b from-[#0F172A] to-[#020817] text-white border border-blue-500/20 rounded-3xl p-6 sm:p-8 shadow-xl flex flex-col justify-between relative overflow-hidden">
+          <div className="lg:col-span-6 bg-gradient-to-b from-[#0F172A] to-[#020817] text-white border border-blue-500/20 rounded-3xl p-6 sm:p-8 shadow-xl flex flex-col justify-between relative overflow-hidden premium-card-hover">
             {/* Background Glow */}
             <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
             <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-cyan-600/15 rounded-full blur-3xl pointer-events-none"></div>

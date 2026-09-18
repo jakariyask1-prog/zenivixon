@@ -76,7 +76,9 @@ export function WhatWeDoSection() {
           {pathways.map((item, idx) => (
             <StaggerItem key={idx}>
               <div
-                className="p-7 rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm dark:shadow-none flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-200 group relative glow-border h-full"
+                data-aos="fade-up"
+                data-aos-delay={idx * 100}
+                className="p-7 rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm dark:shadow-none flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-200 group relative glow-border h-full premium-card-hover"
               >
               <div className="space-y-5">
                 {/* Header with Icon & Category */}
@@ -150,10 +152,10 @@ export function WhatWeDoSection() {
         </StaggerContainer>
 
         {/* Primary V1 Focus Callout Banner */}
-        <div className="rounded-3xl bg-white dark:bg-[#0b1120] border border-blue-100 dark:border-blue-900/40 p-8 md:p-10 shadow-sm dark:shadow-none flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div data-aos="fade-up" className="rounded-3xl bg-white dark:bg-[#0b1120] border border-blue-100 dark:border-blue-900/40 p-8 md:p-10 shadow-sm dark:shadow-none flex flex-col md:flex-row items-start md:items-center justify-between gap-6 premium-card-hover">
           <div className="space-y-2 max-w-2xl">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-blue-600" />
+              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
               <span className="text-xs font-heading font-bold text-blue-700 dark:text-blue-400 uppercase tracking-widest">
                 Our Core Services &bull; Practical Execution
               </span>

@@ -32,7 +32,7 @@ export function HeroSection() {
           <ScrollReveal direction="up" delay={0.1}>
             {/* Enhanced Premium Eyebrow Badge */}
             <div className="inline-flex items-center justify-center gap-2.5 px-5 py-2 sm:px-6 sm:py-2.5 rounded-full bg-blue-50/90 dark:bg-blue-950/40 border border-blue-200/90 dark:border-blue-800/80 text-blue-800 dark:text-blue-300 shadow-sm shadow-blue-500/10 hover:border-blue-300 dark:hover:border-blue-700 transition-all">
-              <div className="w-5 h-5 rounded-full bg-blue-600/10 dark:bg-blue-400/20 flex items-center justify-center text-blue-600 dark:text-blue-400">
+              <div className="w-5 h-5 rounded-full bg-blue-600/10 dark:bg-blue-400/20 flex items-center justify-center text-blue-600 dark:text-blue-400 animate-pulse">
                 <Sparkles className="w-3.5 h-3.5" />
               </div>
               <span className="text-xs sm:text-sm font-bold uppercase tracking-widest font-heading">
@@ -117,7 +117,7 @@ export function HeroSection() {
                 alt="ZENIVIXON Platform Integration"
                 width={1200}
                 height={675}
-                className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="w-full h-auto object-cover img-hover-effect transform group-hover:scale-105 transition-all duration-700 ease-out cursor-pointer"
                 priority
               />
             </div>
@@ -137,7 +137,8 @@ export function HeroSection() {
                   enterprise_transformation_architecture
                 </span>
               </div>
-              <div className="text-xs font-heading text-cyan-700 dark:text-cyan-300 bg-cyan-50 dark:bg-cyan-950/40 px-2.5 py-1 rounded-full border border-cyan-200 dark:border-cyan-800 font-semibold">
+              <div className="text-xs font-heading text-cyan-700 dark:text-cyan-300 bg-cyan-50 dark:bg-cyan-950/40 px-2.5 py-1 rounded-full border border-cyan-200 dark:border-cyan-800 font-semibold flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
                 SYSTEM TOPOLOGY: DETERMINISTIC
               </div>
             </div>
@@ -146,7 +147,7 @@ export function HeroSection() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-0 relative">
               {/* Stage 1: Business Systems */}
               <div className="relative">
-                <SpotlightCard className="p-5 bg-slate-50/80 dark:bg-slate-900/50 flex flex-col justify-between hover:bg-white dark:hover:bg-slate-850 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-sm" spotlightColor="rgba(148, 163, 184, 0.15)">
+                <SpotlightCard className="p-5 bg-slate-50/80 dark:bg-slate-900/50 flex flex-col justify-between hover:bg-white dark:hover:bg-slate-850 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-sm premium-card-hover" spotlightColor="rgba(148, 163, 184, 0.15)">
                   <div>
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest">
@@ -177,7 +178,7 @@ export function HeroSection() {
 
               {/* Stage 2: AI Intelligence */}
               <div className="relative">
-                <SpotlightCard className="p-5 bg-blue-50/50 dark:bg-blue-950/20 flex flex-col justify-between hover:bg-blue-50/80 dark:hover:bg-blue-950/40 hover:border-blue-300 dark:hover:border-blue-800 hover:shadow-sm" spotlightColor="rgba(59, 130, 246, 0.15)">
+                <SpotlightCard className="p-5 bg-blue-50/50 dark:bg-blue-950/20 flex flex-col justify-between hover:bg-blue-50/80 dark:hover:bg-blue-950/40 hover:border-blue-300 dark:hover:border-blue-800 hover:shadow-sm premium-card-hover" spotlightColor="rgba(59, 130, 246, 0.15)">
                   <div>
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-xs font-heading text-blue-700 dark:text-blue-400 font-bold uppercase tracking-widest">
@@ -207,7 +208,7 @@ export function HeroSection() {
 
               {/* Stage 3: Automation */}
               <div className="relative">
-                <SpotlightCard className="p-5 bg-cyan-50/50 dark:bg-cyan-950/20 flex flex-col justify-between hover:bg-cyan-50/80 dark:hover:bg-cyan-950/40 hover:border-cyan-300 dark:hover:border-cyan-800 hover:shadow-sm" spotlightColor="rgba(6, 182, 212, 0.15)">
+                <SpotlightCard className="p-5 bg-cyan-50/50 dark:bg-cyan-950/20 flex flex-col justify-between hover:bg-cyan-50/80 dark:hover:bg-cyan-950/40 hover:border-cyan-300 dark:hover:border-cyan-800 hover:shadow-sm premium-card-hover" spotlightColor="rgba(6, 182, 212, 0.15)">
                   <div>
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-xs font-heading text-cyan-700 dark:text-cyan-400 font-bold uppercase tracking-widest">
@@ -236,7 +237,7 @@ export function HeroSection() {
               </div>
 
               {/* Stage 4: Measurable Outcome */}
-              <SpotlightCard className="p-5 bg-emerald-50/50 dark:bg-emerald-950/20 flex flex-col justify-between hover:bg-emerald-50/80 dark:hover:bg-emerald-950/40 hover:border-emerald-300 dark:hover:border-emerald-800 hover:shadow-sm" spotlightColor="rgba(16, 185, 129, 0.15)">
+              <SpotlightCard className="p-5 bg-emerald-50/50 dark:bg-emerald-950/20 flex flex-col justify-between hover:bg-emerald-50/80 dark:hover:bg-emerald-950/40 hover:border-emerald-300 dark:hover:border-emerald-800 hover:shadow-sm premium-card-hover" spotlightColor="rgba(16, 185, 129, 0.15)">
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs font-heading text-emerald-700 dark:text-emerald-400 font-bold uppercase tracking-widest">

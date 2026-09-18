@@ -228,7 +228,7 @@ export function BeforeAfterComparisonSection() {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-12 md:mb-16">
           <Badge variant="cyan" size="sm" className="font-semibold text-xs tracking-widest gap-1.5">
-            <Sparkles className="w-3.5 h-3.5" />
+            <Sparkles className="w-3.5 h-3.5 animate-pulse" />
             WORKFLOW TRANSFORMATION
           </Badge>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F172A] dark:text-white tracking-tight font-heading leading-tight">
@@ -272,7 +272,7 @@ export function BeforeAfterComparisonSection() {
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
               {/* LEFT CARD: BEFORE (Traditional / Manual) */}
-              <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#0b1120] border-2 border-red-200/60 dark:border-red-950/40 shadow-sm flex flex-col justify-between space-y-6 relative overflow-hidden">
+              <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#0b1120] border-2 border-red-200/60 dark:border-red-950/40 shadow-sm flex flex-col justify-between space-y-6 relative overflow-hidden premium-card-hover">
                 <div className="space-y-6">
                   {/* Card Header */}
                   <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800/80 pb-4">
@@ -315,28 +315,27 @@ export function BeforeAfterComparisonSection() {
               </div>
 
               {/* RIGHT CARD: AFTER (Zenivixon Autonomous AI) */}
-              <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-[#020817] to-[#0b1120] text-white border-2 border-emerald-500/50 shadow-xl flex flex-col justify-between space-y-6 relative overflow-hidden">
+              <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-[#020817] to-[#0b1120] text-white border-2 border-emerald-500/50 shadow-xl flex flex-col justify-between space-y-6 relative overflow-hidden premium-card-hover">
                 {/* Glowing Aura Effect */}
                 <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                <div className="absolute bottom-0 left-0 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
                 <div className="space-y-6 relative z-10">
                   {/* Card Header */}
                   <div className="flex items-center justify-between border-b border-white/10 pb-4">
                     <div className="space-y-1">
                       <span className="text-[11px] font-bold tracking-widest uppercase text-emerald-400 font-mono flex items-center gap-1.5">
-                        <Zap className="w-3.5 h-3.5" /> The ZENIVIXON Advantage
+                        <Zap className="w-3.5 h-3.5 text-emerald-400" /> ZENIVIXON Autonomous Workflow
                       </span>
                       <h3 className="text-xl font-bold text-white font-heading">
                         {current.after.title}
                       </h3>
                     </div>
-                    <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-sm shadow-emerald-500/20">
                       {current.after.metrics}
                     </span>
                   </div>
 
-                  {/* Transformation Points */}
+                  {/* Capabilities List */}
                   <div className="space-y-4">
                     {current.after.points.map((pt, idx) => (
                       <div key={idx} className="flex items-start gap-3">
@@ -363,7 +362,7 @@ export function BeforeAfterComparisonSection() {
             </div>
 
             {/* Impact Metric Strip */}
-            <div className="p-4 sm:p-6 rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="p-4 sm:p-6 rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4 premium-card-hover">
               <div className="flex items-center gap-6 divide-x divide-slate-200 dark:divide-slate-800 text-center sm:text-left">
                 <div className="pr-4 space-y-0.5">
                   <div className="text-[11px] font-mono uppercase text-slate-500 dark:text-slate-400">Velocity</div>

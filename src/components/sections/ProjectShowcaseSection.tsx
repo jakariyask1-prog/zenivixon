@@ -47,7 +47,8 @@ export function ProjectShowcaseSection() {
           {featuredProjects.map((project) => (
             <div
               key={project.slug}
-              className="rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm dark:shadow-none overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-lg transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-0"
+              data-aos="fade-up"
+              className="rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm dark:shadow-none overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-lg transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-0 premium-card-hover"
             >
               {/* Visual Preview (Left 7 cols on lg) */}
               <div className="lg:col-span-7 bg-slate-50/80 dark:bg-slate-900/50 p-6 sm:p-8 flex flex-col items-center justify-center border-b lg:border-b-0 lg:border-r border-slate-200/80 dark:border-slate-800 relative min-h-[280px] sm:min-h-[360px]">
@@ -56,7 +57,7 @@ export function ProjectShowcaseSection() {
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover object-top"
+                    className="object-cover object-top img-hover-effect transition-all duration-700 cursor-pointer"
                   />
                   {project.videoUrl && (
                     <div className="absolute inset-0 bg-slate-900/20 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -152,10 +153,12 @@ export function ProjectShowcaseSection() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {otherProjects.map((project) => (
+            {otherProjects.map((project, pIdx) => (
               <div
                 key={project.slug}
-                className="rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm dark:shadow-none p-6 flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-200 group"
+                data-aos="fade-up"
+                data-aos-delay={pIdx * 80}
+                className="rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm dark:shadow-none p-6 flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-200 group premium-card-hover"
               >
                 <div className="space-y-4">
                   <div className="aspect-[16/9] relative rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
@@ -163,7 +166,7 @@ export function ProjectShowcaseSection() {
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                      className="object-cover object-top img-hover-effect transition-all duration-700 group-hover:scale-105"
                     />
                   </div>
                   <div className="flex items-center justify-between">

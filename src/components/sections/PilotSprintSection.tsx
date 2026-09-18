@@ -32,7 +32,7 @@ export function PilotSprintSection() {
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-12 relative z-10">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-400/10 text-yellow-300 border border-yellow-400/30 text-xs font-bold font-mono uppercase tracking-widest">
-              <ShieldCheck className="w-4 h-4 text-yellow-400" />
+              <ShieldCheck className="w-4 h-4 text-yellow-400 animate-pulse" />
               14-Day Pilot
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight font-heading leading-tight">
@@ -49,7 +49,7 @@ export function PilotSprintSection() {
           {/* 3 Pillars of the Pilot */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 mb-12">
             {/* Pillar 1 */}
-            <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-4 hover:border-yellow-400/30 transition-all">
+            <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-4 hover:border-yellow-400/30 transition-all premium-card-hover">
               <div className="w-12 h-12 rounded-xl bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center text-yellow-400 font-bold">
                 <Zap className="w-6 h-6" />
               </div>
@@ -62,7 +62,7 @@ export function PilotSprintSection() {
             </div>
 
             {/* Pillar 2 */}
-            <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-4 hover:border-yellow-400/30 transition-all">
+            <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-4 hover:border-yellow-400/30 transition-all premium-card-hover">
               <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-cyan-400 font-bold">
                 <MessageSquare className="w-6 h-6" />
               </div>
@@ -75,7 +75,7 @@ export function PilotSprintSection() {
             </div>
 
             {/* Pillar 3 */}
-            <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-4 hover:border-yellow-400/30 transition-all">
+            <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-4 hover:border-yellow-400/30 transition-all premium-card-hover">
               <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold">
                 <RefreshCw className="w-6 h-6" />
               </div>
@@ -89,7 +89,7 @@ export function PilotSprintSection() {
           </div>
 
           {/* Action Bar & Badges */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-6 relative z-10">
+          <div className="p-6 sm:p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-6 relative z-10 premium-card-hover">
             <div className="space-y-1 text-center sm:text-left">
               <div className="text-sm font-bold text-white flex items-center justify-center sm:justify-start gap-2">
                 <Lock className="w-4 h-4 text-yellow-400" />

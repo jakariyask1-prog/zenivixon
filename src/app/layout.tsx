@@ -9,6 +9,7 @@ import { CursorGlow } from "@/components/ui/CursorGlow";
 import { PageTransition } from "@/components/providers/PageTransition";
 import Script from "next/script";
 import ChatWidget from "@/components/ChatWidget";
+import { AosProvider } from "@/components/providers/AosProvider";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -72,65 +73,74 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${manrope.variable} ${inter.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+      </head>
       <body className="min-h-full flex flex-col bg-[#FCFDFE] dark:bg-[#020817] text-[#0F172A] dark:text-slate-50 selection:bg-blue-100 dark:selection:bg-blue-900 selection:text-blue-900 dark:selection:text-blue-50 transition-colors duration-300">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {process.env.NEXT_PUBLIC_GA_ID && (
-            <>
-              <Script
-                src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-                strategy="afterInteractive"
-              />
-              <Script id="google-analytics" strategy="afterInteractive">
-                {`
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
-                `}
-              </Script>
-            </>
-          )}
-          
-          {/* Structured Data for Google (SEO & Business Verification) */}
-          <Script 
-            id="structured-data" 
-            type="application/ld+json" 
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "Organization",
-                "name": "ZENIVIXON TECHNOLOGIES",
-                "legalName": "ZENIVIXON TECHNOLOGIES",
-                "url": SITE_METADATA.url,
-                "logo": `${SITE_METADATA.url}/icon.png`,
-                "description": "Legally Licensed AI-First Technology Company in Bangladesh. Operating under a valid Trade License issued by Khulna City Corporation and a valid e-TIN from the National Board of Revenue (NBR).",
-                "address": {
-                  "@type": "PostalAddress",
-                  "streetAddress": "Gollamari - Sonadanga Bypass Rd",
-                  "addressLocality": "Khulna",
-                  "addressCountry": "Bangladesh"
-                },
-                "sameAs": [
-                  COMPANY_INFO.channels.linkedin,
-                  COMPANY_INFO.channels.facebook,
-                  COMPANY_INFO.channels.whatsapp
-                ]
-              })
-            }}
-          />
-          <CursorGlow />
-          {/* Framed Layout Borders */}
-          <div className="fixed left-0 top-0 bottom-0 w-3 md:w-5 lg:w-6 bg-[#FCFDFE] dark:bg-[#020817] border-r border-slate-200 dark:border-slate-800 z-[60] pointer-events-none transition-colors duration-300"></div>
-          <div className="fixed right-0 top-0 bottom-0 w-3 md:w-5 lg:w-6 bg-[#FCFDFE] dark:bg-[#020817] border-l border-slate-200 dark:border-slate-800 z-[60] pointer-events-none transition-colors duration-300"></div>
-          
-          <div className="px-3 md:px-5 lg:px-6 flex flex-col min-h-screen">
-            <Navbar />
-            <main className="flex-1 flex flex-col">
-              <PageTransition>{children}</PageTransition>
-            </main>
-            <Footer />
-          </div>
-          <ChatWidget />
+          <AosProvider>
+            {process.env.NEXT_PUBLIC_GA_ID && (
+              <>
+                <Script
+                  src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+                  strategy="afterInteractive"
+                />
+                <Script id="google-analytics" strategy="afterInteractive">
+                  {`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+                  `}
+                </Script>
+              </>
+            )}
+            
+            {/* Structured Data for Google (SEO & Business Verification) */}
+            <Script 
+              id="structured-data" 
+              type="application/ld+json" 
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "Organization",
+                  "name": "ZENIVIXON TECHNOLOGIES",
+                  "legalName": "ZENIVIXON TECHNOLOGIES",
+                  "url": SITE_METADATA.url,
+                  "logo": `${SITE_METADATA.url}/icon.png`,
+                  "description": "Legally Licensed AI-First Technology Company in Bangladesh. Operating under a valid Trade License issued by Khulna City Corporation and a valid e-TIN from the National Board of Revenue (NBR).",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Gollamari - Sonadanga Bypass Rd",
+                    "addressLocality": "Khulna",
+                    "addressCountry": "Bangladesh"
+                  },
+                  "sameAs": [
+                    COMPANY_INFO.channels.linkedin,
+                    COMPANY_INFO.channels.facebook,
+                    COMPANY_INFO.channels.whatsapp
+                  ]
+                })
+              }}
+            />
+            <CursorGlow />
+            {/* Framed Layout Borders */}
+            <div className="fixed left-0 top-0 bottom-0 w-3 md:w-5 lg:w-6 bg-[#FCFDFE] dark:bg-[#020817] border-r border-slate-200 dark:border-slate-800 z-[60] pointer-events-none transition-colors duration-300"></div>
+            <div className="fixed right-0 top-0 bottom-0 w-3 md:w-5 lg:w-6 bg-[#FCFDFE] dark:bg-[#020817] border-l border-slate-200 dark:border-slate-800 z-[60] pointer-events-none transition-colors duration-300"></div>
+            
+            <div className="px-3 md:px-5 lg:px-6 flex flex-col min-h-screen">
+              <Navbar />
+              <main className="flex-1 flex flex-col">
+                <PageTransition>{children}</PageTransition>
+              </main>
+              <Footer />
+            </div>
+            <ChatWidget />
+            <Script
+              src="https://unpkg.com/aos@next/dist/aos.js"
+              strategy="afterInteractive"
+            />
+          </AosProvider>
         </ThemeProvider>
       </body>
     </html>

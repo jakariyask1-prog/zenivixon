@@ -13,7 +13,7 @@ export function CapabilitiesSection() {
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24">
           <ScrollReveal direction="up" delay={0.1}>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold uppercase tracking-[0.2em] mb-6 font-heading">
-              <div className="w-2 h-2 rounded-full bg-blue-600" />
+              <div className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
               OUR CAPABILITIES
             </div>
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-[#0F172A] dark:text-white font-heading tracking-tight mb-6">
@@ -31,7 +31,7 @@ export function CapabilitiesSection() {
           
           {/* Feature 1: AI Agent Development (Mockup UI) */}
           <ScrollReveal direction="up" delay={0.2} className="h-full">
-            <div className="p-8 md:p-10 rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/40 dark:shadow-none h-full flex flex-col justify-between group">
+            <div className="p-8 md:p-10 rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/40 dark:shadow-none h-full flex flex-col justify-between group premium-card-hover">
               <div>
                 <h3 className="text-2xl md:text-3xl font-extrabold text-[#0F172A] dark:text-white font-heading mb-4">
                   AI Agent Development
@@ -76,7 +76,7 @@ export function CapabilitiesSection() {
 
           {/* Feature 2: AI Strategy Consulting (Checklists) */}
           <ScrollReveal direction="up" delay={0.3} className="h-full">
-            <div className="p-8 md:p-10 rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/40 dark:shadow-none h-full flex flex-col justify-between group">
+            <div className="p-8 md:p-10 rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/40 dark:shadow-none h-full flex flex-col justify-between group premium-card-hover">
               <div>
                 <h3 className="text-2xl md:text-3xl font-extrabold text-[#0F172A] dark:text-white font-heading mb-4">
                   AI Strategy Consulting

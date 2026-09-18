@@ -120,7 +120,7 @@ export function IntegrationsSection() {
               <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {section.tools.map((tool, toolIdx) => (
                   <ScrollReveal key={tool.name} direction="up" delay={0.1 + toolIdx * 0.1}>
-                    <div className="p-5 md:p-6 rounded-xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group h-full">
+                    <div className="p-5 md:p-6 rounded-xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group h-full premium-card-hover">
                       <div className={`w-12 h-12 rounded-lg ${tool.bgColor} flex items-center justify-center mb-4 transition-transform group-hover:scale-110`}>
                         {tool.icon}
                       </div>

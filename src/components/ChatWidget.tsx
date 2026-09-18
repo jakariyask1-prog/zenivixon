@@ -6,7 +6,7 @@ export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [sessionId, setSessionId] = useState("");
+  const [sessionId] = useState(() => "session_" + Math.random().toString(36).substring(2, 10));
   const [messages, setMessages] = useState<{ role: string; content: string }[]>([
     {
       role: "assistant",
@@ -16,10 +16,7 @@ export default function ChatWidget() {
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // ব্রাউজার রিলোড হলে ইউজারের জন্য একটি ইউনিক সেশন আইডি তৈরি হবে (মেমরির জন্য)
   useEffect(() => {
-    setSessionId("session_" + Math.random().toString(36).substring(2, 10));
-    
     // Render-এর ফ্রি সার্ভার "Sleep" মোড থেকে জাগানোর জন্য (Cold Start কমানোর জন্য) ব্যাকগ্রাউন্ডে একটি রিকোয়েস্ট পাঠানো
     fetch("https://zenivixon-ai-consultant.onrender.com/").catch(() => {});
   }, []);

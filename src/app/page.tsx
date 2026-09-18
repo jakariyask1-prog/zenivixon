@@ -6,6 +6,7 @@ import { HowWeWorkSection } from "@/components/sections/HowWeWorkSection";
 import { ProjectShowcaseSection } from "@/components/sections/ProjectShowcaseSection";
 import { WhyZenivixonSection } from "@/components/sections/WhyZenivixonSection";
 import { IntegrationsSection } from "@/components/sections/IntegrationsSection";
+import { EngineeringStackSection } from "@/components/sections/EngineeringStackSection";
 import { FinalCtaSection } from "@/components/sections/FinalCtaSection";
 import { VideoShowcaseSection } from "@/components/sections/VideoShowcaseSection";
 import { BeforeAfterComparisonSection } from "@/components/sections/BeforeAfterComparisonSection";
@@ -16,40 +17,67 @@ export default function HomePage() {
   return (
     <>
       {/* 01. Hero Section */}
-      <HeroSection />
+      <div data-aos="fade-up">
+        <HeroSection />
+      </div>
 
       {/* 02. What We Do */}
-      <WhatWeDoSection />
+      <div data-aos="fade-up">
+        <WhatWeDoSection />
+      </div>
 
       {/* 03. 🚀 NEW: Before vs After Workflow Transformation */}
-      <BeforeAfterComparisonSection />
+      <div data-aos="fade-up">
+        <BeforeAfterComparisonSection />
+      </div>
 
       {/* 04. Capabilities (Mockups & Checklists) */}
-      <CapabilitiesSection />
+      <div data-aos="fade-up">
+        <CapabilitiesSection />
+      </div>
 
       {/* 05. Integrations / Tech Stack */}
-      <IntegrationsSection />
+      <div data-aos="fade-up">
+        <IntegrationsSection />
+      </div>
 
-      {/* 06. 💰 NEW: Interactive ROI & Cost-Savings Calculator */}
-      <RoiCalculatorSection />
+      {/* 06. ⚡ NEW: Interactive Engineering Stack & Ecosystem */}
+      <EngineeringStackSection />
 
-      {/* 07. How We Work */}
-      <HowWeWorkSection />
+      {/* 07. 💰 NEW: Interactive ROI & Cost-Savings Calculator */}
+      <div data-aos="fade-up">
+        <RoiCalculatorSection />
+      </div>
 
-      {/* 08. Project Showcase */}
-      <ProjectShowcaseSection />
+      {/* 08. How We Work */}
+      <div data-aos="fade-up">
+        <HowWeWorkSection />
+      </div>
 
-      {/* 09. 🎬 Video Showcase + Animated Stats */}
-      <VideoShowcaseSection />
+      {/* 09. Project Showcase */}
+      <div data-aos="fade-up">
+        <ProjectShowcaseSection />
+      </div>
 
-      {/* 10. 🛡️ NEW: 14-Day Pilot Sprint */}
-      <PilotSprintSection />
+      {/* 10. 🎬 Video Showcase + Animated Stats */}
+      <div data-aos="fade-up">
+        <VideoShowcaseSection />
+      </div>
 
-      {/* 11. Why ZENIVIXON */}
-      <WhyZenivixonSection />
+      {/* 11. 🛡️ NEW: 14-Day Pilot Sprint */}
+      <div data-aos="fade-up">
+        <PilotSprintSection />
+      </div>
 
-      {/* 12. Final CTA */}
-      <FinalCtaSection />
+      {/* 12. Why ZENIVIXON */}
+      <div data-aos="fade-up">
+        <WhyZenivixonSection />
+      </div>
+
+      {/* 13. Final CTA */}
+      <div data-aos="fade-up">
+        <FinalCtaSection />
+      </div>
     </>
   );
 }

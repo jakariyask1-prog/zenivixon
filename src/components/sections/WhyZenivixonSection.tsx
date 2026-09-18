@@ -185,7 +185,11 @@ export function WhyZenivixonSection() {
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {reasons.map((item, idx) => (
               <StaggerItem key={idx}>
-                <div className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-full group relative overflow-hidden">
+                <div
+                  data-aos="fade-up"
+                  data-aos-delay={idx * 100}
+                  className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-full group relative overflow-hidden premium-card-hover"
+                >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <div className="w-11 h-11 rounded-2xl bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-900 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -209,9 +213,9 @@ export function WhyZenivixonSection() {
         </div>
 
         {/* 🛡️ Risk Reversal Bottom Banner */}
-        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+        <div data-aos="fade-up" className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden premium-card-hover">
           <div className="space-y-2 text-center md:text-left z-10">
-            <span className="text-xs font-bold uppercase tracking-widest font-heading px-3 py-1 rounded-full bg-white/20 border border-white/30 inline-block">
+            <span className="text-xs font-bold uppercase tracking-widest font-heading px-3 py-1 rounded-full bg-white/20 border border-white/30 inline-block animate-pulse">
               Zero Commitment • Free Assessment
             </span>
             <h3 className="text-2xl sm:text-3xl font-extrabold font-heading">
