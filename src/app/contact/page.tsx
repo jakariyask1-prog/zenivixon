@@ -2,6 +2,7 @@ import React from "react";
 import { Metadata } from "next";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { SupportPortalBanner } from "@/components/contact/SupportPortalBanner";
 import { COMPANY_INFO } from "@/lib/constants";
 import { Badge } from "@/components/ui/Badge";
 import { MessageSquare, Mail, Clock } from "lucide-react";
@@ -167,6 +168,11 @@ export default function ContactPage() {
             </div>
             <ContactForm />
           </div>
+        </div>
+
+        {/* AI Support Portal Banner */}
+        <div className="mt-16 sm:mt-20">
+          <SupportPortalBanner />
         </div>
       </div>
     </>

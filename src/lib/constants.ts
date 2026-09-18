@@ -22,6 +22,7 @@ export const COMPANY_INFO = {
     whatsappNumber: "+8801937685423",
     linkedin: "https://linkedin.com/company/zenivixon",
     facebook: "https://www.facebook.com/share/1Re24w32HP/",
+    supportPortal: "https://support.zenivixon.com",
   },
   markets: [
     "United States",
