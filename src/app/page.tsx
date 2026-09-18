@@ -26,25 +26,25 @@ export default function HomePage() {
         <WhatWeDoSection />
       </div>
 
-      {/* 03. 🚀 NEW: Before vs After Workflow Transformation */}
+      {/* 03. ⚡ Core Architecture & Engineering Stack Ecosystem */}
+      <EngineeringStackSection />
+
+      {/* 04. 🚀 Before vs After Workflow Transformation */}
       <div data-aos="fade-up">
         <BeforeAfterComparisonSection />
       </div>
 
-      {/* 04. Capabilities (Mockups & Checklists) */}
+      {/* 05. Capabilities (Mockups & Checklists) */}
       <div data-aos="fade-up">
         <CapabilitiesSection />
       </div>
 
-      {/* 05. Integrations / Tech Stack */}
+      {/* 06. Integrations / Tech Stack */}
       <div data-aos="fade-up">
         <IntegrationsSection />
       </div>
 
-      {/* 06. ⚡ NEW: Interactive Engineering Stack & Ecosystem */}
-      <EngineeringStackSection />
-
-      {/* 07. 💰 NEW: Interactive ROI & Cost-Savings Calculator */}
+      {/* 07. 💰 Interactive ROI & Cost-Savings Calculator */}
       <div data-aos="fade-up">
         <RoiCalculatorSection />
       </div>
