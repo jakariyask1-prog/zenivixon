@@ -34,12 +34,12 @@ export function SupportPortalBanner() {
 
         {/* Heading */}
         <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] dark:text-white tracking-tight font-heading leading-snug transition-colors duration-300">
-          জরুরি টেকনিক্যাল সাপোর্ট বা টিকেট সাবমিট করতে চান?
+          Need Urgent Technical Support or Want to Submit a Ticket?
         </h3>
 
         {/* Description */}
         <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto transition-colors duration-300">
-          আমাদের স্বয়ংক্রিয় এআই সাপোর্ট ইঞ্জিনের মাধ্যমে সাথে সাথে সমাধান ও টিকেট ট্র্যাক করুন।
+          Get instant resolutions and track your tickets seamlessly through our automated AI Support Engine.
         </p>
 
         {/* Action Button */}
