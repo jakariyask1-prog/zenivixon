@@ -6,9 +6,29 @@ import { Sparkles, Move } from "lucide-react";
 
 const emptySubscribe = () => () => {};
 
+export interface SkillCategory {
+  id: string;
+  name: string;
+  iconName: string;
+  color: string;
+  darkColor: string;
+}
+
+export const CATEGORIES: SkillCategory[] = [
+  { id: "all", name: "All Ecosystem (27)", iconName: "Layers", color: "#2563EB", darkColor: "#60A5FA" },
+  { id: "agents", name: "1. Agents & Orchestration", iconName: "Cpu", color: "#4F46E5", darkColor: "#818CF8" },
+  { id: "vectordb", name: "2. Vector DB & RAG", iconName: "Database", color: "#059669", darkColor: "#34D399" },
+  { id: "guardrails", name: "3. Guardrails & Validation", iconName: "ShieldCheck", color: "#D97706", darkColor: "#FBBF24" },
+  { id: "automation", name: "4. Automation & Streaming", iconName: "Workflow", color: "#E11D48", darkColor: "#FB7185" },
+  { id: "inference", name: "5. Local LLMs & Inference", iconName: "Server", color: "#7C3AED", darkColor: "#A78BFA" },
+  { id: "cloud", name: "6. Databases & Cloud", iconName: "Database", color: "#0284C7", darkColor: "#38BDF8" },
+  { id: "tracing", name: "7. AI Monitoring & Tracing", iconName: "Activity", color: "#0D9488", darkColor: "#2DD4BF" },
+];
+
 interface SkillNode {
   id: string;
   name: string;
+  category: string;
   tag: string;
   color: string;
   darkColor: string;
@@ -23,27 +43,66 @@ interface SkillNode {
   connections: string[];
 }
 
-const INITIAL_SKILLS = [
-  { id: "python", name: "Python", tag: "Core AI Engine", color: "#2563EB", darkColor: "#60A5FA", connections: ["fastapi", "langchain", "tensorflow", "docker"] },
-  { id: "vector-db", name: "Vector DB", tag: "Semantic Retrieval", color: "#059669", darkColor: "#34D399", connections: ["rag", "langchain", "python"] },
-  { id: "fastapi", name: "FastAPI", tag: "High-Speed Async API", color: "#0D9488", darkColor: "#2DD4BF", connections: ["python", "docker", "ollama"] },
-  { id: "tensorflow", name: "TensorFlow", tag: "Neural Architectures", color: "#EA580C", darkColor: "#FB923C", connections: ["python", "ollama"] },
-  { id: "ollama", name: "Ollama", tag: "Local LLM Inference", color: "#7C3AED", darkColor: "#A78BFA", connections: ["rag", "fastapi", "langchain"] },
-  { id: "rag", name: "RAG", tag: "Context Augmentation", color: "#0284C7", darkColor: "#38BDF8", connections: ["vector-db", "langchain", "ollama"] },
-  { id: "docker", name: "Docker", tag: "Containerization", color: "#0891B2", darkColor: "#22D3EE", connections: ["fastapi", "python"] },
-  { id: "langchain", name: "Langchain", tag: "Agentic Orchestration", color: "#16A34A", darkColor: "#4ADE80", connections: ["python", "rag", "vector-db", "ollama"] },
+const ALL_SKILLS = [
+  // 1. AI Agents & Orchestration
+  { id: "langgraph", name: "LangGraph", category: "agents", tag: "Cyclic Multi-Agent", color: "#4F46E5", darkColor: "#818CF8", connections: ["langchain", "crewai", "python"] },
+  { id: "langchain", name: "LangChain", category: "agents", tag: "Agent Tooling", color: "#3B82F6", darkColor: "#60A5FA", connections: ["langgraph", "llamaindex", "rag", "qdrant"] },
+  { id: "crewai", name: "CrewAI", category: "agents", tag: "Role-Playing Teams", color: "#6366F1", darkColor: "#A5B4FC", connections: ["langgraph", "ollama", "python"] },
+  { id: "llamaindex", name: "LlamaIndex", category: "agents", tag: "Data Indexing", color: "#4338CA", darkColor: "#818CF8", connections: ["langchain", "rag", "pgvector"] },
+
+  // 2. Vector DB & RAG
+  { id: "qdrant", name: "Qdrant", category: "vectordb", tag: "Fast Vector Engine", color: "#059669", darkColor: "#34D399", connections: ["rag", "langchain", "python"] },
+  { id: "pinecone", name: "Pinecone", category: "vectordb", tag: "Serverless Vector", color: "#10B981", darkColor: "#6EE7B7", connections: ["rag", "llamaindex"] },
+  { id: "pgvector", name: "pgvector", category: "vectordb", tag: "PostgreSQL Vector", color: "#047857", darkColor: "#34D399", connections: ["postgres", "rag"] },
+  { id: "chromadb", name: "ChromaDB", category: "vectordb", tag: "Embedded Store", color: "#059669", darkColor: "#10B981", connections: ["rag", "ollama"] },
+  { id: "rag", name: "RAG", category: "vectordb", tag: "Context Retrieval", color: "#0284C7", darkColor: "#38BDF8", connections: ["qdrant", "pinecone", "pgvector", "langchain"] },
+
+  // 3. Guardrails & Validation (Structured Output)
+  { id: "pydantic", name: "Pydantic", category: "guardrails", tag: "Strict Data Schemas", color: "#D97706", darkColor: "#FBBF24", connections: ["fastapi", "instructor", "python"] },
+  { id: "zod", name: "Zod", category: "guardrails", tag: "TS Schema Guard", color: "#B45309", darkColor: "#FCD34D", connections: ["pydantic", "fastapi"] },
+  { id: "instructor", name: "Instructor", category: "guardrails", tag: "Structured Outputs", color: "#EA580C", darkColor: "#FB923C", connections: ["pydantic", "langgraph", "ollama"] },
+
+  // 4. Automation & Streaming
+  { id: "n8n", name: "n8n", category: "automation", tag: "Workflow Engine", color: "#E11D48", darkColor: "#FB7185", connections: ["fastapi", "docker", "redis"] },
+  { id: "fastapi", name: "FastAPI", category: "automation", tag: "Async REST API", color: "#0D9488", darkColor: "#2DD4BF", connections: ["python", "pydantic", "n8n", "docker"] },
+  { id: "websockets", name: "WebSockets / SSE", category: "automation", tag: "Real-Time Streaming", color: "#BE123C", darkColor: "#F43F5E", connections: ["fastapi", "redis"] },
+  { id: "redis", name: "Redis / Upstash", category: "automation", tag: "Message Queues", color: "#DC2626", darkColor: "#F87171", connections: ["fastapi", "websockets", "n8n"] },
+
+  // 5. Local LLMs & Inference
+  { id: "ollama", name: "Ollama", category: "inference", tag: "Local Model Host", color: "#7C3AED", darkColor: "#A78BFA", connections: ["vllm", "langchain", "fastapi", "crewai"] },
+  { id: "vllm", name: "vLLM", category: "inference", tag: "High-Throughput GPU", color: "#9333EA", darkColor: "#C084FC", connections: ["ollama", "huggingface", "docker"] },
+  { id: "huggingface", name: "Hugging Face", category: "inference", tag: "Transformers Hub", color: "#6D28D9", darkColor: "#A78BFA", connections: ["vllm", "tensorflow", "python"] },
+  { id: "tensorflow", name: "TensorFlow", category: "inference", tag: "Neural Networks", color: "#7E22CE", darkColor: "#C084FC", connections: ["python", "huggingface"] },
+
+  // 6. Databases & Cloud
+  { id: "python", name: "Python", category: "cloud", tag: "Core AI Language", color: "#2563EB", darkColor: "#60A5FA", connections: ["fastapi", "langgraph", "docker", "qdrant"] },
+  { id: "postgres", name: "PostgreSQL / Supabase", category: "cloud", tag: "Relational & Auth", color: "#0284C7", darkColor: "#38BDF8", connections: ["pgvector", "python", "docker"] },
+  { id: "docker", name: "Docker & Compose", category: "cloud", tag: "Containerization", color: "#0891B2", darkColor: "#22D3EE", connections: ["fastapi", "postgres", "github-actions"] },
+  { id: "github-actions", name: "GitHub Actions", category: "cloud", tag: "CI/CD Deployment", color: "#0369A1", darkColor: "#38BDF8", connections: ["docker", "python"] },
+
+  // 7. AI Monitoring & Tracing
+  { id: "langfuse", name: "Langfuse", category: "tracing", tag: "LLM Observability", color: "#0D9488", darkColor: "#2DD4BF", connections: ["langgraph", "rag", "langsmith"] },
+  { id: "langsmith", name: "LangSmith", category: "tracing", tag: "Agent Telemetry", color: "#0F766E", darkColor: "#5EEAD4", connections: ["langchain", "langfuse"] },
+  { id: "ragas", name: "Ragas", category: "tracing", tag: "RAG Evaluation", color: "#14B8A6", darkColor: "#2DD4BF", connections: ["rag", "langfuse"] },
 ];
 
 export function EngineeringStackSection() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { resolvedTheme } = useTheme();
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [activeSkill, setActiveSkill] = useState<string | null>(null);
+
   const activeSkillRef = useRef<string | null>(null);
+  const selectedCategoryRef = useRef<string>("all");
 
   useEffect(() => {
     activeSkillRef.current = activeSkill;
   }, [activeSkill]);
+
+  useEffect(() => {
+    selectedCategoryRef.current = selectedCategory;
+  }, [selectedCategory]);
 
   const mounted = useSyncExternalStore(
     emptySubscribe,
@@ -66,7 +125,7 @@ export function EngineeringStackSection() {
     let height = 0;
 
     // Node state
-    const nodes: SkillNode[] = INITIAL_SKILLS.map((s) => ({
+    const nodes: SkillNode[] = ALL_SKILLS.map((s) => ({
       ...s,
       x: 0,
       y: 0,
@@ -74,8 +133,8 @@ export function EngineeringStackSection() {
       vy: 0,
       baseX: 0,
       baseY: 0,
-      width: 140,
-      height: 38,
+      width: 120,
+      height: 36,
     }));
 
     // Mouse state
@@ -87,14 +146,14 @@ export function EngineeringStackSection() {
       hoveredNode: null as SkillNode | null,
     };
 
-    // Calculate layout positions
+    // Calculate cluster centers and layout positions
     const setupLayout = () => {
       const rect = container.getBoundingClientRect();
       width = rect.width;
-      const isMobile = width < 640;
+      const isMobile = width < 768;
       height = isMobile
-        ? Math.max(400, Math.min(rect.width * 0.95, 480))
-        : Math.max(460, Math.min(rect.width * 0.58, 560));
+        ? Math.max(540, Math.min(rect.width * 1.35, 620))
+        : Math.max(580, Math.min(rect.width * 0.62, 680));
 
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = width * dpr;
@@ -105,34 +164,55 @@ export function EngineeringStackSection() {
 
       const centerX = width / 2;
       const centerY = height / 2;
-      const rx = isMobile ? Math.min(width * 0.35, 150) : Math.min(width * 0.38, 360);
-      const ry = isMobile ? Math.min(height * 0.34, 140) : Math.min(height * 0.36, 170);
 
-      nodes.forEach((node, i) => {
-        const angle = (i / nodes.length) * Math.PI * 2 - Math.PI / 2;
-        // Inner and outer orbits for natural visual balance
-        const currentRx = i % 2 === 0 ? rx : rx * (isMobile ? 0.72 : 0.65);
-        const currentRy = i % 2 === 0 ? ry : ry * (isMobile ? 0.72 : 0.65);
+      // 7 Category cluster anchor points around the canvas
+      const categoryKeys = ["agents", "vectordb", "guardrails", "automation", "inference", "cloud", "tracing"];
+      const clusterCenters: Record<string, { x: number; y: number }> = {};
 
-        const bx = centerX + Math.cos(angle) * currentRx;
-        const by = centerY + Math.sin(angle) * currentRy;
+      const clusterRadiusX = isMobile ? width * 0.32 : width * 0.36;
+      const clusterRadiusY = isMobile ? height * 0.36 : height * 0.35;
 
-        node.baseX = bx;
-        node.baseY = by;
-        if (node.x === 0 && node.y === 0) {
-          node.x = bx;
-          node.y = by;
-        }
+      categoryKeys.forEach((cat, idx) => {
+        const angle = (idx / categoryKeys.length) * Math.PI * 2 - Math.PI / 2;
+        clusterCenters[cat] = {
+          x: centerX + Math.cos(angle) * clusterRadiusX,
+          y: centerY + Math.sin(angle) * clusterRadiusY,
+        };
+      });
 
-        // Measure pill width dynamically based on text
-        ctx.font = isMobile ? "bold 11px var(--font-heading, Manrope, sans-serif)" : "bold 12px var(--font-heading, Manrope, sans-serif)";
-        const textMetrics = ctx.measureText(node.name);
-        ctx.font = isMobile ? "8.5px var(--font-body, Inter, sans-serif)" : "9px var(--font-body, Inter, sans-serif)";
-        const tagMetrics = ctx.measureText(node.tag);
-        node.width = isMobile
-          ? Math.max(115, Math.max(textMetrics.width, tagMetrics.width) + 38)
-          : Math.max(130, Math.max(textMetrics.width, tagMetrics.width) + 48);
-        node.height = isMobile ? 38 : 42;
+      // Group nodes by category to arrange them in local sub-orbits
+      const grouped: Record<string, SkillNode[]> = {};
+      nodes.forEach((n) => {
+        if (!grouped[n.category]) grouped[n.category] = [];
+        grouped[n.category].push(n);
+      });
+
+      Object.entries(grouped).forEach(([cat, catNodes]) => {
+        const center = clusterCenters[cat] || { x: centerX, y: centerY };
+        const localRadius = isMobile ? 48 : 65;
+
+        catNodes.forEach((node, i) => {
+          const localAngle = (i / catNodes.length) * Math.PI * 2;
+          const bx = center.x + Math.cos(localAngle) * localRadius;
+          const by = center.y + Math.sin(localAngle) * (localRadius * 0.85);
+
+          node.baseX = bx;
+          node.baseY = by;
+          if (node.x === 0 && node.y === 0) {
+            node.x = bx;
+            node.y = by;
+          }
+
+          // Measure pill dimensions dynamically
+          ctx.font = isMobile ? "bold 10px var(--font-heading, Manrope, sans-serif)" : "bold 11px var(--font-heading, Manrope, sans-serif)";
+          const textMetrics = ctx.measureText(node.name);
+          ctx.font = isMobile ? "8px var(--font-body, Inter, sans-serif)" : "8.5px var(--font-body, Inter, sans-serif)";
+          const tagMetrics = ctx.measureText(node.tag);
+          node.width = isMobile
+            ? Math.max(98, Math.max(textMetrics.width, tagMetrics.width) + 28)
+            : Math.max(116, Math.max(textMetrics.width, tagMetrics.width) + 34);
+          node.height = isMobile ? 32 : 36;
+        });
       });
     };
 
@@ -143,7 +223,7 @@ export function EngineeringStackSection() {
     };
     window.addEventListener("resize", handleResize);
 
-    // Event handlers
+    // Coordinate helpers
     const getPos = (e: MouseEvent | TouchEvent) => {
       const rect = canvas.getBoundingClientRect();
       if ("touches" in e) {
@@ -271,42 +351,45 @@ export function EngineeringStackSection() {
 
       // Determine current theme colors
       const isNight = document.documentElement.classList.contains("dark");
-      const lineColor = isNight ? "rgba(96, 165, 250, 0.16)" : "rgba(37, 99, 235, 0.12)";
-      const lineActiveColor = isNight ? "rgba(56, 189, 248, 0.75)" : "rgba(37, 99, 235, 0.7)";
+      const currentCategory = selectedCategoryRef.current;
+      const currentSkill = activeSkillRef.current;
 
-      const activeNode = activeSkillRef.current
-        ? nodes.find((n) => n.name.toLowerCase() === activeSkillRef.current?.toLowerCase())
+      const activeNode = currentSkill
+        ? nodes.find((n) => n.name.toLowerCase() === currentSkill.toLowerCase())
         : null;
       const effectiveHovered = mouse.hoveredNode || activeNode;
+
+      const lineColor = isNight ? "rgba(96, 165, 250, 0.12)" : "rgba(37, 99, 235, 0.10)";
+      const lineActiveColor = isNight ? "rgba(56, 189, 248, 0.75)" : "rgba(37, 99, 235, 0.7)";
 
       // Draw subtle background radial glow from active node or center
       const focalX = effectiveHovered ? effectiveHovered.x : width / 2;
       const focalY = effectiveHovered ? effectiveHovered.y : height / 2;
-      const bgGrad = ctx.createRadialGradient(focalX, focalY, 20, focalX, focalY, width * 0.6);
+      const bgGrad = ctx.createRadialGradient(focalX, focalY, 20, focalX, focalY, width * 0.65);
       if (isNight) {
-        bgGrad.addColorStop(0, "rgba(37, 99, 235, 0.08)");
+        bgGrad.addColorStop(0, "rgba(37, 99, 235, 0.09)");
         bgGrad.addColorStop(0.5, "rgba(6, 182, 212, 0.03)");
         bgGrad.addColorStop(1, "rgba(0, 0, 0, 0)");
       } else {
-        bgGrad.addColorStop(0, "rgba(37, 99, 235, 0.05)");
+        bgGrad.addColorStop(0, "rgba(37, 99, 235, 0.06)");
         bgGrad.addColorStop(0.5, "rgba(6, 182, 212, 0.02)");
         bgGrad.addColorStop(1, "rgba(255, 255, 255, 0)");
       }
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, width, height);
 
-      // Physics update: spring to base + gentle oscillation + cursor interaction
+      // 1. Physics update: spring to anchor + gentle floating oscillation + cursor interaction
       nodes.forEach((node, i) => {
         if (mouse.draggedNode !== node) {
-          // Gentle floating oscillation
-          const floatX = Math.cos(time + i * 0.8) * 8;
-          const floatY = Math.sin(time + i * 0.8) * 8;
+          // Gentle floating sine-wave motion
+          const floatX = Math.cos(time + i * 0.7) * 6;
+          const floatY = Math.sin(time + i * 0.7) * 6;
           const targetX = node.baseX + floatX;
           const targetY = node.baseY + floatY;
 
-          // Spring force to target
-          const k = 0.03;
-          const damp = 0.82;
+          // Elastic spring force to target
+          const k = 0.025;
+          const damp = 0.85;
           const fx = (targetX - node.x) * k;
           const fy = (targetY - node.y) * k;
 
@@ -317,25 +400,52 @@ export function EngineeringStackSection() {
           const dx = node.x - mouse.x;
           const dy = node.y - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const maxRepelDist = 120;
+          const maxRepelDist = 95;
           if (dist < maxRepelDist && dist > 1) {
-            const force = ((maxRepelDist - dist) / maxRepelDist) * 3.5;
+            const force = ((maxRepelDist - dist) / maxRepelDist) * 2.8;
             node.vx += (dx / dist) * force;
             node.vy += (dy / dist) * force;
           }
 
           node.x += node.vx;
           node.y += node.vy;
-
-          // Keep within container bounds
-          const halfW = node.width / 2;
-          const halfH = node.height / 2;
-          node.x = Math.max(halfW + 10, Math.min(width - halfW - 10, node.x));
-          node.y = Math.max(halfH + 10, Math.min(height - halfH - 10, node.y));
         }
       });
 
-      // 1. Draw Connecting Lines
+      // 2. Collision avoidance: gently push neighboring nodes apart so pills never awkwardly overlap
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i];
+          const b = nodes[j];
+          const cdx = b.x - a.x;
+          const cdy = b.y - a.y;
+          const dist = Math.sqrt(cdx * cdx + cdy * cdy);
+          const minDist = (a.width + b.width) / 2 * 0.74 + 8;
+          if (dist < minDist && dist > 0.01) {
+            const overlap = (minDist - dist) * 0.06;
+            const nx = cdx / dist;
+            const ny = cdy / dist;
+            if (mouse.draggedNode !== a) {
+              a.x -= nx * overlap;
+              a.y -= ny * overlap;
+            }
+            if (mouse.draggedNode !== b) {
+              b.x += nx * overlap;
+              b.y += ny * overlap;
+            }
+          }
+        }
+      }
+
+      // Container boundary clamp
+      nodes.forEach((node) => {
+        const halfW = node.width / 2;
+        const halfH = node.height / 2;
+        node.x = Math.max(halfW + 8, Math.min(width - halfW - 8, node.x));
+        node.y = Math.max(halfH + 8, Math.min(height - halfH - 8, node.y));
+      });
+
+      // 3. Draw Connecting Lines
       nodes.forEach((node) => {
         node.connections.forEach((targetId) => {
           const target = nodes.find((n) => n.id === targetId);
@@ -345,18 +455,27 @@ export function EngineeringStackSection() {
             effectiveHovered &&
             (effectiveHovered.id === node.id || effectiveHovered.id === target.id);
 
+          const isCategoryActive =
+            currentCategory === "all" ||
+            node.category === currentCategory ||
+            target.category === currentCategory;
+
           ctx.beginPath();
           ctx.moveTo(node.x, node.y);
           ctx.lineTo(target.x, target.y);
 
           if (isConnectedToHovered) {
             ctx.strokeStyle = lineActiveColor;
-            ctx.lineWidth = 2;
+            ctx.lineWidth = 2.2;
             ctx.setLineDash([4, 4]);
-            ctx.lineDashOffset = -time * 15;
-          } else {
+            ctx.lineDashOffset = -time * 16;
+          } else if (isCategoryActive) {
             ctx.strokeStyle = lineColor;
             ctx.lineWidth = 1;
+            ctx.setLineDash([]);
+          } else {
+            ctx.strokeStyle = isNight ? "rgba(255, 255, 255, 0.03)" : "rgba(0, 0, 0, 0.03)";
+            ctx.lineWidth = 0.8;
             ctx.setLineDash([]);
           }
           ctx.stroke();
@@ -364,7 +483,7 @@ export function EngineeringStackSection() {
         });
       });
 
-      // 2. Draw Pill-Shaped Nodes
+      // 4. Draw Pill-Shaped Nodes
       nodes.forEach((node) => {
         const isHovered = effectiveHovered?.id === node.id;
         const isConnected =
@@ -373,6 +492,9 @@ export function EngineeringStackSection() {
             effectiveHovered.connections.includes(node.id) ||
             node.connections.includes(effectiveHovered.id));
 
+        const isCategoryMatch = currentCategory === "all" || node.category === currentCategory;
+        const isDimmed = !isCategoryMatch && !isConnected && !isHovered;
+
         const halfW = node.width / 2;
         const halfH = node.height / 2;
         const px = node.x - halfW;
@@ -380,8 +502,9 @@ export function EngineeringStackSection() {
         const accentColor = isNight ? node.darkColor : node.color;
 
         ctx.save();
+        ctx.globalAlpha = isDimmed ? 0.28 : 1.0;
 
-        // Glow effect when hovered
+        // Glow effect when hovered or active
         if (isHovered) {
           ctx.shadowColor = accentColor;
           ctx.shadowBlur = 18;
@@ -389,23 +512,23 @@ export function EngineeringStackSection() {
           ctx.shadowOffsetY = 0;
         }
 
-        // Draw Pill Container (roundRect)
+        // Draw Pill Container
         ctx.beginPath();
-        ctx.roundRect(px, py, node.width, node.height, 21);
+        ctx.roundRect(px, py, node.width, node.height, 18);
 
         // Pill background
         if (isNight) {
           ctx.fillStyle = isHovered
-            ? "rgba(15, 23, 42, 0.95)"
+            ? "rgba(15, 23, 42, 0.96)"
             : isConnected
-            ? "rgba(11, 17, 32, 0.90)"
-            : "rgba(11, 17, 32, 0.75)";
+            ? "rgba(11, 17, 32, 0.92)"
+            : "rgba(11, 17, 32, 0.78)";
         } else {
           ctx.fillStyle = isHovered
             ? "rgba(255, 255, 255, 0.98)"
             : isConnected
             ? "rgba(248, 250, 252, 0.95)"
-            : "rgba(255, 255, 255, 0.85)";
+            : "rgba(255, 255, 255, 0.88)";
         }
         ctx.fill();
 
@@ -417,31 +540,35 @@ export function EngineeringStackSection() {
           ctx.strokeStyle = accentColor;
           ctx.lineWidth = 1.4;
         } else {
-          ctx.strokeStyle = isNight ? "rgba(51, 65, 85, 0.8)" : "rgba(203, 213, 225, 0.8)";
+          ctx.strokeStyle = isNight ? "rgba(51, 65, 85, 0.75)" : "rgba(203, 213, 225, 0.75)";
           ctx.lineWidth = 1;
         }
         ctx.stroke();
         ctx.restore();
 
         // Glowing indicator dot
-        const dotX = px + 16;
+        ctx.save();
+        ctx.globalAlpha = isDimmed ? 0.28 : 1.0;
+        const dotX = px + 12;
         const dotY = node.y;
         ctx.beginPath();
-        ctx.arc(dotX, dotY, isHovered ? 4.5 : 3.5, 0, Math.PI * 2);
+        ctx.arc(dotX, dotY, isHovered ? 4 : 3, 0, Math.PI * 2);
         ctx.fillStyle = accentColor;
         ctx.fill();
 
         // Node Title Text
-        ctx.font = "bold 12px var(--font-heading, Manrope, sans-serif)";
+        const isMobile = width < 768;
+        ctx.font = isMobile ? "bold 10px var(--font-heading, Manrope, sans-serif)" : "bold 11px var(--font-heading, Manrope, sans-serif)";
         ctx.fillStyle = isNight ? (isHovered ? "#FFFFFF" : "#F1F5F9") : (isHovered ? "#0F172A" : "#1E293B");
         ctx.textAlign = "left";
         ctx.textBaseline = "middle";
-        ctx.fillText(node.name, dotX + 10, node.y - 6);
+        ctx.fillText(node.name, dotX + 8, node.y - 5);
 
         // Node Subtitle / Tag Text
-        ctx.font = "500 9.5px var(--font-body, Inter, sans-serif)";
+        ctx.font = isMobile ? "500 7.5px var(--font-body, Inter, sans-serif)" : "500 8.5px var(--font-body, Inter, sans-serif)";
         ctx.fillStyle = isNight ? (isHovered ? accentColor : "#94A3B8") : (isHovered ? accentColor : "#64748B");
-        ctx.fillText(node.tag, dotX + 10, node.y + 8);
+        ctx.fillText(node.tag, dotX + 8, node.y + 7);
+        ctx.restore();
       });
 
       animationFrameId = requestAnimationFrame(render);
@@ -469,16 +596,16 @@ export function EngineeringStackSection() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/50 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 text-xs font-bold uppercase tracking-widest mb-4 font-heading shadow-sm">
             <Sparkles className="w-3.5 h-3.5 animate-pulse text-blue-600 dark:text-blue-400" />
-            <span>CORE ARCHITECTURE</span>
+            <span>CORE ARCHITECTURE &amp; ECOSYSTEM</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F172A] dark:text-white tracking-tight font-heading leading-tight mb-4">
             Engineering Stack &amp; Ecosystem
           </h2>
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-            The modern, battle-tested technologies power our autonomous AI agents, deterministic workflows, and production integrations.
+            The full-spectrum modern AI stack powering our autonomous agents, deterministic workflows, and production integrations.
           </p>
         </div>
 
@@ -491,21 +618,48 @@ export function EngineeringStackSection() {
           <div className="absolute inset-0 bg-[radial-gradient(#94a3b8_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-30 dark:opacity-40 pointer-events-none" />
 
           {/* Top Bar Status / Interactive Instruction */}
-          <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 pb-4 mb-2 border-b border-slate-200/70 dark:border-slate-800/80 text-xs font-heading">
+          <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-200/70 dark:border-slate-800/80 text-xs font-heading">
             <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
               <span className="font-semibold text-slate-700 dark:text-slate-300">
-                ACTIVE AI ENGINE TOPOLOGY
+                ACTIVE MULTI-AGENT TOPOLOGY (27 CORE TECHNOLOGIES)
               </span>
             </div>
 
             <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 bg-white/80 dark:bg-slate-900/60 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-800 shadow-sm text-[11px] font-medium">
               <Move className="w-3.5 h-3.5 text-blue-500 animate-pulse" />
-              <span>Hover or drag nodes to inspect connections</span>
+              <span>Drag nodes or click categories to explore connections</span>
             </div>
+          </div>
+
+          {/* Category Filter Tabs */}
+          <div className="relative z-10 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-4">
+            {CATEGORIES.map((cat) => {
+              const isActive = selectedCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => {
+                    setSelectedCategory(cat.id);
+                    setActiveSkill(null);
+                  }}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-heading font-semibold transition-all duration-200 flex items-center gap-1.5 border cursor-pointer ${
+                    isActive
+                      ? "bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/20 scale-105"
+                      : "bg-white/80 dark:bg-slate-900/70 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-600"
+                  }`}
+                >
+                  <span
+                    className="w-1.5 h-1.5 rounded-full"
+                    style={{ backgroundColor: isDark ? cat.darkColor : cat.color }}
+                  />
+                  <span>{cat.name}</span>
+                </button>
+              );
+            })}
           </div>
 
           {/* Canvas Interactive Graph */}
@@ -513,32 +667,39 @@ export function EngineeringStackSection() {
             <canvas
               ref={canvasRef}
               className="block w-full touch-none select-none rounded-2xl"
-              style={{ minHeight: "440px" }}
+              style={{ minHeight: "520px" }}
             />
           </div>
 
           {/* Bottom Skills Summary Pill Bar */}
-          <div className="relative z-10 mt-6 pt-4 border-t border-slate-200/70 dark:border-slate-800/80 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-            {INITIAL_SKILLS.map((skill) => {
-              const isActive = activeSkill === skill.name;
-              return (
-                <button
-                  key={skill.id}
-                  onClick={() => setActiveSkill((prev) => (prev === skill.name ? null : skill.name))}
-                  className={`px-3 py-1.5 rounded-full text-xs font-heading font-semibold transition-all duration-200 flex items-center gap-1.5 border ${
-                    isActive
-                      ? "bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/20 scale-105"
-                      : "bg-white/80 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-600"
-                  }`}
-                >
-                  <span
-                    className="w-1.5 h-1.5 rounded-full"
-                    style={{ backgroundColor: isDark ? skill.darkColor : skill.color }}
-                  />
-                  <span>{skill.name}</span>
-                </button>
-              );
-            })}
+          <div className="relative z-10 mt-6 pt-4 border-t border-slate-200/70 dark:border-slate-800/80">
+            <div className="text-center mb-3">
+              <span className="text-[11px] font-heading font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+                Quick Highlight Skills (Click to Focus):
+              </span>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
+              {ALL_SKILLS.map((skill) => {
+                const isActive = activeSkill === skill.name;
+                return (
+                  <button
+                    key={skill.id}
+                    onClick={() => setActiveSkill((prev) => (prev === skill.name ? null : skill.name))}
+                    className={`px-2.5 py-1 rounded-full text-[11px] font-heading font-medium transition-all duration-200 flex items-center gap-1 border cursor-pointer ${
+                      isActive
+                        ? "bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/20 scale-105"
+                        : "bg-white/80 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-600"
+                    }`}
+                  >
+                    <span
+                      className="w-1.5 h-1.5 rounded-full"
+                      style={{ backgroundColor: isDark ? skill.darkColor : skill.color }}
+                    />
+                    <span>{skill.name}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
