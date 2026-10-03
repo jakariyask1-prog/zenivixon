@@ -13,24 +13,21 @@ import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { AmbientOrbs } from "@/components/ui/AmbientOrbs";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { BusinessLegalSection } from "@/components/about/BusinessLegalSection";
+import { AboutVideoSection } from "@/components/about/videos/AboutVideoSection";
 import {
   CheckCircle2,
   ArrowUpRight,
   ShieldCheck,
   Award,
   Sparkles,
-  Mail,
   ChevronRight,
   Layers,
   Cpu,
   ShieldAlert,
   Clock,
-  Briefcase,
   Users,
   Compass,
-  XCircle,
   Zap,
-  Target,
   Globe,
 } from "lucide-react";
 
@@ -619,6 +616,9 @@ export function AboutContent() {
             </AnimatePresence>
           </motion.div>
         </section>
+
+        {/* The People Behind ZENIVIXON: Human-Centered Video Experience */}
+        <AboutVideoSection />
 
         {/* The ZENIVIXON Advantage: Why Choose Us vs Legacy Agencies */}
         <section className="space-y-10">
