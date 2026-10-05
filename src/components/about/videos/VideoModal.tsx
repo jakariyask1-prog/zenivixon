@@ -15,7 +15,7 @@ import {
   User,
   Clock,
   Radio,
-  Zap,
+  ArrowLeft,
 } from "lucide-react";
 import { AboutVideo } from "@/types/aboutVideo";
 import { Badge } from "@/components/ui/Badge";
@@ -32,74 +32,23 @@ export function VideoModal({ video, isOpen, onClose }: VideoModalProps) {
 
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
   const [isMuted, setIsMuted] = useState<boolean>(false);
-  const [volume, setVolume] = useState<number>(1); // 0 to 1
-  const [boostLevel, setBoostLevel] = useState<number>(2.0); // 2.0x boost default for crystal clear loud speech!
-  const [showBoostMenu, setShowBoostMenu] = useState<boolean>(false);
+  const [volume, setVolume] = useState<number>(1); // Standard native volume (0 to 1)
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
   const [showControls, setShowControls] = useState<boolean>(true);
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Web Audio API refs for sound amplification / audio boost
-  const audioContextRef = useRef<AudioContext | null>(null);
-  const gainNodeRef = useRef<GainNode | null>(null);
-  const isAudioGraphReadyRef = useRef<boolean>(false);
-
-  // Initialize Web Audio API Gain Node on user interaction to boost volume beyond 100%
-  const setupAudioGraph = useCallback(() => {
-    if (!videoRef.current || isAudioGraphReadyRef.current) {
-      if (audioContextRef.current && audioContextRef.current.state === "suspended") {
-        audioContextRef.current.resume().catch(() => {});
-      }
-      return;
-    }
-
-    try {
-      const AudioCtx =
-        window.AudioContext ||
-        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      if (!AudioCtx) return;
-
-      const ctx = new AudioCtx();
-      const source = ctx.createMediaElementSource(videoRef.current);
-      const gainNode = ctx.createGain();
-
-      const initialGain = isMuted ? 0 : volume * boostLevel;
-      gainNode.gain.setValueAtTime(initialGain, ctx.currentTime);
-
-      source.connect(gainNode);
-      gainNode.connect(ctx.destination);
-
-      audioContextRef.current = ctx;
-      gainNodeRef.current = gainNode;
-      isAudioGraphReadyRef.current = true;
-    } catch {
-      // Fallback to native volume if Web Audio API is restricted
-    }
-  }, [isMuted, volume, boostLevel]);
-
-  // Synchronize gain node whenever volume, mute, or boost level changes
+  // Synchronize native volume and mute state directly with video element
   useEffect(() => {
-    if (audioContextRef.current && audioContextRef.current.state === "suspended") {
-      audioContextRef.current.resume().catch(() => {});
+    if (videoRef.current) {
+      videoRef.current.volume = isMuted ? 0 : volume;
+      videoRef.current.muted = isMuted;
     }
-
-    if (gainNodeRef.current && audioContextRef.current) {
-      const targetGain = isMuted ? 0 : volume * boostLevel;
-      gainNodeRef.current.gain.setTargetAtTime(
-        targetGain,
-        audioContextRef.current.currentTime,
-        0.05
-      );
-    } else if (videoRef.current) {
-      videoRef.current.volume = isMuted ? 0 : Math.min(volume, 1);
-    }
-  }, [volume, boostLevel, isMuted]);
+  }, [volume, isMuted]);
 
   const togglePlay = useCallback(() => {
     const v = videoRef.current;
     if (!v) return;
-    setupAudioGraph();
 
     if (v.paused) {
       v.play()
@@ -109,39 +58,23 @@ export function VideoModal({ video, isOpen, onClose }: VideoModalProps) {
       v.pause();
       setIsPlaying(false);
     }
-  }, [setupAudioGraph]);
+  }, []);
 
   const toggleMute = useCallback(() => {
     const v = videoRef.current;
     if (!v) return;
-    setupAudioGraph();
     const newMuted = !isMuted;
     setIsMuted(newMuted);
     v.muted = newMuted;
-  }, [isMuted, setupAudioGraph]);
+  }, [isMuted]);
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setupAudioGraph();
     const newVol = parseFloat(e.target.value);
     setVolume(newVol);
     if (newVol > 0 && isMuted) {
       setIsMuted(false);
       if (videoRef.current) videoRef.current.muted = false;
     }
-  };
-
-  const handleSetBoost = (level: number) => {
-    setupAudioGraph();
-    setBoostLevel(level);
-    setShowBoostMenu(false);
-  };
-
-  const cycleBoostLevel = () => {
-    setupAudioGraph();
-    const levels = [1.0, 1.5, 2.0, 2.5, 3.0];
-    const currentIndex = levels.indexOf(boostLevel);
-    const nextIndex = (currentIndex + 1) % levels.length;
-    setBoostLevel(levels[nextIndex]);
   };
 
   // Close on Escape key or toggle on Space / M
@@ -170,9 +103,6 @@ export function VideoModal({ video, isOpen, onClose }: VideoModalProps) {
         videoRef.current.pause();
         videoRef.current.currentTime = 0;
       }
-      if (audioContextRef.current && audioContextRef.current.state === "running") {
-        audioContextRef.current.suspend().catch(() => {});
-      }
     }
 
     return () => {
@@ -180,9 +110,6 @@ export function VideoModal({ video, isOpen, onClose }: VideoModalProps) {
       window.removeEventListener("keydown", handleKeyDown);
       if (videoRef.current) {
         videoRef.current.pause();
-      }
-      if (audioContextRef.current && audioContextRef.current.state === "running") {
-        audioContextRef.current.suspend().catch(() => {});
       }
       if (controlsTimeoutRef.current) {
         clearTimeout(controlsTimeoutRef.current);
@@ -199,7 +126,8 @@ export function VideoModal({ video, isOpen, onClose }: VideoModalProps) {
   const handleLoadedMetadata = () => {
     if (videoRef.current) {
       setDuration(videoRef.current.duration);
-      setupAudioGraph();
+      videoRef.current.volume = isMuted ? 0 : volume;
+      videoRef.current.muted = isMuted;
       videoRef.current
         .play()
         .then(() => setIsPlaying(true))
@@ -229,7 +157,7 @@ export function VideoModal({ video, isOpen, onClose }: VideoModalProps) {
     setShowControls(true);
     if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
     controlsTimeoutRef.current = setTimeout(() => {
-      if (isPlaying && !showBoostMenu) {
+      if (isPlaying) {
         setShowControls(false);
       }
     }, 2800);
@@ -261,6 +189,16 @@ export function VideoModal({ video, isOpen, onClose }: VideoModalProps) {
             onClick={onClose}
           />
 
+          {/* Floating Exit Button in top-right corner of screen */}
+          <button
+            onClick={onClose}
+            aria-label="Exit video"
+            className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-slate-900/90 hover:bg-red-600 text-white border border-slate-700 hover:border-red-500 transition-all text-xs font-heading font-bold shadow-2xl backdrop-blur-md cursor-pointer hover:scale-105 active:scale-95"
+          >
+            <X className="w-4 h-4" />
+            <span>Exit</span>
+          </button>
+
           {/* Modal Content Box */}
           <motion.div
             ref={containerRef}
@@ -272,8 +210,16 @@ export function VideoModal({ video, isOpen, onClose }: VideoModalProps) {
             className="relative z-10 w-full max-w-5xl overflow-hidden rounded-2xl md:rounded-3xl bg-slate-950 border border-slate-800 shadow-2xl shadow-blue-950/50 flex flex-col"
           >
             {/* Modal Top Bar - Clean and outside of video */}
-            <div className="flex items-center justify-between px-4 sm:px-6 py-3 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md">
+            <div className="flex items-center justify-between px-3 sm:px-6 py-3 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md gap-3">
               <div className="flex items-center gap-2.5 overflow-hidden">
+                <button
+                  onClick={onClose}
+                  aria-label="Back to about page"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-heading font-semibold border border-slate-700 hover:border-slate-600 transition-all cursor-pointer shadow-sm hover:scale-[1.02] active:scale-[0.98] shrink-0"
+                >
+                  <ArrowLeft className="w-3.5 h-3.5" />
+                  <span>Back</span>
+                </button>
                 <Badge variant="blue" size="sm" className="font-semibold text-[11px] shrink-0">
                   {video.category}
                 </Badge>
@@ -286,13 +232,14 @@ export function VideoModal({ video, isOpen, onClose }: VideoModalProps) {
                 )}
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 shrink-0">
                 <button
                   onClick={onClose}
-                  aria-label="Close modal"
-                  className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer"
+                  aria-label="Close video"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800/90 hover:bg-red-600/90 text-slate-300 hover:text-white border border-slate-700 hover:border-red-500 transition-all text-xs font-semibold cursor-pointer shadow-sm"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4" />
+                  <span className="hidden sm:inline">Close</span>
                 </button>
               </div>
             </div>
@@ -393,67 +340,6 @@ export function VideoModal({ video, isOpen, onClose }: VideoModalProps) {
                           </span>
                         </div>
 
-                        {/* Sound Boost Option Button & Selector */}
-                        <div
-                          className="relative"
-                          onMouseLeave={() => setShowBoostMenu(false)}
-                        >
-                          <div className="flex items-center gap-1">
-                            <button
-                              onClick={cycleBoostLevel}
-                              onContextMenu={(e) => {
-                                e.preventDefault();
-                                setShowBoostMenu(!showBoostMenu);
-                              }}
-                              title="Click to cycle sound boost (2x Loud, 3x Max Boost, 1x Normal)"
-                              className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-heading font-semibold transition-all cursor-pointer ${
-                                boostLevel > 1
-                                  ? "bg-amber-500/20 text-amber-300 border border-amber-500/50 hover:bg-amber-500/30 shadow-sm shadow-amber-500/10"
-                                  : "bg-white/10 text-slate-300 border border-white/10 hover:bg-white/20"
-                              }`}
-                            >
-                              <Zap className={`w-3.5 h-3.5 ${boostLevel > 1 ? "text-amber-400 animate-pulse" : "text-slate-400"}`} />
-                              <span>Sound Boost: {Math.round(boostLevel * 100)}%</span>
-                            </button>
-
-                            <button
-                              onClick={() => setShowBoostMenu(!showBoostMenu)}
-                              aria-label="Open sound boost options"
-                              className="px-1.5 py-1 text-slate-400 hover:text-white rounded bg-white/5 hover:bg-white/15 text-[10px] font-mono"
-                            >
-                              ▼
-                            </button>
-                          </div>
-
-                          {/* Sound Boost Options Dropdown Menu */}
-                          {showBoostMenu && (
-                            <div className="absolute bottom-full left-0 mb-2 p-2 rounded-xl bg-slate-900 border border-slate-700 shadow-xl space-y-1 z-30 min-w-[170px]">
-                              <div className="text-[10px] uppercase font-bold text-slate-400 px-2 py-1 border-b border-slate-800">
-                                Audio Amplification
-                              </div>
-                              {[
-                                { level: 1.0, label: "100% (Standard)" },
-                                { level: 1.5, label: "150% (Enhanced)" },
-                                { level: 2.0, label: "200% (2x Loud Boost)" },
-                                { level: 2.5, label: "250% (Extra Loud)" },
-                                { level: 3.0, label: "300% (Max Boost)" },
-                              ].map((opt) => (
-                                <button
-                                  key={opt.level}
-                                  onClick={() => handleSetBoost(opt.level)}
-                                  className={`w-full text-left px-2.5 py-1 rounded-md text-xs font-heading flex items-center justify-between transition-colors ${
-                                    boostLevel === opt.level
-                                      ? "bg-blue-600 text-white font-bold"
-                                      : "text-slate-300 hover:bg-slate-800"
-                                  }`}
-                                >
-                                  <span>{opt.label}</span>
-                                  {boostLevel === opt.level && <span>✓</span>}
-                                </button>
-                              ))}
-                            </div>
-                          )}
-                        </div>
 
                         {/* Timestamp */}
                         <div className="text-xs font-mono text-slate-300 select-none pl-1">
@@ -461,7 +347,7 @@ export function VideoModal({ video, isOpen, onClose }: VideoModalProps) {
                         </div>
                       </div>
 
-                      {/* Right: Fullscreen */}
+                      {/* Right: Fullscreen & Exit */}
                       <div className="flex items-center gap-2">
                         <button
                           onClick={toggleFullscreen}
@@ -469,6 +355,14 @@ export function VideoModal({ video, isOpen, onClose }: VideoModalProps) {
                           className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
                         >
                           <Maximize2 className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={onClose}
+                          aria-label="Exit video"
+                          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-red-600/80 hover:bg-red-600 text-white text-xs font-heading font-semibold transition-colors cursor-pointer shadow-sm"
+                        >
+                          <X className="w-3.5 h-3.5" />
+                          <span>Exit</span>
                         </button>
                       </div>
                     </div>
@@ -541,6 +435,25 @@ export function VideoModal({ video, isOpen, onClose }: VideoModalProps) {
                   ))}
                 </div>
               )}
+
+              {/* Bottom Navigation Buttons */}
+              <div className="pt-4 mt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3">
+                <button
+                  onClick={onClose}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-heading font-semibold border border-slate-700 transition-all cursor-pointer shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  <span>Back to About Page</span>
+                </button>
+
+                <button
+                  onClick={onClose}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-800 hover:bg-red-600/90 text-slate-300 hover:text-white border border-slate-700 hover:border-red-500 text-xs font-heading font-semibold transition-all cursor-pointer shadow-sm"
+                >
+                  <X className="w-3.5 h-3.5" />
+                  <span>Exit Video</span>
+                </button>
+              </div>
             </div>
           </motion.div>
         </div>
