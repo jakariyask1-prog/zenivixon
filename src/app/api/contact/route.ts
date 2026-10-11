@@ -42,21 +42,38 @@ export async function POST(req: NextRequest) {
     // It's usually better to await them to let the client know if something failed,
     // but on Vercel we need to return within the timeout. 10 seconds is usually enough.
 
-    // 1. Analyze lead with Gemini AI
-    const aiAnalysis = await analyzeLeadWithGemini({
-      name: payload.name,
-      email: payload.email,
-      company: payload.company || "",
-      service: payload.service || "N/A",
-      message: payload.message,
-    });
+    // 1. Analyze lead with Gemini AI (Resilient fallback to avoid losing leads)
+    let aiAnalysis = {
+      lead_summary: payload.message.slice(0, 200),
+      service_category: payload.service || "General Inquiry",
+      lead_priority: "Normal",
+      business_need: payload.message,
+      recommended_solution: "Engineering Review Required",
+      client_reply: `Dear ${payload.name},\n\nThank you for reaching out to ZENIVIXON. We have received your inquiry regarding ${payload.service || "our technology services"} and our engineering team is reviewing your requirements. We will contact you within 24 hours.\n\nBest regards,\nZENIVIXON Technologies Team`,
+      next_action: "Review inquiry and schedule discovery call",
+    };
+
+    try {
+      const result = await analyzeLeadWithGemini({
+        name: payload.name,
+        email: payload.email,
+        company: payload.company || "",
+        service: payload.service || "N/A",
+        message: payload.message,
+      });
+      if (result) {
+        aiAnalysis = { ...aiAnalysis, ...result };
+      }
+    } catch (aiErr) {
+      console.warn("[ZENIVIXON Contact] Gemini AI analysis failed, proceeding with fallback data:", aiErr);
+    }
 
     // 2. Append to Google Sheets
     await appendLeadToSheet({
       name: payload.name,
       email: payload.email,
       company: payload.company || "",
-      service: aiAnalysis.service_category || payload.service,
+      service: aiAnalysis.service_category || payload.service || "N/A",
       leadPriority: aiAnalysis.lead_priority,
       businessNeed: aiAnalysis.business_need,
       recommendedSolution: aiAnalysis.recommended_solution,
@@ -73,8 +90,9 @@ export async function POST(req: NextRequest) {
     }).catch(err => console.error("Failed to send emails:", err));
 
     // 4. Send POST request to Render API (zenivixon-ai-consultant)
+    const aiConsultantUrl = process.env.AI_CONSULTANT_URL || process.env.NEXT_PUBLIC_AI_CONSULTANT_URL || "https://zenivixon-ai-consultant.onrender.com";
     try {
-      await fetch("https://zenivixon-ai-consultant.onrender.com/api/leads", {
+      await fetch(`${aiConsultantUrl}/api/leads`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

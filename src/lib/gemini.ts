@@ -3,18 +3,29 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 const apiKey = process.env.GEMINI_API_KEY;
 const genAI = apiKey ? new GoogleGenerativeAI(apiKey) : null;
 
+export interface LeadAnalysisResult {
+  lead_summary: string;
+  service_category: string;
+  lead_priority: string;
+  business_need: string;
+  recommended_solution: string;
+  client_reply: string;
+  next_action: string;
+}
+
 export async function analyzeLeadWithGemini(leadData: {
   name: string;
   email: string;
   company: string;
   service: string;
   message: string;
-}) {
+}): Promise<LeadAnalysisResult> {
   if (!genAI) {
     throw new Error("GEMINI_API_KEY is not configured.");
   }
 
-  const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview" });
+  const modelName = process.env.GEMINI_MODEL || "gemini-1.5-flash";
+  const model = genAI.getGenerativeModel({ model: modelName });
 
   const prompt = `You are ZENIVIXON's AI Business Lead Assistant and Client Communication Consultant.
 

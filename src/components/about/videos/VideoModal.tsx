@@ -94,22 +94,24 @@ export function VideoModal({ video, isOpen, onClose }: VideoModalProps) {
   );
 
   useEffect(() => {
+    const video = videoRef.current;
+
     if (isOpen) {
       document.body.style.overflow = "hidden";
       window.addEventListener("keydown", handleKeyDown);
     } else {
       document.body.style.overflow = "";
-      if (videoRef.current) {
-        videoRef.current.pause();
-        videoRef.current.currentTime = 0;
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
       }
     }
 
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
-      if (videoRef.current) {
-        videoRef.current.pause();
+      if (video) {
+        video.pause();
       }
       if (controlsTimeoutRef.current) {
         clearTimeout(controlsTimeoutRef.current);

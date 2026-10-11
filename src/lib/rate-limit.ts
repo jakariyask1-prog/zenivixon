@@ -26,8 +26,16 @@ export async function checkRateLimit(ip: string, limit: number = 5, windowMs: nu
     }
   }
 
-  // Fallback to in-memory
+  // Fallback to in-memory with automatic cleanup of expired entries
   const now = Date.now();
+  if (rateLimitMap.size > 100) {
+    for (const [key, val] of rateLimitMap.entries()) {
+      if (now > val.resetAt) {
+        rateLimitMap.delete(key);
+      }
+    }
+  }
+
   const entry = rateLimitMap.get(ip);
   if (!entry || now > entry.resetAt) {
     rateLimitMap.set(ip, { count: 1, resetAt: now + windowMs });

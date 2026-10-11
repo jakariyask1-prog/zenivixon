@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { Badge } from "@/components/ui/Badge";
 import { FreeAuditModal } from "@/components/ui/FreeAuditModal";
 import { Button } from "@/components/ui/Button";
 import { AmbientOrbs } from "@/components/ui/AmbientOrbs";
@@ -11,9 +10,7 @@ import {
   MessageSquare,
   RefreshCw,
   ArrowRight,
-  Sparkles,
   Lock,
-  CheckCircle2,
 } from "lucide-react";
 
 export function PilotSprintSection() {

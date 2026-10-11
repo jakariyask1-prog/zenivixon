@@ -79,8 +79,25 @@ export async function POST(req: NextRequest) {
     // ─── Direct Lead Processing (Replacing n8n) ──────────────────────────────
     console.log(`[ZENIVIXON Project Brief] Processing new lead for: ${payload.email}`);
 
-    // 1. Analyze lead with Gemini AI
-    const aiAnalysis = await analyzeLeadWithGemini(payload);
+    // 1. Analyze lead with Gemini AI (Resilient fallback to avoid losing leads)
+    let aiAnalysis = {
+      lead_summary: payload.message.slice(0, 200),
+      service_category: payload.service,
+      lead_priority: "Normal",
+      business_need: payload.message,
+      recommended_solution: "Engineering Review Required",
+      client_reply: `Dear ${payload.name},\n\nThank you for submitting your project brief to ZENIVIXON for ${payload.service}. Our engineering team is reviewing your project requirements and will reach out within 24 hours to schedule a technical discovery call.\n\nBest regards,\nZENIVIXON Technologies Team`,
+      next_action: "Schedule technical discovery call",
+    };
+
+    try {
+      const result = await analyzeLeadWithGemini(payload);
+      if (result) {
+        aiAnalysis = { ...aiAnalysis, ...result };
+      }
+    } catch (aiErr) {
+      console.warn("[ZENIVIXON Project Brief] Gemini AI analysis failed, proceeding with fallback data:", aiErr);
+    }
 
     // 2. Append to Google Sheets
     await appendLeadToSheet({
@@ -104,8 +121,9 @@ export async function POST(req: NextRequest) {
     }).catch(err => console.error("Failed to send emails:", err));
 
     // 4. Send POST request to Render API (zenivixon-ai-consultant)
+    const aiConsultantUrl = process.env.AI_CONSULTANT_URL || process.env.NEXT_PUBLIC_AI_CONSULTANT_URL || "https://zenivixon-ai-consultant.onrender.com";
     try {
-      await fetch("https://zenivixon-ai-consultant.onrender.com/api/leads", {
+      await fetch(`${aiConsultantUrl}/api/leads`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

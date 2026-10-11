@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
@@ -56,7 +56,6 @@ export function StartProjectWizard() {
     handleSubmit,
     control,
     trigger,
-    watch,
     reset,
     formState: { errors, isSubmitting },
   } = useForm<ProjectBriefFormData>({
@@ -74,10 +73,10 @@ export function StartProjectWizard() {
     mode: "onTouched",
   });
 
-  const projectType = watch("projectType");
-  const name = watch("name");
-  const email = watch("email");
-  const timeline = watch("timeline");
+  const projectType = useWatch({ control, name: "projectType" });
+  const name = useWatch({ control, name: "name" });
+  const email = useWatch({ control, name: "email" });
+  const timeline = useWatch({ control, name: "timeline" });
 
   const handleNext = async () => {
     let isStepValid = false;

@@ -97,7 +97,7 @@ export function IntegrationsSection() {
         </div>
 
         <div className="space-y-16 md:space-y-24 max-w-5xl mx-auto">
-          {integrationsData.map((section, idx) => (
+          {integrationsData.map((section) => (
             <div key={section.title} className="flex flex-col md:flex-row gap-8 md:gap-16">
               
               {/* Category Header */}

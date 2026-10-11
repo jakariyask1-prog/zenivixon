@@ -52,42 +52,44 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 Create a `.env.local` file in the root directory:
 
 ```env
-# n8n Webhook Integration (Lead Intake)
-N8N_WEBHOOK_URL=https://zenivixon.app.n8n.cloud/webhook/zenivixon-lead
+# Google Gemini AI Integration
+GEMINI_API_KEY=your_gemini_api_key_here
+GEMINI_MODEL=gemini-1.5-flash
 
-# Resend Email Delivery (Optional)
+# Google Sheets Integration
+GOOGLE_SERVICE_ACCOUNT_EMAIL=your_service_account_email@project.iam.gserviceaccount.com
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+GOOGLE_SHEET_ID=your_google_sheet_id_here
+
+# Resend Email Delivery (Notification & Auto-Reply)
 RESEND_API_KEY=your_resend_api_key_here
 
 # Upstash Redis for Rate Limiting (Optional)
 UPSTASH_REDIS_REST_URL=your_upstash_redis_url
 UPSTASH_REDIS_REST_TOKEN=your_upstash_redis_token
+
+# ZENIVIXON AI Consultant API
+NEXT_PUBLIC_AI_CONSULTANT_URL=https://zenivixon-ai-consultant.onrender.com
+AI_CONSULTANT_URL=https://zenivixon-ai-consultant.onrender.com
 ```
 
 ### Key Environment Configuration:
-- **`N8N_WEBHOOK_URL`**: Target n8n webhook URL where contact form and quote inquiries are dispatched via secure server-side POST requests.
-- **`RESEND_API_KEY`**: Optional API key from [resend.com](https://resend.com) for sending notification emails.
-- **`UPSTASH_REDIS_REST_URL` / `TOKEN`**: Optional Upstash credentials used for API rate limiting to protect endpoints against spam.
+- **`GEMINI_API_KEY`**: Powers intelligent lead analysis, inquiry categorization, and personalized client auto-replies.
+- **`GOOGLE_SERVICE_ACCOUNT_EMAIL` / `GOOGLE_PRIVATE_KEY` / `GOOGLE_SHEET_ID`**: Direct spreadsheet integration logging all leads and inquiries.
+- **`RESEND_API_KEY`**: Dispatches client acknowledgment emails and instant admin notification emails.
+- **`UPSTASH_REDIS_REST_URL` / `TOKEN`**: Rate limits public endpoints to prevent spam.
+- **`NEXT_PUBLIC_AI_CONSULTANT_URL`**: Connects the interactive streaming AI Consultant chat widget.
 
 ---
 
-## Webhook & Lead Automation (`/api/contact`)
+## Intelligent Lead Pipeline (`/api/contact` & `/api/project-brief`)
 
-When users submit the **Contact / Get a Quote** form, the payload is validated on the server and sent to the configured n8n webhook:
-
-### JSON Payload Schema:
-```json
-{
-  "name": "Alex Morgan",
-  "email": "alex@company.com",
-  "company": "Acme Technologies Ltd",
-  "service": "AI Agents & 24/7 Support",
-  "message": "We need an autonomous AI customer support copilot."
-}
-```
-
-- **Security:** The webhook URL is stored on the backend and is never exposed to client-side code.
-- **Resilience:** Includes IP-based rate limiting via Upstash Redis.
-- **Validation:** 100% type-safe shared validation schemas using Zod for both frontend (React Hook Form) and backend APIs.
+When users submit the **Contact / Project Brief** form:
+1. **Validation & Rate Limiting:** Enforces strict Zod validation schemas and Redis IP rate-limiting.
+2. **Gemini AI Enrichment:** Automatically categorizes intent, evaluates priority, and drafts personalized B2B client responses.
+3. **Resilient Data Persistence:** Automatically logs lead details into Google Sheets with dynamic column mapping.
+4. **Instant Notification:** Sends transactional emails to both client and ZENIVIXON admin via Resend SDK.
+5. **AI Consultant Forwarding:** Dispatches real-time lead events to the AI Consultant engine.
 
 ---
 
@@ -161,8 +163,12 @@ ZENIVIXON is optimized for zero-configuration deployment on **Vercel**:
 
 1. Push to the `main` branch on GitHub.
 2. In the **Vercel Project Dashboard** > **Settings** > **Environment Variables**, configure:
-   - `N8N_WEBHOOK_URL` = `https://zenivixon.app.n8n.cloud/webhook/zenivixon-lead`
-   - `RESEND_API_KEY` = `your_resend_api_key` (optional)
+   - `GEMINI_API_KEY` = `your_gemini_api_key`
+   - `GOOGLE_SERVICE_ACCOUNT_EMAIL` = `your_service_account_email`
+   - `GOOGLE_PRIVATE_KEY` = `your_google_service_account_private_key`
+   - `GOOGLE_SHEET_ID` = `your_google_sheet_id`
+   - `RESEND_API_KEY` = `your_resend_api_key`
    - `UPSTASH_REDIS_REST_URL` = `your_upstash_url` (optional)
    - `UPSTASH_REDIS_REST_TOKEN` = `your_upstash_token` (optional)
+   - `NEXT_PUBLIC_AI_CONSULTANT_URL` = `https://zenivixon-ai-consultant.onrender.com`
 

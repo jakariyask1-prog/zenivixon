@@ -32,18 +32,26 @@ export async function appendLeadToSheet(data: {
     // Assuming the first sheet
     const sheet = doc.sheetsByIndex[0];
 
-    // Note: The keys here should match the column headers in your Google Sheet exactly.
-    // In your n8n workflow the columns were:
-    // "Name ", "email", "service", "lead priority", "business need", "recommendation solution", "company"
+    // Dynamically match column headers or fall back to standard defaults
+    await sheet.loadHeaderRow().catch(() => {});
+    const headers = sheet.headerValues || [];
+    
+    const nameKey = headers.find(h => h.trim().toLowerCase() === "name") || "Name ";
+    const emailKey = headers.find(h => h.trim().toLowerCase() === "email") || "email";
+    const serviceKey = headers.find(h => h.trim().toLowerCase() === "service") || "service";
+    const priorityKey = headers.find(h => h.trim().toLowerCase() === "lead priority") || "lead priority";
+    const needKey = headers.find(h => h.trim().toLowerCase() === "business need") || "business need";
+    const solutionKey = headers.find(h => h.trim().toLowerCase() === "recommendation solution" || h.trim().toLowerCase() === "recommended solution") || "recommendation solution";
+    const companyKey = headers.find(h => h.trim().toLowerCase() === "company") || "company";
     
     await sheet.addRow({
-      "Name ": data.name,
-      "email": data.email,
-      "service": data.service,
-      "lead priority": data.leadPriority,
-      "business need": data.businessNeed,
-      "recommendation solution": data.recommendedSolution,
-      "company": data.company || "N/A"
+      [nameKey]: data.name,
+      [emailKey]: data.email,
+      [serviceKey]: data.service,
+      [priorityKey]: data.leadPriority,
+      [needKey]: data.businessNeed,
+      [solutionKey]: data.recommendedSolution,
+      [companyKey]: data.company || "N/A"
     });
     
     console.log("[ZENIVIXON Google Sheets] Successfully appended row.");

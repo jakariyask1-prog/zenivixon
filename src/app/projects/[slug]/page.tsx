@@ -7,7 +7,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { PROJECTS_DATA } from "@/data/projects";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { CheckCircle2, ArrowLeft, ArrowRight, ArrowUpRight, Layers, Cpu, ShieldCheck, PlayCircle } from "lucide-react";
+import { CheckCircle2, ArrowLeft, ArrowRight, ArrowUpRight, Layers, Cpu, ShieldCheck, PlayCircle, Download } from "lucide-react";
 import { getYoutubeEmbedUrl } from "@/lib/utils";
 
 interface Props {
@@ -107,6 +107,32 @@ export default async function ProjectDetailPage({ params }: Props) {
           )}
         </div>
 
+        {/* Software Download Banner (if available) */}
+        {project.downloadUrl && (
+          <div className="rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-xl shadow-blue-600/10 flex flex-col sm:flex-row items-center justify-between gap-6 border border-white/20">
+            <div className="space-y-2 text-center sm:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-xs font-bold tracking-wider uppercase backdrop-blur-sm">
+                <ShieldCheck className="w-4 h-4 text-emerald-300" />
+                <span>Verified Release &bull; Windows .exe</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold font-heading">
+                Download {project.title}
+              </h3>
+              <p className="text-xs sm:text-sm text-blue-100 max-w-xl leading-relaxed">
+                Download the standalone Windows setup package and run {project.title} directly on your machine.
+              </p>
+            </div>
+            <a
+              href={project.downloadUrl}
+              download
+              className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-2xl bg-white text-blue-600 hover:bg-blue-50 font-bold text-sm sm:text-base shadow-lg hover:shadow-2xl hover:scale-105 active:scale-95 transition-all shrink-0 cursor-pointer group"
+            >
+              <Download className="w-5 h-5 text-blue-600 transition-transform group-hover:translate-y-0.5" />
+              <span>{project.downloadLabel || "Download Software (.exe)"}</span>
+            </a>
+          </div>
+        )}
+
         {/* Case Study Grid (Problem & Solution) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Main Body (8 cols) */}
@@ -205,6 +231,31 @@ export default async function ProjectDetailPage({ params }: Props) {
                 ))}
               </div>
             </div>
+
+            {/* Software Download Sidebar Card */}
+            {project.downloadUrl && (
+              <div className="p-6 rounded-2xl bg-white dark:bg-[#0b1120] border-2 border-blue-500/40 dark:border-blue-500/50 shadow-md space-y-4 text-center">
+                <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto">
+                  <Download className="w-6 h-6 animate-bounce" />
+                </div>
+                <div>
+                  <h4 className="text-base font-bold text-[#0F172A] dark:text-white font-heading">
+                    Official Software Setup
+                  </h4>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mt-1">
+                    Direct standalone executable installer for Windows (.exe).
+                  </p>
+                </div>
+                <a
+                  href={project.downloadUrl}
+                  download
+                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs shadow-md shadow-blue-600/20 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>{project.downloadLabel || "Download Setup"}</span>
+                </a>
+              </div>
+            )}
 
             {/* Action Box */}
             <div className="p-6 rounded-2xl bg-[#F7F9FC] dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 space-y-4 text-center">

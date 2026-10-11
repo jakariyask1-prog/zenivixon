@@ -15,11 +15,12 @@ export default function ChatWidget() {
   ]);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const aiConsultantUrl = process.env.NEXT_PUBLIC_AI_CONSULTANT_URL || "https://zenivixon-ai-consultant.onrender.com";
 
   useEffect(() => {
-    // Render-এর ফ্রি সার্ভার "Sleep" মোড থেকে জাগানোর জন্য (Cold Start কমানোর জন্য) ব্যাকগ্রাউন্ডে একটি রিকোয়েস্ট পাঠানো
-    fetch("https://zenivixon-ai-consultant.onrender.com/").catch(() => {});
-  }, []);
+    // Ping consultant backend in background to mitigate cold start
+    fetch(aiConsultantUrl).catch(() => {});
+  }, [aiConsultantUrl]);
 
   // নতুন মেসেজ এলে অটো-স্ক্রল করে নিচে চলে যাবে
   useEffect(() => {
@@ -41,7 +42,7 @@ export default function ChatWidget() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("https://zenivixon-ai-consultant.onrender.com/api/chat/stream", {
+      const response = await fetch(`${aiConsultantUrl}/api/chat/stream`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userMessage, session_id: sessionId }),
@@ -96,11 +97,11 @@ export default function ChatWidget() {
           }
         }
       }
-    } catch (error) {
+    } catch {
       setIsLoading(false);
       setMessages((prev) => {
         const newMessages = [...prev];
-        newMessages[newMessages.length - 1].content = "সার্ভার এরর! দয়া করে কিছুক্ষন পর আবার চেষ্টা করুন।";
+        newMessages[newMessages.length - 1].content = "Unable to connect to the consultant service right now. Please try again shortly or contact us directly at contact@zenivixon.com.";
         return newMessages;
       });
     }

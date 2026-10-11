@@ -5,8 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FOOTER_LINKS } from "@/data/navigation";
 import { COMPANY_INFO } from "@/lib/constants";
-import { ArrowUpRight, Mail, CheckCircle2, Loader2 } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Mail, CheckCircle2, Loader2 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { AnimatedLogoText } from "@/components/ui/AnimatedLogoText";
 

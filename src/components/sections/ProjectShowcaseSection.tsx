@@ -87,11 +87,18 @@ export function ProjectShowcaseSection() {
                     <Badge variant="cyan" size="sm" className="font-semibold text-xs">
                       {project.categoryLabel}
                     </Badge>
-                    {project.status && (
-                      <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-semibold">
-                        {project.status}
-                      </span>
-                    )}
+                    <div className="flex items-center gap-2">
+                      {project.downloadUrl && (
+                        <span className="text-[11px] font-heading font-semibold px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800">
+                          Desktop Software
+                        </span>
+                      )}
+                      {project.status && (
+                        <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-semibold">
+                          {project.status}
+                        </span>
+                      )}
+                    </div>
                   </div>
 
                   <h3 className="text-2xl font-bold text-[#0F172A] dark:text-white font-heading">

@@ -25,4 +25,6 @@ export interface Project {
   videoUrl?: string;
   deliverables: string[];
   status?: string;
+  downloadUrl?: string;
+  downloadLabel?: string;
 }

@@ -38,6 +38,8 @@ export const PROJECTS_DATA: Project[] = [
       "Asset gallery with tag-based filtering",
     ],
     status: "Production System",
+    downloadUrl: "https://github.com/jakariyask1-prog/jakariya-ai-studio/releases/download/version1.0/Jakariya_AI_Studio_Setup_v1.0.exe",
+    downloadLabel: "Download Setup v1.0 (.exe)",
   },
   {
     slug: "autonomous-customer-support-agent",
