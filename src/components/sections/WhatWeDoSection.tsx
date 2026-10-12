@@ -55,11 +55,11 @@ const pathways = [
 
 export function WhatWeDoSection() {
   return (
-    <section className="py-20 md:py-32 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#F7F9FC] dark:bg-[#070d1d] relative transition-colors duration-300 overflow-hidden">
+    <section className="py-16 md:py-24 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#F7F9FC] dark:bg-[#070d1d] relative transition-colors duration-300 overflow-hidden">
       <AmbientOrbs />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="max-w-3xl space-y-4 mb-16 md:mb-20">
+        <div className="max-w-3xl space-y-4 mb-12 md:mb-14">
           <Badge variant="blue" size="sm" className="font-semibold text-xs tracking-widest">
             AI FOR REAL BUSINESS
           </Badge>
@@ -72,7 +72,7 @@ export function WhatWeDoSection() {
         </div>
 
         {/* 4 Problem-to-Value Pathways Matrix */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative mb-16">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative mb-12 md:mb-14">
           {pathways.map((item, idx) => (
             <StaggerItem key={idx}>
               <div

@@ -13,7 +13,7 @@ export function AosProvider({ children }: { children?: React.ReactNode }) {
         aos.init({
           duration: 700,
           easing: "ease-out-cubic",
-          once: false,
+          once: true,
           offset: 40,
           delay: 40,
         });

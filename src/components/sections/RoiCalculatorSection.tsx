@@ -48,13 +48,13 @@ export function RoiCalculatorSection() {
   return (
     <section
       id="roi-calculator"
-      className="py-20 md:py-32 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#FCFDFE] dark:bg-[#060b18] relative transition-colors duration-300 overflow-hidden"
+      className="py-16 md:py-24 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#FCFDFE] dark:bg-[#060b18] relative transition-colors duration-300 overflow-hidden"
     >
       <AmbientOrbs />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16 md:mb-20">
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12 md:mb-14">
           <Badge variant="emerald" size="sm" className="font-semibold text-xs tracking-widest gap-1.5">
             <Calculator className="w-3.5 h-3.5 animate-pulse" />
             ROI & SAVINGS CALCULATOR

@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { Metadata } from "next";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { StartProjectWizard } from "@/components/forms/StartProjectWizard";
+import { AutonomousAgentTerminalSection } from "@/components/sections/AutonomousAgentTerminalSection";
 import { MessageSquare, Loader2 } from "lucide-react";
 import { COMPANY_INFO } from "@/lib/constants";
 
@@ -21,7 +22,10 @@ export default function StartAProjectPage() {
         breadcrumbs={[{ label: "Start a Project" }]}
       />
 
-      <div className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      {/* Live AI Architecture Dispatcher & Scoping Simulator */}
+      <AutonomousAgentTerminalSection />
+
+      <div id="start-project-form" className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Process Roadmap Explainer */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="p-5 rounded-2xl bg-white border border-slate-200 dark:border-slate-800 shadow-sm space-y-1.5">

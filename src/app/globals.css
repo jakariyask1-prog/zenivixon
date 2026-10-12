@@ -260,15 +260,13 @@
   transform: translateY(-6px) !important;
 }
 
-/* --- Image Transitions (Grayscale to Vibrant Color + Zoom) -------- */
+/* --- Image Transitions (Crisp Vibrant Color + Smooth Zoom) -------- */
 .img-hover-effect {
-  filter: grayscale(100%);
-  transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .img-hover-effect:hover,
 .group:hover .img-hover-effect {
-  filter: grayscale(0%) !important;
-  transform: scale(1.05) !important;
+  transform: scale(1.04) !important;
 }
 

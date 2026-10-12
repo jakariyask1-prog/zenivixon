@@ -16,10 +16,10 @@ export function ProjectShowcaseSection() {
   const otherProjects = PROJECTS_DATA.filter((p) => !p.featured);
 
   return (
-    <section className="py-20 md:py-32 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#FFFFFF] dark:bg-[#020817] relative transition-colors duration-300">
+    <section className="py-16 md:py-24 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#FFFFFF] dark:bg-[#020817] relative transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-14">
           <div className="max-w-2xl space-y-4">
             <Badge variant="blue" size="sm" className="font-semibold text-xs tracking-widest">
               PROJECT SHOWCASE
@@ -43,7 +43,7 @@ export function ProjectShowcaseSection() {
         </div>
 
         {/* Featured Production Systems (Detailed Multi-Column Cards) */}
-        <div className="space-y-12 mb-16">
+        <div className="space-y-10 mb-12">
           {featuredProjects.map((project) => (
             <div
               key={project.slug}

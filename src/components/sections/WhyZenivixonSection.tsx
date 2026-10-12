@@ -96,9 +96,9 @@ const reasons = [
 
 export function WhyZenivixonSection() {
   return (
-    <section className="py-20 md:py-32 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#F7F9FC] dark:bg-[#070d1d] relative transition-colors duration-300 overflow-hidden">
+    <section className="py-16 md:py-24 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#F7F9FC] dark:bg-[#070d1d] relative transition-colors duration-300 overflow-hidden">
       <AmbientOrbs />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-14 sm:space-y-16">
         
         {/* Section Header */}
         <div className="max-w-3xl space-y-4">

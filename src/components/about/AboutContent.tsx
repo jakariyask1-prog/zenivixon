@@ -14,6 +14,7 @@ import { AmbientOrbs } from "@/components/ui/AmbientOrbs";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { BusinessLegalSection } from "@/components/about/BusinessLegalSection";
 import { AboutVideoSection } from "@/components/about/videos/AboutVideoSection";
+import { GlobalSystemTelemetrySection } from "@/components/sections/GlobalSystemTelemetrySection";
 import {
   CheckCircle2,
   ArrowUpRight,
@@ -219,6 +220,9 @@ export function AboutContent() {
           </div>
         </div>
       </section>
+
+      {/* 24/7 Global System Telemetry & Edge Infrastructure Infographic */}
+      <GlobalSystemTelemetrySection />
 
       {/* Main Content Area */}
       <div className="py-20 md:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32">

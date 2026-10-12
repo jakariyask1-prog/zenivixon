@@ -592,11 +592,11 @@ export function EngineeringStackSection() {
   return (
     <section
       data-aos="fade-up"
-      className="py-20 md:py-32 bg-[#FCFDFE] dark:bg-[#020817] transition-colors duration-300 relative overflow-hidden"
+      className="py-16 md:py-24 bg-[#FCFDFE] dark:bg-[#020817] transition-colors duration-300 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/50 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 text-xs font-bold uppercase tracking-widest mb-4 font-heading shadow-sm">
             <Sparkles className="w-3.5 h-3.5 animate-pulse text-blue-600 dark:text-blue-400" />
             <span>CORE ARCHITECTURE &amp; ECOSYSTEM</span>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { HumanVsAiBenchmarkSection } from "@/components/sections/HumanVsAiBenchmarkSection";
 import { ProjectsCatalog } from "@/components/sections/ProjectsCatalog";
 import { Button } from "@/components/ui/Button";
 import { COMPANY_INFO } from "@/lib/constants";
@@ -20,6 +21,9 @@ export default function ProjectsPage() {
         description="Explore our portfolio of AI agents, intelligent document automation pipelines, and custom enterprise software integrations."
         breadcrumbs={[{ label: "Projects" }]}
       />
+
+      {/* 📊 Step 3: Human vs AI Speed, Cost & Accuracy Benchmark */}
+      <HumanVsAiBenchmarkSection />
 
       <div className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <ProjectsCatalog />

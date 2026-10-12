@@ -124,11 +124,7 @@ export default function RootLayout({
               }}
             />
             <CursorGlow />
-            {/* Framed Layout Borders */}
-            <div className="fixed left-0 top-0 bottom-0 w-3 md:w-5 lg:w-6 bg-[#FCFDFE] dark:bg-[#020817] border-r border-slate-200 dark:border-slate-800 z-[60] pointer-events-none transition-colors duration-300"></div>
-            <div className="fixed right-0 top-0 bottom-0 w-3 md:w-5 lg:w-6 bg-[#FCFDFE] dark:bg-[#020817] border-l border-slate-200 dark:border-slate-800 z-[60] pointer-events-none transition-colors duration-300"></div>
-            
-            <div className="px-3 md:px-5 lg:px-6 flex flex-col min-h-screen">
+            <div className="flex flex-col min-h-screen relative w-full overflow-x-hidden">
               <Navbar />
               <main className="flex-1 flex flex-col">
                 <PageTransition>{children}</PageTransition>

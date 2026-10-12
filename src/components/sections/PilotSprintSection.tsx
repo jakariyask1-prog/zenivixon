@@ -16,18 +16,18 @@ import {
 export function PilotSprintSection() {
   const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
   return (
-    <section className="py-20 md:py-32 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#FCFDFE] dark:bg-[#060b18] relative transition-colors duration-300 overflow-hidden">
+    <section className="py-16 md:py-24 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#FCFDFE] dark:bg-[#060b18] relative transition-colors duration-300 overflow-hidden">
       <AmbientOrbs />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Main Pilot Banner Container */}
-        <div className="relative rounded-3xl p-8 sm:p-12 lg:p-16 bg-gradient-to-b from-[#0F172A] via-[#0b1120] to-[#020817] text-white border-2 border-yellow-400/40 shadow-2xl overflow-hidden max-w-6xl mx-auto">
+        <div className="relative rounded-3xl p-8 sm:p-12 lg:p-14 bg-gradient-to-b from-[#0F172A] via-[#0b1120] to-[#020817] text-white border-2 border-yellow-400/40 shadow-2xl overflow-hidden max-w-6xl mx-auto">
           {/* Background Glows */}
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl pointer-events-none"></div>
           <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
 
           {/* Header */}
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-12 relative z-10">
+          <div className="text-center max-w-3xl mx-auto space-y-4 mb-10 relative z-10">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-400/10 text-yellow-300 border border-yellow-400/30 text-xs font-bold font-mono uppercase tracking-widest">
               <ShieldCheck className="w-4 h-4 text-yellow-400 animate-pulse" />
               14-Day Pilot
@@ -44,7 +44,7 @@ export function PilotSprintSection() {
           </div>
 
           {/* 3 Pillars of the Pilot */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 mb-10">
             {/* Pillar 1 */}
             <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-4 hover:border-yellow-400/30 transition-all premium-card-hover">
               <div className="w-12 h-12 rounded-xl bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center text-yellow-400 font-bold">

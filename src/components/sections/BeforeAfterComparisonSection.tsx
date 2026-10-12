@@ -221,12 +221,12 @@ export function BeforeAfterComparisonSection() {
   const current = workflows.find((w) => w.id === selectedWorkflow) || workflows[0];
 
   return (
-    <section className="py-20 md:py-32 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#F7F9FC] dark:bg-[#070d1d] relative transition-colors duration-300 overflow-hidden">
+    <section className="py-16 md:py-24 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#F7F9FC] dark:bg-[#070d1d] relative transition-colors duration-300 overflow-hidden">
       <AmbientOrbs />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12 md:mb-16">
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-10 md:mb-12">
           <Badge variant="cyan" size="sm" className="font-semibold text-xs tracking-widest gap-1.5">
             <Sparkles className="w-3.5 h-3.5 animate-pulse" />
             WORKFLOW TRANSFORMATION

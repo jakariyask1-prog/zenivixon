@@ -1,6 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { CentralAiPipelineSection } from "@/components/sections/CentralAiPipelineSection";
 import { SOLUTIONS_DATA } from "@/data/solutions";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -29,6 +30,9 @@ export default function SolutionsPage() {
         description="We focus on four core pillars: 24/7 AI customer support agents, intelligent workflow automation, modern web and custom software development, and seamless enterprise system integration."
         breadcrumbs={[{ label: "Solutions" }]}
       />
+
+      {/* ⚡ Step 2: Animated Data-Flow Pipeline & Central AI Hub */}
+      <CentralAiPipelineSection />
 
       <div className="py-20 md:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
         {/* Solution Pillar Cards */}

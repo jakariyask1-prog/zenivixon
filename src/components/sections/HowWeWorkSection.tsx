@@ -47,10 +47,10 @@ const steps = [
 
 export function HowWeWorkSection() {
   return (
-    <section className="py-20 md:py-32 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#F7F9FC] dark:bg-[#070d1d] relative transition-colors duration-300">
+    <section className="py-16 md:py-24 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#F7F9FC] dark:bg-[#070d1d] relative transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl space-y-4 mb-16 md:mb-20">
+        <div className="max-w-3xl space-y-4 mb-12 md:mb-14">
           <Badge variant="blue" size="sm" className="font-semibold text-xs tracking-widest">
             HOW WE WORK
           </Badge>
@@ -95,7 +95,7 @@ export function HowWeWorkSection() {
         </div>
 
         {/* Psychological Commitment Box */}
-        <div data-aos="fade-up" className="mt-12 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#0b1120] border border-blue-100 dark:border-blue-900/40 shadow-sm dark:shadow-none max-w-3xl mx-auto text-center space-y-2 premium-card-hover">
+        <div data-aos="fade-up" className="mt-10 sm:mt-12 p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#0b1120] border border-blue-100 dark:border-blue-900/40 shadow-sm dark:shadow-none max-w-3xl mx-auto text-center space-y-2 premium-card-hover">
           <p className="text-xs font-heading uppercase tracking-widest text-blue-700 dark:text-blue-400 font-bold">
             Our Core Engineering Promise
           </p>

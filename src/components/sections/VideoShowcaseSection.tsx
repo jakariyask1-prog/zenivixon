@@ -58,7 +58,7 @@ export function VideoShowcaseSection() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 md:py-32 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#F7F9FC] dark:bg-[#070d1d] relative overflow-hidden transition-colors duration-300"
+      className="py-16 md:py-24 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#F7F9FC] dark:bg-[#070d1d] relative overflow-hidden transition-colors duration-300"
     >
       <AmbientOrbs />
 
@@ -66,7 +66,7 @@ export function VideoShowcaseSection() {
 
         {/* Header */}
         <motion.div
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-12 md:mb-14"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: [0.17, 0.55, 0.55, 1] }}
@@ -85,7 +85,7 @@ export function VideoShowcaseSection() {
 
         {/* Video Player */}
         <motion.div
-          className="relative max-w-5xl mx-auto mb-16"
+          className="relative max-w-5xl mx-auto mb-12 md:mb-14"
           initial={{ opacity: 0, y: 40, scale: 0.97 }}
           animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
           transition={{ duration: 0.7, delay: 0.15, ease: [0.17, 0.55, 0.55, 1] }}
@@ -98,11 +98,12 @@ export function VideoShowcaseSection() {
             <video
               ref={videoRef}
               src="/videos/ai_studio.mp4"
+              poster="/images/projects/jakariya-ai-studio.png"
               className="w-full h-auto object-cover block"
               muted
               loop
               playsInline
-              preload="metadata"
+              preload="none"
             />
 
             {/* Overlay controls */}
