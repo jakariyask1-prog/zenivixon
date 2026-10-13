@@ -270,3 +270,45 @@
   transform: scale(1.04) !important;
 }
 
+/* --- Infinite Moving Video Marquee Track --- */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 45s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* --- Executive Leadership Cinematic Moving Track --- */
+.marquee-leadership-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-leadership 38s linear infinite;
+  will-change: transform;
+}
+
+.marquee-leadership-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-leadership {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+

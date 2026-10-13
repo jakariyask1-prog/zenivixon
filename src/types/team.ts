@@ -20,4 +20,6 @@ export interface TeamMember {
   portfolio?: string;
   image: string;
   featured?: boolean;
+  isOpenRole?: boolean;
+  applyLink?: string;
 }

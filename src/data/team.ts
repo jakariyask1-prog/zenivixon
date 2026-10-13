@@ -82,9 +82,11 @@ export const TEAM_MEMBERS: TeamMember[] = [
     id: "senior-ai-ml-engineer",
     name: "Senior AI/ML Engineer",
     role: "AI Systems Architecture",
-    titleBadge: "Engineering reliable intelligence from advanced AI.",
+    titleBadge: "Actively Hiring • Open Role",
     department: "AI & Engineering",
     featured: false,
+    isOpenRole: true,
+    applyLink: "/contact?subject=Careers%20%26%20Open%20Engineering%20Roles",
     expertise: [
       "Python",
       "PyTorch",
@@ -100,7 +102,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Production AI systems",
       "Rigorous AI evaluation",
     ],
-    bio: "Specializes in developing LLM applications and RAG systems. Focuses on vector databases, model integration, and building reliable AI agents capable of complex reasoning for production environments.",
+    bio: "Actively recruiting: We are seeking a Senior AI/ML Engineer to architect production LLM agent pipelines, optimize vector retrieval (RAG), and deploy deterministic guardrails for global enterprise clients.",
     image: "/images/team/placeholder.svg",
   },
   {
@@ -133,9 +135,11 @@ export const TEAM_MEMBERS: TeamMember[] = [
     id: "ai-integration-backend",
     name: "AI Integration & Backend Engineer",
     role: "Backend Architecture & APIs",
-    titleBadge: "Connecting intelligent systems with reliable infrastructure.",
+    titleBadge: "Actively Hiring • Open Role",
     department: "AI & Engineering",
     featured: false,
+    isOpenRole: true,
+    applyLink: "/contact?subject=Careers%20%26%20Open%20Engineering%20Roles",
     expertise: [
       "Python",
       "FastAPI",
@@ -151,7 +155,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "CRM/ERP integration",
       "Reliable data pipelines",
     ],
-    bio: "Builds the foundational backend architecture that powers our AI applications. Specializes in designing robust REST and GraphQL APIs, database management, and seamless integrations with third-party enterprise systems.",
+    bio: "Actively recruiting: We are seeking an AI Integration & Backend Engineer to build resilient microservices, asynchronous webhooks, and secure API bridges between enterprise software and autonomous AI agents.",
     image: "/images/team/placeholder.svg",
   },
   {

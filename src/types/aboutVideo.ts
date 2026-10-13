@@ -1,9 +1,7 @@
 export type VideoCategory =
   | "Founder & CEO"
   | "Co-Founder"
-  | "Team"
-  | "Client Conversations"
-  | "Behind the Work";
+  | "Team Leader";
 
 export interface AboutVideo {
   id: string;

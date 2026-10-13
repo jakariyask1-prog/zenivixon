@@ -16,6 +16,7 @@ export function ContactForm() {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -27,6 +28,16 @@ export function ContactForm() {
       message: "",
     },
   });
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const subject = params.get("subject") || params.get("service");
+      if (subject) {
+        setValue("service", subject);
+      }
+    }
+  }, [setValue]);
 
   const onSubmit = async (data: ContactFormData) => {
     setApiError(null);
@@ -148,6 +159,8 @@ export function ContactForm() {
             <option value="Custom Software & Web Development" className="bg-white dark:bg-[#070e1e]">Custom Software &amp; Web Development</option>
             <option value="AI System Integration & Vector RAG" className="bg-white dark:bg-[#070e1e]">AI System Integration &amp; Vector RAG</option>
             <option value="Architecture Audit & Consultation" className="bg-white dark:bg-[#070e1e]">Architecture Audit &amp; Consultation</option>
+            <option value="Vendor Due Diligence & Legal Compliance" className="bg-white dark:bg-[#070e1e]">Vendor Due Diligence &amp; Legal Compliance</option>
+            <option value="Careers & Open Engineering Roles" className="bg-white dark:bg-[#070e1e]">Careers &amp; Open Engineering Roles</option>
             <option value="Other Inquiry" className="bg-white dark:bg-[#070e1e]">Other Inquiry</option>
           </select>
           {errors.service && <span className="text-[10px] text-red-500">{errors.service.message}</span>}
