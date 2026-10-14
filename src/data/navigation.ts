@@ -69,7 +69,7 @@ export const FOOTER_LINKS = {
     { label: "Start Your AI Project", href: "/start-a-project" },
   ],
   connect: [
-    { label: "WhatsApp Business", href: "https://wa.me/message/ZENIVIXON", external: true },
+    { label: "WhatsApp Business", href: "https://wa.me/8801937685423", external: true },
     { label: "Business Email", href: "mailto:contact@zenivixon.com", external: true },
     { label: "LinkedIn", href: "https://linkedin.com/company/zenivixon", external: true },
     { label: "Facebook", href: "https://www.facebook.com/share/1Re24w32HP/", external: true },

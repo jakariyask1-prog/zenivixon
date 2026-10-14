@@ -24,8 +24,7 @@ export async function analyzeLeadWithGemini(leadData: {
     throw new Error("GEMINI_API_KEY is not configured.");
   }
 
-  const modelName = process.env.GEMINI_MODEL || "gemini-1.5-flash";
-  const model = genAI.getGenerativeModel({ model: modelName });
+  const modelName = process.env.GEMINI_MODEL || "gemini-2.0-flash";
 
   const prompt = `You are ZENIVIXON's AI Business Lead Assistant and Client Communication Consultant.
 
@@ -110,12 +109,29 @@ Return exactly this structure:
 `;
 
   try {
-    const result = await model.generateContent({
-      contents: [{ role: "user", parts: [{ text: prompt }] }],
-      generationConfig: {
-        responseMimeType: "application/json",
-      },
-    });
+    let result;
+    try {
+      const model = genAI.getGenerativeModel({ model: modelName });
+      result = await model.generateContent({
+        contents: [{ role: "user", parts: [{ text: prompt }] }],
+        generationConfig: {
+          responseMimeType: "application/json",
+        },
+      });
+    } catch (primaryErr) {
+      if (modelName !== "gemini-1.5-flash") {
+        console.warn(`[Gemini] ${modelName} failed, falling back to gemini-1.5-flash:`, primaryErr);
+        const fallbackModel = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        result = await fallbackModel.generateContent({
+          contents: [{ role: "user", parts: [{ text: prompt }] }],
+          generationConfig: {
+            responseMimeType: "application/json",
+          },
+        });
+      } else {
+        throw primaryErr;
+      }
+    }
 
     const text = result.response.text();
     const json = JSON.parse(text);

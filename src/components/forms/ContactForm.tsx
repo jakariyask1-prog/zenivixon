@@ -23,6 +23,7 @@ export function ContactForm() {
     defaultValues: {
       name: "",
       email: "",
+      phone: "",
       company: "",
       service: "",
       message: "",
@@ -130,8 +131,25 @@ export function ContactForm() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-1.5">
-          <label htmlFor="contact-company" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-            Company Name
+          <label htmlFor="contact-phone" className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center justify-between">
+            <span>Phone / WhatsApp</span>
+            <span className="text-[10px] font-normal text-slate-400 dark:text-slate-500">Optional</span>
+          </label>
+          <input
+            id="contact-phone"
+            type="tel"
+            autoComplete="tel"
+            placeholder="+1 (555) 000-0000"
+            {...register("phone")}
+            className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
+          />
+          {errors.phone && <span className="text-[10px] text-red-500">{errors.phone.message}</span>}
+        </div>
+
+        <div className="space-y-1.5">
+          <label htmlFor="contact-company" className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center justify-between">
+            <span>Company Name</span>
+            <span className="text-[10px] font-normal text-slate-400 dark:text-slate-500">Optional</span>
           </label>
           <input
             id="contact-company"
@@ -143,28 +161,28 @@ export function ContactForm() {
           />
           {errors.company && <span className="text-[10px] text-red-500">{errors.company.message}</span>}
         </div>
+      </div>
 
-        <div className="space-y-1.5">
-          <label htmlFor="contact-service" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-            Service / Interest
-          </label>
-          <select
-            id="contact-service"
-            {...register("service")}
-            className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all"
-          >
-            <option value="" className="text-slate-400 bg-white dark:bg-[#070e1e]">Select a service / topic...</option>
-            <option value="AI Agents & 24/7 Support" className="bg-white dark:bg-[#070e1e]">AI Agents &amp; 24/7 Support</option>
-            <option value="AI Workflow & Business Automation" className="bg-white dark:bg-[#070e1e]">AI Workflow &amp; Business Automation</option>
-            <option value="Custom Software & Web Development" className="bg-white dark:bg-[#070e1e]">Custom Software &amp; Web Development</option>
-            <option value="AI System Integration & Vector RAG" className="bg-white dark:bg-[#070e1e]">AI System Integration &amp; Vector RAG</option>
-            <option value="Architecture Audit & Consultation" className="bg-white dark:bg-[#070e1e]">Architecture Audit &amp; Consultation</option>
-            <option value="Vendor Due Diligence & Legal Compliance" className="bg-white dark:bg-[#070e1e]">Vendor Due Diligence &amp; Legal Compliance</option>
-            <option value="Careers & Open Engineering Roles" className="bg-white dark:bg-[#070e1e]">Careers &amp; Open Engineering Roles</option>
-            <option value="Other Inquiry" className="bg-white dark:bg-[#070e1e]">Other Inquiry</option>
-          </select>
-          {errors.service && <span className="text-[10px] text-red-500">{errors.service.message}</span>}
-        </div>
+      <div className="space-y-1.5">
+        <label htmlFor="contact-service" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+          Service / Interest
+        </label>
+        <select
+          id="contact-service"
+          {...register("service")}
+          className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all"
+        >
+          <option value="" className="text-slate-400 bg-white dark:bg-[#070e1e]">Select a service / topic...</option>
+          <option value="AI Agents & 24/7 Support" className="bg-white dark:bg-[#070e1e]">AI Agents &amp; 24/7 Support</option>
+          <option value="AI Workflow & Business Automation" className="bg-white dark:bg-[#070e1e]">AI Workflow &amp; Business Automation</option>
+          <option value="Custom Software & Web Development" className="bg-white dark:bg-[#070e1e]">Custom Software &amp; Web Development</option>
+          <option value="AI System Integration & Vector RAG" className="bg-white dark:bg-[#070e1e]">AI System Integration &amp; Vector RAG</option>
+          <option value="Architecture Audit & Consultation" className="bg-white dark:bg-[#070e1e]">Architecture Audit &amp; Consultation</option>
+          <option value="Vendor Due Diligence & Legal Compliance" className="bg-white dark:bg-[#070e1e]">Vendor Due Diligence &amp; Legal Compliance</option>
+          <option value="Careers & Open Engineering Roles" className="bg-white dark:bg-[#070e1e]">Careers &amp; Open Engineering Roles</option>
+          <option value="Other Inquiry" className="bg-white dark:bg-[#070e1e]">Other Inquiry</option>
+        </select>
+        {errors.service && <span className="text-[10px] text-red-500">{errors.service.message}</span>}
       </div>
 
       <div className="space-y-1.5">

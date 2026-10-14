@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { projectType, problemDescription, currentTools, timeline, name, email, company, preferredChannel } = parsed.data;
+    const { projectType, problemDescription, currentTools, budget, timeline, projectFileUrl, name, email, phone, company, preferredChannel } = parsed.data;
 
     const projectTypeLabels: Record<string, string> = {
       "ai-agents": "AI Agents & 24/7 Customer Support",
@@ -52,11 +52,20 @@ export async function POST(req: NextRequest) {
     if (currentTools && currentTools.trim()) {
       messageParts.push(`Current Tools: ${currentTools.trim()}`);
     }
+    if (phone && phone.trim()) {
+      messageParts.push(`Phone / WhatsApp: ${phone.trim()}`);
+    }
+    if (budget && budget.trim()) {
+      messageParts.push(`Target Budget: ${budget.trim()}`);
+    }
     if (timeline && timeline.trim()) {
       messageParts.push(`Timeline: ${timeline.trim()}`);
     }
     if (preferredChannel && preferredChannel.trim()) {
       messageParts.push(`Preferred Contact: ${preferredChannel.trim()}`);
+    }
+    if (projectFileUrl && projectFileUrl.trim()) {
+      messageParts.push(`Project Reference: ${projectFileUrl.trim()}`);
     }
 
     const cleanMessage = messageParts.join(" | ");
@@ -112,11 +121,19 @@ export async function POST(req: NextRequest) {
 
     // 3. Send Emails via Resend (To Client and To Admin)
     await sendLeadEmails({
+      source: "project-brief",
       name: payload.name,
       email: payload.email,
+      phone: phone?.trim(),
       company: payload.company || "",
       service: payload.service,
-      message: payload.message,
+      message: cleanMessage,
+      problemDescription: problemDescription?.trim(),
+      currentTools: currentTools?.trim(),
+      budget: budget?.trim(),
+      timeline: timeline?.trim(),
+      projectFileUrl: projectFileUrl?.trim(),
+      preferredChannel: preferredChannel?.trim(),
       clientReplyHtml: aiAnalysis.client_reply,
     }).catch(err => console.error("Failed to send emails:", err));
 
@@ -129,9 +146,13 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify({
           name: payload.name,
           email: payload.email,
+          phone: phone?.trim() || "",
           company: payload.company || "",
           service: payload.service,
           message: payload.message,
+          budget: budget?.trim() || "",
+          timeline: timeline?.trim() || "",
+          preferredChannel: preferredChannel?.trim() || "",
           lead_priority: aiAnalysis.lead_priority,
           business_need: aiAnalysis.business_need,
           recommended_solution: aiAnalysis.recommended_solution,

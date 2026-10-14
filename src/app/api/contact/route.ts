@@ -42,12 +42,16 @@ export async function POST(req: NextRequest) {
     // It's usually better to await them to let the client know if something failed,
     // but on Vercel we need to return within the timeout. 10 seconds is usually enough.
 
+    const effectiveMessage = payload.phone
+      ? `${payload.message}\n\n[Direct Phone/WhatsApp: ${payload.phone}]`
+      : payload.message;
+
     // 1. Analyze lead with Gemini AI (Resilient fallback to avoid losing leads)
     let aiAnalysis = {
-      lead_summary: payload.message.slice(0, 200),
+      lead_summary: effectiveMessage.slice(0, 200),
       service_category: payload.service || "General Inquiry",
       lead_priority: "Normal",
-      business_need: payload.message,
+      business_need: effectiveMessage,
       recommended_solution: "Engineering Review Required",
       client_reply: `Dear ${payload.name},\n\nThank you for reaching out to ZENIVIXON. We have received your inquiry regarding ${payload.service || "our technology services"} and our engineering team is reviewing your requirements. We will contact you within 24 hours.\n\nBest regards,\nZENIVIXON Technologies Team`,
       next_action: "Review inquiry and schedule discovery call",
@@ -59,7 +63,7 @@ export async function POST(req: NextRequest) {
         email: payload.email,
         company: payload.company || "",
         service: payload.service || "N/A",
-        message: payload.message,
+        message: effectiveMessage,
       });
       if (result) {
         aiAnalysis = { ...aiAnalysis, ...result };
@@ -81,10 +85,12 @@ export async function POST(req: NextRequest) {
 
     // 3. Send Emails via Resend (To Client and To Admin)
     await sendLeadEmails({
+      source: "contact",
       name: payload.name,
       email: payload.email,
+      phone: payload.phone,
       company: payload.company || "",
-      service: payload.service || "N/A",
+      service: payload.service || "General Inquiry",
       message: payload.message,
       clientReplyHtml: aiAnalysis.client_reply,
     }).catch(err => console.error("Failed to send emails:", err));
@@ -100,7 +106,7 @@ export async function POST(req: NextRequest) {
           email: payload.email,
           company: payload.company || "",
           service: payload.service || "N/A",
-          message: payload.message,
+          message: effectiveMessage,
           lead_priority: aiAnalysis.lead_priority,
           business_need: aiAnalysis.business_need,
           recommended_solution: aiAnalysis.recommended_solution,

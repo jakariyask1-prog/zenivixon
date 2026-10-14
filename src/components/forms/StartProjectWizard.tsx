@@ -57,6 +57,7 @@ export function StartProjectWizard() {
     control,
     trigger,
     reset,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<ProjectBriefFormData>({
     resolver: zodResolver(projectBriefSchema),
@@ -64,9 +65,12 @@ export function StartProjectWizard() {
       projectType: "ai-agents",
       problemDescription: problemParam,
       currentTools: "",
+      budget: "Open to Discussion / Discovery",
       timeline: "1-2 Months",
+      projectFileUrl: "",
       name: "",
       email: "",
+      phone: "",
       company: "",
       preferredChannel: "Email",
     },
@@ -76,7 +80,11 @@ export function StartProjectWizard() {
   const projectType = useWatch({ control, name: "projectType" });
   const name = useWatch({ control, name: "name" });
   const email = useWatch({ control, name: "email" });
+  const phone = useWatch({ control, name: "phone" });
+  const budget = useWatch({ control, name: "budget" });
   const timeline = useWatch({ control, name: "timeline" });
+  const preferredChannel = useWatch({ control, name: "preferredChannel" });
+  const currentToolsValue = useWatch({ control, name: "currentTools" });
 
   const handleNext = async () => {
     let isStepValid = false;
@@ -84,7 +92,7 @@ export function StartProjectWizard() {
     if (step === 1) {
       isStepValid = await trigger(["projectType"]);
     } else if (step === 2) {
-      isStepValid = await trigger(["problemDescription", "currentTools"]);
+      isStepValid = await trigger(["problemDescription", "currentTools", "projectFileUrl"]);
     }
 
     if (isStepValid) {
@@ -114,8 +122,8 @@ export function StartProjectWizard() {
 
   if (submitted) {
     return (
-      <div className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200 dark:border-slate-800 text-center space-y-6 max-w-2xl mx-auto shadow-xl">
-        <div className="w-16 h-16 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center mx-auto">
+      <div className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 text-center space-y-6 max-w-2xl mx-auto shadow-xl">
+        <div className="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto">
           <CheckCircle2 className="w-8 h-8" />
         </div>
         <Badge variant="emerald" size="sm">
@@ -128,11 +136,12 @@ export function StartProjectWizard() {
           We have received your project requirements. A technical architect from ZENIVIXON will review your current workflow and respond with an actionable solution proposal within 24 hours.
         </p>
 
-        <div className="pt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-400 space-y-1 text-left">
-          <div className="font-semibold text-slate-800">Summary of your brief:</div>
-          <div>&bull; Focus Area: {projectTypes.find((p) => p.id === projectType)?.title}</div>
-          <div>&bull; Preferred Contact: {email}</div>
-          <div>&bull; Timeline: {timeline}</div>
+        <div className="pt-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300 space-y-1.5 text-left">
+          <div className="font-semibold text-slate-900 dark:text-white">Summary of your brief:</div>
+          <div>&bull; Focus Area: <span className="font-medium text-slate-800 dark:text-slate-200">{projectTypes.find((p) => p.id === projectType)?.title}</span></div>
+          <div>&bull; Preferred Contact: <span className="font-medium text-slate-800 dark:text-slate-200">{preferredChannel || "Email"} ({email}{phone ? ` • ${phone}` : ""})</span></div>
+          <div>&bull; Target Budget: <span className="font-medium text-slate-800 dark:text-slate-200">{budget || "Open to Discussion"}</span></div>
+          <div>&bull; Timeline: <span className="font-medium text-slate-800 dark:text-slate-200">{timeline}</span></div>
         </div>
 
         <div className="pt-4 flex flex-wrap justify-center gap-3">
@@ -175,7 +184,7 @@ export function StartProjectWizard() {
       </div>
 
       {/* Step Indicator */}
-      <div className="flex items-center justify-between border-b border-slate-100 pb-6 mb-8" aria-live="polite">
+      <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-6 mb-8" aria-live="polite">
         <div className="flex items-center gap-3">
           <span className="w-7 h-7 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center">
             {step}
@@ -183,7 +192,7 @@ export function StartProjectWizard() {
           <span className="text-sm font-bold text-[#0F172A] dark:text-white font-heading">
             {step === 1 && "Select Focus Area"}
             {step === 2 && "Describe Your Problem & Current Tools"}
-            {step === 3 && "Contact & Timeline Details"}
+            {step === 3 && "Budget, Timeline & Contact Details"}
           </span>
         </div>
         <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-semibold">Step {step} of 3</span>
@@ -191,7 +200,7 @@ export function StartProjectWizard() {
 
       {/* Error Banner */}
       {apiError && (
-        <div className="mb-4 flex items-start gap-2.5 p-4 rounded-xl bg-rose-50 border border-rose-200 text-sm text-rose-700">
+        <div className="mb-4 flex items-start gap-2.5 p-4 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-sm text-rose-700 dark:text-rose-300">
           <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
           <span>{apiError}</span>
         </div>
@@ -241,7 +250,7 @@ export function StartProjectWizard() {
                         }}
                         className={`p-5 rounded-2xl border cursor-pointer transition-all duration-200 flex flex-col justify-between focus:outline-none focus:ring-2 focus:ring-blue-600 ${
                           isSelected
-                            ? "bg-blue-50/50 border-blue-600 text-[#0F172A] dark:text-white shadow-sm ring-1 ring-blue-600"
+                            ? "bg-blue-50/50 dark:bg-blue-950/40 border-blue-600 text-[#0F172A] dark:text-white shadow-sm ring-1 ring-blue-600"
                             : "bg-[#F8FAFC] dark:bg-[#070e1e] border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600 hover:bg-white dark:hover:bg-[#0b1120]"
                         }`}
                       >
@@ -280,7 +289,7 @@ export function StartProjectWizard() {
         {step === 2 && (
           <div className="space-y-6">
             <div className="space-y-2">
-              <label htmlFor="wizard-problem" className="text-sm font-semibold text-slate-800">
+              <label htmlFor="wizard-problem" className="text-sm font-semibold text-slate-800 dark:text-slate-200">
                 What problem are you trying to solve? *
               </label>
               <textarea
@@ -294,7 +303,7 @@ export function StartProjectWizard() {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="wizard-tools" className="text-sm font-semibold text-slate-800">
+              <label htmlFor="wizard-tools" className="text-sm font-semibold text-slate-800 dark:text-slate-200">
                 What tools or databases does your team currently use?
               </label>
               <input
@@ -304,7 +313,42 @@ export function StartProjectWizard() {
                 {...register("currentTools")}
                 className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
               />
+              {/* Quick tool selector chips */}
+              <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                <span className="text-[11px] text-slate-400 dark:text-slate-500 mr-1">Quick Add:</span>
+                {["HubSpot", "PostgreSQL", "Zendesk", "Slack", "Shopify", "Salesforce", "Supabase", "Google Sheets"].map((tool) => (
+                  <button
+                    key={tool}
+                    type="button"
+                    onClick={() => {
+                      const current = currentToolsValue || "";
+                      if (!current.toLowerCase().includes(tool.toLowerCase())) {
+                        const updated = current ? `${current}, ${tool}` : tool;
+                        setValue("currentTools", updated, { shouldDirty: true });
+                      }
+                    }}
+                    className="px-2 py-0.5 rounded-md text-[11px] bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 border border-slate-200 dark:border-slate-700 transition-colors cursor-pointer"
+                  >
+                    + {tool}
+                  </button>
+                ))}
+              </div>
               {errors.currentTools && <span className="text-[10px] text-red-500">{errors.currentTools.message}</span>}
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="wizard-file-url" className="text-sm font-semibold text-slate-800 dark:text-slate-200 flex items-center justify-between">
+                <span>Project Specs / Figma / Drive Link</span>
+                <span className="text-xs font-normal text-slate-400 dark:text-slate-500">Optional</span>
+              </label>
+              <input
+                id="wizard-file-url"
+                type="url"
+                placeholder="e.g. https://drive.google.com/... or https://figma.com/..."
+                {...register("projectFileUrl")}
+                className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
+              />
+              {errors.projectFileUrl && <span className="text-[10px] text-red-500">{errors.projectFileUrl.message}</span>}
             </div>
 
             <div className="pt-4 flex items-center justify-between">
@@ -336,7 +380,7 @@ export function StartProjectWizard() {
           <div className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label htmlFor="wizard-name" className="text-xs font-semibold text-slate-700">
+                <label htmlFor="wizard-name" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                   Your Name *
                 </label>
                 <input
@@ -350,7 +394,7 @@ export function StartProjectWizard() {
                 {errors.name && <span className="text-[10px] text-red-500">{errors.name.message}</span>}
               </div>
               <div className="space-y-1.5">
-                <label htmlFor="wizard-email" className="text-xs font-semibold text-slate-700">
+                <label htmlFor="wizard-email" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                   Business Email *
                 </label>
                 <input
@@ -367,8 +411,25 @@ export function StartProjectWizard() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label htmlFor="wizard-company" className="text-xs font-semibold text-slate-700">
-                  Company Name
+                <label htmlFor="wizard-phone" className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center justify-between">
+                  <span>Phone / WhatsApp</span>
+                  <span className="text-[10px] font-normal text-slate-400 dark:text-slate-500">Optional</span>
+                </label>
+                <input
+                  id="wizard-phone"
+                  type="tel"
+                  autoComplete="tel"
+                  placeholder="+1 (555) 000-0000 or +880 1..."
+                  {...register("phone")}
+                  className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
+                />
+                {errors.phone && <span className="text-[10px] text-red-500">{errors.phone.message}</span>}
+              </div>
+
+              <div className="space-y-1.5">
+                <label htmlFor="wizard-company" className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center justify-between">
+                  <span>Company Name</span>
+                  <span className="text-[10px] font-normal text-slate-400 dark:text-slate-500">Optional</span>
                 </label>
                 <input
                   id="wizard-company"
@@ -380,8 +441,47 @@ export function StartProjectWizard() {
                 />
                 {errors.company && <span className="text-[10px] text-red-500">{errors.company.message}</span>}
               </div>
+            </div>
+
+            {/* Budget & Timeline */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label htmlFor="wizard-timeline" className="text-xs font-semibold text-slate-700">
+                <label htmlFor="wizard-budget" className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center justify-between">
+                  <span>Estimated Budget</span>
+                  <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">Discussion &amp; Flexible</span>
+                </label>
+                <select
+                  id="wizard-budget"
+                  {...register("budget")}
+                  className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all"
+                >
+                  <option value="Open to Discussion / Discovery" className="bg-white dark:bg-[#070e1e]">
+                    Open to Discussion / Free Discovery (Recommended)
+                  </option>
+                  <option value="< $500" className="bg-white dark:bg-[#070e1e]">
+                    &lt; $500 (Starter POC / Small Automation / Script)
+                  </option>
+                  <option value="$500 - $1,500" className="bg-white dark:bg-[#070e1e]">
+                    $500 - $1,500 (MVP / Business Workflow Automation)
+                  </option>
+                  <option value="$1,500 - $3,000" className="bg-white dark:bg-[#070e1e]">
+                    $1,500 - $3,000 (Custom AI Agents &amp; Modern Web App)
+                  </option>
+                  <option value="$3,000 - $5,000+" className="bg-white dark:bg-[#070e1e]">
+                    $3,000 - $5,000+ (Full System Integration &amp; Scaling)
+                  </option>
+                  <option value="Flexible / Scope-based" className="bg-white dark:bg-[#070e1e]">
+                    Flexible / Based on Technical Scope
+                  </option>
+                </select>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                  No fixed commitment required. We discuss and finalize the best price during discovery.
+                </p>
+                {errors.budget && <span className="text-[10px] text-red-500">{errors.budget.message}</span>}
+              </div>
+
+              <div className="space-y-1.5">
+                <label htmlFor="wizard-timeline" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                   Target Timeline
                 </label>
                 <select
@@ -396,6 +496,40 @@ export function StartProjectWizard() {
                 </select>
                 {errors.timeline && <span className="text-[10px] text-red-500">{errors.timeline.message}</span>}
               </div>
+            </div>
+
+            {/* Preferred Contact Channel */}
+            <div className="space-y-1.5">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block">
+                Preferred Contact Channel
+              </label>
+              <Controller
+                name="preferredChannel"
+                control={control}
+                render={({ field }) => (
+                  <div className="grid grid-cols-3 gap-2">
+                    {[
+                      { id: "Email", label: "Email" },
+                      { id: "WhatsApp", label: "WhatsApp" },
+                      { id: "Phone Call", label: "Phone" },
+                    ].map((ch) => (
+                      <button
+                        key={ch.id}
+                        type="button"
+                        onClick={() => field.onChange(ch.id)}
+                        className={`py-3 px-2 rounded-xl border text-xs font-medium flex items-center justify-center gap-1 transition-all cursor-pointer ${
+                          field.value === ch.id
+                            ? "bg-blue-50 dark:bg-blue-950/50 border-blue-600 text-blue-700 dark:text-blue-300 font-bold shadow-xs ring-1 ring-blue-600"
+                            : "bg-[#F8FAFC] dark:bg-[#070e1e] border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-[#0b1120]"
+                        }`}
+                      >
+                        <span>{ch.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              />
+              {errors.preferredChannel && <span className="text-[10px] text-red-500">{errors.preferredChannel.message}</span>}
             </div>
 
             <div className="pt-4 flex items-center justify-between">
