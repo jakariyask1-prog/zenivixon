@@ -84,7 +84,13 @@ export default function ChatWidget() {
                     if (data.content) {
                       setMessages((prev) => {
                         const newMessages = [...prev];
-                        newMessages[newMessages.length - 1].content += data.content;
+                        const lastMsg = newMessages[newMessages.length - 1];
+                        if (lastMsg && lastMsg.content && lastMsg.content === data.content) {
+                          return newMessages;
+                        }
+                        if (lastMsg) {
+                          lastMsg.content += data.content;
+                        }
                         return newMessages;
                       });
                     }
