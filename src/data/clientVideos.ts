@@ -12,7 +12,7 @@ export const CLIENT_CONVERSATION_VIDEOS: ClientConversationVideo[] = [
     keyTakeaway:
       "Evaluating deterministic LangGraph tool calling to eliminate manual support backlogs without hallucinations.",
     thumbnail: "/images/projects/support-agent.svg",
-    videoUrl: "/videos/ai_studio.mp4",
+    videoUrl: "",
     duration: "03:12",
     tag: "Discovery Call",
   },

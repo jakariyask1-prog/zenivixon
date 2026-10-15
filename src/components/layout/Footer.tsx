@@ -125,63 +125,22 @@ export function Footer() {
 
           </div>
 
-          {/* Right Columns: Massive Sitemap Grid (Col-span 8) */}
-          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-16">
+          {/* Right Columns: Enterprise Sitemap Grid (Col-span 8) */}
+          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-12">
             
-            {/* Free Tools */}
+            {/* Column 1: Solutions */}
             <div className="space-y-4">
               <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 block font-heading">
-                FREE TOOLS
+                SOLUTIONS
               </span>
-              <ul className="space-y-3.5">
-                <li>
-                  <Link href="/#roi-calculator" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1.5 transition-colors">
-                    ROI &amp; Savings Calculator
-                    <span className="text-[10px] font-bold px-1.5 py-0.2 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
-                      FREE
-                    </span>
-                  </Link>
-                </li>
+              <ul className="space-y-3">
                 {[
-                  "Free AI Models Directory",
-                  "AI Model Comparison",
-                  "AI Model Pricing Index",
-                  "AI Readiness Assessment",
-                  "AI Budget Planner",
-                  "Workflow Audit",
-                  "AI Maturity Quiz",
-                  "AI Use Case Generator",
-                  "AI Tool Selector",
-                  "Job Description Generator"
-                ].map((item) => (
-                  <li key={item}>
-                    <span className="text-slate-400 dark:text-slate-500 font-medium cursor-default" title="Coming soon">
-                      {item}
-                    </span>
-                  </li>
-                ))}
-                <li>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-blue-400 dark:text-blue-500 mt-2 inline-block px-2 py-0.5 rounded-full border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-950/30">
-                    COMING SOON
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Services */}
-            <div className="space-y-4">
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 block font-heading">
-                SERVICES
-              </span>
-              <ul className="space-y-3.5">
-                {[
-                  { label: "All Services", href: "/solutions" },
-                  { label: "AI Strategy Consulting", href: "/solutions/ai-agents" },
-                  { label: "AI Agent Development", href: "/solutions/ai-agents" },
-                  { label: "Workflow Automation", href: "/solutions/ai-automation" },
-                  { label: "Custom Automation", href: "/solutions/ai-automation" },
-                  { label: "RAG Pipeline Development", href: "/solutions/ai-integration" },
-                  { label: "SaaS MVP Development", href: "/solutions/software-web-development" },
+                  { label: "AI Agents & Support", href: "/solutions/ai-agents" },
+                  { label: "AI Automation", href: "/solutions/ai-automation" },
+                  { label: "Software & Web Dev", href: "/solutions/software-web-development" },
+                  { label: "AI Integration & RAG", href: "/solutions/ai-integration" },
+                  { label: "All Solutions", href: "/solutions" },
+                  { label: "14-Day Pilot Sprint", href: "/start-a-project" },
                 ].map((item) => (
                   <li key={item.label}>
                     <Link href={item.href} className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">
@@ -189,62 +148,57 @@ export function Footer() {
                     </Link>
                   </li>
                 ))}
-                {[
-                  "AI Workshops",
-                  "Engineer Placement",
-                  "Custom Training",
-                  "Maintenance & Support"
-                ].map((item) => (
-                  <li key={item}>
-                    <span className="text-slate-400 dark:text-slate-500 font-medium cursor-default" title="Coming soon">
-                      {item}
-                    </span>
-                  </li>
-                ))}
               </ul>
             </div>
 
-            {/* Platform Agencies */}
+            {/* Column 2: Interactive Tools */}
             <div className="space-y-4">
               <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 block font-heading">
-                PLATFORM AGENCIES
+                TOOLS & AUDITS
               </span>
-              <ul className="space-y-3.5">
-                {[
-                  "n8n Agency",
-                  "Claude Code Agency",
-                  "Cursor Agency",
-                  "Codex Agency",
-                  "Lovable Agency",
-                  "Bubble Agency",
-                  "Framer Agency",
-                  "Supabase Agency",
-                  "FlutterFlow Agency",
-                  "Replit Agency",
-                  "v0 Agency"
-                ].map((item) => (
-                  <li key={item}>
-                    <span className="text-slate-400 dark:text-slate-500 font-medium cursor-default" title="Coming soon">
-                      {item}
-                    </span>
-                  </li>
-                ))}
+              <ul className="space-y-3">
                 <li>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-blue-400 dark:text-blue-500 mt-2 inline-block px-2 py-0.5 rounded-full border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-950/30">
-                    COMING SOON
-                  </span>
+                  <Link href="/#roi-calculator" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium flex items-center justify-between transition-colors">
+                    <span>ROI Calculator</span>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+                      FREE
+                    </span>
+                  </Link>
                 </li>
+                <li>
+                  <Link href="/#live-agent-simulator" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium flex items-center justify-between transition-colors">
+                    <span>Agent Simulator</span>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800">
+                      LIVE
+                    </span>
+                  </Link>
+                </li>
+                {[
+                  { label: "Free 3-Min Audit", href: "/start-a-project" },
+                  { label: "Project Brief Wizard", href: "/start-a-project" },
+                  { label: "AI Consultant Widget", href: "/contact" },
+                ].map((item) => (
+                  <li key={item.label}>
+                    <Link href={item.href} className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
-            {/* Resources */}
+            {/* Column 3: Company */}
             <div className="space-y-4">
               <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 block font-heading">
-                RESOURCES
+                COMPANY
               </span>
-              <ul className="space-y-3.5">
+              <ul className="space-y-3">
                 {[
-                  { label: "Insights", href: "/insights" },
+                  { label: "About ZENIVIXON", href: "/about" },
+                  { label: "Projects & Case Studies", href: "/projects" },
+                  { label: "Engineering Insights", href: "/insights" },
+                  { label: "Corporate Registrations", href: "/about" },
+                  { label: "Careers & Open Roles", href: "/contact?subject=Careers%20%26%20Open%20Engineering%20Roles" },
                   { label: "Contact Us", href: "/contact" },
                 ].map((item) => (
                   <li key={item.label}>
@@ -253,29 +207,42 @@ export function Footer() {
                     </Link>
                   </li>
                 ))}
-                {[
-                  "Workflows",
-                  "Industries",
-                  "Blog",
-                  "Case Studies",
-                  "Playbooks",
-                  "Courses",
-                  "FAQ",
-                  "Careers",
-                ].map((item) => (
-                  <li key={item}>
-                    <span className="text-slate-400 dark:text-slate-500 font-medium cursor-default" title="Coming soon">
-                      {item}
+              </ul>
+            </div>
+
+            {/* Column 4: Connect & Brand */}
+            <div className="space-y-4">
+              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 block font-heading">
+                CHANNELS & PORTAL
+              </span>
+              <ul className="space-y-3">
+                <li>
+                  <a href={COMPANY_INFO.channels.supportPortal} target="_blank" rel="noopener noreferrer" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium flex items-center justify-between transition-colors">
+                    <span>Support Portal</span>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800">
+                      24/7
                     </span>
-                  </li>
-                ))}
+                  </a>
+                </li>
+                <li>
+                  <a href={COMPANY_INFO.channels.whatsapp} target="_blank" rel="noopener noreferrer" className="text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 font-medium transition-colors">
+                    WhatsApp Business
+                  </a>
+                </li>
+                <li>
+                  <a href={COMPANY_INFO.channels.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">
+                    LinkedIn Company
+                  </a>
+                </li>
+                <li>
+                  <a href={COMPANY_INFO.channels.facebook} target="_blank" rel="noopener noreferrer" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">
+                    Facebook Page
+                  </a>
+                </li>
               </ul>
 
-              <div className="pt-8">
-                <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 block font-heading mb-4">
-                  COMPANY
-                </span>
-                <Link href="/" className="flex items-center gap-2.5 mb-4 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg w-fit">
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-800/80">
+                <Link href="/" className="flex items-center gap-2 mb-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg w-fit">
                   <motion.div 
                     initial={{ opacity: shouldReduceMotion ? 1 : 0 }}
                     animate={{ opacity: 1 }}
@@ -285,8 +252,8 @@ export function Footer() {
                     <Image 
                       src="/logo.png" 
                       alt="ZENIVIXON Logo" 
-                      width={32} 
-                      height={32} 
+                      width={28} 
+                      height={28} 
                       className="object-contain rounded-md shadow-sm"
                     />
                   </motion.div>
@@ -294,7 +261,7 @@ export function Footer() {
                     <AnimatedLogoText />
                   </div>
                 </Link>
-                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-[200px]">
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed max-w-[200px]">
                   {COMPANY_INFO.positioning}
                 </p>
               </div>

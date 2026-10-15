@@ -30,7 +30,7 @@ export default function InsightsPage() {
           {INSIGHTS_DATA.map((article) => (
             <div
               key={article.slug}
-              className="rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 shadow-sm p-8 flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-300 group"
+              className="rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200/90 dark:border-slate-800/90 shadow-sm p-7 sm:p-8 flex flex-col justify-between hover:border-blue-400/80 dark:hover:border-blue-600/80 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -43,11 +43,13 @@ export default function InsightsPage() {
                   </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  {article.title}
-                </h3>
+                <Link href={`/insights/${article.slug}`}>
+                  <h3 className="text-lg sm:text-xl font-bold text-[#0F172A] dark:text-white font-heading leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    {article.title}
+                  </h3>
+                </Link>
 
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                   {article.summary}
                 </p>
 
@@ -66,11 +68,13 @@ export default function InsightsPage() {
               </div>
 
               {/* Author, Date & CTA */}
-              <div className="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-medium">
-                <span className="text-slate-500 dark:text-slate-400">{article.author.name} · {formatDate(article.publishDate)}</span>
+              <div className="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-medium gap-2">
+                <span className="text-slate-500 dark:text-slate-400 truncate max-w-[180px]" title={article.author.name}>
+                  {article.author.name}
+                </span>
                 <Link
                   href={`/insights/${article.slug}`}
-                  className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-colors"
+                  className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-colors shrink-0"
                 >
                   Read Article →
                 </Link>

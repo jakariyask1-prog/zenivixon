@@ -25,7 +25,7 @@ export function ClientVideoMarqueeSection() {
     // Map ClientConversationVideo to AboutVideo schema for the unified VideoModal
     const mapped: AboutVideo = {
       id: item.id,
-      category: "Co-Founder", // placeholder category for badge
+      category: (item.tag as any) || "Client Dialogue",
       title: item.topicTitle,
       name: `${item.flag} ${item.clientName}`,
       role: `${item.role} • ${item.companyOrIndustry}`,

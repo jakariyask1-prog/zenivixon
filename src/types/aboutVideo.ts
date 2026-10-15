@@ -1,7 +1,12 @@
 export type VideoCategory =
   | "Founder & CEO"
   | "Co-Founder"
-  | "Team Leader";
+  | "Team Leader"
+  | "Client Dialogue"
+  | "Discovery Call"
+  | "Architecture Scoping"
+  | "Pilot Sprint Review"
+  | "Client Review";
 
 export interface AboutVideo {
   id: string;

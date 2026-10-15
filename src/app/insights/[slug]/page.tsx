@@ -103,7 +103,7 @@ export default async function InsightDetailPage({ params }: Props) {
               <h2 className="text-2xl font-bold text-[#0F172A] dark:text-white font-heading">
                 {sec.heading}
               </h2>
-              <p className="text-base leading-relaxed text-slate-600 dark:text-slate-300">
+              <p className="text-base leading-relaxed text-slate-600 dark:text-slate-300 whitespace-pre-line">
                 {sec.body}
               </p>
             </section>
