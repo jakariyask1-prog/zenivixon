@@ -113,8 +113,8 @@ export default async function SolutionPage({ params }: Props) {
       <div className="py-20 md:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
         {/* Problem vs Solution Framing */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="p-8 rounded-2xl bg-white border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
-            <div className="text-xs font-heading text-rose-600 font-bold uppercase tracking-widest">
+          <div className="p-8 rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <div className="text-xs font-heading text-rose-600 dark:text-rose-400 font-bold uppercase tracking-widest">
               The Operational Problem
             </div>
             <h3 className="text-2xl font-bold text-[#0F172A] dark:text-white font-heading">
@@ -125,8 +125,8 @@ export default async function SolutionPage({ params }: Props) {
             </p>
           </div>
 
-          <div className="p-8 rounded-2xl bg-white border border-blue-200 bg-gradient-to-br from-blue-50/40 via-white to-white shadow-sm space-y-4">
-            <div className="text-xs font-heading text-blue-700 font-bold uppercase tracking-widest">
+          <div className="p-8 rounded-2xl bg-white dark:bg-[#0b1120] border border-blue-200 dark:border-blue-900/50 bg-gradient-to-br from-blue-50/40 via-white to-white dark:from-blue-950/20 dark:via-[#0b1120] dark:to-[#0b1120] shadow-sm space-y-4">
+            <div className="text-xs font-heading text-blue-700 dark:text-blue-400 font-bold uppercase tracking-widest">
               The Zenivixon Approach
             </div>
             <h3 className="text-2xl font-bold text-[#0F172A] dark:text-white font-heading">
@@ -153,10 +153,10 @@ export default async function SolutionPage({ params }: Props) {
             {solution.features.map((feature, idx) => (
               <div
                 key={idx}
-                className="p-8 rounded-2xl bg-white border border-slate-200 dark:border-slate-800 shadow-sm hover:border-slate-300 hover:shadow-md transition-all space-y-4"
+                className="p-8 rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 shadow-sm hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all space-y-4"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600">
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 flex items-center justify-center text-blue-600 dark:text-blue-400">
                     {getIcon()}
                   </div>
                   <h3 className="text-lg font-bold text-[#0F172A] dark:text-white font-heading">
@@ -166,7 +166,7 @@ export default async function SolutionPage({ params }: Props) {
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                   {feature.description}
                 </p>
-                <div className="pt-2 flex items-center gap-2 text-xs font-heading text-blue-700 font-semibold">
+                <div className="pt-2 flex items-center gap-2 text-xs font-heading text-blue-700 dark:text-blue-400 font-semibold">
                   <CheckCircle2 className="w-4 h-4 shrink-0" />
                   <span>Outcome: {feature.outcome}</span>
                 </div>
@@ -196,10 +196,10 @@ export default async function SolutionPage({ params }: Props) {
               {relevantProjects.map((project) => (
                 <div
                   key={project.slug}
-                  className="rounded-2xl bg-white border border-slate-200 dark:border-slate-800 shadow-sm p-6 flex flex-col justify-between hover:border-slate-300 hover:shadow-md transition-all group"
+                  className="rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 shadow-sm p-6 flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all group"
                 >
                   <div className="space-y-4">
-                    <div className="aspect-[16/9] relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50">
+                    <div className="aspect-[16/9] relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
                       <Image
                         src={project.image}
                         alt={project.title}
@@ -210,7 +210,7 @@ export default async function SolutionPage({ params }: Props) {
                     <Badge variant="blue" size="sm">
                       {project.categoryLabel}
                     </Badge>
-                    <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading group-hover:text-blue-600 transition-colors">
+                    <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                       {project.title}
                     </h3>
                     <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -218,10 +218,10 @@ export default async function SolutionPage({ params }: Props) {
                     </p>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-slate-100">
+                  <div className="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
                     <Link
                       href={`/projects/${project.slug}`}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 group-hover:text-blue-700 transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors"
                     >
                       <span>Read Case Study</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -248,9 +248,9 @@ export default async function SolutionPage({ params }: Props) {
             {solution.process.map((step) => (
               <div
                 key={step.step}
-                className="p-6 rounded-2xl bg-white border border-slate-200 dark:border-slate-800 shadow-sm space-y-3"
+                className="p-6 rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 shadow-sm space-y-3"
               >
-                <span className="text-xs font-heading text-blue-600 font-bold">
+                <span className="text-xs font-heading text-blue-600 dark:text-blue-400 font-bold">
                   STEP {step.step}
                 </span>
                 <h4 className="text-base font-bold text-[#0F172A] dark:text-white font-heading">

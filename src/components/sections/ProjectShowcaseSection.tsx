@@ -38,7 +38,7 @@ export function ProjectShowcaseSection() {
             icon={<ArrowRight className="w-4 h-4" />}
             className="shrink-0 self-start md:self-auto font-semibold"
           >
-            View All 8 Case Studies
+            {`View All ${PROJECTS_DATA.length} Case Studies`}
           </Button>
         </div>
 

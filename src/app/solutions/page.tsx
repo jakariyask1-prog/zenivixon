@@ -41,12 +41,12 @@ export default function SolutionsPage() {
             <div
               key={solution.slug}
               id={solution.slug}
-              className="rounded-3xl bg-white border border-slate-200 dark:border-slate-800 p-8 sm:p-12 shadow-sm transition-all hover:border-slate-300 hover:shadow-lg relative overflow-hidden"
+              className="rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 p-8 sm:p-12 shadow-sm transition-all hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-lg relative overflow-hidden"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
                 {/* Left Overview */}
                 <div className="lg:col-span-5 space-y-6">
-                  <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-200 dark:border-slate-800 flex items-center justify-center">
+                  <div className="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex items-center justify-center">
                     {iconMap[solution.slug] || <Bot className="w-8 h-8 text-blue-600" />}
                   </div>
 
@@ -57,7 +57,7 @@ export default function SolutionsPage() {
                     <h2 className="text-3xl font-bold text-[#0F172A] dark:text-white font-heading mt-1">
                       {solution.title}
                     </h2>
-                    <p className="text-sm font-heading text-cyan-700 mt-1 font-semibold">
+                    <p className="text-sm font-heading text-cyan-700 dark:text-cyan-400 mt-1 font-semibold">
                       {solution.positioning}
                     </p>
                   </div>
@@ -79,8 +79,8 @@ export default function SolutionsPage() {
                 </div>
 
                 {/* Right Capabilities Grid */}
-                <div className="lg:col-span-7 bg-slate-50/70 rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800/80 space-y-6">
-                  <h3 className="text-sm font-bold text-slate-800 uppercase tracking-widest font-heading">
+                <div className="lg:col-span-7 bg-slate-50/70 dark:bg-slate-900/60 rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800/80 space-y-6">
+                  <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 uppercase tracking-widest font-heading">
                     Core Capabilities &amp; Features
                   </h3>
 
@@ -88,10 +88,10 @@ export default function SolutionsPage() {
                     {solution.features.map((feature, fIdx) => (
                       <div
                         key={fIdx}
-                        className="p-4 rounded-xl bg-white border border-slate-200 dark:border-slate-800/80 shadow-xs space-y-2"
+                        className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 shadow-xs space-y-2"
                       >
                         <div className="flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-cyan-600 shrink-0" />
+                          <CheckCircle2 className="w-4 h-4 text-cyan-600 dark:text-cyan-400 shrink-0" />
                           <h4 className="text-sm font-bold text-[#0F172A] dark:text-white font-heading">
                             {feature.title}
                           </h4>
@@ -104,7 +104,7 @@ export default function SolutionsPage() {
                   </div>
 
                   {/* Target Use Cases */}
-                  <div className="pt-4 border-t border-slate-200">
+                  <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
                     <span className="text-xs font-heading text-slate-500 dark:text-slate-400 uppercase tracking-widest font-semibold">
                       Ideal for:
                     </span>

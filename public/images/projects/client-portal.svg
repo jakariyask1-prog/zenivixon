@@ -1,0 +1,58 @@
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="450" fill="#F8FAFC"/>
+  <!-- Top App Bar -->
+  <rect x="24" y="24" width="752" height="44" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <circle cx="48" cy="46" r="4.5" fill="#2563EB"/>
+  <text x="64" y="51" fill="#0F172A" font-family="sans-serif" font-size="12" font-weight="700">Next.js 15 Enterprise Client Portal // Telemetry &amp; Copilot</text>
+  <rect x="640" y="34" width="120" height="24" rx="6" fill="#F0FDF4" stroke="#BBF7D0"/>
+  <text x="652" y="50" fill="#15803D" font-family="monospace" font-size="11" font-weight="600">Speed Score: 99</text>
+
+  <!-- Left: Portal Analytics Dashboard View -->
+  <rect x="24" y="80" width="460" height="346" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="44" y="112" fill="#0F172A" font-family="sans-serif" font-size="14" font-weight="700">Live Client Workspace &amp; Metrics</text>
+
+  <!-- Metric Badges Row -->
+  <rect x="44" y="128" width="130" height="64" rx="6" fill="#EFF6FF" stroke="#BFDBFE"/>
+  <text x="56" y="150" fill="#1E40AF" font-family="sans-serif" font-size="11">Active Workflows</text>
+  <text x="56" y="178" fill="#1D4ED8" font-family="sans-serif" font-size="20" font-weight="700">148</text>
+
+  <rect x="184" y="128" width="130" height="64" rx="6" fill="#ECFDF5" stroke="#A7F3D0"/>
+  <text x="196" y="150" fill="#065F46" font-family="sans-serif" font-size="11">Time Saved (Mo)</text>
+  <text x="196" y="178" fill="#047857" font-family="sans-serif" font-size="20" font-weight="700">640 hrs</text>
+
+  <rect x="324" y="128" width="140" height="64" rx="6" fill="#FAF5FF" stroke="#E9D5FF"/>
+  <text x="336" y="150" fill="#6B21A8" font-family="sans-serif" font-size="11">API Success Rate</text>
+  <text x="336" y="178" fill="#7E22CE" font-family="sans-serif" font-size="20" font-weight="700">99.94%</text>
+
+  <!-- Data Grid Chart Preview -->
+  <rect x="44" y="202" width="420" height="204" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <text x="56" y="226" fill="#0F172A" font-family="sans-serif" font-size="12" font-weight="600">Enterprise Service Velocity (Last 30 Days)</text>
+  
+  <!-- Mini Chart Bars -->
+  <rect x="60" y="340" width="28" height="46" rx="4" fill="#93C5FD"/>
+  <rect x="100" y="310" width="28" height="76" rx="4" fill="#60A5FA"/>
+  <rect x="140" y="280" width="28" height="106" rx="4" fill="#3B82F6"/>
+  <rect x="180" y="260" width="28" height="126" rx="4" fill="#2563EB"/>
+  <rect x="220" y="245" width="28" height="141" rx="4" fill="#1D4ED8"/>
+  <rect x="260" y="270" width="28" height="116" rx="4" fill="#3B82F6"/>
+  <rect x="300" y="250" width="28" height="136" rx="4" fill="#2563EB"/>
+  <rect x="340" y="235" width="28" height="151" rx="4" fill="#1E40AF"/>
+  <rect x="380" y="225" width="28" height="161" rx="4" fill="#06B6D4"/>
+  <line x1="50" y1="386" x2="450" y2="386" stroke="#CBD5E1" stroke-width="1.5"/>
+
+  <!-- Right: Embedded AI Copilot Panel -->
+  <rect x="496" y="80" width="280" height="346" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="516" y="112" fill="#0F172A" font-family="sans-serif" font-size="14" font-weight="700">Embedded Copilot</text>
+
+  <rect x="516" y="128" width="240" height="68" rx="6" fill="#EFF6FF" stroke="#BFDBFE"/>
+  <text x="526" y="148" fill="#1E40AF" font-family="sans-serif" font-size="11" font-weight="600">User Prompt:</text>
+  <text x="526" y="166" fill="#334155" font-family="sans-serif" font-size="10">&quot;Summarize our Q3 support cost reduction compared to last quarter.&quot;</text>
+
+  <rect x="516" y="206" width="240" height="136" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <text x="526" y="226" fill="#16A34A" font-family="sans-serif" font-size="11" font-weight="700">&bull; AI Copilot Analysis:</text>
+  <text x="526" y="246" fill="#475569" font-family="sans-serif" font-size="10">Q3 operational costs decreased by 41.2% following the 14-day agent deployment. 1,420 tickets were resolved without human rep touches.</text>
+  <text x="526" y="306" fill="#2563EB" font-family="monospace" font-size="10 font-weight=600">&bull; PDF Report Generated [Download]</text>
+
+  <rect x="516" y="354" width="240" height="52" rx="6" fill="#0F172A"/>
+  <text x="528" y="384" fill="#94A3B8" font-family="sans-serif" font-size="10">Ask copilot any system metric...</text>
+</svg>

@@ -30,7 +30,7 @@ export default function InsightsPage() {
           {INSIGHTS_DATA.map((article) => (
             <div
               key={article.slug}
-              className="rounded-2xl bg-white border border-slate-200 dark:border-slate-800/90 shadow-sm p-8 flex flex-col justify-between hover:border-slate-300 hover:shadow-md transition-all duration-300 group"
+              className="rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 shadow-sm p-8 flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-300 group"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -43,7 +43,7 @@ export default function InsightsPage() {
                   </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading leading-snug group-hover:text-blue-600 transition-colors">
+                <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   {article.title}
                 </h3>
 
@@ -52,13 +52,13 @@ export default function InsightsPage() {
                 </p>
 
                 {/* Key Takeaways */}
-                <div className="pt-2 space-y-2 border-t border-slate-100">
-                  <span className="text-xs font-bold text-slate-800 uppercase tracking-widest font-heading">
+                <div className="pt-2 space-y-2 border-t border-slate-100 dark:border-slate-800">
+                  <span className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-widest font-heading">
                     Core Insights:
                   </span>
                   {article.keyTakeaways.slice(0, 2).map((takeaway, idx) => (
-                    <div key={idx} className="flex items-start gap-2 text-xs text-slate-700">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-600 shrink-0 mt-0.5" />
+                    <div key={idx} className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-300">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400 shrink-0 mt-0.5" />
                       <span className="leading-snug">{takeaway}</span>
                     </div>
                   ))}

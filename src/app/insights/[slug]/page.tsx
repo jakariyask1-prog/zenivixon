@@ -58,7 +58,7 @@ export default async function InsightDetailPage({ params }: Props) {
         <div className="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-slate-200 dark:border-slate-800">
           <Link
             href="/insights"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Insights
