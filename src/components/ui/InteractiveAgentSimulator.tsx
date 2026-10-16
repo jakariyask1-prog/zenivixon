@@ -353,7 +353,7 @@ export function InteractiveAgentSimulator() {
         </div>
         <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-2 font-mono flex items-center gap-1.5">
           <Sparkles className="w-3 h-3 text-blue-500" />
-          <span>মাউস কার্সর যেকোনো বাটনের উপর নিলেই স্বয়ংক্রিয়ভাবে ৪টি ধাপে এআই প্রসেস চলতে শুরু করবে।</span>
+          <span>Hover over any workflow button to automatically trigger the 4-stage AI execution process.</span>
         </p>
       </div>
 
