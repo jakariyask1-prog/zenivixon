@@ -86,20 +86,20 @@ export function WhatWeDoSection() {
                   <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 dark:border-slate-700 flex items-center justify-center">
                     {item.icon}
                   </div>
-                  <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-bold">
+                  <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-semibold tracking-wider">
                     PATHWAY 0{idx + 1}
                   </span>
                 </div>
 
                 {/* Problem Box */}
                 <div>
-                  <div className="text-xs font-heading text-rose-600 dark:text-rose-400 uppercase font-bold tracking-widest">
+                  <div className="text-xs font-heading text-rose-600 dark:text-rose-400 uppercase font-bold tracking-wider">
                     Business Problem:
                   </div>
-                  <h3 className="text-lg font-bold text-[#0F172A] dark:text-white font-heading mt-0.5">
+                  <h3 className="text-lg font-bold text-[#0F172A] dark:text-white font-heading mt-1">
                     {item.problem}
                   </h3>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1.5 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
                     {item.problemDesc}
                   </p>
                 </div>
@@ -113,24 +113,24 @@ export function WhatWeDoSection() {
 
                 {/* Solution & Value */}
                 <div>
-                  <div className="text-xs font-heading text-blue-700 dark:text-blue-400 uppercase font-bold tracking-widest">
+                  <div className="text-xs font-heading text-blue-700 dark:text-blue-400 uppercase font-bold tracking-wider">
                     AI Solution:
                   </div>
-                  <div className="text-sm font-bold text-[#0F172A] dark:text-white font-heading">
+                  <div className="text-base font-bold text-[#0F172A] dark:text-white font-heading mt-1">
                     {item.solution}
                   </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1.5 leading-relaxed">
                     {item.solutionDesc}
                   </p>
                 </div>
 
                 {/* Business Value Highlight */}
                 <div className="pt-3 border-t border-slate-100 dark:border-slate-800">
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-400">
-                    <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                  <div className="flex items-center gap-1.5 text-sm font-bold text-emerald-700 dark:text-emerald-400 font-heading">
+                    <CheckCircle2 className="w-4 h-4 shrink-0" />
                     <span>Value: {item.value}</span>
                   </div>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-snug">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
                     {item.valueDesc}
                   </p>
                 </div>
@@ -140,10 +140,10 @@ export function WhatWeDoSection() {
               <div className="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800">
                 <Link
                   href={item.link}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors"
                 >
                   <span>Explore {item.solution}</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
               </div>

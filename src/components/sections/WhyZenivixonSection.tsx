@@ -195,7 +195,7 @@ export function WhyZenivixonSection() {
                       <div className="w-11 h-11 rounded-2xl bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-900 flex items-center justify-center group-hover:scale-110 transition-transform">
                         {item.icon}
                       </div>
-                      <span className="text-[10px] font-bold font-heading px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                      <span className="text-xs font-semibold font-heading uppercase tracking-wider px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
                         {item.badge}
                       </span>
                     </div>

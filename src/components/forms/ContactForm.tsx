@@ -111,7 +111,7 @@ export function ContactForm() {
             {...register("name")}
             className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
           />
-          {errors.name && <span className="text-[10px] text-red-500">{errors.name.message}</span>}
+          {errors.name && <span className="text-xs text-red-500 font-medium">{errors.name.message}</span>}
         </div>
         <div className="space-y-1.5">
           <label htmlFor="contact-email" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
@@ -125,7 +125,7 @@ export function ContactForm() {
             {...register("email")}
             className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
           />
-          {errors.email && <span className="text-[10px] text-red-500">{errors.email.message}</span>}
+          {errors.email && <span className="text-xs text-red-500 font-medium">{errors.email.message}</span>}
         </div>
       </div>
 
@@ -133,7 +133,7 @@ export function ContactForm() {
         <div className="space-y-1.5">
           <label htmlFor="contact-phone" className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center justify-between">
             <span>Phone / WhatsApp</span>
-            <span className="text-[10px] font-normal text-slate-400 dark:text-slate-500">Optional</span>
+            <span className="text-xs font-normal text-slate-400 dark:text-slate-500">Optional</span>
           </label>
           <input
             id="contact-phone"
@@ -143,13 +143,13 @@ export function ContactForm() {
             {...register("phone")}
             className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
           />
-          {errors.phone && <span className="text-[10px] text-red-500">{errors.phone.message}</span>}
+          {errors.phone && <span className="text-xs text-red-500 font-medium">{errors.phone.message}</span>}
         </div>
 
         <div className="space-y-1.5">
           <label htmlFor="contact-company" className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center justify-between">
             <span>Company Name</span>
-            <span className="text-[10px] font-normal text-slate-400 dark:text-slate-500">Optional</span>
+            <span className="text-xs font-normal text-slate-400 dark:text-slate-500">Optional</span>
           </label>
           <input
             id="contact-company"
@@ -159,7 +159,7 @@ export function ContactForm() {
             {...register("company")}
             className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
           />
-          {errors.company && <span className="text-[10px] text-red-500">{errors.company.message}</span>}
+          {errors.company && <span className="text-xs text-red-500 font-medium">{errors.company.message}</span>}
         </div>
       </div>
 
@@ -182,7 +182,7 @@ export function ContactForm() {
           <option value="Careers & Open Engineering Roles" className="bg-white dark:bg-[#070e1e]">Careers &amp; Open Engineering Roles</option>
           <option value="Other Inquiry" className="bg-white dark:bg-[#070e1e]">Other Inquiry</option>
         </select>
-        {errors.service && <span className="text-[10px] text-red-500">{errors.service.message}</span>}
+        {errors.service && <span className="text-xs text-red-500 font-medium">{errors.service.message}</span>}
       </div>
 
       <div className="space-y-1.5">
@@ -197,7 +197,7 @@ export function ContactForm() {
           {...register("message")}
           className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all resize-none placeholder:text-slate-400"
         />
-        {errors.message && <span className="text-[10px] text-red-500">{errors.message.message}</span>}
+        {errors.message && <span className="text-xs text-red-500 font-medium">{errors.message.message}</span>}
       </div>
 
       <Button

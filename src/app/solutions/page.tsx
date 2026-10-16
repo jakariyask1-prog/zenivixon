@@ -51,7 +51,7 @@ export default function SolutionsPage() {
                   </div>
 
                   <div>
-                    <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-bold uppercase">
+                    <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">
                       PILLAR 0{idx + 1}
                     </span>
                     <h2 className="text-3xl font-bold text-[#0F172A] dark:text-white font-heading mt-1">
@@ -62,7 +62,7 @@ export default function SolutionsPage() {
                     </p>
                   </div>
 
-                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                     {solution.description}
                   </p>
 
@@ -96,7 +96,7 @@ export default function SolutionsPage() {
                             {feature.title}
                           </h4>
                         </div>
-                        <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                           {feature.description}
                         </p>
                       </div>

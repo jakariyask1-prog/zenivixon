@@ -408,9 +408,10 @@ export async function sendLeadEmails(data: LeadEmailData) {
     }
 
     // 2. Send Notification Email to Admin Technical Team
+    const adminEmail = process.env.ADMIN_EMAIL || "zenivixon@gmail.com";
     const adminResponse = await resend.emails.send({
       from: "ZENIVIXON <contact@zenivixon.com>",
-      to: ["zenivixon@gmail.com"],
+      to: [adminEmail],
       replyTo: data.email,
       subject: adminSubject,
       html: adminHtml,

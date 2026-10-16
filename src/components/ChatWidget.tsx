@@ -83,15 +83,18 @@ export default function ChatWidget() {
                     const data = JSON.parse(jsonStr);
                     if (data.content) {
                       setMessages((prev) => {
-                        const newMessages = [...prev];
-                        const lastMsg = newMessages[newMessages.length - 1];
-                        if (lastMsg && lastMsg.content && lastMsg.content === data.content) {
-                          return newMessages;
+                        const lastIndex = prev.length - 1;
+                        const lastMsg = prev[lastIndex];
+                        // Skip duplicate chunks
+                        if (lastMsg && lastMsg.content === data.content) {
+                          return prev;
                         }
-                        if (lastMsg) {
-                          lastMsg.content += data.content;
-                        }
-                        return newMessages;
+                        // Immutable update — no direct mutation
+                        return prev.map((msg, i) =>
+                          i === lastIndex
+                            ? { ...msg, content: msg.content + data.content }
+                            : msg
+                        );
                       });
                     }
                   } catch (e) {

@@ -97,7 +97,7 @@ export function Footer() {
             
             {/* Stay Tuned / Newsletter */}
             <div className="bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-6 md:p-8 border border-slate-200 dark:border-slate-800/60 dark:border-slate-800">
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 mb-4 block font-heading">
+              <span className="text-xs font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400 mb-4 block font-heading">
                 STAY UPDATED
               </span>
               <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading mb-3">
@@ -114,7 +114,7 @@ export function Footer() {
 
             {/* Get In Touch / Founders */}
             <div>
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 mb-6 block font-heading">
+              <span className="text-xs font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400 mb-4 block font-heading">
                   GET IN TOUCH
                 </span>
                 <a href={`mailto:${COMPANY_INFO.channels.email}`} className="inline-flex items-center gap-2 mt-2 text-slate-700 dark:text-slate-300 font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
@@ -130,7 +130,7 @@ export function Footer() {
             
             {/* Column 1: Solutions */}
             <div className="space-y-4">
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 block font-heading">
+              <span className="text-xs font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400 block font-heading">
                 SOLUTIONS
               </span>
               <ul className="space-y-3">
@@ -153,14 +153,14 @@ export function Footer() {
 
             {/* Column 2: Interactive Tools */}
             <div className="space-y-4">
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 block font-heading">
+              <span className="text-xs font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400 block font-heading">
                 TOOLS & AUDITS
               </span>
               <ul className="space-y-3">
                 <li>
                   <Link href="/#roi-calculator" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium flex items-center justify-between transition-colors">
                     <span>ROI Calculator</span>
-                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
                       FREE
                     </span>
                   </Link>
@@ -168,7 +168,7 @@ export function Footer() {
                 <li>
                   <Link href="/#live-agent-simulator" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium flex items-center justify-between transition-colors">
                     <span>Agent Simulator</span>
-                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800">
+                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800">
                       LIVE
                     </span>
                   </Link>
@@ -189,7 +189,7 @@ export function Footer() {
 
             {/* Column 3: Company */}
             <div className="space-y-4">
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 block font-heading">
+              <span className="text-xs font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400 block font-heading">
                 COMPANY
               </span>
               <ul className="space-y-3">
@@ -212,14 +212,14 @@ export function Footer() {
 
             {/* Column 4: Connect & Brand */}
             <div className="space-y-4">
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 block font-heading">
+              <span className="text-xs font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400 block font-heading">
                 CHANNELS & PORTAL
               </span>
               <ul className="space-y-3">
                 <li>
                   <a href={COMPANY_INFO.channels.supportPortal} target="_blank" rel="noopener noreferrer" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium flex items-center justify-between transition-colors">
                     <span>Support Portal</span>
-                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800">
+                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800">
                       24/7
                     </span>
                   </a>
@@ -261,7 +261,7 @@ export function Footer() {
                     <AnimatedLogoText />
                   </div>
                 </Link>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed max-w-[200px]">
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-[240px]">
                   {COMPANY_INFO.positioning}
                 </p>
               </div>
@@ -274,7 +274,7 @@ export function Footer() {
         <div className="mt-20 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-slate-500 dark:text-slate-400">
           <div className="flex flex-col items-center sm:items-start gap-1">
             <p>&copy; {new Date().getFullYear()} {COMPANY_INFO.formalName}. All rights reserved.</p>
-            <p className="text-[10px] text-slate-400 dark:text-slate-500">
+            <p className="text-xs text-slate-400 dark:text-slate-500">
               Legally licensed business operating in Bangladesh (Trade License & e-TIN verified).
             </p>
           </div>

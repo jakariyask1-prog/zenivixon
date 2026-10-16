@@ -99,7 +99,7 @@ export function ProjectsCatalog() {
                 {project.title}
               </h3>
 
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3">
                 {project.summary}
               </p>
 
@@ -120,7 +120,7 @@ export function ProjectsCatalog() {
             <div className="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
               <Link
                 href={`/projects/${project.slug}`}
-                className="inline-flex items-center justify-between w-full text-xs font-semibold text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors"
+                className="inline-flex items-center justify-between w-full text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors"
               >
                 <span>Read Case Study</span>
                 <ArrowUpRight className="w-4 h-4" />

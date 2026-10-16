@@ -26,3 +26,10 @@ export const projectBriefSchema = z.object({
 });
 
 export type ProjectBriefFormData = z.infer<typeof projectBriefSchema>;
+
+export const newsletterSchema = z.object({
+  email: z.string().trim().email("A valid email address is required."),
+});
+
+export type NewsletterFormData = z.infer<typeof newsletterSchema>;
+

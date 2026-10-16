@@ -256,10 +256,10 @@ export function StartProjectWizard() {
                       >
                         <div>
                           <div className="mb-3">{type.icon}</div>
-                          <h4 className="text-sm font-bold font-heading mb-1 text-[#0F172A] dark:text-white">
+                          <h4 className="text-base font-bold font-heading mb-1 text-[#0F172A] dark:text-white">
                             {type.title}
                           </h4>
-                          <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                          <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                             {type.desc}
                           </p>
                         </div>
@@ -269,7 +269,7 @@ export function StartProjectWizard() {
                 </div>
               )}
             />
-            {errors.projectType && <span className="text-[10px] text-red-500">{errors.projectType.message}</span>}
+            {errors.projectType && <span className="text-xs text-red-500 font-medium">{errors.projectType.message}</span>}
             
             <div className="pt-4 flex justify-end">
               <Button
@@ -299,7 +299,7 @@ export function StartProjectWizard() {
                 {...register("problemDescription")}
                 className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all resize-none placeholder:text-slate-400"
               />
-              {errors.problemDescription && <span className="text-[10px] text-red-500">{errors.problemDescription.message}</span>}
+              {errors.problemDescription && <span className="text-xs text-red-500 font-medium">{errors.problemDescription.message}</span>}
             </div>
 
             <div className="space-y-2">
@@ -315,7 +315,7 @@ export function StartProjectWizard() {
               />
               {/* Quick tool selector chips */}
               <div className="flex flex-wrap items-center gap-1.5 pt-1">
-                <span className="text-[11px] text-slate-400 dark:text-slate-500 mr-1">Quick Add:</span>
+                <span className="text-xs text-slate-400 dark:text-slate-500 mr-1">Quick Add:</span>
                 {["HubSpot", "PostgreSQL", "Zendesk", "Slack", "Shopify", "Salesforce", "Supabase", "Google Sheets"].map((tool) => (
                   <button
                     key={tool}
@@ -327,13 +327,13 @@ export function StartProjectWizard() {
                         setValue("currentTools", updated, { shouldDirty: true });
                       }
                     }}
-                    className="px-2 py-0.5 rounded-md text-[11px] bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 border border-slate-200 dark:border-slate-700 transition-colors cursor-pointer"
+                    className="px-2.5 py-1 rounded-md text-xs bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 border border-slate-200 dark:border-slate-700 transition-colors cursor-pointer"
                   >
                     + {tool}
                   </button>
                 ))}
               </div>
-              {errors.currentTools && <span className="text-[10px] text-red-500">{errors.currentTools.message}</span>}
+              {errors.currentTools && <span className="text-xs text-red-500 font-medium">{errors.currentTools.message}</span>}
             </div>
 
             <div className="space-y-2">
@@ -348,7 +348,7 @@ export function StartProjectWizard() {
                 {...register("projectFileUrl")}
                 className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
               />
-              {errors.projectFileUrl && <span className="text-[10px] text-red-500">{errors.projectFileUrl.message}</span>}
+              {errors.projectFileUrl && <span className="text-xs text-red-500 font-medium">{errors.projectFileUrl.message}</span>}
             </div>
 
             <div className="pt-4 flex items-center justify-between">
@@ -391,7 +391,7 @@ export function StartProjectWizard() {
                   {...register("name")}
                   className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
                 />
-                {errors.name && <span className="text-[10px] text-red-500">{errors.name.message}</span>}
+                {errors.name && <span className="text-xs text-red-500 font-medium">{errors.name.message}</span>}
               </div>
               <div className="space-y-1.5">
                 <label htmlFor="wizard-email" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
@@ -405,7 +405,7 @@ export function StartProjectWizard() {
                   {...register("email")}
                   className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
                 />
-                {errors.email && <span className="text-[10px] text-red-500">{errors.email.message}</span>}
+                {errors.email && <span className="text-xs text-red-500 font-medium">{errors.email.message}</span>}
               </div>
             </div>
 
@@ -423,7 +423,7 @@ export function StartProjectWizard() {
                   {...register("phone")}
                   className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
                 />
-                {errors.phone && <span className="text-[10px] text-red-500">{errors.phone.message}</span>}
+                {errors.phone && <span className="text-xs text-red-500 font-medium">{errors.phone.message}</span>}
               </div>
 
               <div className="space-y-1.5">
@@ -439,7 +439,7 @@ export function StartProjectWizard() {
                   {...register("company")}
                   className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] dark:bg-[#070e1e] border border-slate-200 dark:border-slate-800 text-[#0F172A] dark:text-white text-sm focus:outline-none focus:border-blue-600 focus:bg-white dark:focus:bg-[#0b1120] transition-all placeholder:text-slate-400"
                 />
-                {errors.company && <span className="text-[10px] text-red-500">{errors.company.message}</span>}
+                {errors.company && <span className="text-xs text-red-500 font-medium">{errors.company.message}</span>}
               </div>
             </div>
 
@@ -477,7 +477,7 @@ export function StartProjectWizard() {
                 <p className="text-[11px] text-slate-500 dark:text-slate-400">
                   No fixed commitment required. We discuss and finalize the best price during discovery.
                 </p>
-                {errors.budget && <span className="text-[10px] text-red-500">{errors.budget.message}</span>}
+                {errors.budget && <span className="text-xs text-red-500 font-medium">{errors.budget.message}</span>}
               </div>
 
               <div className="space-y-1.5">
@@ -494,7 +494,7 @@ export function StartProjectWizard() {
                   <option value="3+ Months" className="bg-white dark:bg-[#070e1e]">3+ Months</option>
                   <option value="Flexible / Discovery" className="bg-white dark:bg-[#070e1e]">Flexible / Discovery</option>
                 </select>
-                {errors.timeline && <span className="text-[10px] text-red-500">{errors.timeline.message}</span>}
+                {errors.timeline && <span className="text-xs text-red-500 font-medium">{errors.timeline.message}</span>}
               </div>
             </div>
 
@@ -529,7 +529,7 @@ export function StartProjectWizard() {
                   </div>
                 )}
               />
-              {errors.preferredChannel && <span className="text-[10px] text-red-500">{errors.preferredChannel.message}</span>}
+              {errors.preferredChannel && <span className="text-xs text-red-500 font-medium">{errors.preferredChannel.message}</span>}
             </div>
 
             <div className="pt-4 flex items-center justify-between">

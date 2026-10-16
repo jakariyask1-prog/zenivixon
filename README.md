@@ -13,13 +13,36 @@
 | **Framework** | Next.js 16.3 (App Router, Turbopack) |
 | **Runtime / Language** | React 19, TypeScript 5 |
 | **Styling** | Tailwind CSS v4 |
-| **Animations** | Framer Motion v13, GSAP, Lottie |
+| **Typography** | Plus Jakarta Sans (Headings & UI) + Inter (Body Copy) |
+| **Animations** | Framer Motion v13, GSAP, AOS (Bundled npm), Lottie |
 | **Theming** | next-themes (Light & Dark mode support) |
 | **Workflow Automation** | n8n Webhook Integration |
 | **Email Service** | Resend SDK |
-| **Rate Limiting** | Upstash Redis |
+| **Rate Limiting** | Upstash Redis (Sliding Window) + In-Memory Fallback |
 | **Form Validation** | Zod + React Hook Form |
-| **Icons & Typography** | Lucide React, Manrope + Inter |
+| **Icons & Design** | Lucide React |
+
+---
+
+## Key Architectural & Production Highlights
+
+- **Next-Gen Typography & Visual Hierarchy:**
+  - Modern dual font system: **Plus Jakarta Sans** for prominent, high-tech headings & interactive buttons, paired with **Inter** for crisp, fatigue-free body reading.
+  - Sub-pixel antialiasing (`-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale`), optical sizing, and OpenType character variants (`cv02`, `cv03`, `cv04`, `cv11`).
+  - Calibrated heading letter-spacing hierarchy (`-0.03em` to `-0.01em`) and comfortable `1.65` body line-height.
+
+- **Security & Hardening:**
+  - Strict production HTTP security headers configured in `next.config.ts`:
+    - `X-Frame-Options: DENY` (Clickjacking prevention)
+    - `X-Content-Type-Options: nosniff` (MIME sniffing prevention)
+    - `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload` (HSTS)
+    - `Referrer-Policy: strict-origin-when-cross-origin`
+    - `Permissions-Policy` (Camera, microphone, geolocation restrictions)
+
+- **Backend Resilience & Cold-Start Protection:**
+  - External Render API proxy calls (`/api/contact` & `/api/project-brief`) include explicit `AbortSignal.timeout(5000)` safeguards to eliminate serverless request hangs on free-tier backend cold starts.
+  - Strict Zod validation schemas across all endpoints (`/api/contact`, `/api/project-brief`, `/api/newsletter`).
+  - Zero render-blocking external CDNs: AOS animations bundled directly into the client bundle via npm.
 
 ---
 
@@ -49,7 +72,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Environment Variables
 
-Create a `.env.local` file in the root directory:
+Create a `.env.local` file in the root directory (refer to `.env.example`):
 
 ```env
 # Google Gemini AI Integration
@@ -63,6 +86,7 @@ GOOGLE_SHEET_ID=your_google_sheet_id_here
 
 # Resend Email Delivery (Notification & Auto-Reply)
 RESEND_API_KEY=your_resend_api_key_here
+ADMIN_EMAIL=zenivixon@gmail.com
 
 # Upstash Redis for Rate Limiting (Optional)
 UPSTASH_REDIS_REST_URL=your_upstash_redis_url
@@ -77,6 +101,7 @@ AI_CONSULTANT_URL=https://zenivixon-ai-consultant.onrender.com
 - **`GEMINI_API_KEY`**: Powers intelligent lead analysis, inquiry categorization, and personalized client auto-replies.
 - **`GOOGLE_SERVICE_ACCOUNT_EMAIL` / `GOOGLE_PRIVATE_KEY` / `GOOGLE_SHEET_ID`**: Direct spreadsheet integration logging all leads and inquiries.
 - **`RESEND_API_KEY`**: Dispatches client acknowledgment emails and instant admin notification emails.
+- **`ADMIN_EMAIL`**: Destination address for urgent inbound lead notifications.
 - **`UPSTASH_REDIS_REST_URL` / `TOKEN`**: Rate limits public endpoints to prevent spam.
 - **`NEXT_PUBLIC_AI_CONSULTANT_URL`**: Connects the interactive streaming AI Consultant chat widget.
 
@@ -97,29 +122,29 @@ When users submit the **Contact / Project Brief** form:
 
 ```
 zenivixon/
-├── public/                 # Static assets (images, logos, videos)
+├── public/                 # Static assets (images, logos, videos, logo.png)
 ├── src/
 │   ├── app/                # Next.js App Router
 │   │   ├── api/            # API routes
 │   │   │   ├── contact/    # Contact form -> n8n webhook & Resend
 │   │   │   ├── newsletter/ # Newsletter subscription
 │   │   │   └── project-brief/ # Interactive project wizard handler
-│   │   ├── about/          # About page
+│   │   ├── about/          # About page & leadership showcase
 │   │   ├── contact/        # Contact & Inquiry page
 │   │   ├── insights/       # Technical articles & blog
 │   │   ├── projects/       # Case studies & project showcase
 │   │   ├── solutions/      # Detailed solution pillars
 │   │   ├── start-a-project/# Multi-step project brief wizard
-│   │   ├── layout.tsx      # Root layout (Navbar, Footer, Providers)
+│   │   ├── layout.tsx      # Root layout (Navbar, Footer, Font definitions)
 │   │   └── page.tsx        # Homepage
 │   ├── components/
 │   │   ├── forms/          # ContactForm, StartProjectWizard
 │   │   ├── layout/         # Navbar, Footer, PageHeader
-│   │   ├── sections/       # Hero, Capabilities, ROI Calculator, etc.
-│   │   ├── ui/             # Reusable UI components & animations
-│   │   └── providers/      # Theme and page transition providers
+│   │   ├── sections/       # Hero, Capabilities, ROI Calculator, Terminal, etc.
+│   │   ├── ui/             # Reusable UI components & Button/Badge/Card
+│   │   └── providers/      # Theme and AOS providers
 │   ├── data/               # Static data for solutions, projects, insights
-│   ├── lib/                # Constants and utility functions
+│   ├── lib/                # Validations, email, rate-limit, and utility functions
 │   └── types/              # TypeScript type definitions
 ├── .env.example            # Example environment configuration
 ├── .env.local              # Local environment variables (git-ignored)
@@ -141,7 +166,7 @@ zenivixon/
 | `/solutions/ai-integration` | **AI Integration & RAG** — Vector Retrieval, Semantic Search & Legacy Middleware |
 | `/projects` | **Project Catalog** — Real-world case studies and implementations |
 | `/insights` | **Engineering Insights** — Technical deep-dives and automation guides |
-| `/contact` | **Contact Page** — Direct communication channels & n8n integrated inquiry form |
+| `/contact` | **Contact Page** — Direct communication channels & inquiry form |
 | `/start-a-project` | **Start a Project** — 3-step interactive project brief intake wizard |
 
 ---
@@ -168,7 +193,7 @@ ZENIVIXON is optimized for zero-configuration deployment on **Vercel**:
    - `GOOGLE_PRIVATE_KEY` = `your_google_service_account_private_key`
    - `GOOGLE_SHEET_ID` = `your_google_sheet_id`
    - `RESEND_API_KEY` = `your_resend_api_key`
+   - `ADMIN_EMAIL` = `zenivixon@gmail.com`
    - `UPSTASH_REDIS_REST_URL` = `your_upstash_url` (optional)
    - `UPSTASH_REDIS_REST_TOKEN` = `your_upstash_token` (optional)
    - `NEXT_PUBLIC_AI_CONSULTANT_URL` = `https://zenivixon-ai-consultant.onrender.com`
-

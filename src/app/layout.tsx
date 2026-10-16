@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, Inter } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -11,16 +11,25 @@ import Script from "next/script";
 import ChatWidget from "@/components/ChatWidget";
 import { AosProvider } from "@/components/providers/AosProvider";
 
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-heading",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
+});
+
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -59,23 +68,18 @@ export const metadata: Metadata = {
   },
 };
 
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${manrope.variable} ${inter.variable} h-full antialiased`}
+      className={`${plusJakartaSans.variable} ${manrope.variable} ${inter.variable} h-full antialiased`}
     >
-      <head>
-        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-      </head>
+      {/* AOS CSS is now bundled via npm — CDN <link> removed */}
       <body className="min-h-full flex flex-col bg-[#FCFDFE] dark:bg-[#020817] text-[#0F172A] dark:text-slate-50 selection:bg-blue-100 dark:selection:bg-blue-900 selection:text-blue-900 dark:selection:text-blue-50 transition-colors duration-300">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <AosProvider>
@@ -95,11 +99,11 @@ export default function RootLayout({
                 </Script>
               </>
             )}
-            
+
             {/* Structured Data for Google (SEO & Business Verification) */}
-            <Script 
-              id="structured-data" 
-              type="application/ld+json" 
+            <Script
+              id="structured-data"
+              type="application/ld+json"
               dangerouslySetInnerHTML={{
                 __html: JSON.stringify({
                   "@context": "https://schema.org",
@@ -132,14 +136,10 @@ export default function RootLayout({
               <Footer />
             </div>
             <ChatWidget />
-            <Script
-              src="https://unpkg.com/aos@next/dist/aos.js"
-              strategy="afterInteractive"
-            />
+            {/* AOS JS CDN Script removed — now handled by npm package in AosProvider */}
           </AosProvider>
         </ThemeProvider>
       </body>
     </html>
-    
   );
 }

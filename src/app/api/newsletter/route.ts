@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { checkRateLimit } from "@/lib/rate-limit";
+import { newsletterSchema } from "@/lib/validations";
 
 export async function POST(req: NextRequest) {
   const ip =
@@ -16,14 +17,18 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const { email } = await req.json();
+    const body = await req.json();
+    const parsed = newsletterSchema.safeParse(body);
 
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!parsed.success) {
+      const firstError = parsed.error.issues[0]?.message || "Invalid email address.";
       return NextResponse.json(
-        { success: false, error: "A valid email address is required." },
+        { success: false, error: firstError },
         { status: 400 }
       );
     }
+
+    const { email } = parsed.data;
 
     const RESEND_API_KEY = process.env.RESEND_API_KEY;
     const RESEND_AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID;
@@ -39,7 +44,7 @@ export async function POST(req: NextRequest) {
     try {
       const { Resend } = await import("resend");
       const resend = new Resend(RESEND_API_KEY);
-      
+
       const { error } = await resend.contacts.create({
         email,
         audienceId: RESEND_AUDIENCE_ID,

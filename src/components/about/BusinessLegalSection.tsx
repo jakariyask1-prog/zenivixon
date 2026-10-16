@@ -247,7 +247,7 @@ export function BusinessLegalSection() {
                     <Lock className="w-6 h-6" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-heading font-extrabold uppercase tracking-widest text-blue-600 dark:text-blue-400">
+                    <span className="text-xs font-heading font-extrabold uppercase tracking-wider text-blue-600 dark:text-blue-400">
                       VENDOR DUE DILIGENCE POLICY
                     </span>
                     <h3 className="text-xl font-bold font-heading text-slate-900 dark:text-white">

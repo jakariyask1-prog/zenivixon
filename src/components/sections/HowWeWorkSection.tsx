@@ -76,17 +76,17 @@ export function HowWeWorkSection() {
                   <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 dark:border-slate-700 flex items-center justify-center">
                     {item.icon}
                   </div>
-                  <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-bold">
+                  <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-semibold tracking-wider">
                     STEP {item.step}
                   </span>
                 </div>
-                <h3 className="text-base font-bold text-[#0F172A] dark:text-white font-heading">
+                <h3 className="text-lg font-bold text-[#0F172A] dark:text-white font-heading">
                   {item.title}
                 </h3>
                 <p className="text-xs font-heading text-cyan-700 dark:text-cyan-400 mt-1 mb-2.5 font-semibold">
                   {item.subtitle}
                 </p>
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                   {item.description}
                 </p>
               </div>

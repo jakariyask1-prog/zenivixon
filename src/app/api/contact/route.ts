@@ -101,6 +101,8 @@ export async function POST(req: NextRequest) {
       await fetch(`${aiConsultantUrl}/api/leads`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        // 5s timeout — Render free tier has cold-start delays
+        signal: AbortSignal.timeout(5000),
         body: JSON.stringify({
           name: payload.name,
           email: payload.email,

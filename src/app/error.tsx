@@ -22,7 +22,11 @@ export default function Error({
           Something went wrong
         </h2>
         <p className="text-slate-600 dark:text-slate-400 text-sm max-w-md mx-auto">
-          An unexpected error occurred while loading this page. We&apos;ve been notified and are looking into it.
+          An unexpected error occurred while loading this page. Please try again or contact us at{" "}
+          <a href="mailto:contact@zenivixon.com" className="text-blue-600 underline">
+            contact@zenivixon.com
+          </a>
+          .
         </p>
       </div>
       <Button variant="primary" size="md" onClick={() => reset()}>

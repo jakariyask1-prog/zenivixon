@@ -295,10 +295,10 @@ export function BeforeAfterComparisonSection() {
                       <div key={idx} className="flex items-start gap-3">
                         <XCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
                         <div className="space-y-0.5">
-                          <h4 className="text-sm font-bold text-slate-800 dark:text-slate-200">
+                          <h4 className="text-base font-bold text-slate-900 dark:text-white font-heading">
                             {pt.label}
                           </h4>
-                          <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                          <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                             {pt.detail}
                           </p>
                         </div>
@@ -341,10 +341,10 @@ export function BeforeAfterComparisonSection() {
                       <div key={idx} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
                         <div className="space-y-0.5">
-                          <h4 className="text-sm font-bold text-white">
+                          <h4 className="text-base font-bold text-white font-heading">
                             {pt.label}
                           </h4>
-                          <p className="text-xs text-slate-300 leading-relaxed">
+                          <p className="text-sm text-slate-200 leading-relaxed">
                             {pt.detail}
                           </p>
                         </div>

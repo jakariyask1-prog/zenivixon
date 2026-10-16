@@ -20,7 +20,7 @@ export async function checkRateLimit(ip: string, limit: number = 5, windowMs: nu
         .pexpire(key, windowMs)
         .exec();
         
-      return (response as number) > limit;
+      return (response as number) >= limit;
     } catch (e) {
       console.warn("Redis rate limiting failed, falling back to in-memory", e);
     }

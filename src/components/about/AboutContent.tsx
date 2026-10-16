@@ -205,17 +205,17 @@ export function AboutContent() {
                   <div className="p-2.5 rounded-xl bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-900 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
                     {stat.icon}
                   </div>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 font-heading">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 font-heading">
                     METRIC 0{idx + 1}
                   </span>
                 </div>
                 <div className="text-3xl font-extrabold text-[#0F172A] dark:text-white font-heading mb-1">
                   <AnimatedCounter to={stat.value} suffix={stat.suffix} duration={2} />
                 </div>
-                <h4 className="text-xs font-bold text-slate-800 dark:text-slate-200 font-heading mb-1">
+                <h4 className="text-sm font-bold text-slate-800 dark:text-slate-200 font-heading mb-1">
                   {stat.label}
                 </h4>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
                   {stat.description}
                 </p>
               </motion.div>

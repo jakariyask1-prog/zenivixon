@@ -29,7 +29,7 @@ export function PageHeader({
             </Link>
             {breadcrumbs.map((crumb, idx) => (
               <React.Fragment key={idx}>
-                <ChevronRight className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500 dark:text-slate-400" />
+                <ChevronRight className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
                 {crumb.href ? (
                   <Link
                     href={crumb.href}
