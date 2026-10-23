@@ -121,6 +121,12 @@ export default async function ProjectDetailPage({ params }: Props) {
               <p className="text-xs sm:text-sm text-blue-100 max-w-xl leading-relaxed">
                 Download the standalone Windows setup package and run {project.title} directly on your machine.
               </p>
+              {project.downloadChecksum && (
+                <div className="pt-1 flex flex-wrap items-center gap-1.5 text-[11px] text-blue-200/90 font-mono">
+                  <span className="font-semibold text-white/90">SHA-256:</span>
+                  <span className="select-all break-all opacity-90">{project.downloadChecksum}</span>
+                </div>
+              )}
             </div>
             <a
               href={project.downloadUrl}
@@ -254,6 +260,12 @@ export default async function ProjectDetailPage({ params }: Props) {
                   <Download className="w-4 h-4" />
                   <span>{project.downloadLabel || "Download Setup"}</span>
                 </a>
+                {project.downloadChecksum && (
+                  <div className="pt-1 text-[10px] text-slate-500 dark:text-slate-400 font-mono text-left bg-slate-50 dark:bg-slate-900/60 p-2 rounded-lg border border-slate-200 dark:border-slate-800 break-all select-all">
+                    <span className="font-semibold block text-slate-700 dark:text-slate-300 mb-0.5">SHA-256 Checksum:</span>
+                    {project.downloadChecksum}
+                  </div>
+                )}
               </div>
             )}
 

@@ -48,8 +48,10 @@ export const PROJECTS_DATA: Project[] = [
     ],
     status: "Production Workstation v2.0 & Windows Release",
     downloadUrl:
-      "https://github.com/jakariyask1-prog/jakariya-ai-studio/releases/download/version1.0/Jakariya_AI_Studio_Setup_v1.0.exe",
-    downloadLabel: "Download Setup v1.0 (.exe)",
+      "https://github.com/jakariyask1-prog/jakariya-ai-studio/releases/download/version2.0/Jakariya_AI_Studio_Setup_v2.0.0.exe",
+    downloadLabel: "Download Setup v2.0.0 (.exe)",
+    downloadChecksum:
+      "c242e1ddeb1f7e60e3cd2f262b349cdad4b475b0bd4004cbfbfa16f972d24a23",
   },
   {
     slug: "real-time-voice-ai-telephony-agent",

@@ -27,4 +27,5 @@ export interface Project {
   status?: string;
   downloadUrl?: string;
   downloadLabel?: string;
+  downloadChecksum?: string;
 }
