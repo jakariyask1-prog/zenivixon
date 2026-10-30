@@ -317,7 +317,7 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: false,
     image: "/images/projects/rag-system.svg",
-    videoUrl: "",
+    videoUrl: "https://youtu.be/Kc53eAwRKww",
     deliverables: [
       "Continuous document ingestion & chunking pipeline",
       "Vector database cluster setup and index optimization",
