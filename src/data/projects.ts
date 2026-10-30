@@ -467,7 +467,7 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: false,
     image: "/images/projects/crm-assistant.svg",
-    videoUrl: "",
+    videoUrl: "https://youtu.be/aCyi24R_aF8",
     deliverables: [
       "Drop-in React interface component",
       "Secure backend token authentication layer",
