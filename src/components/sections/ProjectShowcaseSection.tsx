@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, CheckCircle2, PlayCircle, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, CheckCircle2, PlayCircle, X, Maximize2 } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { PROJECTS_DATA } from "@/data/projects";
@@ -11,9 +11,18 @@ import { getYoutubeEmbedUrl } from "@/lib/utils";
 
 export function ProjectShowcaseSection() {
   const [activeVideo, setActiveVideo] = useState<{ title: string; url: string } | null>(null);
+  const [inlinePlaying, setInlinePlaying] = useState<{ [slug: string]: boolean }>({});
 
   const featuredProjects = PROJECTS_DATA.filter((p) => p.featured);
   const otherProjects = PROJECTS_DATA.filter((p) => !p.featured);
+
+  const startInline = (slug: string) => {
+    setInlinePlaying((prev) => ({ ...prev, [slug]: true }));
+  };
+
+  const stopInline = (slug: string) => {
+    setInlinePlaying((prev) => ({ ...prev, [slug]: false }));
+  };
 
   return (
     <section className="py-16 md:py-24 border-t border-slate-200/80 dark:border-slate-800/80 bg-[#FFFFFF] dark:bg-[#020817] relative transition-colors duration-300">
@@ -53,29 +62,83 @@ export function ProjectShowcaseSection() {
               {/* Visual Preview (Left 7 cols on lg) */}
               <div className="lg:col-span-7 bg-slate-50/80 dark:bg-slate-900/50 p-6 sm:p-8 flex flex-col items-center justify-center border-b lg:border-b-0 lg:border-r border-slate-200/80 dark:border-slate-800 relative min-h-[280px] sm:min-h-[360px]">
                 <div className="w-full max-w-xl aspect-[16/9] relative rounded-xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-800 dark:border-slate-700 bg-white dark:bg-slate-800 group">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover object-top img-hover-effect transition-all duration-700 cursor-pointer"
-                  />
-                  {project.videoUrl && (
-                    <div className="absolute inset-0 bg-slate-900/20 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <button
-                        onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl! })}
-                        className="px-4 py-2 rounded-xl bg-white/95 dark:bg-slate-900/95 text-slate-900 dark:text-white font-semibold text-xs flex items-center gap-2 shadow-lg hover:bg-white dark:hover:bg-slate-800 transition-all transform group-hover:scale-105 cursor-pointer"
-                      >
-                        <PlayCircle className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                        <span>Watch Demo Video</span>
-                      </button>
+                  {project.videoUrl && inlinePlaying[project.slug] ? (
+                    <div className="relative w-full h-full bg-slate-950">
+                      {project.videoUrl.match(/\.(mp4|webm|ogg)$/i) ? (
+                        <video
+                          src={project.videoUrl}
+                          poster={project.image}
+                          controls
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        <iframe
+                          src={getYoutubeEmbedUrl(project.videoUrl, true)}
+                          title={`${project.title} live preview`}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="w-full h-full border-0"
+                        />
+                      )}
+                      <div className="absolute top-2 right-2 flex items-center gap-1.5 z-20">
+                        <button
+                          onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl! })}
+                          className="p-1.5 rounded-lg bg-black/70 hover:bg-black/90 text-white text-xs backdrop-blur-sm cursor-pointer"
+                          title="Fullscreen Modal"
+                        >
+                          <Maximize2 className="w-3.5 h-3.5" />
+                        </button>
+                        <button
+                          onClick={() => stopInline(project.slug)}
+                          className="p-1.5 rounded-lg bg-black/70 hover:bg-black/90 text-white text-xs backdrop-blur-sm cursor-pointer"
+                          title="Close Live Player"
+                        >
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                     </div>
+                  ) : (
+                    <>
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover object-top img-hover-effect transition-all duration-700 cursor-pointer"
+                        onClick={() => project.videoUrl && startInline(project.slug)}
+                      />
+                      {project.videoUrl && (
+                        <div className="absolute inset-0 bg-slate-900/30 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                          <button
+                            onClick={() => startInline(project.slug)}
+                            className="px-4 py-2 rounded-xl bg-blue-600 text-white font-semibold text-xs flex items-center gap-2 shadow-lg hover:bg-blue-700 transition-all transform hover:scale-105 cursor-pointer"
+                          >
+                            <PlayCircle className="w-4 h-4" />
+                            <span>Play Live Here</span>
+                          </button>
+                          <button
+                            onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl! })}
+                            className="px-3 py-2 rounded-xl bg-white/95 dark:bg-slate-900/95 text-slate-900 dark:text-white font-semibold text-xs flex items-center gap-1.5 shadow-lg hover:bg-white dark:hover:bg-slate-800 transition-all transform hover:scale-105 cursor-pointer"
+                            title="Open in Popup Modal"
+                          >
+                            <Maximize2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      )}
+                    </>
                   )}
                 </div>
 
                 {project.videoUrl && (
-                  <div className="mt-4 flex items-center gap-2 text-xs text-blue-600 dark:text-blue-400 font-semibold cursor-pointer" onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl! })}>
-                    <PlayCircle className="w-4 h-4" />
-                    <span>Video Demonstration Available</span>
+                  <div
+                    className="mt-4 flex items-center gap-2 text-xs text-blue-600 dark:text-blue-400 font-semibold cursor-pointer"
+                    onClick={() => startInline(project.slug)}
+                  >
+                    <PlayCircle className="w-4 h-4 animate-pulse" />
+                    <span>Live Video Demonstration Ready (Click to Play)</span>
                   </div>
                 )}
               </div>
@@ -142,6 +205,15 @@ export function ProjectShowcaseSection() {
                     <span>Read Full Case Study</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </Link>
+                  {project.videoUrl && (
+                    <button
+                      onClick={() => startInline(project.slug)}
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 cursor-pointer"
+                    >
+                      <PlayCircle className="w-4 h-4" />
+                      <span>Watch Live</span>
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -169,24 +241,67 @@ export function ProjectShowcaseSection() {
               >
                 <div className="space-y-4">
                   <div className="aspect-[16/9] relative rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 group/subimg">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover object-top img-hover-effect transition-all duration-700 group-hover:scale-105"
-                    />
-                    {project.videoUrl && (
-                      <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-[2px] opacity-0 group-hover/subimg:opacity-100 transition-opacity flex items-center justify-center">
+                    {project.videoUrl && inlinePlaying[project.slug] ? (
+                      <div className="relative w-full h-full bg-slate-950">
+                        {project.videoUrl.match(/\.(mp4|webm|ogg)$/i) ? (
+                          <video
+                            src={project.videoUrl}
+                            poster={project.image}
+                            controls
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            className="w-full h-full object-contain"
+                          />
+                        ) : (
+                          <iframe
+                            src={getYoutubeEmbedUrl(project.videoUrl, true)}
+                            title={`${project.title} preview`}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="w-full h-full border-0"
+                          />
+                        )}
                         <button
-                          onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl! })}
-                          className="px-3.5 py-1.5 rounded-xl bg-white/95 dark:bg-slate-900/95 text-slate-900 dark:text-white font-semibold text-xs flex items-center gap-1.5 shadow-lg hover:bg-white dark:hover:bg-slate-800 transition-all transform hover:scale-105 cursor-pointer"
+                          onClick={() => stopInline(project.slug)}
+                          className="absolute top-2 right-2 p-1.5 rounded-lg bg-black/70 hover:bg-black/90 text-white text-xs backdrop-blur-sm cursor-pointer z-20"
+                          title="Close Video"
                         >
-                          <PlayCircle className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-                          <span>Watch Demo</span>
+                          <X className="w-3 h-3" />
                         </button>
                       </div>
+                    ) : (
+                      <>
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover object-top img-hover-effect transition-all duration-700 group-hover:scale-105"
+                          onClick={() => project.videoUrl && startInline(project.slug)}
+                        />
+                        {project.videoUrl && (
+                          <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-[2px] opacity-0 group-hover/subimg:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                            <button
+                              onClick={() => startInline(project.slug)}
+                              className="px-3.5 py-1.5 rounded-xl bg-blue-600 text-white font-semibold text-xs flex items-center gap-1.5 shadow-lg hover:bg-blue-700 transition-all transform hover:scale-105 cursor-pointer"
+                            >
+                              <PlayCircle className="w-3.5 h-3.5" />
+                              <span>Live Demo</span>
+                            </button>
+                            <button
+                              onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl! })}
+                              className="p-1.5 rounded-xl bg-white/95 dark:bg-slate-900/95 text-slate-900 dark:text-white shadow-lg hover:bg-white dark:hover:bg-slate-800 transition-all transform hover:scale-105 cursor-pointer"
+                              title="Open Fullscreen"
+                            >
+                              <Maximize2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        )}
+                      </>
                     )}
                   </div>
+
                   <div className="flex items-center justify-between">
                     <Badge variant="blue" size="sm" className="font-semibold text-xs">
                       {project.categoryLabel}
@@ -194,11 +309,11 @@ export function ProjectShowcaseSection() {
                     <div className="flex items-center gap-1.5">
                       {project.videoUrl && (
                         <button
-                          onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl! })}
+                          onClick={() => startInline(project.slug)}
                           className="text-[10px] font-heading font-semibold px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900 flex items-center gap-1 cursor-pointer transition-colors"
                         >
                           <PlayCircle className="w-3 h-3 text-blue-600 dark:text-blue-400" />
-                          <span>Video</span>
+                          <span>Live Demo</span>
                         </button>
                       )}
                       {project.status && (
@@ -237,11 +352,11 @@ export function ProjectShowcaseSection() {
                   </Link>
                   {project.videoUrl && (
                     <button
-                      onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl! })}
+                      onClick={() => startInline(project.slug)}
                       className="inline-flex items-center gap-1 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-pointer"
                     >
                       <PlayCircle className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-                      <span>Demo</span>
+                      <span>Live Demo</span>
                     </button>
                   )}
                 </div>
@@ -260,7 +375,7 @@ export function ProjectShowcaseSection() {
             aria-label={`Demo: ${activeVideo.title}`}
           >
             <div
-              className="bg-white dark:bg-[#0b1120] rounded-2xl max-w-3xl w-full p-6 shadow-2xl space-y-4 border border-slate-200 dark:border-slate-800"
+              className="bg-white dark:bg-[#0b1120] rounded-2xl max-w-4xl w-full p-6 shadow-2xl space-y-4 border border-slate-200 dark:border-slate-800"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
@@ -283,7 +398,7 @@ export function ProjectShowcaseSection() {
               <div className="aspect-[16/9] w-full bg-slate-900 rounded-xl overflow-hidden">
                 {activeVideo.url.includes("youtube.com") || activeVideo.url.includes("youtu.be") ? (
                   <iframe
-                    src={getYoutubeEmbedUrl(activeVideo.url)}
+                    src={getYoutubeEmbedUrl(activeVideo.url, true)}
                     title={`${activeVideo.title} demo`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
