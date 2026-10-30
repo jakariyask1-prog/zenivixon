@@ -140,7 +140,7 @@ export function Footer() {
                   { label: "Software & Web Dev", href: "/solutions/software-web-development" },
                   { label: "AI Integration & RAG", href: "/solutions/ai-integration" },
                   { label: "All Solutions", href: "/solutions" },
-                  { label: "14-Day Pilot Sprint", href: "/start-a-project" },
+                  { label: "7-Day Pilot Sprint", href: "/start-a-project" },
                 ].map((item) => (
                   <li key={item.label}>
                     <Link href={item.href} className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">

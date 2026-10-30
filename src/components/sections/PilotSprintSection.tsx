@@ -30,12 +30,12 @@ export function PilotSprintSection() {
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-10 relative z-10">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-400/10 text-yellow-300 border border-yellow-400/30 text-xs font-bold font-mono uppercase tracking-widest">
               <ShieldCheck className="w-4 h-4 text-yellow-400 animate-pulse" />
-              14-Day Pilot
+              7-Day Pilot
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight font-heading leading-tight">
               Test Our Engineering with a{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-200 to-yellow-400">
-                14-Day Pilot Sprint
+                7-Day Pilot Sprint
               </span>
             </h2>
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
@@ -51,10 +51,10 @@ export function PilotSprintSection() {
                 <Zap className="w-6 h-6" />
               </div>
               <h3 className="text-lg font-bold text-white font-heading">
-                1. Shipped in 14 Days
+                1. Shipped in 7 Days
               </h3>
               <p className="text-sm text-slate-300 leading-relaxed">
-                We design, build, and deploy your first high-impact automated AI workflow or custom agent in under two weeks.
+                We design, build, and deploy your first high-impact automated AI workflow or custom agent in under one week.
               </p>
             </div>
 
@@ -105,7 +105,7 @@ export function PilotSprintSection() {
                 icon={<ArrowRight className="w-4 h-4" />}
                 className="w-full sm:w-auto justify-center"
               >
-                Claim Your 14-Day Pilot Sprint
+                Claim Your 7-Day Pilot Sprint
               </Button>
               <Button
                 variant="outline"

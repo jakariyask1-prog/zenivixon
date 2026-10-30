@@ -30,7 +30,7 @@ const comparisonData = [
   {
     feature: "Risk & Commitment",
     legacy: "$30k–$60k locked upfront contracts",
-    zenivixon: "14-Day Pilot",
+    zenivixon: "7-Day Pilot",
   },
   {
     feature: "AI Architecture Safety",
@@ -58,11 +58,11 @@ const reasons = [
       "You collaborate directly with the AI architects and senior engineers building your system. No non-technical account managers, no communication bottlenecks, and zero outsourcing.",
   },
   {
-    title: "14-Day Pilot",
+    title: "7-Day Pilot",
     badge: "EVALUATION PILOT",
     icon: <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />,
     description:
-      "Start with a focused pilot before committing to a larger implementation. We deploy a working proof-of-concept on your actual workflow in 14 days.",
+      "Start with a focused pilot before committing to a larger implementation. We deploy a working proof-of-concept on your actual workflow in 7 days.",
   },
   {
     title: "3x Faster Velocity",

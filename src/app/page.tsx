@@ -54,7 +54,7 @@ export default function HomePage() {
         <VideoShowcaseSection />
       </div>
 
-      {/* 09. 🛡️ 14-Day Pilot Sprint */}
+      {/* 09. 🛡️ 7-Day Pilot Sprint */}
       <div data-aos="fade-up">
         <PilotSprintSection />
       </div>

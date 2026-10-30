@@ -713,7 +713,7 @@ export function AboutContent() {
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading">
-                  14-Day Pilot
+                  7-Day Pilot
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                   Start with a focused pilot before committing to a larger implementation. We prove our value on your actual business problem.
@@ -721,7 +721,7 @@ export function AboutContent() {
               </div>
               <div className="pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                14-Day Pilot • Measurable Value
+                7-Day Pilot • Measurable Value
               </div>
             </div>
 

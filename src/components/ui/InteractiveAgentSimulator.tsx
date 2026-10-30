@@ -189,7 +189,7 @@ const SCENARIOS: Scenario[] = [
       actionsTaken: [
         "Enriched tech stack: PostgreSQL, AWS, React, Python",
         "Deal created in HubSpot with custom executive notes",
-        "Auto-scheduled 14-day pilot sprint discovery call",
+        "Auto-scheduled 7-day pilot sprint discovery call",
       ],
       speed: "0.65 seconds",
       humanTimeSaved: "Instant response (<1m)",
