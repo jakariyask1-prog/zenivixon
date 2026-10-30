@@ -1,18 +1,15 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Terminal,
   Cpu,
-  Zap,
   Sparkles,
   CheckCircle2,
   Code2,
-  ShieldCheck,
   Bot,
   Activity,
-  Layers,
   ArrowRight,
 } from "lucide-react";
 
@@ -169,7 +166,9 @@ export function AutonomousAgentTerminalSection() {
   // Perpetual stepped simulation when template changes
   useEffect(() => {
     let step = 0;
-    setCurrentStepIndex(0);
+    const resetTimer = setTimeout(() => {
+      setCurrentStepIndex(0);
+    }, 0);
 
     const stepInterval = setInterval(() => {
       step += 1;
@@ -180,7 +179,10 @@ export function AutonomousAgentTerminalSection() {
       }
     }, 900);
 
-    return () => clearInterval(stepInterval);
+    return () => {
+      clearTimeout(resetTimer);
+      clearInterval(stepInterval);
+    };
   }, [activeTemplateId]);
 
   return (

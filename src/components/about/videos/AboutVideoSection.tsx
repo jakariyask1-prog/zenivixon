@@ -15,9 +15,8 @@ import {
   Layers,
 } from "lucide-react";
 import { AboutVideo } from "@/types/aboutVideo";
-import { ABOUT_VIDEOS, VIDEO_CATEGORIES } from "@/data/aboutVideos";
+import { ABOUT_VIDEOS } from "@/data/aboutVideos";
 import { VideoModal } from "./VideoModal";
-import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 

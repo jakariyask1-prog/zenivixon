@@ -2,20 +2,17 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Badge } from "@/components/ui/Badge";
 import {
   Play,
   Sparkles,
-  MessageSquare,
   Clock,
   ArrowUpRight,
-  ShieldCheck,
   Video as VideoIcon,
 } from "lucide-react";
 import { CLIENT_CONVERSATION_VIDEOS } from "@/data/clientVideos";
 import { ClientConversationVideo } from "@/types/clientVideo";
 import { VideoModal } from "@/components/about/videos/VideoModal";
-import { AboutVideo } from "@/types/aboutVideo";
+import { AboutVideo, VideoCategory } from "@/types/aboutVideo";
 
 export function ClientVideoMarqueeSection() {
   const [activeModalVideo, setActiveModalVideo] = useState<AboutVideo | null>(null);
@@ -25,7 +22,7 @@ export function ClientVideoMarqueeSection() {
     // Map ClientConversationVideo to AboutVideo schema for the unified VideoModal
     const mapped: AboutVideo = {
       id: item.id,
-      category: (item.tag as any) || "Client Dialogue",
+      category: (item.tag as VideoCategory) || "Client Dialogue",
       title: item.topicTitle,
       name: `${item.flag} ${item.clientName}`,
       role: `${item.role} • ${item.companyOrIndustry}`,

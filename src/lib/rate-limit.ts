@@ -14,13 +14,12 @@ export async function checkRateLimit(ip: string, limit: number = 5, windowMs: nu
   if (redis) {
     try {
       const key = `rate-limit:${ip}`;
-      // Basic rate limiting via Redis
-      const [response] = await redis.pipeline()
-        .incr(key)
-        .pexpire(key, windowMs)
-        .exec();
+      const count = await redis.incr(key);
+      if (count === 1) {
+        await redis.pexpire(key, windowMs);
+      }
         
-      return (response as number) >= limit;
+      return count > limit;
     } catch (e) {
       console.warn("Redis rate limiting failed, falling back to in-memory", e);
     }

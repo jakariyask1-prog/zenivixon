@@ -15,7 +15,6 @@ import {
   Mail,
   ArrowUpRight,
   X,
-  FileText,
   FileCheck,
 } from "lucide-react";
 

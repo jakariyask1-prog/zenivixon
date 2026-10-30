@@ -6,7 +6,6 @@ import { INSIGHTS_DATA } from "@/data/insights";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Clock, CheckCircle2 } from "lucide-react";
-import { formatDate } from "@/lib/utils";
 import { COMPANY_INFO } from "@/lib/constants";
 
 export const metadata: Metadata = {

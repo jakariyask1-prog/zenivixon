@@ -72,6 +72,22 @@ function generateClientEmailHtml(data: LeadEmailData): string {
                 We have successfully received your ${isBrief ? "project brief" : "inquiry"} regarding <b style="color: #0F172A;">${escapeHtml(data.service)}</b>. Our engineering team is currently reviewing your submission.
               </p>
 
+              ${data.clientReplyHtml ? `
+              <!-- AI Consultant Preliminary Assessment -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #F0F9FF; border-radius: 12px; border: 1px solid #BAE6FD; margin: 20px 0;">
+                <tr>
+                  <td style="padding: 14px 20px; border-bottom: 1px solid #BAE6FD; font-size: 11px; font-weight: 800; color: #0284C7; text-transform: uppercase; letter-spacing: 1px;">
+                    🤖 Preliminary Engineering Assessment &amp; Initial Insight
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 16px 20px; font-size: 13px; color: #0F172A; line-height: 1.7; white-space: pre-wrap;">
+${escapeHtml(data.clientReplyHtml)}
+                  </td>
+                </tr>
+              </table>
+              ` : ""}
+
               <!-- Submission Summary Box -->
               <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #F8FAFC; border-radius: 12px; border: 1px solid #E2E8F0; margin: 20px 0; font-size: 13px;">
                 <tr>
@@ -185,7 +201,7 @@ function generateClientEmailHtml(data: LeadEmailData): string {
  */
 function generateAdminEmailHtml(data: LeadEmailData): string {
   const isBrief = data.source === "project-brief";
-  const cleanPhone = data.phone ? data.phone.replace(/[^0-9+]/g, '') : "";
+  const cleanPhone = data.phone ? data.phone.replace(/[^0-9]/g, '') : "";
 
   return `
 <!DOCTYPE html>

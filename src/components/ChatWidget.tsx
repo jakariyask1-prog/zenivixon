@@ -35,7 +35,15 @@ export default function ChatWidget({ apiUrl }: ChatWidgetProps = {}) {
   ]);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
   const aiConsultantUrl = apiUrl || process.env.NEXT_PUBLIC_AI_CONSULTANT_URL || "https://zenivixon-ai-consultant.onrender.com";
+
+  // Clean up any ongoing fetch on unmount
+  useEffect(() => {
+    return () => {
+      abortControllerRef.current?.abort();
+    };
+  }, []);
 
   // Global event listener for external triggers (Navbar, Hero buttons)
   useEffect(() => {
@@ -60,6 +68,11 @@ export default function ChatWidget({ apiUrl }: ChatWidgetProps = {}) {
   }, [messages, isOpen]);
 
   const handleResetSession = () => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      abortControllerRef.current = null;
+    }
+    setIsLoading(false);
     setMessages([
       {
         role: "assistant",
@@ -83,11 +96,18 @@ export default function ChatWidget({ apiUrl }: ChatWidgetProps = {}) {
     setMessages((prev) => [...prev, { role: "assistant", content: "" }]);
     setIsLoading(true);
 
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+
     try {
       const response = await fetch(`${aiConsultantUrl}/api/chat/stream`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userMessage, session_id: sessionId }),
+        signal: controller.signal,
       });
 
       if (!response.ok) {
@@ -126,11 +146,6 @@ export default function ChatWidget({ apiUrl }: ChatWidgetProps = {}) {
                     if (data.content) {
                       setMessages((prev) => {
                         const lastIndex = prev.length - 1;
-                        const lastMsg = prev[lastIndex];
-                        // Skip duplicate chunks
-                        if (lastMsg && lastMsg.content === data.content) {
-                          return prev;
-                        }
                         return prev.map((msg, i) =>
                           i === lastIndex
                             ? { ...msg, content: msg.content + data.content }
@@ -146,8 +161,34 @@ export default function ChatWidget({ apiUrl }: ChatWidgetProps = {}) {
             }
           }
         }
+
+        // Flush any trailing event if buffer was not terminated with \n\n
+        if (buffer.trim().startsWith("data: ")) {
+          const jsonStr = buffer.trim().substring(6);
+          if (jsonStr !== "[DONE]") {
+            try {
+              const data = JSON.parse(jsonStr);
+              if (data.content) {
+                setMessages((prev) => {
+                  const lastIndex = prev.length - 1;
+                  return prev.map((msg, i) =>
+                    i === lastIndex
+                      ? { ...msg, content: msg.content + data.content }
+                      : msg
+                  );
+                });
+              }
+            } catch {
+              // ignore partial chunk
+            }
+          }
+        }
       }
-    } catch {
+    } catch (err: unknown) {
+      if (err instanceof Error && err.name === "AbortError") {
+        return; // User reset session or dispatched new message, quiet cancel
+      }
+
       setIsLoading(false);
       const isBangla = /[\u0980-\u09FF]/.test(userMessage);
       const errorText = isBangla
