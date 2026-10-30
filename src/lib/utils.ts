@@ -25,14 +25,37 @@ export function formatDate(dateString: string): string {
   });
 }
 
-export function getYoutubeEmbedUrl(url: string): string {
+export function getYoutubeEmbedUrl(url: string, autoplay: boolean = true): string {
   try {
     const u = new URL(url);
-    const v = u.searchParams.get("v");
-    if (v) {
-      return `https://www.youtube.com/embed/${v}`;
+    let videoId: string | null = null;
+
+    if (u.hostname.includes("youtu.be")) {
+      videoId = u.pathname.replace(/^\//, "");
+    } else if (u.hostname.includes("youtube.com")) {
+      if (u.pathname.startsWith("/embed/")) {
+        videoId = u.pathname.replace("/embed/", "");
+      } else if (u.pathname.startsWith("/shorts/")) {
+        videoId = u.pathname.replace("/shorts/", "");
+      } else {
+        videoId = u.searchParams.get("v");
+      }
     }
-    // If it's already an embed URL or doesn't have a 'v' param, just return the original URL
+
+    if (videoId) {
+      const cleanId = videoId.split("&")[0].split("?")[0];
+      const params = new URLSearchParams();
+      if (autoplay) {
+        params.set("autoplay", "1");
+        params.set("mute", "1");
+        params.set("loop", "1");
+        params.set("playlist", cleanId);
+      }
+      params.set("rel", "0");
+      params.set("modestbranding", "1");
+      return `https://www.youtube.com/embed/${cleanId}?${params.toString()}`;
+    }
+
     return url;
   } catch {
     return url;
