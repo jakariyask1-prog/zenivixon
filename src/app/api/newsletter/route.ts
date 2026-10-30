@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-
+import { logger } from '@/lib/logger';
 import { checkRateLimit } from "@/lib/rate-limit";
 import { newsletterSchema } from "@/lib/validations";
 

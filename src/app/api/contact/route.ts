@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-
+import { logger } from '@/lib/logger';
+import { ExternalServiceError } from '@/lib/errors';
 import { checkRateLimit } from "@/lib/rate-limit";
 import { contactFormSchema } from "@/lib/validations";
 import { analyzeLeadWithGemini } from "@/lib/gemini";
@@ -35,7 +36,7 @@ export async function POST(req: NextRequest) {
     const payload = parsed.data;
 
     // ─── Direct Lead Processing (Replacing n8n) ──────────────────────────────
-    console.log(`[ZENIVIXON Contact] Processing new lead for: ${payload.email}`);
+    logger.info(`[ZENIVIXON Contact] Processing new lead for: ${payload.email}`);
 
     // We process the external integrations asynchronously to not block the user response,
     // or we can await them if we want to ensure they succeed before returning success.

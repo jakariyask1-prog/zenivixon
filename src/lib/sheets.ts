@@ -1,4 +1,6 @@
 import { GoogleSpreadsheet } from 'google-spreadsheet';
+import { logger } from '@/lib/logger';
+import { ExternalServiceError } from '@/lib/errors';
 import { JWT } from 'google-auth-library';
 
 export async function appendLeadToSheet(data: {
@@ -15,8 +17,8 @@ export async function appendLeadToSheet(data: {
   const sheetId = process.env.GOOGLE_SHEET_ID;
 
   if (!email || !key || !sheetId) {
-    console.error("Google Sheets credentials are not configured.");
-    return;
+    logger.error("Google Sheets credentials are not configured.");
+    throw new ExternalServiceError('Google Sheets credentials missing');
   }
 
   try {
@@ -54,7 +56,7 @@ export async function appendLeadToSheet(data: {
       [companyKey]: data.company || "N/A"
     });
     
-    console.log("[ZENIVIXON Google Sheets] Successfully appended row.");
+    logger.info("[ZENIVIXON Google Sheets] Successfully appended row.");
   } catch (error) {
     console.error("Error appending to Google Sheet:", error);
     throw error;
