@@ -17,7 +17,7 @@ const features = [
 ];
 
 export function VideoShowcaseSection() {
-  const videoProjects = PROJECTS_DATA.filter((p) => Boolean(p.videoUrl));
+  const videoProjects = PROJECTS_DATA.filter((p) => p.featured && Boolean(p.videoUrl));
   const [selectedSlug, setSelectedSlug] = useState<string>(videoProjects[0]?.slug || "jakariya-ai-studio");
   
   const activeProject = videoProjects.find((p) => p.slug === selectedSlug) || videoProjects[0];

@@ -14,7 +14,6 @@ export function ProjectShowcaseSection() {
   const [inlinePlaying, setInlinePlaying] = useState<{ [slug: string]: boolean }>({});
 
   const featuredProjects = PROJECTS_DATA.filter((p) => p.featured);
-  const otherProjects = PROJECTS_DATA.filter((p) => !p.featured);
 
   const startInline = (slug: string) => {
     setInlinePlaying((prev) => ({ ...prev, [slug]: true }));
@@ -31,13 +30,13 @@ export function ProjectShowcaseSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-14">
           <div className="max-w-2xl space-y-4">
             <Badge variant="blue" size="sm" className="font-semibold text-xs tracking-widest">
-              PROJECT SHOWCASE
+              FLAGSHIP PRODUCTION SYSTEMS
             </Badge>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F172A] dark:text-white tracking-tight font-heading leading-tight">
               Technical Proof. Real Business Results.
             </h2>
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
-              We prove our capabilities through concrete production systems. Explore our AI agents, automation pipelines, and enterprise integrations operating in real environments.
+              We prove our capabilities through concrete, production-grade systems. Explore our flagship AI agents, autonomous pipelines, and enterprise software operating in live environments.
             </p>
           </div>
           <Button
@@ -52,7 +51,7 @@ export function ProjectShowcaseSection() {
         </div>
 
         {/* Featured Production Systems (Detailed Multi-Column Cards) */}
-        <div className="space-y-10 mb-12">
+        <div className="space-y-10">
           {featuredProjects.map((project) => (
             <div
               key={project.slug}
@@ -218,151 +217,6 @@ export function ProjectShowcaseSection() {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Secondary Project Cards Grid */}
-        <div className="space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
-            <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading">
-              Additional Production Systems &amp; Case Studies
-            </h3>
-            <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-semibold">
-              Showing {otherProjects.length} Systems
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {otherProjects.map((project, pIdx) => (
-              <div
-                key={project.slug}
-                data-aos="fade-up"
-                data-aos-delay={pIdx * 80}
-                className="rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm dark:shadow-none p-6 flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-200 group premium-card-hover"
-              >
-                <div className="space-y-4">
-                  <div className="aspect-[16/9] relative rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 group/subimg">
-                    {project.videoUrl && inlinePlaying[project.slug] ? (
-                      <div className="relative w-full h-full bg-slate-950">
-                        {project.videoUrl.match(/\.(mp4|webm|ogg)$/i) ? (
-                          <video
-                            src={project.videoUrl}
-                            poster={project.image}
-                            controls
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                            className="w-full h-full object-contain"
-                          />
-                        ) : (
-                          <iframe
-                            src={getYoutubeEmbedUrl(project.videoUrl, true)}
-                            title={`${project.title} preview`}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            className="w-full h-full border-0"
-                          />
-                        )}
-                        <button
-                          onClick={() => stopInline(project.slug)}
-                          className="absolute top-2 right-2 p-1.5 rounded-lg bg-black/70 hover:bg-black/90 text-white text-xs backdrop-blur-sm cursor-pointer z-20"
-                          title="Close Video"
-                        >
-                          <X className="w-3 h-3" />
-                        </button>
-                      </div>
-                    ) : (
-                      <>
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          className="object-cover object-top img-hover-effect transition-all duration-700 group-hover:scale-105"
-                          onClick={() => project.videoUrl && startInline(project.slug)}
-                        />
-                        {project.videoUrl && (
-                          <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-[2px] opacity-0 group-hover/subimg:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                            <button
-                              onClick={() => startInline(project.slug)}
-                              className="px-3.5 py-1.5 rounded-xl bg-blue-600 text-white font-semibold text-xs flex items-center gap-1.5 shadow-lg hover:bg-blue-700 transition-all transform hover:scale-105 cursor-pointer"
-                            >
-                              <PlayCircle className="w-3.5 h-3.5" />
-                              <span>Live Demo</span>
-                            </button>
-                            <button
-                              onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl! })}
-                              className="p-1.5 rounded-xl bg-white/95 dark:bg-slate-900/95 text-slate-900 dark:text-white shadow-lg hover:bg-white dark:hover:bg-slate-800 transition-all transform hover:scale-105 cursor-pointer"
-                              title="Open Fullscreen"
-                            >
-                              <Maximize2 className="w-3.5 h-3.5" />
-                            </button>
-                          </div>
-                        )}
-                      </>
-                    )}
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <Badge variant="blue" size="sm" className="font-semibold text-xs">
-                      {project.categoryLabel}
-                    </Badge>
-                    <div className="flex items-center gap-1.5">
-                      {project.videoUrl && (
-                        <button
-                          onClick={() => startInline(project.slug)}
-                          className="text-[10px] font-heading font-semibold px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900 flex items-center gap-1 cursor-pointer transition-colors"
-                        >
-                          <PlayCircle className="w-3 h-3 text-blue-600 dark:text-blue-400" />
-                          <span>Live Demo</span>
-                        </button>
-                      )}
-                      {project.status && (
-                        <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-medium">
-                          {project.status}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <h4 className="text-lg font-bold text-[#0F172A] dark:text-white font-heading group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    {project.title}
-                  </h4>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
-                    {project.summary}
-                  </p>
-
-                  <div className="pt-1 flex flex-wrap gap-1">
-                    {project.technologies.slice(0, 3).map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-xs font-heading px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 dark:border-slate-700"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-4 mt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                  <Link
-                    href={`/projects/${project.slug}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-                  >
-                    <span>View Case Study</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                  {project.videoUrl && (
-                    <button
-                      onClick={() => startInline(project.slug)}
-                      className="inline-flex items-center gap-1 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-pointer"
-                    >
-                      <PlayCircle className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-                      <span>Live Demo</span>
-                    </button>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Video Player Modal */}
