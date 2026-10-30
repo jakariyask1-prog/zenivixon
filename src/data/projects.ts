@@ -355,7 +355,7 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: false,
     image: "/images/projects/multi-source-intelligence-agent.svg",
-    videoUrl: "",
+    videoUrl: "https://youtu.be/bGQ3A1PQEis",
     deliverables: [
       "Multi-agent task orchestrator and scraper queue",
       "Hallucination verification and source attribution module",
