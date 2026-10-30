@@ -1,0 +1,85 @@
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="inboundBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020817"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="aiGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#818CF8" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="800" height="450" fill="url(#inboundBg)"/>
+  <rect width="800" height="450" fill="url(#aiGlow)"/>
+
+  <!-- Top App Header -->
+  <rect x="24" y="20" width="752" height="44" rx="10" fill="#0B1120" stroke="#1E293B" stroke-width="1.5"/>
+  <circle cx="48" cy="42" r="5" fill="#38BDF8"/>
+  <text x="64" y="46" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">ZENIVIXON Autonomous Inbound Engine // 24/7 AI Consultant &amp; Dual Relay</text>
+  <rect x="636" y="30" width="128" height="24" rx="6" fill="#1E3A8A" stroke="#3B82F6"/>
+  <text x="648" y="46" fill="#93C5FD" font-family="monospace" font-size="11" font-weight="700">Latency: 1.4s (Live)</text>
+
+  <!-- Left: Live AI Consultant Chat Widget Interface -->
+  <rect x="24" y="78" width="360" height="348" rx="12" fill="#0B1120" stroke="#1E293B" stroke-width="1.5"/>
+  <rect x="24" y="78" width="360" height="46" rx="12" fill="#0F172A"/>
+  <circle cx="46" cy="101" r="6" fill="#10B981"/>
+  <text x="60" y="105" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12" font-weight="700">ZENIVIXON AI Consultant</text>
+  <text x="286" y="105" fill="#10B981" font-family="monospace" font-size="10" font-weight="600">● 24/7 ONLINE</text>
+
+  <!-- Chat Bubble 1 (Assistant) -->
+  <rect x="40" y="136" width="300" height="48" rx="8" fill="#1E293B"/>
+  <text x="52" y="154" fill="#93C5FD" font-family="-apple-system, sans-serif" font-size="10" font-weight="600">AI Consultant:</text>
+  <text x="52" y="170" fill="#F1F5F9" font-family="-apple-system, sans-serif" font-size="10">Hello! What enterprise workflow would you like to automate?</text>
+
+  <!-- Chat Bubble 2 (User) -->
+  <rect x="90" y="194" width="278" height="48" rx="8" fill="#1D4ED8"/>
+  <text x="102" y="212" fill="#DBEAFE" font-family="-apple-system, sans-serif" font-size="10" font-weight="600">Client:</text>
+  <text x="102" y="228" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="10">We need an automated invoice ingestion pipeline for QuickBooks.</text>
+
+  <!-- Chat Bubble 3 (Assistant Recommendation) -->
+  <rect x="40" y="252" width="328" height="64" rx="8" fill="#1E293B"/>
+  <text x="52" y="270" fill="#93C5FD" font-family="-apple-system, sans-serif" font-size="10" font-weight="600">AI Consultant:</text>
+  <text x="52" y="286" fill="#F1F5F9" font-family="-apple-system, sans-serif" font-size="10">We engineer Vision-LLM pipelines with &lt;1% discrepancy alerts.</text>
+  <text x="52" y="302" fill="#38BDF8" font-family="-apple-system, sans-serif" font-size="10" font-weight="600">&gt; Initiating personalized scope &amp; executive briefing...</text>
+
+  <!-- Chat Input Bar -->
+  <rect x="40" y="374" width="328" height="36" rx="6" fill="#020817" stroke="#1E293B"/>
+  <text x="52" y="396" fill="#64748B" font-family="-apple-system, sans-serif" font-size="10">Ask anything or request a technical quote...</text>
+
+  <!-- Center Arrow Relay -->
+  <line x1="392" y1="250" x2="408" y2="250" stroke="#38BDF8" stroke-width="2" stroke-dasharray="4 2"/>
+  <polygon points="410,250 404,246 404,254" fill="#38BDF8"/>
+
+  <!-- Right: Background AI Triage & Dual-Dispatch Relay -->
+  <rect x="414" y="78" width="362" height="348" rx="12" fill="#0B1120" stroke="#1E293B" stroke-width="1.5"/>
+  <text x="432" y="106" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="13" font-weight="700">Autonomous Pipeline Triage &amp; Relay</text>
+
+  <!-- Step 1: Gemini AI Intelligence -->
+  <rect x="432" y="122" width="326" height="62" rx="8" fill="#0F172A" stroke="#1E293B"/>
+  <circle cx="452" cy="153" r="10" fill="#2563EB"/>
+  <text x="470" y="146" fill="#60A5FA" font-family="-apple-system, sans-serif" font-size="11" font-weight="700">1. Google Gemini 2.0 Lead Analysis</text>
+  <text x="470" y="162" fill="#94A3B8" font-family="-apple-system, sans-serif" font-size="9">Classifies ICP fit, Priority: HIGH, Category: AI Automation</text>
+  <text x="470" y="174" fill="#34D399" font-family="monospace" font-size="9">Bespoke technical proposal drafted in 780ms</text>
+
+  <!-- Step 2: Resend Dual-Channel Delivery -->
+  <rect x="432" y="194" width="326" height="62" rx="8" fill="#0F172A" stroke="#1E293B"/>
+  <circle cx="452" cy="225" r="10" fill="#06B6D4"/>
+  <text x="470" y="218" fill="#38BDF8" font-family="-apple-system, sans-serif" font-size="11" font-weight="700">2. Resend Dual-Dispatch Delivery</text>
+  <text x="470" y="234" fill="#94A3B8" font-family="-apple-system, sans-serif" font-size="9">→ Client: Instant branded personalized HTML confirmation</text>
+  <text x="470" y="246" fill="#38BDF8" font-family="-apple-system, sans-serif" font-size="9">→ Executive Team: Rich lead brief with contact details &amp; scope</text>
+
+  <!-- Step 3: Google Sheets Database Sync -->
+  <rect x="432" y="266" width="326" height="62" rx="8" fill="#0F172A" stroke="#1E293B"/>
+  <circle cx="452" cy="297" r="10" fill="#10B981"/>
+  <text x="470" y="290" fill="#34D399" font-family="-apple-system, sans-serif" font-size="11" font-weight="700">3. Google Sheets Real-Time Sync</text>
+  <text x="470" y="306" fill="#94A3B8" font-family="-apple-system, sans-serif" font-size="9">Automated append to encrypted spreadsheet database</text>
+  <text x="470" y="318" fill="#6EE7B7" font-family="monospace" font-size="9">Row inserted with UTC timestamp • 0% Data Loss</text>
+
+  <!-- Bottom Live Verification Pill -->
+  <rect x="432" y="338" width="326" height="74" rx="8" fill="#172554" stroke="#1E40AF"/>
+  <text x="448" y="360" fill="#93C5FD" font-family="-apple-system, sans-serif" font-size="11" font-weight="700">⚡ Live Dogfooding Guarantee</text>
+  <text x="448" y="378" fill="#E2E8F0" font-family="-apple-system, sans-serif" font-size="10">Test this system right now via the Contact page or Chat.</text>
+  <text x="448" y="394" fill="#60A5FA" font-family="monospace" font-size="9">Zero manual intervention • Sub-second throughput</text>
+</svg>

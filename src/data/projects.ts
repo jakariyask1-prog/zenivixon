@@ -54,6 +54,86 @@ export const PROJECTS_DATA: Project[] = [
       "c242e1ddeb1f7e60e3cd2f262b349cdad4b475b0bd4004cbfbfa16f972d24a23",
   },
   {
+    slug: "zenivixon-web-platform",
+    title: "ZENIVIXON Web Platform: AI-Native High-Performance Enterprise Portal",
+    subtitle:
+      "Next.js 15 Enterprise Architecture with Interactive AI Simulators & Sub-Second Latency",
+    category: "software-web-development",
+    categoryLabel: "Custom Software & Modern Web",
+    summary:
+      "The flagship production web platform powering ZENIVIXON Technologies. Built from the ground up on Next.js 15 (App Router), React 19, and Tailwind CSS to showcase high-performance engineering. Features sub-second page transitions, dynamic fluid aurora shaders, responsive dark/light cybernetic design, and an interactive real-time AI Agent Simulator that lets prospective enterprise clients test autonomous workflow logic directly on the page.",
+    problem:
+      "Enterprise software buyers are fatigued by slow, generic agency websites that fail to demonstrate concrete engineering capabilities, lack interactive technical proof, and suffer from bloated loading times and poor mobile responsiveness.",
+    solution:
+      "Architected a cutting-edge, AI-native web platform utilizing Next.js 15 server-side streaming, an embedded interactive AI agent simulator, real-time client-side telemetry, dynamic fluid shaders, automated SEO schemas, and rigorous 100/100 Core Web Vitals optimization across all devices.",
+    valueDelivered: [
+      "Sub-300ms Global Page Transitions powered by Next.js 15 App Router & Vercel Edge",
+      "Interactive Live AI Agent Simulator enabling visitors to execute and test multi-turn autonomous loops",
+      "Dynamic Fluid Aurora & Neon Glassmorphism UI with flawless zero-flicker dark/light mode switching",
+      "100/100 Core Web Vitals with 0.00 Cumulative Layout Shift (CLS) and sub-second Largest Contentful Paint",
+      "Automated Technical SEO & Structured Schema markup driving organic discovery across global enterprise markets",
+    ],
+    technologies: [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion / AOS",
+      "Lucide Icons",
+      "Vercel Edge Network",
+      "HTML5 Canvas & WebGL",
+    ],
+    featured: true,
+    image: "/images/projects/zenivixon-web-platform.svg",
+    deliverables: [
+      "Next.js 15 App Router codebase with strict TypeScript enterprise standards",
+      "Interactive AI Agent Simulator component with live step-by-step execution feedback",
+      "Fluid aurora shader background engine with synchronized dark and light modes",
+      "Accessible responsive navigation, dynamic category filtering, and lead capture modals",
+    ],
+    status: "Production Platform (Live Web)",
+  },
+  {
+    slug: "zenivixon-autonomous-inbound-engine",
+    title: "ZENIVIXON Autonomous Inbound Engine: 24/7 AI Consultant & Dual-Dispatch Pipeline",
+    subtitle:
+      "Conversational Business Discovery, Gemini-Powered Lead Triage & Instant Multi-Channel Relay",
+    category: "ai-agents",
+    categoryLabel: "AI Agent Development & Automation",
+    summary:
+      "A mission-critical autonomous conversion engine operating directly on ZENIVIXON's website. Combines a 24/7 conversational AI consultant with an intelligent serverless backend: incoming inquiries are evaluated by Google Gemini 2.0 to detect business pain points, score ICP fit, and generate humanized replies. The system dispatches bespoke email confirmations to clients via Resend, alerts the executive team with structured briefings, and syncs real-time records to Google Sheets in under 2 seconds.",
+    problem:
+      "Traditional static forms convert poorly because high-intent enterprise visitors receive no immediate engagement, and delayed follow-ups (often taking hours or days) cause prospective buyers to evaluate competitors instead.",
+    solution:
+      "Engineered an autonomous end-to-end inbound conversion pipeline: an always-on conversational AI consultant that gathers project requirements in real time, coupled with a serverless Gemini 2.0 triage microservice that evaluates technical feasibility, formats branded bespoke email responses, alerts engineering leads, and logs encrypted database entries instantaneously.",
+    valueDelivered: [
+      "24/7 Real-Time Engagement: Conversational AI consultant captures client intent at peak buying interest",
+      "Sub-2s Lead Intelligence: Google Gemini 2.0 analyzes business needs, categorizes service & scores priority",
+      "Humanized Instant Response: Bespoke branded HTML proposal confirmation generated and dispatched via Resend API",
+      "Executive Lead Alerts: Engineering management receives structured inquiry dossiers within seconds",
+      "Zero Data Loss: Automated two-way synchronization to Google Sheets CRM backup with zero downtime",
+    ],
+    technologies: [
+      "Google Gemini 2.0 Flash",
+      "Python / FastAPI",
+      "Resend API",
+      "Next.js API Routes",
+      "Google Sheets API",
+      "WebSockets / REST",
+      "TypeScript",
+      "Docker (Render Cloud)",
+    ],
+    featured: true,
+    image: "/images/projects/zenivixon-inbound-engine.svg",
+    deliverables: [
+      "Floating 24/7 AI Consultant chat widget with contextual prompt engineering",
+      "Serverless Gemini 2.0 lead analysis and intelligent priority scoring microservice",
+      "Dual-dispatch email generator with responsive branded client & admin templates",
+      "Real-time Google Sheets service account integration for zero-cost CRM logging",
+    ],
+    status: "Active Production Pipeline (Live)",
+  },
+  {
     slug: "real-time-voice-ai-telephony-agent",
     title: "Real-Time Conversational Voice AI & Telephony Agent",
     subtitle: "Sub-500ms Autonomous Inbound Phone Triage, Verification & Scheduling",

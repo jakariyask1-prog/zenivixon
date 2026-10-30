@@ -1,0 +1,97 @@
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020817"/>
+      <stop offset="100%" stop-color="#0B132B"/>
+    </linearGradient>
+    <linearGradient id="aurora" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563EB" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="#06B6D4" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.1"/>
+    </linearGradient>
+    <linearGradient id="accentLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="50%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="800" height="450" fill="url(#bgGrad)"/>
+  <rect width="800" height="450" fill="url(#aurora)"/>
+
+  <!-- Top Browser Frame Bar -->
+  <rect x="24" y="20" width="752" height="44" rx="10" fill="#0F172A" stroke="#1E293B" stroke-width="1.5"/>
+  <circle cx="48" cy="42" r="5" fill="#EF4444"/>
+  <circle cx="66" cy="42" r="5" fill="#F59E0B"/>
+  <circle cx="84" cy="42" r="5" fill="#10B981"/>
+  
+  <rect x="110" y="31" width="360" height="22" rx="6" fill="#1E293B"/>
+  <text x="124" y="46" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500">https://zenivixon.com // Next.js 15 Enterprise Architecture</text>
+
+  <rect x="630" y="30" width="134" height="24" rx="6" fill="#064E3B" stroke="#059669" stroke-width="1"/>
+  <text x="642" y="46" fill="#34D399" font-family="monospace" font-size="11" font-weight="700">LCP 0.38s • 100/100</text>
+
+  <!-- Accent Divider -->
+  <rect x="24" y="70" width="752" height="2" fill="url(#accentLine)"/>
+
+  <!-- Left Column: Interactive Agent Simulator Preview -->
+  <rect x="24" y="82" width="480" height="344" rx="12" fill="#0B1120" stroke="#1E293B" stroke-width="1.5"/>
+  <text x="44" y="112" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700">Live Agent Simulator &amp; Execution Terminal</text>
+  <rect x="420" y="99" width="68" height="18" rx="9" fill="#1E3A8A"/>
+  <text x="432" y="112" fill="#60A5FA" font-family="monospace" font-size="9" font-weight="700">ACTIVE</text>
+
+  <!-- Simulator Terminal Window -->
+  <rect x="44" y="128" width="440" height="150" rx="8" fill="#020817" stroke="#1E293B"/>
+  <text x="60" y="152" fill="#38BDF8" font-family="monospace" font-size="11">[SIMULATOR] Initializing autonomous enterprise workflow...</text>
+  <text x="60" y="174" fill="#94A3B8" font-family="monospace" font-size="10">&gt; Step 1: Ingesting client CRM records via streaming webhook [200 OK]</text>
+  <text x="60" y="196" fill="#94A3B8" font-family="monospace" font-size="10">&gt; Step 2: Running ReAct verification loop across internal vector store</text>
+  <text x="60" y="218" fill="#34D399" font-family="monospace" font-size="10">&gt; Step 3: Generating deterministic dispatch payload in 240ms</text>
+  <text x="60" y="240" fill="#60A5FA" font-family="monospace" font-size="10">&gt; Execution complete. State synchronized with 0 errors.</text>
+  <rect x="60" y="254" width="8" height="12" fill="#38BDF8"/>
+
+  <!-- Metrics Grid Below Terminal -->
+  <rect x="44" y="292" width="138" height="66" rx="8" fill="#0F172A" stroke="#1E293B"/>
+  <text x="56" y="314" fill="#94A3B8" font-family="-apple-system, sans-serif" font-size="10">Page Transition</text>
+  <text x="56" y="342" fill="#38BDF8" font-family="-apple-system, sans-serif" font-size="18" font-weight="700">&lt; 280ms</text>
+
+  <rect x="195" y="292" width="138" height="66" rx="8" fill="#0F172A" stroke="#1E293B"/>
+  <text x="207" y="314" fill="#94A3B8" font-family="-apple-system, sans-serif" font-size="10">Framework</text>
+  <text x="207" y="342" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="18" font-weight="700">Next.js 15</text>
+
+  <rect x="346" y="292" width="138" height="66" rx="8" fill="#0F172A" stroke="#1E293B"/>
+  <text x="358" y="314" fill="#94A3B8" font-family="-apple-system, sans-serif" font-size="10">Cumulative Shift</text>
+  <text x="358" y="342" fill="#34D399" font-family="-apple-system, sans-serif" font-size="18" font-weight="700">0.00 CLS</text>
+
+  <rect x="44" y="370" width="440" height="42" rx="8" fill="#111827" stroke="#1E293B"/>
+  <text x="58" y="395" fill="#CBD5E1" font-family="-apple-system, sans-serif" font-size="11" font-weight="500">Dual Theme Engine • Dynamic Shaders • Vercel Edge Serverless Rendering</text>
+
+  <!-- Right Column: Architecture & Stack -->
+  <rect x="520" y="82" width="256" height="344" rx="12" fill="#0B1120" stroke="#1E293B" stroke-width="1.5"/>
+  <text x="540" y="112" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700">Engineering Ecosystem</text>
+
+  <!-- Technology Card 1 -->
+  <rect x="540" y="128" width="216" height="52" rx="8" fill="#0F172A" stroke="#1E293B"/>
+  <circle cx="562" cy="154" r="10" fill="#2563EB"/>
+  <text x="582" y="148" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="11" font-weight="600">App Router (v15)</text>
+  <text x="582" y="164" fill="#94A3B8" font-family="-apple-system, sans-serif" font-size="9">Async Server Components &amp; SEO</text>
+
+  <!-- Technology Card 2 -->
+  <rect x="540" y="190" width="216" height="52" rx="8" fill="#0F172A" stroke="#1E293B"/>
+  <circle cx="562" cy="216" r="10" fill="#06B6D4"/>
+  <text x="582" y="210" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="11" font-weight="600">Tailwind CSS 3.4</text>
+  <text x="582" y="226" fill="#94A3B8" font-family="-apple-system, sans-serif" font-size="9">Fluid Glassmorphism &amp; Aurora</text>
+
+  <!-- Technology Card 3 -->
+  <rect x="540" y="252" width="216" height="52" rx="8" fill="#0F172A" stroke="#1E293B"/>
+  <circle cx="562" cy="278" r="10" fill="#10B981"/>
+  <text x="582" y="272" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="11" font-weight="600">Interactive Simulators</text>
+  <text x="582" y="288" fill="#94A3B8" font-family="-apple-system, sans-serif" font-size="9">Client-Side State Telemetry</text>
+
+  <!-- Technology Card 4 -->
+  <rect x="540" y="314" width="216" height="98" rx="8" fill="#1E293B" stroke="#334155"/>
+  <text x="554" y="338" fill="#38BDF8" font-family="-apple-system, sans-serif" font-size="11" font-weight="700">Live Client Proof:</text>
+  <text x="554" y="358" fill="#E2E8F0" font-family="-apple-system, sans-serif" font-size="10">Operating in real-time right</text>
+  <text x="554" y="374" fill="#E2E8F0" font-family="-apple-system, sans-serif" font-size="10">now on this exact website.</text>
+  <text x="554" y="396" fill="#34D399" font-family="monospace" font-size="9" font-weight="700">✓ 100% Uptime • Zero Bloat</text>
+</svg>
