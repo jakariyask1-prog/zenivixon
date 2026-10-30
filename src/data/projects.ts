@@ -430,7 +430,7 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: false,
     image: "/images/projects/catalog-enrichment.svg",
-    videoUrl: "",
+    videoUrl: "https://youtu.be/-83FO93xqnQ",
     deliverables: [
       "Supplier feed ingestion & validation parser",
       "AI categorization and taxonomy engine",
