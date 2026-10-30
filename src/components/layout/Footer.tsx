@@ -96,7 +96,7 @@ export function Footer() {
           <div className="lg:col-span-4 space-y-16">
             
             {/* Stay Tuned / Newsletter */}
-            <div className="bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-6 md:p-8 border border-slate-200 dark:border-slate-800/60 dark:border-slate-800">
+            <div className="bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-6 md:p-8 border border-slate-200 dark:border-slate-800">
               <span className="text-xs font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400 mb-4 block font-heading">
                 STAY UPDATED
               </span>

@@ -115,6 +115,7 @@ export function HeroSection() {
                 alt="ZENIVIXON Platform Integration"
                 width={1200}
                 height={675}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
                 className="w-full h-auto object-cover img-hover-effect transform group-hover:scale-105 transition-all duration-700 ease-out cursor-pointer"
                 priority
               />

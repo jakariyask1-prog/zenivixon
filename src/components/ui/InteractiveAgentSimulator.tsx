@@ -203,6 +203,7 @@ export function InteractiveAgentSimulator() {
   const [activeStage, setActiveStage] = useState<number>(4);
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [userHasSelected, setUserHasSelected] = useState<boolean>(false);
 
   const scenario = SCENARIOS.find((s) => s.id === activeScenarioId) || SCENARIOS[0];
   const timerRefs = useRef<NodeJS.Timeout[]>([]);
@@ -244,7 +245,7 @@ export function InteractiveAgentSimulator() {
 
   // Automatic looping: cycles through scenarios & auto-runs every 8.5 seconds when not hovered
   useEffect(() => {
-    if (isHovered) return;
+    if (isHovered || userHasSelected) return;
 
     const interval = setInterval(() => {
       setActiveScenarioId((prevId) => {
@@ -256,7 +257,7 @@ export function InteractiveAgentSimulator() {
     }, 8500);
 
     return () => clearInterval(interval);
-  }, [isHovered, triggerSimulation]);
+  }, [isHovered, userHasSelected, triggerSimulation]);
 
   // Handle cursor hover over any workflow pill
   const handleWorkflowHover = (id: string) => {
@@ -268,6 +269,7 @@ export function InteractiveAgentSimulator() {
 
   // Handle explicit click
   const handleWorkflowClick = (id: string) => {
+    setUserHasSelected(true);
     setActiveScenarioId(id);
     triggerSimulation(900);
   };

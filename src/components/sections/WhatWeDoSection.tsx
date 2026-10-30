@@ -78,12 +78,12 @@ export function WhatWeDoSection() {
               <div
                 data-aos="fade-up"
                 data-aos-delay={idx * 100}
-                className="p-7 rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm dark:shadow-none flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-200 group relative glow-border h-full premium-card-hover"
+                className="p-7 rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-200 group relative glow-border h-full premium-card-hover"
               >
               <div className="space-y-5">
                 {/* Header with Icon & Category */}
                 <div className="flex items-center justify-between">
-                  <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 dark:border-slate-700 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center">
                     {item.icon}
                   </div>
                   <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-semibold tracking-wider">
@@ -105,7 +105,7 @@ export function WhatWeDoSection() {
                 </div>
 
                 {/* Arrow Divider */}
-                <div className="flex items-center gap-2 text-xs font-heading text-slate-400 dark:text-slate-600 dark:text-slate-400 font-medium py-1">
+                <div className="flex items-center gap-2 text-xs font-heading text-slate-400 dark:text-slate-500 font-medium py-1">
                   <span className="w-full h-px bg-slate-100 dark:bg-slate-800" />
                   <span>&darr;</span>
                   <span className="w-full h-px bg-slate-100 dark:bg-slate-800" />

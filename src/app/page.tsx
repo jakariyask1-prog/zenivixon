@@ -26,45 +26,45 @@ export default function HomePage() {
         <WhatWeDoSection />
       </div>
 
-      {/* 03. ⚡ Core Architecture & Engineering Stack Ecosystem */}
+      {/* 04. ⚡ Core Architecture & Engineering Stack Ecosystem */}
       <EngineeringStackSection />
 
-      {/* 04. 🚀 Before vs After Workflow Transformation */}
+      {/* 05. 🚀 Before vs After Workflow Transformation */}
       <div data-aos="fade-up">
         <BeforeAfterComparisonSection />
       </div>
 
-      {/* 05. 💰 Interactive ROI & Cost-Savings Calculator */}
+      {/* 06. 💰 Interactive ROI & Cost-Savings Calculator */}
       <div data-aos="fade-up">
         <RoiCalculatorSection />
       </div>
 
-      {/* 06. How We Work */}
+      {/* 07. How We Work */}
       <div data-aos="fade-up">
         <HowWeWorkSection />
       </div>
 
-      {/* 07. Project Showcase */}
+      {/* 08. Project Showcase */}
       <div data-aos="fade-up">
         <ProjectShowcaseSection />
       </div>
 
-      {/* 08. 🎬 Video Showcase + Animated Stats */}
+      {/* 09. 🎬 Video Showcase + Animated Stats */}
       <div data-aos="fade-up">
         <VideoShowcaseSection />
       </div>
 
-      {/* 09. 🛡️ 7-Day Pilot Sprint */}
+      {/* 10. 🛡️ 7-Day Pilot Sprint */}
       <div data-aos="fade-up">
         <PilotSprintSection />
       </div>
 
-      {/* 10. Why ZENIVIXON */}
+      {/* 11. Why ZENIVIXON */}
       <div data-aos="fade-up">
         <WhyZenivixonSection />
       </div>
 
-      {/* 11. Final CTA */}
+      {/* 12. Final CTA */}
       <div data-aos="fade-up">
         <FinalCtaSection />
       </div>

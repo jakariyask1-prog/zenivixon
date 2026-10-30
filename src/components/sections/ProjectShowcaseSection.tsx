@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, CheckCircle2, PlayCircle, X, Maximize2 } from "lucide-react";
@@ -12,6 +12,17 @@ import { getYoutubeEmbedUrl } from "@/lib/utils";
 export function ProjectShowcaseSection() {
   const [activeVideo, setActiveVideo] = useState<{ title: string; url: string } | null>(null);
   const [inlinePlaying, setInlinePlaying] = useState<{ [slug: string]: boolean }>({});
+
+  useEffect(() => {
+    if (!activeVideo) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveVideo(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeVideo]);
 
   const featuredProjects = PROJECTS_DATA.filter((p) => p.featured);
 
@@ -56,11 +67,11 @@ export function ProjectShowcaseSection() {
             <div
               key={project.slug}
               data-aos="fade-up"
-              className="rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm dark:shadow-none overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-lg transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-0 premium-card-hover"
+              className="rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-lg transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-0 premium-card-hover"
             >
               {/* Visual Preview (Left 7 cols on lg) */}
               <div className="lg:col-span-7 bg-slate-50/80 dark:bg-slate-900/50 p-6 sm:p-8 flex flex-col items-center justify-center border-b lg:border-b-0 lg:border-r border-slate-200/80 dark:border-slate-800 relative min-h-[280px] sm:min-h-[360px]">
-                <div className="w-full max-w-xl aspect-[16/9] relative rounded-xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-800 dark:border-slate-700 bg-white dark:bg-slate-800 group">
+                <div className="w-full max-w-xl aspect-[16/9] relative rounded-xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 group">
                   {project.videoUrl && inlinePlaying[project.slug] ? (
                     <div className="relative w-full h-full bg-slate-950">
                       {project.videoUrl.match(/\.(mp4|webm|ogg)$/i) ? (
@@ -188,7 +199,7 @@ export function ProjectShowcaseSection() {
                     {project.technologies.slice(0, 5).map((tech) => (
                       <span
                         key={tech}
-                        className="text-xs font-heading px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 dark:border-slate-700"
+                        className="text-xs font-heading px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700"
                       >
                         {tech}
                       </span>

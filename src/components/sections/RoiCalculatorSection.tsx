@@ -99,6 +99,11 @@ export function RoiCalculatorSection() {
                   step="1"
                   value={teamSize}
                   onChange={(e) => setTeamSize(Number(e.target.value))}
+                  aria-label="Team Members in Operations or Admin"
+                  aria-valuemin={1}
+                  aria-valuemax={50}
+                  aria-valuenow={teamSize}
+                  aria-valuetext={`${teamSize} ${teamSize === 1 ? "person" : "people"}`}
                   className="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-600 focus:outline-none"
                 />
                 <div className="flex justify-between text-[11px] text-slate-500 font-mono">
@@ -126,6 +131,11 @@ export function RoiCalculatorSection() {
                   step="1"
                   value={hoursPerWeek}
                   onChange={(e) => setHoursPerWeek(Number(e.target.value))}
+                  aria-label="Repetitive Work Hours Per Week"
+                  aria-valuemin={2}
+                  aria-valuemax={35}
+                  aria-valuenow={hoursPerWeek}
+                  aria-valuetext={`${hoursPerWeek} hours per week`}
                   className="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-600 focus:outline-none"
                 />
                 <div className="flex justify-between text-[11px] text-slate-500 font-mono">
@@ -153,6 +163,11 @@ export function RoiCalculatorSection() {
                   step="5"
                   value={hourlyRate}
                   onChange={(e) => setHourlyRate(Number(e.target.value))}
+                  aria-label="Average Hourly Cost or Salary"
+                  aria-valuemin={15}
+                  aria-valuemax={120}
+                  aria-valuenow={hourlyRate}
+                  aria-valuetext={`$${hourlyRate} per hour`}
                   className="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-600 focus:outline-none"
                 />
                 <div className="flex justify-between text-[11px] text-slate-500 font-mono">
@@ -241,7 +256,7 @@ export function RoiCalculatorSection() {
             </div>
 
             {/* CTAs */}
-            <div className="relative z-10 pt-8 mt-6 border-t border-white/10 flex flex-col sm:flex-row gap-3">
+            <div className="relative z-10 pt-8 mt-6 border-t border-white/10 flex flex-col items-center gap-3">
               <Button
                 variant="glowing"
                 size="md"
@@ -251,7 +266,7 @@ export function RoiCalculatorSection() {
               >
                 Request Free System Audit
               </Button>
-              <p className="text-center text-[10px] text-slate-500 dark:text-slate-500 font-medium">
+              <p className="text-center text-xs text-slate-400 font-medium">
                 No credit card required. 100% free technical evaluation.
               </p>
             </div>

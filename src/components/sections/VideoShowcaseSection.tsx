@@ -3,7 +3,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
-import { Play, Pause, Volume2, VolumeX, Maximize2, Bot, Cpu, Globe, Network, ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX, Maximize2, Bot, Cpu, Globe, Network, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { AmbientOrbs } from "@/components/ui/AmbientOrbs";
 import { PROJECTS_DATA } from "@/data/projects";
@@ -164,7 +164,7 @@ export function VideoShowcaseSection() {
                   muted={muted}
                   loop
                   playsInline
-                  autoPlay
+                  preload="metadata"
                 />
 
                 {/* Direct Video Overlay controls */}
