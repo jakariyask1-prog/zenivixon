@@ -85,6 +85,7 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: true,
     image: "/images/projects/zenivixon-web-platform.svg",
+    videoUrl: "https://youtu.be/b3G9OI3XsL8",
     deliverables: [
       "Next.js 15 App Router codebase with strict TypeScript enterprise standards",
       "Interactive AI Agent Simulator component with live step-by-step execution feedback",
