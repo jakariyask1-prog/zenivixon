@@ -35,8 +35,19 @@ export default function ChatWidget({ apiUrl }: ChatWidgetProps = {}) {
   ]);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
   const aiConsultantUrl = apiUrl || process.env.NEXT_PUBLIC_AI_CONSULTANT_URL || "https://zenivixon-ai-consultant.onrender.com";
+
+  // Auto-resize textarea as text wraps or grows, resetting on empty
+  useEffect(() => {
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.style.height = "auto";
+      const maxHeight = 128; // Max ~4-5 lines before scrolling
+      textarea.style.height = `${Math.min(textarea.scrollHeight, maxHeight)}px`;
+    }
+  }, [input, isOpen]);
 
   // Clean up any ongoing fetch on unmount
   useEffect(() => {
@@ -73,6 +84,10 @@ export default function ChatWidget({ apiUrl }: ChatWidgetProps = {}) {
       abortControllerRef.current = null;
     }
     setIsLoading(false);
+    setInput("");
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+    }
     setMessages([
       {
         role: "assistant",
@@ -82,12 +97,23 @@ export default function ChatWidget({ apiUrl }: ChatWidgetProps = {}) {
     setSessionId("session_" + Math.random().toString(36).substring(2, 10));
   };
 
-  const sendMessage = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    // Send message on Enter without Shift; allow Shift+Enter for newlines
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
+
+  const sendMessage = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
     if (!input.trim() || isLoading) return;
 
     const userMessage = input.trim();
     setInput("");
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+    }
     
     // Add user message to UI
     setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
@@ -321,20 +347,22 @@ export default function ChatWidget({ apiUrl }: ChatWidgetProps = {}) {
                 <div ref={messagesEndRef} />
               </div>
 
-              {/* Input Footer Area: text-base on mobile avoids iOS Safari auto-zoom */}
-              <form onSubmit={sendMessage} className="p-2.5 sm:p-3 bg-slate-900/95 backdrop-blur-xl border-t border-white/10 flex gap-2 items-center shrink-0">
-                <input
-                  type="text"
+              {/* Input Footer Area: multiline auto-expanding textarea */}
+              <form onSubmit={sendMessage} className="p-2.5 sm:p-3 bg-slate-900/95 backdrop-blur-xl border-t border-white/10 flex gap-2 items-end shrink-0">
+                <textarea
+                  ref={textareaRef}
+                  rows={1}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Ask anything about AI or business..."
-                  className="flex-1 bg-slate-950/80 text-base sm:text-sm rounded-full px-4 py-2.5 sm:py-3 outline-none border border-white/10 focus:border-cyan-400/80 focus:ring-2 focus:ring-cyan-400/20 transition-all text-slate-100 placeholder-slate-500"
+                  onKeyDown={handleKeyDown}
+                  placeholder="Ask anything about AI or business... (Shift+Enter for new line)"
+                  className="flex-1 bg-slate-950/80 text-base sm:text-sm rounded-2xl px-4 py-2.5 sm:py-3 outline-none border border-white/10 focus:border-cyan-400/80 focus:ring-2 focus:ring-cyan-400/20 transition-all text-slate-100 placeholder-slate-500 resize-none max-h-32 overflow-y-auto leading-relaxed scrollbar-thin scrollbar-thumb-slate-700"
                   disabled={isLoading}
                 />
                 <button
                   type="submit"
                   disabled={isLoading || !input.trim()}
-                  className="bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 hover:opacity-95 disabled:opacity-40 text-white rounded-full p-2.5 sm:p-3 flex items-center justify-center transition shadow-lg shadow-blue-500/30 active:scale-95 shrink-0"
+                  className="bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 hover:opacity-95 disabled:opacity-40 text-white rounded-xl p-2.5 sm:p-3 flex items-center justify-center transition shadow-lg shadow-blue-500/30 active:scale-95 shrink-0 mb-0.5"
                   aria-label="Send message"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
