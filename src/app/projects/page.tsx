@@ -22,34 +22,38 @@ export default function ProjectsPage() {
         breadcrumbs={[{ label: "Projects" }]}
       />
 
-      <div className="py-12 sm:py-16 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {/* 🌟 01. Flagship Production Projects Catalog (Clean, Neat & Attractive) */}
-        <ProjectsCatalog />
-
-        {/* 📊 02. Technical Benchmark: Human vs Autonomous AI Performance */}
-        <div className="pt-8 border-t border-slate-200/80 dark:border-slate-800/80">
-          <HumanVsAiBenchmarkSection />
+      {/* 🌟 01. Flagship Production Projects Catalog */}
+      <section className="py-10 sm:py-14 md:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ProjectsCatalog />
         </div>
+      </section>
 
-        {/* 03. Bottom High-Conversion CTA */}
-        <div className="rounded-3xl bg-gradient-to-b from-[#F7F9FC] to-white dark:from-[#0b1120] dark:to-[#070d1d] border border-slate-200/90 dark:border-slate-800/90 p-8 sm:p-14 text-center space-y-6 shadow-sm relative overflow-hidden">
-          <div className="absolute top-0 inset-x-12 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] dark:text-white font-heading tracking-tight">
-            Have an Enterprise Workflow in Mind?
-          </h3>
-          <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            Tell us about your requirements. We will analyze your operational bottlenecks and provide a concrete, production-grade implementation architecture.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4 pt-2">
-            <Button variant="primary" size="lg" href="/start-a-project" className="shadow-lg shadow-blue-600/20 font-semibold">
-              Start Your AI Project
-            </Button>
-            <Button variant="whatsapp" size="lg" href={COMPANY_INFO.channels.whatsapp} external className="font-semibold">
-              Chat on WhatsApp
-            </Button>
+      {/* 📊 02. Technical Benchmark: Human vs Autonomous AI Performance (Edge-to-edge section with full background) */}
+      <HumanVsAiBenchmarkSection />
+
+      {/* 03. Bottom High-Conversion CTA */}
+      <section className="py-14 sm:py-18 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl bg-gradient-to-b from-[#F7F9FC] to-white dark:from-[#0b1120] dark:to-[#070d1d] border border-slate-200/90 dark:border-slate-800/90 p-6 sm:p-10 md:p-14 text-center space-y-6 shadow-sm relative overflow-hidden">
+            <div className="absolute top-0 inset-x-12 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-[#0F172A] dark:text-white font-heading tracking-tight">
+              Have an Enterprise Workflow in Mind?
+            </h3>
+            <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-xs sm:text-sm md:text-base leading-relaxed">
+              Tell us about your requirements. We will analyze your operational bottlenecks and provide a concrete, production-grade implementation architecture.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 pt-2">
+              <Button variant="primary" size="lg" href="/start-a-project" className="shadow-lg shadow-blue-600/20 font-semibold text-xs sm:text-sm">
+                Start Your AI Project
+              </Button>
+              <Button variant="whatsapp" size="lg" href={COMPANY_INFO.channels.whatsapp} external className="font-semibold text-xs sm:text-sm">
+                Chat on WhatsApp
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

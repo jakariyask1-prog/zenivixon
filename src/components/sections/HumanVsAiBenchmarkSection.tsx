@@ -255,7 +255,7 @@ export function HumanVsAiBenchmarkSection() {
       id="human-vs-ai-benchmark"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="py-16 md:py-24 relative overflow-hidden bg-[#F8FAFC] dark:bg-[#060b17] border-y border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300"
+      className="py-14 sm:py-20 md:py-24 relative overflow-hidden bg-[#F8FAFC] dark:bg-[#060b17] border-y border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300"
     >
       {/* Background Subtle Tech Matrix & Glowing Radial Gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] dark:bg-[radial-gradient(#1e3a8a_1px,transparent_1px)] [background-size:28px_28px] opacity-[0.16] pointer-events-none" />
@@ -281,7 +281,7 @@ export function HumanVsAiBenchmarkSection() {
 
           {/* Workflow Switcher Tabs */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-            <span className="text-xs font-heading font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mr-1">
+            <span className="text-xs font-heading font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mr-1 hidden sm:inline-block">
               Select Workflow:
             </span>
             {BENCHMARKS.map((bm) => {
@@ -290,15 +290,14 @@ export function HumanVsAiBenchmarkSection() {
                 <button
                   key={bm.id}
                   onClick={() => setActiveBenchmarkId(bm.id)}
-                  onMouseEnter={() => setActiveBenchmarkId(bm.id)}
-                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-heading font-semibold transition-all duration-300 flex items-center gap-2 border cursor-pointer ${
+                  className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-heading font-semibold transition-all duration-300 flex items-center gap-2 border cursor-pointer ${
                     isActive
-                      ? "bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-500/25 scale-105"
-                      : "bg-white dark:bg-[#0b1120] text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-500 hover:scale-102"
+                      ? "bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-500/25 scale-[1.02]"
+                      : "bg-white dark:bg-[#0b1120] text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-500"
                   }`}
                 >
-                  <span>{bm.icon}</span>
-                  <span>{bm.name}</span>
+                  <span className="shrink-0">{bm.icon}</span>
+                  <span className="whitespace-nowrap">{bm.name}</span>
                 </button>
               );
             })}
@@ -306,10 +305,10 @@ export function HumanVsAiBenchmarkSection() {
         </div>
 
         {/* Live Race Replay Bar */}
-        <div className="max-w-4xl mx-auto mb-8 p-3 rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono">
-          <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
-            <Activity className="w-4 h-4 text-blue-500 animate-pulse" />
-            <span>
+        <div className="max-w-4xl mx-auto mb-8 p-3 sm:p-4 rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono">
+          <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300 text-center sm:text-left">
+            <Activity className="w-4 h-4 text-blue-500 animate-pulse shrink-0" />
+            <span className="text-[11px] sm:text-xs">
               LIVE RACE SIMULATION: <strong>1,000 Production Workload Units</strong>
             </span>
           </div>
@@ -317,16 +316,16 @@ export function HumanVsAiBenchmarkSection() {
           <button
             onClick={triggerManualRace}
             disabled={isRacing}
-            className="px-4 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold flex items-center gap-1.5 shadow-md shadow-blue-500/20 hover:opacity-90 transition-all cursor-pointer disabled:opacity-50 text-xs"
+            className="w-full sm:w-auto justify-center px-4 py-2 sm:py-1.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold flex items-center gap-1.5 shadow-md shadow-blue-500/20 hover:opacity-90 transition-all cursor-pointer disabled:opacity-50 text-xs shrink-0"
           >
             {isRacing ? (
               <>
-                <RotateCcw className="w-3.5 h-3.5 animate-spin" />
+                <RotateCcw className="w-3.5 h-3.5 animate-spin shrink-0" />
                 <span>Simulating Race...</span>
               </>
             ) : (
               <>
-                <Play className="w-3.5 h-3.5 fill-current" />
+                <Play className="w-3.5 h-3.5 fill-current shrink-0" />
                 <span>Re-run Speed Race</span>
               </>
             )}
@@ -347,7 +346,7 @@ export function HumanVsAiBenchmarkSection() {
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
               {/* ---------------- LEFT INFOGRAPHIC CARD: TRADITIONAL MANUAL WORK ---------------- */}
-              <div className="rounded-3xl bg-white dark:bg-[#0d1322] border-2 border-rose-200/80 dark:border-rose-950/60 p-6 sm:p-8 shadow-md flex flex-col justify-between space-y-6 relative overflow-hidden group">
+              <div className="rounded-3xl bg-white dark:bg-[#0d1322] border-2 border-rose-200/80 dark:border-rose-950/60 p-5 sm:p-7 md:p-8 shadow-md flex flex-col justify-between space-y-6 relative overflow-hidden group">
                 <div className="space-y-6">
                   {/* Card Header with macOS Status Badges */}
                   <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800/80 pb-4">
@@ -488,7 +487,7 @@ export function HumanVsAiBenchmarkSection() {
               </div>
 
               {/* ---------------- RIGHT INFOGRAPHIC CARD: ZENIVIXON AUTONOMOUS AI ---------------- */}
-              <div className="rounded-3xl bg-gradient-to-b from-[#0b1528] via-[#081020] to-[#040813] text-white border-2 border-emerald-500/60 p-6 sm:p-8 shadow-xl shadow-emerald-500/10 flex flex-col justify-between space-y-6 relative overflow-hidden group">
+              <div className="rounded-3xl bg-gradient-to-b from-[#0b1528] via-[#081020] to-[#040813] text-white border-2 border-emerald-500/60 p-5 sm:p-7 md:p-8 shadow-xl shadow-emerald-500/10 flex flex-col justify-between space-y-6 relative overflow-hidden group">
                 {/* Glowing Emerald Aura Backdrop */}
                 <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
 
