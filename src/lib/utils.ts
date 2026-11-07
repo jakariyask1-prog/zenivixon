@@ -48,12 +48,11 @@ export function getYoutubeEmbedUrl(url: string, autoplay: boolean = true): strin
       if (autoplay) {
         params.set("autoplay", "1");
         params.set("mute", "1");
-        params.set("loop", "1");
-        params.set("playlist", cleanId);
       }
       params.set("rel", "0");
       params.set("modestbranding", "1");
-      return `https://www.youtube.com/embed/${cleanId}?${params.toString()}`;
+      params.set("playsinline", "1");
+      return `https://www.youtube-nocookie.com/embed/${cleanId}?${params.toString()}`;
     }
 
     return url;

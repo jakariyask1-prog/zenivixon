@@ -1,57 +1,104 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { PROJECTS_DATA } from "@/data/projects";
-import { Badge } from "@/components/ui/Badge";
-import { ArrowUpRight, PlayCircle, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, CheckCircle2, Play, PlayCircle, X } from "lucide-react";
 import { SolutionCategory } from "@/types/project";
 import { getYoutubeEmbedUrl } from "@/lib/utils";
 
 const categories: { label: string; value: "all" | SolutionCategory }[] = [
-  { label: "All Projects", value: "all" },
-  { label: "AI Agents & Support", value: "ai-agents" },
-  { label: "AI Automation", value: "ai-automation" },
-  { label: "Software & Web Dev", value: "software-web-development" },
-  { label: "AI Integration & RAG", value: "ai-integration" },
+  { label: "All Portfolio", value: "all" },
+  { label: "AI Agents", value: "ai-agents" },
+  { label: "Workflow Automation", value: "ai-automation" },
+  { label: "Software & Web Platforms", value: "software-web-development" },
+  { label: "Vector RAG & Sync", value: "ai-integration" },
 ];
 
 export function ProjectsCatalog() {
   const [activeCategory, setActiveCategory] = useState<"all" | SolutionCategory>("all");
-  const [activeVideo, setActiveVideo] = useState<{ title: string; url: string } | null>(null);
+  const [activeVideo, setActiveVideo] = useState<{ title: string; url: string; image?: string } | null>(null);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsVideoLoaded(false);
+    if (!activeVideo) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveVideo(null);
+      }
+    };
+
+    // Prevent background scrolling while modal is open
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeVideo]);
 
   const filteredProjects =
     activeCategory === "all"
       ? PROJECTS_DATA
       : PROJECTS_DATA.filter((p) => p.category === activeCategory);
 
+  const getCategoryCount = (catValue: "all" | SolutionCategory) => {
+    if (catValue === "all") return PROJECTS_DATA.length;
+    return PROJECTS_DATA.filter((p) => p.category === catValue).length;
+  };
+
   return (
-    <div className="space-y-12">
-      {/* Category Filter Bar */}
-      <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-6" role="tablist" aria-label="Project Categories">
-        {categories.map((cat) => {
-          const isActive = activeCategory === cat.value;
-          return (
-            <button
-              key={cat.value}
-              role="tab"
-              aria-selected={isActive}
-              onClick={() => setActiveCategory(cat.value)}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-widest transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-600 ${
-                isActive
-                  ? "bg-blue-600 text-white shadow-sm shadow-blue-600/20"
-                  : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800"
-              }`}
-            >
-              {cat.label}
-            </button>
-          );
-        })}
+    <div className="space-y-10 sm:space-y-12">
+      {/* 🌟 Segmented Luxury Category Filter Bar */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800/80 pb-6">
+        <div
+          className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-none"
+          role="tablist"
+          aria-label="Project Categories"
+        >
+          {categories.map((cat) => {
+            const isActive = activeCategory === cat.value;
+            const count = getCategoryCount(cat.value);
+            return (
+              <button
+                key={cat.value}
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setActiveCategory(cat.value)}
+                className={`px-4 py-2 rounded-full text-xs font-semibold font-heading transition-all duration-200 shrink-0 flex items-center gap-2 cursor-pointer ${
+                  isActive
+                    ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30 ring-2 ring-blue-500/40 scale-[1.02]"
+                    : "bg-white dark:bg-slate-900/90 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800/60"
+                }`}
+              >
+                <span>{cat.label}</span>
+                <span
+                  className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono font-bold ${
+                    isActive
+                      ? "bg-white/25 text-white"
+                      : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400"
+                  }`}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Portfolio Live Counter */}
+        <div className="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-2 shrink-0">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span>Showing {filteredProjects.length} Verified Deliveries</span>
+        </div>
       </div>
 
-      {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* 🌟 Ultra-Clean & Attractive Projects Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {filteredProjects.length === 0 && (
           <div className="col-span-full text-center py-20 space-y-3">
             <p className="text-slate-400 text-sm font-medium">No projects in this category yet.</p>
@@ -63,98 +110,132 @@ export function ProjectsCatalog() {
             </a>
           </div>
         )}
+
         {filteredProjects.map((project) => (
           <div
             key={project.slug}
-            className="rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800/90 dark:border-slate-800 shadow-sm dark:shadow-none p-6 flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all duration-300 group"
+            className="group relative rounded-3xl bg-white dark:bg-[#070d1d] border border-slate-200/80 dark:border-slate-800/80 p-5 sm:p-5.5 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10 hover:border-blue-500/40 hover:-translate-y-1.5"
           >
+            {/* Top ambient illumination line on hover */}
+            <div className="absolute top-0 inset-x-8 h-[2px] bg-gradient-to-r from-transparent via-blue-500/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-t-3xl" />
+
             <div className="space-y-4">
-              {/* Visual Preview */}
-              <div className="aspect-[16/9] relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 group/img">
+              {/* 🌟 Premium Thumbnail Showcase Card */}
+              <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-900/90 border border-slate-200/60 dark:border-slate-800/60 group/thumb shadow-xs">
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover object-top transition-transform duration-700 ease-out group-hover/thumb:scale-105"
                 />
 
-                {project.videoUrl && (
-                  <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-[2px] opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
-                    <button
-                      onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl! })}
-                      className="px-4 py-2 rounded-xl bg-white/95 dark:bg-slate-900/95 text-slate-900 dark:text-white font-semibold text-xs flex items-center gap-2 shadow-lg hover:bg-white dark:hover:bg-slate-800 transition-all transform hover:scale-105 cursor-pointer"
-                    >
-                      <PlayCircle className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                      <span>Watch Demo Video</span>
-                    </button>
-                  </div>
-                )}
-              </div>
+                {/* Floating Glass Badges */}
+                <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 z-10 pointer-events-none">
+                  {/* Category Pill */}
+                  <span className="px-2.5 py-1 rounded-full bg-slate-950/75 backdrop-blur-md border border-white/15 text-white text-[10px] sm:text-[11px] font-semibold tracking-wide shadow-sm truncate max-w-[130px] sm:max-w-none">
+                    {project.categoryLabel}
+                  </span>
 
-              <div className="flex items-center justify-between">
-                <Badge variant="blue" size="sm">
-                  {project.categoryLabel}
-                </Badge>
-                <div className="flex items-center gap-1.5">
+                  {/* Live Video Indicator Pill */}
                   {project.videoUrl && (
                     <button
-                      onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl! })}
-                      className="text-[10px] font-heading font-semibold px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900 flex items-center gap-1 cursor-pointer transition-colors"
-                      title="Watch video demo"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveVideo({ title: project.title, url: project.videoUrl!, image: project.image });
+                      }}
+                      className="pointer-events-auto px-2.5 py-1 rounded-full bg-blue-600/90 hover:bg-blue-600 text-white backdrop-blur-md border border-blue-400/30 text-[10px] sm:text-[10.5px] font-bold tracking-wider uppercase flex items-center gap-1.5 shadow-md shadow-blue-600/30 transition-transform active:scale-95 cursor-pointer"
+                      title="Watch live system demonstration"
                     >
-                      <PlayCircle className="w-3 h-3 text-blue-600 dark:text-blue-400" />
-                      <span>Video Demo</span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span>Live Demo</span>
                     </button>
                   )}
-                  {project.downloadUrl && (
-                    <span className="text-[10px] font-heading font-semibold px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800">
-                      Desktop Software
-                    </span>
-                  )}
-                  {project.status && (
-                    <span className="text-xs font-heading text-slate-500 dark:text-slate-400 font-semibold">
-                      {project.status}
-                    </span>
+                </div>
+
+                {/* Hover Play / Explore Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/40 to-transparent opacity-0 group-hover/thumb:opacity-100 transition-all duration-300 flex items-center justify-center p-4">
+                  {project.videoUrl ? (
+                    <button
+                      onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl!, image: project.image })}
+                      className="px-4 py-2 rounded-xl bg-white text-slate-950 font-bold text-xs flex items-center gap-2 shadow-2xl hover:scale-105 transition-transform cursor-pointer"
+                    >
+                      <Play className="w-3.5 h-3.5 fill-current text-blue-600" />
+                      <span>Watch Demonstration</span>
+                    </button>
+                  ) : (
+                    <Link
+                      href={`/projects/${project.slug}`}
+                      className="px-4 py-2 rounded-xl bg-white text-slate-950 font-bold text-xs flex items-center gap-2 shadow-2xl hover:scale-105 transition-transform"
+                    >
+                      <span>Explore Case Study</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-blue-600" />
+                    </Link>
                   )}
                 </div>
               </div>
 
-              <h3 className="text-xl font-bold text-[#0F172A] dark:text-white font-heading group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                {project.title}
-              </h3>
+              {/* Status & Subtitle Line */}
+              <div className="flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                <span className="flex items-center gap-1.5 text-blue-600 dark:text-blue-400 font-semibold tracking-wider uppercase">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                  {project.categoryLabel}
+                </span>
+                {project.status && (
+                  <span className="text-[10.5px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1 truncate max-w-[150px]">
+                    <CheckCircle2 className="w-3 h-3 shrink-0" />
+                    <span>{project.status.split(" ")[0]} Active</span>
+                  </span>
+                )}
+              </div>
 
-              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3">
+              {/* Title */}
+              <Link href={`/projects/${project.slug}`} className="block group/title">
+                <h3 className="text-lg sm:text-[19px] font-bold text-slate-900 dark:text-white font-heading tracking-tight leading-snug group-hover/title:text-blue-600 dark:group-hover/title:text-blue-400 transition-colors line-clamp-2">
+                  {project.title}
+                </h3>
+              </Link>
+
+              {/* Summary */}
+              <p className="text-xs sm:text-[13px] text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
                 {project.summary}
               </p>
 
-              {/* Tech Badges */}
-              <div className="flex flex-wrap gap-1.5 pt-1">
-                {project.technologies.slice(0, 4).map((tech) => (
+              {/* Clean Tech Stack Badges */}
+              <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                {project.technologies.slice(0, 3).map((tech) => (
                   <span
                     key={tech}
-                    className="text-xs font-heading px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 dark:border-slate-700"
+                    className="text-[10.5px] font-mono px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border border-slate-200/70 dark:border-slate-800"
                   >
                     {tech}
                   </span>
                 ))}
+                {project.technologies.length > 3 && (
+                  <span className="text-[10px] font-mono text-slate-400 dark:text-slate-500 px-1.5">
+                    +{project.technologies.length - 3} more
+                  </span>
+                )}
               </div>
             </div>
 
-            {/* Action Link */}
-            <div className="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+            {/* Action Bar */}
+            <div className="pt-4 mt-5 border-t border-slate-100 dark:border-slate-800/90 flex items-center justify-between">
               <Link
                 href={`/projects/${project.slug}`}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs sm:text-[13px] font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors group/link"
               >
                 <span>Read Full Case Study</span>
-                <ArrowUpRight className="w-4 h-4" />
+                <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
               </Link>
+
               {project.videoUrl && (
                 <button
-                  onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl! })}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-pointer"
+                  onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl!, image: project.image })}
+                  className="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/60 transition-colors cursor-pointer"
+                  title="Watch Video Demonstration"
                 >
-                  <PlayCircle className="w-3.5 h-3.5" />
+                  <PlayCircle className="w-3.5 h-3.5 text-blue-500" />
                   <span>Demo</span>
                 </button>
               )}
@@ -163,7 +244,7 @@ export function ProjectsCatalog() {
         ))}
       </div>
 
-      {/* Video Demonstration Modal */}
+      {/* 🌟 Ultra-Fast Instant Video Demonstration Modal */}
       {activeVideo && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4 animate-in fade-in duration-200"
@@ -189,22 +270,53 @@ export function ProjectsCatalog() {
               </button>
             </div>
 
-            {/* Video Player */}
-            <div className="aspect-[16/9] w-full bg-slate-900 rounded-xl overflow-hidden">
+            {/* Video Player with Instant High-Res Poster + Loading Indicator */}
+            <div className="aspect-[16/9] w-full bg-slate-950 rounded-xl overflow-hidden relative">
+              {!isVideoLoaded && (
+                <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-slate-950 overflow-hidden">
+                  {activeVideo.image && (
+                    <Image
+                      src={activeVideo.image}
+                      alt={activeVideo.title}
+                      fill
+                      className="object-cover object-top opacity-30 blur-xs scale-105"
+                      priority
+                    />
+                  )}
+                  <div className="relative z-20 flex flex-col items-center gap-3 p-4 text-center">
+                    <div className="relative">
+                      <div className="w-12 h-12 rounded-full border-2 border-blue-500/20 border-t-blue-500 animate-spin" />
+                      <PlayCircle className="w-6 h-6 text-blue-400 absolute inset-0 m-auto animate-pulse" />
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-xs sm:text-sm font-bold text-white font-heading tracking-wide">
+                        Loading Live Demonstration...
+                      </p>
+                      <p className="text-[11px] text-slate-400 font-mono">
+                        Connecting to high-speed stream
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {activeVideo.url.includes("youtube.com") || activeVideo.url.includes("youtu.be") ? (
                 <iframe
                   src={getYoutubeEmbedUrl(activeVideo.url)}
                   title={`${activeVideo.title} demo`}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
-                  className="w-full h-full border-0"
+                  loading="eager"
+                  onLoad={() => setIsVideoLoaded(true)}
+                  className={`w-full h-full border-0 transition-opacity duration-300 ${isVideoLoaded ? "opacity-100" : "opacity-0"}`}
                 />
               ) : activeVideo.url.match(/\.(mp4|webm|ogg)$/i) ? (
                 <video
                   src={activeVideo.url}
                   controls
                   autoPlay
-                  className="w-full h-full object-contain"
+                  onLoadedData={() => setIsVideoLoaded(true)}
+                  className={`w-full h-full object-contain transition-opacity duration-300 ${isVideoLoaded ? "opacity-100" : "opacity-0"}`}
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-white text-center p-8">

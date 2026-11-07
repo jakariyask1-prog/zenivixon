@@ -16,31 +16,35 @@ export default function ProjectsPage() {
   return (
     <>
       <PageHeader
-        badge="PROJECT SHOWCASE"
-        title="Real Work. Practical AI Systems."
-        description="Explore our portfolio of AI agents, intelligent document automation pipelines, and custom enterprise software integrations."
+        badge="ENTERPRISE PORTFOLIO"
+        title="Real Work. Proven AI Systems."
+        description="Explore our flagship engineering portfolio: deployed AI agents, intelligent workflow automation pipelines, and custom enterprise software integrations."
         breadcrumbs={[{ label: "Projects" }]}
       />
 
-      {/* 📊 Step 3: Human vs AI Speed, Cost & Accuracy Benchmark */}
-      <HumanVsAiBenchmarkSection />
-
-      <div className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div className="py-12 sm:py-16 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        {/* 🌟 01. Flagship Production Projects Catalog (Clean, Neat & Attractive) */}
         <ProjectsCatalog />
 
-        {/* Bottom CTA */}
-        <div className="rounded-2xl bg-[#F7F9FC] dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 p-8 sm:p-12 text-center space-y-6 shadow-sm mt-16">
-          <h3 className="text-2xl font-bold text-[#0F172A] dark:text-white font-heading">
-            Have a project in mind?
+        {/* 📊 02. Technical Benchmark: Human vs Autonomous AI Performance */}
+        <div className="pt-8 border-t border-slate-200/80 dark:border-slate-800/80">
+          <HumanVsAiBenchmarkSection />
+        </div>
+
+        {/* 03. Bottom High-Conversion CTA */}
+        <div className="rounded-3xl bg-gradient-to-b from-[#F7F9FC] to-white dark:from-[#0b1120] dark:to-[#070d1d] border border-slate-200/90 dark:border-slate-800/90 p-8 sm:p-14 text-center space-y-6 shadow-sm relative overflow-hidden">
+          <div className="absolute top-0 inset-x-12 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
+          <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] dark:text-white font-heading tracking-tight">
+            Have an Enterprise Workflow in Mind?
           </h3>
-          <p className="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-sm leading-relaxed">
-            Tell us about your requirements and we will review your current workflow to provide a clear, practical implementation proposal.
+          <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+            Tell us about your requirements. We will analyze your operational bottlenecks and provide a concrete, production-grade implementation architecture.
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-2">
-            <Button variant="primary" size="md" href="/start-a-project">
-              Tell Us About Your Project
+            <Button variant="primary" size="lg" href="/start-a-project" className="shadow-lg shadow-blue-600/20 font-semibold">
+              Start Your AI Project
             </Button>
-            <Button variant="whatsapp" size="md" href={COMPANY_INFO.channels.whatsapp} external>
+            <Button variant="whatsapp" size="lg" href={COMPANY_INFO.channels.whatsapp} external className="font-semibold">
               Chat on WhatsApp
             </Button>
           </div>

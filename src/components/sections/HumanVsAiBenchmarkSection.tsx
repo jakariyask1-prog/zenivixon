@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
   Sparkles,
   DollarSign,
@@ -154,6 +154,8 @@ const BENCHMARKS: BenchmarkCategory[] = [
 ];
 
 export function HumanVsAiBenchmarkSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { margin: "150px" });
   const [activeBenchmarkId, setActiveBenchmarkId] = useState<string>("support");
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [aiProgress, setAiProgress] = useState<number>(1000);
@@ -163,8 +165,9 @@ export function HumanVsAiBenchmarkSection() {
   const activeBenchmark =
     BENCHMARKS.find((b) => b.id === activeBenchmarkId) || BENCHMARKS[0];
 
-  // Continuous perpetual race loop:
+  // Viewport-aware perpetual race loop:
   useEffect(() => {
+    if (!isInView) return;
     let raceTimeout: NodeJS.Timeout;
     let aiInterval: NodeJS.Timeout;
     let humanInterval: NodeJS.Timeout;
@@ -217,7 +220,7 @@ export function HumanVsAiBenchmarkSection() {
       clearInterval(humanInterval);
       clearTimeout(raceTimeout);
     };
-  }, [activeBenchmarkId, isHovered]);
+  }, [activeBenchmarkId, isHovered, isInView]);
 
   const triggerManualRace = () => {
     setAiProgress(0);
@@ -248,6 +251,7 @@ export function HumanVsAiBenchmarkSection() {
 
   return (
     <section
+      ref={sectionRef}
       id="human-vs-ai-benchmark"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

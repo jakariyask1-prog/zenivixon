@@ -10,7 +10,12 @@ import { PROJECTS_DATA } from "@/data/projects";
 import { getYoutubeEmbedUrl } from "@/lib/utils";
 
 export function ProjectShowcaseSection() {
-  const [activeVideo, setActiveVideo] = useState<{ title: string; url: string } | null>(null);
+  const [activeVideo, setActiveVideo] = useState<{ title: string; url: string; image?: string } | null>(null);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsVideoLoaded(false);
+  }, [activeVideo]);
   const [inlinePlaying, setInlinePlaying] = useState<{ [slug: string]: boolean }>({});
 
   useEffect(() => {
@@ -96,7 +101,7 @@ export function ProjectShowcaseSection() {
                       )}
                       <div className="absolute top-2 right-2 flex items-center gap-1.5 z-20">
                         <button
-                          onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl! })}
+                          onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl!, image: project.image })}
                           className="p-1.5 rounded-lg bg-black/70 hover:bg-black/90 text-white text-xs backdrop-blur-sm cursor-pointer"
                           title="Fullscreen Modal"
                         >
@@ -130,7 +135,7 @@ export function ProjectShowcaseSection() {
                             <span>Play Live Here</span>
                           </button>
                           <button
-                            onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl! })}
+                            onClick={() => setActiveVideo({ title: project.title, url: project.videoUrl!, image: project.image })}
                             className="px-3 py-2 rounded-xl bg-white/95 dark:bg-slate-900/95 text-slate-900 dark:text-white font-semibold text-xs flex items-center gap-1.5 shadow-lg hover:bg-white dark:hover:bg-slate-800 transition-all transform hover:scale-105 cursor-pointer"
                             title="Open in Popup Modal"
                           >
@@ -260,21 +265,53 @@ export function ProjectShowcaseSection() {
               </div>
 
               {/* Video Player */}
-              <div className="aspect-[16/9] w-full bg-slate-900 rounded-xl overflow-hidden">
+              <div className="aspect-[16/9] w-full bg-slate-950 rounded-xl overflow-hidden relative">
+                {/* Instant High-Res Poster + Loading Indicator while stream connects */}
+                {!isVideoLoaded && (
+                  <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-slate-950 overflow-hidden">
+                    {activeVideo.image && (
+                      <Image
+                        src={activeVideo.image}
+                        alt={activeVideo.title}
+                        fill
+                        className="object-cover object-top opacity-30 blur-xs scale-105"
+                        priority
+                      />
+                    )}
+                    <div className="relative z-20 flex flex-col items-center gap-3 p-4 text-center">
+                      <div className="relative">
+                        <div className="w-12 h-12 rounded-full border-2 border-blue-500/20 border-t-blue-500 animate-spin" />
+                        <PlayCircle className="w-6 h-6 text-blue-400 absolute inset-0 m-auto animate-pulse" />
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-xs sm:text-sm font-bold text-white font-heading tracking-wide">
+                          Loading Live Demonstration...
+                        </p>
+                        <p className="text-[11px] text-slate-400 font-mono">
+                          Connecting to high-speed stream
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {activeVideo.url.includes("youtube.com") || activeVideo.url.includes("youtu.be") ? (
                   <iframe
                     src={getYoutubeEmbedUrl(activeVideo.url, true)}
                     title={`${activeVideo.title} demo`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                    className="w-full h-full border-0"
+                    loading="eager"
+                    onLoad={() => setIsVideoLoaded(true)}
+                    className={`w-full h-full border-0 transition-opacity duration-300 ${isVideoLoaded ? "opacity-100" : "opacity-0"}`}
                   />
                 ) : activeVideo.url.match(/\.(mp4|webm|ogg)$/i) ? (
                   <video
                     src={activeVideo.url}
                     controls
                     autoPlay
-                    className="w-full h-full object-contain"
+                    onLoadedData={() => setIsVideoLoaded(true)}
+                    className={`w-full h-full object-contain transition-opacity duration-300 ${isVideoLoaded ? "opacity-100" : "opacity-0"}`}
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-white text-center p-8">
