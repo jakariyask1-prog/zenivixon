@@ -55,24 +55,24 @@ export function Navbar() {
           <Link
             href="/"
             onClick={closeMenu}
-            className="flex items-center gap-2.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg"
+            className="flex items-center gap-2.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg shrink-0"
           >
             <motion.div 
               initial={{ opacity: shouldReduceMotion ? 1 : 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="flex items-center justify-center transition-transform group-hover:scale-105"
+              className="flex items-center justify-center transition-transform group-hover:scale-105 shrink-0"
             >
               <Image 
                 src="/logo.png" 
                 alt="ZENIVIXON Logo" 
                 width={36} 
                 height={36} 
-                className="object-contain rounded-lg shadow-sm"
+                className="object-contain rounded-lg shadow-sm shrink-0 min-w-[36px] min-h-[36px]"
                 priority 
               />
             </motion.div>
-            <div className="py-1 -my-1">
+            <div className="py-1 -my-1 shrink-0">
               <AnimatedLogoText />
             </div>
           </Link>

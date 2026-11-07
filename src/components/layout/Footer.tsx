@@ -241,23 +241,23 @@ export function Footer() {
                 </li>
               </ul>
 
-              <div className="pt-4 border-t border-slate-100 dark:border-slate-800/80">
+              <div className="hidden sm:block pt-4 border-t border-slate-100 dark:border-slate-800/80">
                 <Link href="/" className="flex items-center gap-2 mb-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg w-fit">
                   <motion.div 
                     initial={{ opacity: shouldReduceMotion ? 1 : 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.4, ease: "easeOut" }}
-                    className="flex items-center justify-center transition-transform group-hover:scale-105"
+                    className="flex items-center justify-center transition-transform group-hover:scale-105 shrink-0"
                   >
                     <Image 
                       src="/logo.png" 
                       alt="ZENIVIXON Logo" 
                       width={28} 
                       height={28} 
-                      className="object-contain rounded-md shadow-sm"
+                      className="object-contain rounded-md shadow-sm shrink-0 min-w-[28px] min-h-[28px]"
                     />
                   </motion.div>
-                  <div className="py-1 -my-1">
+                  <div className="py-1 -my-1 shrink-0">
                     <AnimatedLogoText />
                   </div>
                 </Link>
@@ -265,6 +265,32 @@ export function Footer() {
                   {COMPANY_INFO.positioning}
                 </p>
               </div>
+            </div>
+
+            {/* Mobile / Phone View: Spanning across both columns so the 28px logo & AnimatedLogoText are 100% visible, beautifully aligned, and never squished */}
+            <div className="col-span-2 sm:hidden pt-6 border-t border-slate-100 dark:border-slate-800/80 space-y-2">
+              <Link href="/" className="flex items-center gap-2.5 mb-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg w-fit">
+                <motion.div 
+                  initial={{ opacity: shouldReduceMotion ? 1 : 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="flex items-center justify-center transition-transform group-hover:scale-105 shrink-0"
+                >
+                  <Image 
+                    src="/logo.png" 
+                    alt="ZENIVIXON Logo" 
+                    width={28} 
+                    height={28} 
+                    className="object-contain rounded-md shadow-sm shrink-0 min-w-[28px] min-h-[28px]"
+                  />
+                </motion.div>
+                <div className="py-1 -my-1 shrink-0">
+                  <AnimatedLogoText />
+                </div>
+              </Link>
+              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-sm">
+                {COMPANY_INFO.positioning}
+              </p>
             </div>
 
           </div>
