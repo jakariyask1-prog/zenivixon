@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZENIVIXON - Scene 3: Neural AI Brain & Dual-Engine Triage (Groq LPU + Gemini 2.0 Flash)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    :root {
+      --bg-void: #030611;
+      --panel-glass: rgba(8, 14, 29, 0.75);
+      --panel-border: rgba(56, 189, 248, 0.18);
+      --panel-border-bright: rgba(56, 189, 248, 0.5);
+      --cyan-glow: #06b6d4;
+      --blue-laser: #3b82f6;
+      --purple-plasma: #a855f7;
+      --emerald-matrix: #10b981;
+      --orange-groq: #ff6b00;
+      --text-main: #f8fafc;
+      --text-sub: #94a3b8;
+      --text-dim: #475569;
+    }
+
+    body {
+      background-color: var(--bg-void);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Background Interactive Neural Particle Canvas */
+    #neuralCanvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Ambient Mesh Vignette */
+    .ambient-vignette {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 30%, transparent 40%, rgba(3, 6, 17, 0.85) 90%),
+                  radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.08), transparent 50%),
+                  radial-gradient(circle at 10% 20%, rgba(6, 182, 212, 0.08), transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Cyber Grid */
+    .cyber-grid {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(56, 189, 248, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
+      background-size: 44px 44px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* TOP CINEMATIC HUD BAR */
+    .hud-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(5, 10, 24, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--panel-border);
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    /* Branding & Live REC Indicator */
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .logo-container {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #0284c7, #6366f1, #a855f7);
+      padding: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 25px rgba(2, 132, 199, 0.6);
+      position: relative;
+    }
+    .logo-inner {
+      width: 100%;
+      height: 100%;
+      background: #090e1d;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .rec-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #f87171;
+      letter-spacing: 0.08em;
+    }
+    .rec-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ef4444;
+      box-shadow: 0 0 10px #ef4444;
+      animation: pulseBlink 1s infinite alternate;
+    }
+    @keyframes pulseBlink {
+      from { opacity: 0.3; transform: scale(0.85); }
+      to { opacity: 1; transform: scale(1.15); }
+    }
+
+    /* Center Timeline Stage Progress */
+    .stages-dock {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 4px 8px;
+      border-radius: 30px;
+    }
+    .stage-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      color: var(--text-dim);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    .stage-item.active {
+      color: #38bdf8;
+      background: rgba(14, 165, 233, 0.18);
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      box-shadow: 0 0 16px rgba(14, 165, 233, 0.3);
+      font-weight: 700;
+    }
+    .stage-item.done {
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .stage-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    /* Playback & Recording Controller */
+    .hud-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-play-trigger {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #0ea5e9, #3b82f6);
+      color: #fff;
+      border: none;
+      padding: 7px 16px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
+      transition: all 0.2s ease;
+    }
+    .btn-play-trigger:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 28px rgba(14, 165, 233, 0.75);
+    }
+    .btn-reset-ctrl {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--panel-border);
+      color: var(--text-sub);
+      padding: 7px 14px;
+      border-radius: 30px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-reset-ctrl:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    .timer-badge {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #38bdf8;
+      background: #020712;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 5px 12px;
+      border-radius: 8px;
+      letter-spacing: 0.05em;
+      box-shadow: inset 0 0 10px rgba(56, 189, 248, 0.1);
+    }
+    .timeline-bar-wrap {
+      width: 140px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+    .timeline-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #06b6d4, #6366f1, #ec4899);
+      box-shadow: 0 0 10px #06b6d4;
+      transition: width 0.15s linear;
+    }
+
+    /* MAIN SPLIT-VIEW CONTAINER */
+    .main-workspace {
+      position: relative;
+      z-index: 10;
+      flex: 1;
+      display: grid;
+      grid-template-columns: 52% 48%;
+      gap: 20px;
+      padding: 20px 24px;
+      max-width: 1800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    @media (max-width: 1180px) {
+      .main-workspace {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ULTRA-GLASSMORPHIC CYBER PANEL */
+    .cyber-panel {
+      background: var(--panel-glass);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--panel-border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 
+                  inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+    .cyber-panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.6), transparent);
+    }
+
+    /* PANEL HEADER WITH FILE TABS & BREADCRUMBS */
+    .panel-head {
+      background: rgba(8, 14, 29, 0.95);
+      padding: 10px 18px;
+      border-bottom: 1px solid var(--panel-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .window-controls {
+      display: flex;
+      gap: 7px;
+    }
+    .win-btn {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+    .win-btn.close { background: #ff5f56; box-shadow: 0 0 8px rgba(255, 95, 86, 0.5); }
+    .win-btn.min { background: #ffbd2e; box-shadow: 0 0 8px rgba(255, 189, 46, 0.5); }
+    .win-btn.max { background: #27c93f; box-shadow: 0 0 8px rgba(39, 201, 63, 0.5); }
+
+    .tabs-strip {
+      display: flex;
+      gap: 6px;
+    }
+    .ide-tab {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.76rem;
+      color: var(--text-sub);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .ide-tab.active {
+      color: #fff;
+      background: rgba(14, 165, 233, 0.15);
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: 0 0 12px rgba(14, 165, 233, 0.25);
+    }
+    .tab-icon-ts {
+      color: #38bdf8;
+      font-weight: 800;
+      font-size: 0.7rem;
+    }
+
+    /* CODE EDITOR VIEWPORT WITH SCANNER BEAM */
+    .editor-viewport {
+      background: #040814;
+      padding: 16px 20px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.81rem;
+      line-height: 1.65;
+      position: relative;
+      overflow: hidden;
+      height: 310px;
+      border-bottom: 1px solid var(--panel-border);
+    }
+    .editor-viewport::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #38bdf8, #a855f7, transparent);
+      box-shadow: 0 0 15px #38bdf8;
+      top: 0;
+      animation: scanLaser 4s infinite linear;
+      opacity: 0.7;
+    }
+    @keyframes scanLaser {
+      0% { top: 0%; opacity: 0; }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.8; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    .code-row {
+      display: flex;
+      gap: 18px;
+      position: relative;
+    }
+    .ln {
+      color: #334155;
+      user-select: none;
+      width: 26px;
+      text-align: right;
+    }
+    .kw { color: #f43f5e; font-weight: 600; }
+    .fn { color: #38bdf8; }
+    .str { color: #a3e635; }
+    .type { color: #fbbf24; }
+    .cm { color: #475569; font-style: italic; }
+    .highlight-laser-box {
+      background: linear-gradient(90deg, rgba(14, 165, 233, 0.18), rgba(99, 102, 241, 0.08));
+      border-left: 3px solid #38bdf8;
+      margin: 2px -20px;
+      padding: 1px 17px;
+      box-shadow: inset 0 0 20px rgba(14, 165, 233, 0.15);
+    }
+
+    /* TERMINAL STREAM SECTION */
+    .terminal-deck {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: #02050e;
+    }
+    .terminal-hud {
+      background: #070d1c;
+      padding: 8px 16px;
+      border-bottom: 1px solid var(--panel-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      font-family: 'Fira Code', monospace;
+      color: var(--text-sub);
+    }
+    .status-engine-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #34d399;
+      font-weight: 600;
+    }
+    .status-beacon {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      animation: pulseBlink 1.2s infinite alternate;
+    }
+
+    .terminal-stream-body {
+      padding: 14px 18px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.76rem;
+      line-height: 1.7;
+      height: 310px;
+      overflow-y: auto;
+      color: #cbd5e1;
+    }
+    .terminal-stream-body::-webkit-scrollbar {
+      width: 5px;
+    }
+    .terminal-stream-body::-webkit-scrollbar-thumb {
+      background: rgba(56, 189, 248, 0.2);
+      border-radius: 4px;
+    }
+
+    .t-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 6px;
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: all 0.3s ease;
+    }
+    .t-row.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .t-stamp { color: #475569; }
+    .t-badge {
+      padding: 1px 7px;
+      border-radius: 4px;
+      font-size: 0.68rem;
+      font-weight: 700;
+    }
+    .tb-info { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .tb-gemini { background: rgba(99, 102, 241, 0.2); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.5); }
+    .tb-groq { background: rgba(255, 107, 0, 0.2); color: #ff8533; border: 1px solid rgba(255, 107, 0, 0.5); }
+    .tb-success { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+
+    /* RIGHT PANE: NEURAL INFERENCE ENGINE & INTELLIGENCE HUD */
+    .right-deck-content {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+    }
+
+    /* TOP DUAL MODEL BADGES */
+    .model-trio-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .engine-chip {
+      flex: 1;
+      background: linear-gradient(135deg, rgba(8, 14, 29, 0.8), rgba(15, 23, 42, 0.9));
+      border: 1px solid var(--panel-border);
+      border-radius: 14px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    .engine-chip.gemini {
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+    .engine-chip.groq {
+      border-color: rgba(255, 107, 0, 0.4);
+    }
+    .engine-chip::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; width: 60px; height: 60px;
+      border-radius: 50%;
+      filter: blur(25px);
+      pointer-events: none;
+    }
+    .engine-chip.gemini::after { background: rgba(99, 102, 241, 0.25); }
+    .engine-chip.groq::after { background: rgba(255, 107, 0, 0.25); }
+
+    .engine-icon-wrap {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+    .engine-chip.gemini .engine-icon-wrap { background: rgba(99, 102, 241, 0.2); color: #818cf8; }
+    .engine-chip.groq .engine-icon-wrap { background: rgba(255, 107, 0, 0.2); color: #ff8533; }
+
+    /* SECTION 1: ICP FIT METRIC RADIAL GAUGE HUD */
+    .metrics-hud-card {
+      background: rgba(8, 14, 29, 0.8);
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      padding: 16px 20px;
+      display: grid;
+      grid-template-columns: 160px 1fr 1fr;
+      gap: 16px;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Sci-Fi Multi-Ring Radial Gauge */
+    .gauge-wrapper {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+    .gauge-svg-element {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+    .gauge-track-bg {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.05);
+      stroke-width: 10;
+    }
+    .gauge-neon-trail {
+      fill: none;
+      stroke: url(#neonGradient);
+      stroke-width: 10;
+      stroke-dasharray: 377;
+      stroke-dashoffset: 377;
+      stroke-linecap: round;
+      filter: drop-shadow(0 0 12px #06b6d4);
+      transition: stroke-dashoffset 2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .gauge-center-text {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .score-number {
+      font-size: 2.2rem;
+      font-weight: 900;
+      font-family: 'Fira Code', monospace;
+      color: #38bdf8;
+      text-shadow: 0 0 20px rgba(56, 189, 248, 0.7);
+    }
+    .score-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: var(--text-sub);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: -2px;
+    }
+
+    /* Telemetry Stats */
+    .stat-cluster {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .stat-label-tiny {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--text-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .stat-headline {
+      font-size: 1.5rem;
+      font-weight: 800;
+      font-family: 'Fira Code', monospace;
+      color: #fff;
+    }
+    .stat-tag-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+      width: fit-content;
+    }
+
+    /* SECTION 2: ARCHITECTURE PIPELINE CIRCUIT */
+    .circuit-box {
+      background: rgba(8, 14, 29, 0.85);
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .circuit-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .circuit-title {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #38bdf8;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pipeline-wire-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      position: relative;
+    }
+    /* Animated Glowing Power Line Behind Nodes */
+    .pipeline-wire-grid::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      right: 20px;
+      height: 2px;
+      background: linear-gradient(90deg, #38bdf8, #818cf8, #ff8533, #10b981);
+      opacity: 0.25;
+      z-index: 1;
+    }
+
+    .circuit-node {
+      position: relative;
+      z-index: 2;
+      background: #090e1d;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .circuit-node.active {
+      border-color: #38bdf8;
+      background: rgba(14, 165, 233, 0.12);
+      box-shadow: 0 0 25px rgba(14, 165, 233, 0.4), inset 0 0 15px rgba(14, 165, 233, 0.2);
+      transform: translateY(-3px);
+    }
+    .node-icon-box {
+      font-size: 1.25rem;
+      margin-bottom: 4px;
+    }
+    .node-main-title {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .node-tech-subtitle {
+      font-size: 0.65rem;
+      color: var(--text-sub);
+      font-family: 'Fira Code', monospace;
+      margin-top: 2px;
+    }
+
+    /* SECTION 3: PERSONALIZED CLIENT DOSSIER & STREAM DRAFT */
+    .client-dossier-card {
+      background: rgba(8, 14, 29, 0.85);
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .dossier-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    .dossier-tag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: #c084fc;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .lock-seal {
+      font-size: 0.68rem;
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .dossier-text-canvas {
+      background: #040814;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 0.82rem;
+      line-height: 1.65;
+      color: #e2e8f0;
+      flex: 1;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      position: relative;
+    }
+    .cyber-caret {
+      display: inline-block;
+      width: 8px;
+      height: 16px;
+      background: #38bdf8;
+      box-shadow: 0 0 10px #38bdf8;
+      vertical-align: middle;
+      margin-left: 3px;
+      animation: blink 0.8s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* DISPATCH CONFIRMATION FOOTER PILLS */
+    .dispatch-matrix-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .dispatch-target-badge {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 7px 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-dim);
+      transition: all 0.4s ease;
+    }
+    .dispatch-target-badge.activated {
+      background: rgba(16, 185, 129, 0.16);
+      border-color: rgba(16, 185, 129, 0.5);
+      color: #34d399;
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.3);
+    }
+
+    /* FOOTER TELEMETRY STATUS */
+    .hud-footer {
+      padding: 10px 24px;
+      background: rgba(5, 10, 24, 0.95);
+      border-top: 1px solid var(--panel-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-sub);
+      z-index: 20;
+    }
+    .fps-badge {
+      font-family: 'Fira Code', monospace;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Canvas & Cyber Grid -->
+  <canvas id="neuralCanvas"></canvas>
+  <div class="ambient-vignette"></div>
+  <div class="cyber-grid"></div>
+
+  <!-- SVG Gradient Definitions -->
+  <svg width="0" height="0">
+    <defs>
+      <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#06b6d4" />
+        <stop offset="50%" stop-color="#3b82f6" />
+        <stop offset="100%" stop-color="#10b981" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- TOP CINEMATIC HUD BAR -->
+  <header class="hud-header">
+    <div class="brand-section">
+      <div class="logo-container">
+        <div class="logo-inner">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </div>
+      </div>
+      <div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <strong style="letter-spacing: -0.02em; font-size: 1.1rem; color: #fff;">ZENIVIXON</strong>
+          <span style="color: #64748b;">/</span>
+          <span style="color: #38bdf8; font-weight: 700; font-size: 0.95rem;">autonomous-engine</span>
+          <div class="rec-badge">
+            <div class="rec-dot"></div>
+            <span>LIVE 4K &bull; SCENE 3</span>
+          </div>
+        </div>
+        <div style="font-size: 0.72rem; color: #94a3b8;">
+          Behind The Scenes &bull; Sub-Second Gemini 2.0 Flash + Groq LPU Triage
+        </div>
+      </div>
+    </div>
+
+    <!-- Center 4-Stage Stepper -->
+    <div class="stages-dock">
+      <div class="stage-item" id="stage-pill-1">
+        <span class="stage-dot"></span>
+        <span>1. Payload Ingestion</span>
+      </div>
+      <div class="stage-item" id="stage-pill-2">
+        <span class="stage-dot"></span>
+        <span>2. ICP Fit Scoring</span>
+      </div>
+      <div class="stage-item" id="stage-pill-3">
+        <span class="stage-dot"></span>
+        <span>3. Architecture Synthesis</span>
+      </div>
+      <div class="stage-item" id="stage-pill-4">
+        <span class="stage-dot"></span>
+        <span>4. Client Dispatch</span>
+      </div>
+    </div>
+
+    <!-- Playback & Timer Controls -->
+    <div class="hud-controls">
+      <button class="btn-play-trigger" id="playTriggerBtn" onclick="togglePlay()">
+        <svg id="playTriggerIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+        <span id="playTriggerText">Start 40s Showcase</span>
+      </button>
+
+      <button class="btn-reset-ctrl" onclick="resetShowcase()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: middle; margin-right: 4px;">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+          <path d="M3 3v5h5"/>
+        </svg>
+        <span>Reset</span>
+      </button>
+
+      <div class="timer-badge" id="hudTimer">01:05 / 01:45</div>
+      <div class="timeline-bar-wrap">
+        <div class="timeline-bar-fill" id="hudProgressFill"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN SPLIT WORKSPACE -->
+  <main class="main-workspace">
+
+    <!-- LEFT PANEL: IDE CODE VIEW & REAL-TIME SYSTEM TERMINAL -->
+    <section class="cyber-panel">
+      <!-- Window Tabs Header -->
+      <div class="panel-head">
+        <div class="window-controls">
+          <div class="win-btn close"></div>
+          <div class="win-btn min"></div>
+          <div class="win-btn max"></div>
+        </div>
+        <div class="tabs-strip">
+          <div class="ide-tab active" id="tab-route" onclick="selectTab('route')">
+            <span class="tab-icon-ts">TS</span> route.ts
+          </div>
+          <div class="ide-tab" id="tab-gemini" onclick="selectTab('gemini')">
+            <span class="tab-icon-ts">TS</span> gemini.ts
+          </div>
+          <div class="ide-tab" id="tab-groq" onclick="selectTab('groq')">
+            <span class="tab-icon-ts">TS</span> groq.ts
+          </div>
+        </div>
+        <div style="font-size: 0.72rem; color: #64748b; font-family: 'Fira Code', monospace;">
+          TypeScript 5.8 &bull; Next.js 15
+        </div>
+      </div>
+
+      <!-- Syntax-Highlighted Code Editor -->
+      <div class="editor-viewport" id="ideCodeContainer">
+        <!-- Rendered lines -->
+      </div>
+
+      <!-- Real-time Terminal Stream Deck -->
+      <div class="terminal-deck">
+        <div class="terminal-hud">
+          <div class="status-engine-pill">
+            <div class="status-beacon"></div>
+            <span>FASTAPI / SERVERLESS RUNTIME &bull; HTTP/2 STREAMING</span>
+          </div>
+          <span id="runtimeLatencyBadge" style="color: #38bdf8;">LATENCY: -- ms</span>
+        </div>
+
+        <div class="terminal-stream-body" id="terminalLogsDeck">
+          <!-- Real-time logs will append here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT PANEL: NEURAL BRAIN & LIVE INTELLIGENCE DOSSIER -->
+    <section class="cyber-panel">
+      <div class="panel-head">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5">
+            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1 1 0 0 1-2 0V7a1 1 0 0 1 2 0z"/>
+          </svg>
+          <span style="font-size: 0.85rem; font-weight: 800; color: #fff; letter-spacing: -0.01em;">
+            Autonomous Inbound Brain &bull; Real-Time Diagnostics
+          </span>
+        </div>
+        <span style="font-size: 0.72rem; color: #34d399; font-weight: 700; background: rgba(16, 185, 129, 0.15); padding: 2px 10px; border-radius: 12px; border: 1px solid rgba(16, 185, 129, 0.3);">
+          ZERO DATA LOSS &bull; DETERMINISTIC
+        </span>
+      </div>
+
+      <div class="right-deck-content">
+
+        <!-- 1. Dual AI Engine Badges -->
+        <div class="model-trio-row">
+          <div class="engine-chip gemini">
+            <div class="engine-icon-wrap">✦</div>
+            <div>
+              <div style="font-size: 0.78rem; font-weight: 800; color: #fff;">Google Gemini 2.0 Flash</div>
+              <div style="font-size: 0.68rem; color: #818cf8; font-family: 'Fira Code', monospace;">Context Engine &bull; JSON Schema</div>
+            </div>
+          </div>
+
+          <div class="engine-chip groq">
+            <div class="engine-icon-wrap">⚡</div>
+            <div>
+              <div style="font-size: 0.78rem; font-weight: 800; color: #fff;">Groq LPU Accelerator</div>
+              <div style="font-size: 0.68rem; color: #ff8533; font-family: 'Fira Code', monospace;">300+ tok/s &bull; Sub-200ms TTY</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. ICP Fit Score Radial Gauge & Key Metrics -->
+        <div class="metrics-hud-card">
+          <!-- Radial Gauge HUD -->
+          <div class="gauge-wrapper">
+            <svg class="gauge-svg-element" viewBox="0 0 140 140">
+              <circle class="gauge-track-bg" cx="70" cy="70" r="60" />
+              <circle class="gauge-neon-trail" id="gaugeArc" cx="70" cy="70" r="60" />
+            </svg>
+            <div class="gauge-center-text">
+              <div class="score-number" id="gaugeNumber">0</div>
+              <div class="score-label">ICP FIT SCORE</div>
+            </div>
+          </div>
+
+          <!-- Stat 1: Priority Tier -->
+          <div class="stat-cluster">
+            <div class="stat-label-tiny">LEAD CLASSIFICATION</div>
+            <div class="stat-headline" id="leadPriorityTier" style="color: #38bdf8;">SCANNING</div>
+            <div class="stat-tag-badge" id="leadPriorityTag" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">
+              <span>●</span> Payload Intercepted
+            </div>
+          </div>
+
+          <!-- Stat 2: Inference Speed -->
+          <div class="stat-cluster">
+            <div class="stat-label-tiny">INFERENCE LATENCY</div>
+            <div class="stat-headline" id="throughputHeadline" style="color: #34d399;">0 ms</div>
+            <div class="stat-tag-badge" style="background: rgba(255, 107, 0, 0.15); color: #ff8533;">
+              <span>⚡</span> 340 tok/s Real-time
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Suggested Architecture Circuit (Illuminated Nodes) -->
+        <div class="circuit-box">
+          <div class="circuit-title-row">
+            <div class="circuit-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                <line x1="6" y1="6" x2="6.01" y2="6"/>
+                <line x1="6" y1="18" x2="6.01" y2="18"/>
+              </svg>
+              <span>Suggested Solution Architecture (Synthesized)</span>
+            </div>
+            <span style="font-size: 0.68rem; color: #38bdf8; font-family: 'Fira Code', monospace;">
+              EST. TIME SAVED: 72%
+            </span>
+          </div>
+
+          <div class="pipeline-wire-grid">
+            <div class="circuit-node" id="cNode-1">
+              <div class="node-icon-box">📥</div>
+              <div class="node-main-title">Inbound Intake</div>
+              <div class="node-tech-subtitle">Next.js 15 API</div>
+            </div>
+            <div class="circuit-node" id="cNode-2">
+              <div class="node-icon-box">🧠</div>
+              <div class="node-main-title">ReAct Triage</div>
+              <div class="node-tech-subtitle">Gemini + Groq</div>
+            </div>
+            <div class="circuit-node" id="cNode-3">
+              <div class="node-icon-box">⚡</div>
+              <div class="node-main-title">FastAPI Micro</div>
+              <div class="node-tech-subtitle">Redis Task Queue</div>
+            </div>
+            <div class="circuit-node" id="cNode-4">
+              <div class="node-icon-box">🔗</div>
+              <div class="node-main-title">ERP & CRM Sync</div>
+              <div class="node-tech-subtitle">Shopify + Sheets</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Real-time Holographic Client Dossier & Typewriter Draft -->
+        <div class="client-dossier-card">
+          <div class="dossier-top">
+            <div class="dossier-tag">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span>Bespoke Client Response (Instant Draft)</span>
+            </div>
+            <div class="lock-seal" id="dossierStatusBadge">STANDBY</div>
+          </div>
+
+          <div class="dossier-text-canvas" id="dossierOutputCanvas">
+            <span style="color: #475569;">Awaiting inference stream from Gemini 2.0 Flash...</span>
+          </div>
+
+          <!-- Dual-Dispatch Verification Matrix -->
+          <div class="dispatch-matrix-row">
+            <div class="dispatch-target-badge" id="badgeResendEmail">
+              <span>✉️</span> Resend Branded Email
+            </div>
+            <div class="dispatch-target-badge" id="badgeAdminAlert">
+              <span>🔔</span> Engineering Lead Alert
+            </div>
+            <div class="dispatch-target-badge" id="badgeSheetsCRM">
+              <span>📊</span> Google Sheets CRM Backup
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- HUD FOOTER -->
+  <footer class="hud-footer">
+    <div>
+      ZENIVIXON Technologies &bull; Production Architecture Showcase &bull; 
+      <strong style="color: #38bdf8;">Project 3: Autonomous Inbound Engine</strong>
+    </div>
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <span class="fps-badge">4K UHD &bull; 60.0 FPS</span>
+      <span>Scene Window: <strong style="color: #fff;">01:05 &mdash; 01:45 (40 Seconds)</strong></span>
+    </div>
+  </footer>
+
+  <script>
+    // --- 1. NEURAL PARTICLE CANVAS BACKGROUND ---
+    const canvas = document.getElementById('neuralCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.6;
+        this.vy = (Math.random() - 0.5) * 0.6;
+        this.radius = Math.random() * 2 + 1;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(56, 189, 248, 0.4)';
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 45; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateNeuralMesh() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 130) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(56, 189, 248, ${0.12 * (1 - dist / 130)})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animateNeuralMesh);
+    }
+    animateNeuralMesh();
+
+    // --- 2. CODE FILES INVENTORY ---
+    const CODE_DATA = {
+      route: [
+        { num: 1, text: `<span class="kw">import</span> { NextRequest, NextResponse } <span class="kw">from</span> <span class="str">"next/server"</span>;` },
+        { num: 2, text: `<span class="kw">import</span> { analyzeLeadWithGemini } <span class="kw">from</span> <span class="str">"@/lib/gemini"</span>;` },
+        { num: 3, text: `<span class="kw">import</span> { queryGroqFastInference } <span class="kw">from</span> <span class="str">"@/lib/groq"</span>;` },
+        { num: 4, text: `<span class="kw">import</span> { appendLeadToSheet } <span class="kw">from</span> <span class="str">"@/lib/sheets"</span>;` },
+        { num: 5, text: `` },
+        { num: 6, text: `<span class="kw">export async function</span> <span class="fn">POST</span>(req: <span class="type">NextRequest</span>) {` },
+        { num: 7, text: `  <span class="kw">const</span> body = <span class="kw">await</span> req.json();`, hl: true },
+        { num: 8, text: `  <span class="cm">// 1. Dual-Engine Neural Triage (Groq LPU + Gemini 2.0 Flash)</span>` },
+        { num: 9, text: `  <span class="kw">const</span> aiResult = <span class="kw">await</span> <span class="fn">analyzeLeadWithGemini</span>(body);`, hl: true },
+        { num: 10, text: `  <span class="cm">// 2. Dual-Dispatch Pipeline: Client Resend + Sheets CRM</span>` },
+        { num: 11, text: `  <span class="kw">await</span> Promise.all([` },
+        { num: 12, text: `    <span class="fn">sendLeadEmails</span>(aiResult),` },
+        { num: 13, text: `    <span class="fn">appendLeadToSheet</span>(aiResult)` },
+        { num: 14, text: `  ]);` },
+        { num: 15, text: `  <span class="kw">return</span> NextResponse.json({ success: <span class="kw">true</span>, aiResult });` },
+        { num: 16, text: `}` }
+      ],
+      gemini: [
+        { num: 1, text: `<span class="kw">import</span> { GoogleGenerativeAI } <span class="kw">from</span> <span class="str">"@google/generative-ai"</span>;` },
+        { num: 2, text: `<span class="kw">const</span> genAI = <span class="kw">new</span> <span class="type">GoogleGenerativeAI</span>(process.env.GEMINI_API_KEY!);` },
+        { num: 3, text: `` },
+        { num: 4, text: `<span class="kw">export async function</span> <span class="fn">analyzeLeadWithGemini</span>(payload) {` },
+        { num: 5, text: `  <span class="kw">const</span> model = genAI.getGenerativeModel({ model: <span class="str">"gemini-2.0-flash"</span> });`, hl: true },
+        { num: 6, text: `  <span class="kw">const</span> prompt = \`Evaluate ICP fit, design solution, draft client reply:\n` },
+        { num: 7, text: `    Client: \${payload.name} (\${payload.company})\n` },
+        { num: 8, text: `    Problem: \${payload.message}\`;` },
+        { num: 9, text: `  <span class="kw">const</span> res = <span class="kw">await</span> model.generateContent({ prompt, responseMimeType: <span class="str">"application/json"</span> });`, hl: true },
+        { num: 10, text: `  <span class="kw">return</span> JSON.parse(res.response.text());` },
+        { num: 11, text: `}` }
+      ],
+      groq: [
+        { num: 1, text: `<span class="kw">import</span> Groq <span class="kw">from</span> <span class="str">"groq-sdk"</span>;` },
+        { num: 2, text: `<span class="kw">const</span> groq = <span class="kw">new</span> <span class="type">Groq</span>({ apiKey: process.env.GROQ_API_KEY });` },
+        { num: 3, text: `` },
+        { num: 4, text: `<span class="kw">export async function</span> <span class="fn">queryGroqFastInference</span>(context) {` },
+        { num: 5, text: `  <span class="kw">return await</span> groq.chat.completions.create({`, hl: true },
+        { num: 6, text: `    model: <span class="str">"llama-3.3-70b-versatile"</span>,` },
+        { num: 7, text: `    messages: [{ role: <span class="str">"user"</span>, content: context }],` },
+        { num: 8, text: `    stream: <span class="kw">true</span>` },
+        { num: 9, text: `  });` },
+        { num: 10, text: `}` }
+      ]
+    };
+
+    function renderCodeEditor(tabKey) {
+      const container = document.getElementById('ideCodeContainer');
+      const lines = CODE_DATA[tabKey] || CODE_DATA.route;
+      container.innerHTML = lines.map(line => `
+        <div class="code-row ${line.hl ? 'highlight-laser-box' : ''}">
+          <span class="ln">${line.num}</span>
+          <span>${line.text}</span>
+        </div>
+      `).join('');
+    }
+
+    function selectTab(tabKey) {
+      document.querySelectorAll('.ide-tab').forEach(t => t.classList.remove('active'));
+      const activeTab = document.getElementById('tab-' + tabKey);
+      if (activeTab) activeTab.classList.add('active');
+      renderCodeEditor(tabKey);
+    }
+    renderCodeEditor('route');
+
+    // --- 3. 40 SECONDS TIMELINE ENGINE ---
+    const TOTAL_SECONDS = 40;
+    let currentSeconds = 0;
+    let isPlaying = false;
+    let mainLoopInterval = null;
+
+    const CLIENT_LETTER = 
+`Dear Marcus,
+
+Thank you for reaching out to ZENIVIXON regarding your B2B logistics platform. Handling 400+ daily support inquiries manually is a common growth bottleneck, particularly when order tracking requires real-time CRM and Shopify status checks.
+
+We can engineer an autonomous ReAct Triage Agent integrated directly into your Shopify GraphQL API and Zendesk. This system resolves tier-1 order status queries in sub-500ms while deterministically routing complex carrier escalations to your senior staff.
+
+Based on your volume, this architecture typically saves over 70% in operational triage overhead. Are you available for a brief 15-minute technical discovery call this Thursday at 2:00 PM EST?
+
+Best regards,
+ZENIVIXON Technologies Team
+Architecture & Inbound Systems`;
+
+    const TIMELINE_CHOREOGRAPHY = [
+      // PHASE 1: 0 - 10s (Ingestion & Trigger)
+      { at: 1, run: () => {
+          setStage(1);
+          selectTab('route');
+          addLogLine('tb-info', 'POST /api/project-brief', 'Inbound lead intercepted: Marcus Vance (Apex Logistics)');
+          document.getElementById('cNode-1').classList.add('active');
+        }
+      },
+      { at: 3, run: () => {
+          addLogLine('tb-info', 'ZOD_SCHEMA_VALID', 'Verified payload: 400+ inquiries/day | Budget: $5,000 | 2 Weeks');
+        }
+      },
+      { at: 6, run: () => {
+          selectTab('gemini');
+          addLogLine('tb-gemini', 'GEMINI_DISPATCH', 'Routing to Google Gemini 2.0 Flash for structured JSON extraction');
+          document.getElementById('cNode-2').classList.add('active');
+        }
+      },
+      { at: 8, run: () => {
+          selectTab('groq');
+          addLogLine('tb-groq', 'GROQ_LPU_INFERENCE', 'Groq LPU accelerator triggered for sub-200ms latency execution');
+          document.getElementById('runtimeLatencyBadge').textContent = 'LATENCY: 184 ms';
+        }
+      },
+
+      // PHASE 2: 10 - 20s (ICP Scoring & Priority)
+      { at: 10, run: () => {
+          setStage(2);
+          addLogLine('tb-gemini', 'ICP_EVALUATION', 'Evaluating lead parameters: Feasibility: HIGH | Budget Match: 95%');
+          animateGauge(94);
+          document.getElementById('leadPriorityTier').textContent = 'TIER 1 (94%)';
+          document.getElementById('leadPriorityTier').style.color = '#10b981';
+          document.getElementById('leadPriorityTag').style.background = 'rgba(16, 185, 129, 0.15)';
+          document.getElementById('leadPriorityTag').style.color = '#34d399';
+          document.getElementById('leadPriorityTag').innerHTML = '<span>✓</span> High-Value Enterprise Client';
+        }
+      },
+      { at: 14, run: () => {
+          document.getElementById('throughputHeadline').textContent = '184 ms';
+          addLogLine('tb-groq', 'TOKEN_STREAM', 'Groq processed 842 tokens in 184ms (342 tok/s throughput)');
+        }
+      },
+      { at: 17, run: () => {
+          addLogLine('tb-success', 'ICP_SCORE_LOCKED', 'Classification locked: Autonomous Support & Workflow Automation');
+        }
+      },
+
+      // PHASE 3: 20 - 30s (Suggested Architecture)
+      { at: 20, run: () => {
+          setStage(3);
+          document.getElementById('cNode-3').classList.add('active');
+          addLogLine('tb-gemini', 'ARCH_SYNTHESIS', 'Synthesizing architecture: Ingestion -> ReAct Triage -> FastAPI -> Shopify');
+        }
+      },
+      { at: 24, run: () => {
+          document.getElementById('cNode-4').classList.add('active');
+          addLogLine('tb-success', 'CONNECTOR_MAP', 'Validated integrations: Shopify GraphQL, Zendesk, Redis Queue, Sheets');
+        }
+      },
+      { at: 27, run: () => {
+          addLogLine('tb-info', 'PREDICTIVE_ROI', 'Calculated ROI: 72% staffing overhead reduction | Response time: < 500ms');
+        }
+      },
+
+      // PHASE 4: 30 - 40s (Client Draft & Dispatch)
+      { at: 30, run: () => {
+          setStage(4);
+          document.getElementById('dossierStatusBadge').textContent = 'STREAMING LIVE DRAFT...';
+          document.getElementById('dossierStatusBadge').style.background = 'rgba(6, 182, 212, 0.2)';
+          document.getElementById('dossierStatusBadge').style.color = '#38bdf8';
+          addLogLine('tb-gemini', 'CLIENT_REPLY_GEN', 'Synthesizing humanized B2B technology consultant response...');
+          typewriterLetter();
+        }
+      },
+      { at: 35, run: () => {
+          document.getElementById('badgeResendEmail').classList.add('activated');
+          addLogLine('tb-success', 'RESEND_API', 'Branded HTML confirmation proposal dispatched to client via Resend');
+        }
+      },
+      { at: 37, run: () => {
+          document.getElementById('badgeAdminAlert').classList.add('activated');
+          document.getElementById('badgeSheetsCRM').classList.add('activated');
+          addLogLine('tb-success', 'DUAL_DISPATCH', 'Executive engineering briefing dispatched | Google Sheets synced in 1.4s');
+        }
+      },
+      { at: 39, run: () => {
+          document.getElementById('dossierStatusBadge').textContent = 'DELIVERED & SYNCED';
+          document.getElementById('dossierStatusBadge').style.background = 'rgba(16, 185, 129, 0.2)';
+          document.getElementById('dossierStatusBadge').style.color = '#34d399';
+          addLogLine('tb-success', 'PIPELINE_COMPLETE', 'Total Execution: 1.84s (Target: < 2s). Zero data loss verified.');
+        }
+      }
+    ];
+
+    function setStage(num) {
+      for (let i = 1; i <= 4; i++) {
+        const pill = document.getElementById('stage-pill-' + i);
+        if (i < num) {
+          pill.className = 'stage-item done';
+        } else if (i === num) {
+          pill.className = 'stage-item active';
+        } else {
+          pill.className = 'stage-item';
+        }
+      }
+    }
+
+    function addLogLine(tagClass, tagText, msg) {
+      const logs = document.getElementById('terminalLogsDeck');
+      const timeStr = new Date().toTimeString().split(' ')[0] + '.' + Math.floor(Math.random() * 900 + 100);
+      const row = document.createElement('div');
+      row.className = 't-row';
+      row.innerHTML = `
+        <span class="t-stamp">[${timeStr}]</span>
+        <span class="t-badge ${tagClass}">${tagText}</span>
+        <span>${msg}</span>
+      `;
+      logs.appendChild(row);
+      setTimeout(() => row.classList.add('visible'), 20);
+      logs.scrollTop = logs.scrollHeight;
+    }
+
+    function animateGauge(targetVal) {
+      const arc = document.getElementById('gaugeArc');
+      const numberEl = document.getElementById('gaugeNumber');
+      const circumference = 377; // 2 * pi * 60
+      const offset = circumference - (targetVal / 100) * circumference;
+      arc.style.strokeDashoffset = offset;
+
+      let current = 0;
+      const step = Math.ceil(targetVal / 25);
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= targetVal) {
+          current = targetVal;
+          clearInterval(timer);
+        }
+        numberEl.textContent = current;
+      }, 40);
+    }
+
+    let letterTypeInterval = null;
+    function typewriterLetter() {
+      const output = document.getElementById('dossierOutputCanvas');
+      output.innerHTML = '';
+      let charIdx = 0;
+      clearInterval(letterTypeInterval);
+      letterTypeInterval = setInterval(() => {
+        if (charIdx < CLIENT_LETTER.length) {
+          charIdx += 4;
+          output.innerHTML = CLIENT_LETTER.slice(0, charIdx) + '<span class="cyber-caret"></span>';
+        } else {
+          clearInterval(letterTypeInterval);
+          output.innerHTML = CLIENT_LETTER;
+        }
+      }, 25);
+    }
+
+    function updateTimecodeUI() {
+      const baseSec = 65; // 01:05
+      const total = baseSec + currentSeconds;
+      const min = Math.floor(total / 60);
+      const sec = total % 60;
+      document.getElementById('hudTimer').textContent = `0${min}:${sec < 10 ? '0' : ''}${sec} / 01:45`;
+
+      const progress = (currentSeconds / TOTAL_SECONDS) * 100;
+      document.getElementById('hudProgressFill').style.width = progress + '%';
+    }
+
+    function mainTick() {
+      currentSeconds++;
+      updateTimecodeUI();
+
+      TIMELINE_CHOREOGRAPHY.forEach(item => {
+        if (item.at === currentSeconds) {
+          item.run();
+        }
+      });
+
+      if (currentSeconds >= TOTAL_SECONDS) {
+        pauseShowcase();
+      }
+    }
+
+    function togglePlay() {
+      if (isPlaying) {
+        pauseShowcase();
+      } else {
+        startShowcase();
+      }
+    }
+
+    function startShowcase() {
+      if (currentSeconds >= TOTAL_SECONDS) {
+        resetShowcase();
+      }
+      isPlaying = true;
+      document.getElementById('playTriggerText').textContent = 'Pause';
+      document.getElementById('playTriggerIcon').innerHTML = `
+        <rect x="6" y="4" width="4" height="16"></rect>
+        <rect x="14" y="4" width="4" height="16"></rect>
+      `;
+      clearInterval(mainLoopInterval);
+      mainLoopInterval = setInterval(mainTick, 1000);
+    }
+
+    function pauseShowcase() {
+      isPlaying = false;
+      document.getElementById('playTriggerText').textContent = 'Resume Showcase';
+      document.getElementById('playTriggerIcon').innerHTML = `
+        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+      `;
+      clearInterval(mainLoopInterval);
+    }
+
+    function resetShowcase() {
+      pauseShowcase();
+      currentSeconds = 0;
+      updateTimecodeUI();
+      clearInterval(letterTypeInterval);
+
+      // Reset state
+      document.getElementById('terminalLogsDeck').innerHTML = '';
+      document.getElementById('gaugeNumber').textContent = '0';
+      document.getElementById('gaugeArc').style.strokeDashoffset = '377';
+      document.getElementById('leadPriorityTier').textContent = 'SCANNING';
+      document.getElementById('leadPriorityTier').style.color = '#38bdf8';
+      document.getElementById('leadPriorityTag').style.background = 'rgba(56, 189, 248, 0.15)';
+      document.getElementById('leadPriorityTag').style.color = '#38bdf8';
+      document.getElementById('leadPriorityTag').innerHTML = '<span>●</span> Payload Intercepted';
+      document.getElementById('throughputHeadline').textContent = '0 ms';
+      document.getElementById('runtimeLatencyBadge').textContent = 'LATENCY: -- ms';
+
+      document.querySelectorAll('.circuit-node').forEach(n => n.classList.remove('active'));
+      document.getElementById('dossierStatusBadge').textContent = 'STANDBY';
+      document.getElementById('dossierStatusBadge').style.background = 'rgba(16, 185, 129, 0.12)';
+      document.getElementById('dossierStatusBadge').style.color = '#34d399';
+      document.getElementById('dossierOutputCanvas').innerHTML = '<span style="color: #475569;">Awaiting inference stream from Gemini 2.0 Flash...</span>';
+
+      document.querySelectorAll('.dispatch-target-badge').forEach(b => b.classList.remove('activated'));
+      setStage(1);
+      selectTab('route');
+
+      setTimeout(startShowcase, 300);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      updateTimecodeUI();
+      addLogLine('tb-info', 'SYSTEM_INITIALIZED', 'ZENIVIXON Neural Inbound Triage ready. Press Start 40s Showcase.');
+    });
+  </script>
+</body>
+</html>

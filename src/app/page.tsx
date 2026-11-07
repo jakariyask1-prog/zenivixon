@@ -1,21 +1,46 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { AgentSimulatorSection } from "@/components/sections/AgentSimulatorSection";
-import { WhatWeDoSection } from "@/components/sections/WhatWeDoSection";
-import { HowWeWorkSection } from "@/components/sections/HowWeWorkSection";
-import { ProjectShowcaseSection } from "@/components/sections/ProjectShowcaseSection";
-import { WhyZenivixonSection } from "@/components/sections/WhyZenivixonSection";
-import { EngineeringStackSection } from "@/components/sections/EngineeringStackSection";
-import { FinalCtaSection } from "@/components/sections/FinalCtaSection";
-import { VideoShowcaseSection } from "@/components/sections/VideoShowcaseSection";
-import { BeforeAfterComparisonSection } from "@/components/sections/BeforeAfterComparisonSection";
-import { RoiCalculatorSection } from "@/components/sections/RoiCalculatorSection";
-import { PilotSprintSection } from "@/components/sections/PilotSprintSection";
+
+// High-performance dynamic code splitting: Below-the-fold sections load asynchronously
+const AgentSimulatorSection = dynamic(
+  () => import("@/components/sections/AgentSimulatorSection").then((m) => m.AgentSimulatorSection)
+);
+const WhatWeDoSection = dynamic(
+  () => import("@/components/sections/WhatWeDoSection").then((m) => m.WhatWeDoSection)
+);
+const EngineeringStackSection = dynamic(
+  () => import("@/components/sections/EngineeringStackSection").then((m) => m.EngineeringStackSection)
+);
+const BeforeAfterComparisonSection = dynamic(
+  () => import("@/components/sections/BeforeAfterComparisonSection").then((m) => m.BeforeAfterComparisonSection)
+);
+const RoiCalculatorSection = dynamic(
+  () => import("@/components/sections/RoiCalculatorSection").then((m) => m.RoiCalculatorSection)
+);
+const HowWeWorkSection = dynamic(
+  () => import("@/components/sections/HowWeWorkSection").then((m) => m.HowWeWorkSection)
+);
+const ProjectShowcaseSection = dynamic(
+  () => import("@/components/sections/ProjectShowcaseSection").then((m) => m.ProjectShowcaseSection)
+);
+const VideoShowcaseSection = dynamic(
+  () => import("@/components/sections/VideoShowcaseSection").then((m) => m.VideoShowcaseSection)
+);
+const PilotSprintSection = dynamic(
+  () => import("@/components/sections/PilotSprintSection").then((m) => m.PilotSprintSection)
+);
+const WhyZenivixonSection = dynamic(
+  () => import("@/components/sections/WhyZenivixonSection").then((m) => m.WhyZenivixonSection)
+);
+const FinalCtaSection = dynamic(
+  () => import("@/components/sections/FinalCtaSection").then((m) => m.FinalCtaSection)
+);
 
 export default function HomePage() {
   return (
     <>
-      {/* 01. Hero Section */}
+      {/* 01. Hero Section (Immediate Above-the-fold Render) */}
       <HeroSection />
 
       {/* 02. 🤖 Interactive Live AI Agent Simulator */}

@@ -95,6 +95,7 @@ export function Navbar() {
                   >
                     <Link
                       href={item.href}
+                  prefetch={true}
                       onClick={() => setSolutionsDropdownOpen(false)}
                       aria-haspopup="true"
                       aria-expanded={solutionsDropdownOpen}
@@ -195,6 +196,7 @@ export function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  prefetch={true}
                   className={`px-3.5 py-2 text-sm font-semibold rounded-lg transition-colors ${
                     isActive
                       ? "text-blue-600 bg-blue-50 dark:bg-blue-900/30 dark:text-blue-400"
@@ -260,6 +262,7 @@ export function Navbar() {
               <div key={item.label}>
                 <Link
                   href={item.href}
+                  prefetch={true}
                   onClick={closeMenu}
                   className={`block px-3 py-2.5 rounded-lg text-base font-semibold transition-colors ${
                     pathname === item.href

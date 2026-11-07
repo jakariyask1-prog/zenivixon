@@ -176,12 +176,31 @@ export function NeuralNetworkAnimation() {
         ctx.fill();
       });
 
-      animationFrameId = requestAnimationFrame(render);
+      if (isVisible) {
+        animationFrameId = requestAnimationFrame(render);
+      }
     };
+
+    let isVisible = true;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const nextVisible = entry.isIntersecting;
+        if (nextVisible && !isVisible) {
+          isVisible = true;
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = requestAnimationFrame(render);
+        } else if (!nextVisible) {
+          isVisible = false;
+        }
+      },
+      { rootMargin: "100px" }
+    );
+    observer.observe(canvas);
 
     render();
 
     return () => {
+      observer.disconnect();
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationFrameId);
     };

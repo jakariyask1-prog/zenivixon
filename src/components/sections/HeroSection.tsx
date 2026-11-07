@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { ArrowRight, Cpu, CheckCircle2, ArrowUpRight, Sparkles, Globe, Headphones } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
+// Zero-lag CSS entrance animations applied
 import { NeuralNetworkAnimation } from "@/components/ui/NeuralNetworkAnimation";
 import { RotatingTextBanner } from "@/components/ui/RotatingTextBanner";
 import { motion } from "framer-motion";
@@ -27,7 +27,7 @@ export function HeroSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-6">
-          <ScrollReveal direction="up" delay={0.1}>
+          <div className="hero-reveal-0">
             {/* Enhanced Premium Eyebrow Badge */}
             <div className="inline-flex items-center justify-center gap-2.5 px-5 py-2 sm:px-6 sm:py-2.5 rounded-full bg-blue-50/90 dark:bg-blue-950/40 border border-blue-200/90 dark:border-blue-800/80 text-blue-800 dark:text-blue-300 shadow-sm shadow-blue-500/10 hover:border-blue-300 dark:hover:border-blue-700 transition-all">
               <div className="w-5 h-5 rounded-full bg-blue-600/10 dark:bg-blue-400/20 flex items-center justify-center text-blue-600 dark:text-blue-400 animate-pulse">
@@ -37,24 +37,24 @@ export function HeroSection() {
                 AI-FIRST TECHNOLOGY COMPANY
               </span>
             </div>
-          </ScrollReveal>
+          </div>
 
-          <ScrollReveal direction="up" delay={0.2}>
+          <div className="hero-reveal-1">
             {/* Locked Core Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#0F172A] dark:text-white tracking-tight leading-[1.15] font-heading">
               Automate Your Business. Engage Customers 24/7. <br className="hidden sm:block" />
               <span className="text-gradient-animated">Scale with AI.</span>
             </h1>
-          </ScrollReveal>
+          </div>
 
-          <ScrollReveal direction="up" delay={0.3}>
+          <div className="hero-reveal-2">
             {/* Core Message / Subheadline */}
             <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed font-normal mx-auto">
               ZENIVIXON builds high-performance <strong>modern web applications</strong>, <strong>intelligent workflow automations</strong>, <strong>24/7 AI customer support agents</strong>, and custom integrations that connect seamlessly into your existing business software.
             </p>
-          </ScrollReveal>
+          </div>
 
-          <ScrollReveal direction="up" delay={0.4}>
+          <div className="hero-reveal-3">
             {/* Locked Conversion CTAs */}
             <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full sm:w-auto">
               <Button
@@ -76,9 +76,9 @@ export function HeroSection() {
                 Explore Solutions
               </Button>
             </div>
-          </ScrollReveal>
+          </div>
 
-          <ScrollReveal direction="up" delay={0.5}>
+          <div className="hero-reveal-4">
             {/* Trust & Focus Pillars */}
             <div className="pt-6 flex flex-wrap items-center justify-center gap-y-3 gap-x-6 text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium">
               <div className="flex items-center gap-2">
@@ -98,7 +98,7 @@ export function HeroSection() {
                 <span>Existing System Integration</span>
               </div>
             </div>
-          </ScrollReveal>
+          </div>
         </div>
 
         {/* Premium Cover Photo Section */}
@@ -111,7 +111,7 @@ export function HeroSection() {
             <div className="rounded-3xl overflow-hidden relative border border-slate-200/50 dark:border-slate-800/50 bg-slate-100 dark:bg-slate-900">
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
               <Image
-                src="/cover-photo.png"
+                src="/cover-photo.webp"
                 alt="ZENIVIXON Platform Integration"
                 width={1200}
                 height={675}

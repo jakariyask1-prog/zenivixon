@@ -38,7 +38,7 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: true,
     image: "/images/projects/jakariya-ai-studio.png",
-    videoUrl: "/videos/ai_studio.mp4",
+    videoUrl: "", // Paste your YouTube link here (e.g. "https://youtu.be/...")
     deliverables: [
       "Central ProviderRegistry managing 16 AI engines with automated health checks & dynamic failover",
       "Autonomous ReAct agent with 12 tools (code editor, terminal shell, Python REPL, web search, AST diagnostics)",
@@ -85,7 +85,7 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: true,
     image: "/images/projects/zenivixon-web-platform.svg",
-    videoUrl: "https://youtu.be/b3G9OI3XsL8",
+    videoUrl: "https://youtu.be/l2M1YDATDZ0",
     deliverables: [
       "Next.js 15 App Router codebase with strict TypeScript enterprise standards",
       "Interactive AI Agent Simulator component with live step-by-step execution feedback",
@@ -126,6 +126,7 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: true,
     image: "/images/projects/zenivixon-inbound-engine.svg",
+    videoUrl: "https://youtu.be/sKmVKg7Hh1A",
     deliverables: [
       "Floating 24/7 AI Consultant chat widget with contextual prompt engineering",
       "Serverless Gemini 2.0 lead analysis and intelligent priority scoring microservice",

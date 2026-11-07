@@ -571,10 +571,26 @@ export function EngineeringStackSection() {
         ctx.restore();
       });
 
-      animationFrameId = requestAnimationFrame(render);
+      if (isVisible) {
+        animationFrameId = requestAnimationFrame(render);
+      }
     };
 
-    render();
+    let isVisible = false;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const nextVisible = entry.isIntersecting;
+        if (nextVisible && !isVisible) {
+          isVisible = true;
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = requestAnimationFrame(render);
+        } else if (!nextVisible) {
+          isVisible = false;
+        }
+      },
+      { rootMargin: "250px" }
+    );
+    observer.observe(canvas);
 
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -586,6 +602,7 @@ export function EngineeringStackSection() {
       canvas.removeEventListener("touchmove", onTouchMove);
       canvas.removeEventListener("touchend", onTouchEnd);
       cancelAnimationFrame(animationFrameId);
+      observer.disconnect();
     };
   }, [mounted, isDark]);
 
