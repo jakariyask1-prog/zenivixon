@@ -66,9 +66,9 @@ export function Navbar() {
               <Image 
                 src="/logo.png" 
                 alt="ZENIVIXON Logo" 
-                width={42} 
-                height={42} 
-                className="object-contain rounded-lg shadow-sm w-[40px] h-[40px] sm:w-[42px] sm:h-[42px]"
+                width={36} 
+                height={36} 
+                className="object-contain rounded-lg shadow-sm"
                 priority 
               />
             </motion.div>
