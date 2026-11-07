@@ -209,7 +209,7 @@ export function VideoModal({ video, isOpen, onClose }: VideoModalProps) {
             exit={{ opacity: 0, scale: 0.94, y: 15 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             onMouseMove={handleMouseMove}
-            className="relative z-10 w-full max-w-5xl overflow-hidden rounded-2xl md:rounded-3xl bg-slate-950 border border-slate-800 shadow-2xl shadow-blue-950/50 flex flex-col"
+            className="relative z-10 w-full max-w-5xl max-h-[92vh] overflow-hidden rounded-2xl md:rounded-3xl bg-slate-950 border border-slate-800 shadow-2xl shadow-blue-950/50 flex flex-col"
           >
             {/* Modal Top Bar - Clean and outside of video */}
             <div className="flex items-center justify-between px-3 sm:px-6 py-3 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md gap-3">

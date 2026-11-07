@@ -261,6 +261,7 @@ export function InteractiveAgentSimulator() {
 
   // Handle cursor hover over any workflow pill
   const handleWorkflowHover = (id: string) => {
+    if (typeof window !== "undefined" && !window.matchMedia("(hover: hover)").matches) return;
     if (id !== activeScenarioId || !isRunning) {
       setActiveScenarioId(id);
       triggerSimulation(900);

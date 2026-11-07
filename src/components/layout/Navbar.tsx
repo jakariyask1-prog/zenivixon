@@ -250,10 +250,10 @@ export function Navbar() {
 
       {/* Mobile Menu Drawer */}
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+        className={`lg:hidden transition-all duration-300 ease-in-out ${
           mobileMenuOpen
-            ? "max-h-[600px] opacity-100"
-            : "max-h-0 opacity-0"
+            ? "max-h-[calc(100vh-4.5rem)] opacity-100 overflow-y-auto"
+            : "max-h-0 opacity-0 overflow-hidden"
         }`}
       >
         <div className="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#020817] px-6 pt-4 pb-6 mt-3 shadow-xl">

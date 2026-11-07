@@ -102,7 +102,7 @@ export function HeroSection() {
         </div>
 
         {/* Premium Cover Photo Section */}
-        <motion.div className="mt-16 sm:mt-20 w-full max-w-6xl mx-auto relative group px-4 sm:px-6 lg:px-8">
+        <motion.div className="mt-16 sm:mt-20 w-full max-w-6xl mx-auto relative group">
           {/* Animated Glowing Aurora Backdrop */}
           <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-blue-500/30 via-cyan-400/30 to-indigo-500/30 blur-2xl rounded-[3rem] opacity-70 animate-[glow_4s_ease-in-out_infinite_alternate] z-0" />
           
