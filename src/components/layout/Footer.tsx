@@ -242,7 +242,7 @@ export function Footer() {
               </ul>
 
               <div className="pt-4 border-t border-slate-100 dark:border-slate-800/80">
-                <Link href="/" className="flex items-center gap-2 mb-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg w-fit">
+                <Link href="/" className="flex items-center gap-2.5 mb-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg w-fit">
                   <motion.div 
                     initial={{ opacity: shouldReduceMotion ? 1 : 0 }}
                     animate={{ opacity: 1 }}
@@ -252,9 +252,9 @@ export function Footer() {
                     <Image 
                       src="/logo.png" 
                       alt="ZENIVIXON Logo" 
-                      width={28} 
-                      height={28} 
-                      className="object-contain rounded-md shadow-sm"
+                      width={40} 
+                      height={40} 
+                      className="object-contain rounded-lg shadow-sm w-[38px] h-[38px] sm:w-[40px] sm:h-[40px]"
                     />
                   </motion.div>
                   <div className="py-1 -my-1">
