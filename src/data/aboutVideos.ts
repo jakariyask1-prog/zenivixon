@@ -18,7 +18,7 @@ export const ABOUT_VIDEOS: AboutVideo[] = [
     description:
       "A personal address from Founder & CEO Jakariya on bridging abstract AI research and reliable, deterministic software that businesses can actually depend on.",
     thumbnail: "/images/team/founder-ceo.jpg",
-    videoUrl: "/videos/zenivixon-founder-speech.mp4",
+    videoUrl: "", // Blank - paste YouTube/external URL when ready
     duration: "02:45",
     featured: true,
     tags: ["Founder Speech", "Company Vision", "Problem-First AI"],

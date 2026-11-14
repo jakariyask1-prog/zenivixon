@@ -204,9 +204,12 @@ export function InteractiveAgentSimulator() {
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [userHasSelected, setUserHasSelected] = useState<boolean>(false);
+  const [isInViewport, setIsInViewport] = useState<boolean>(false);
 
   const scenario = SCENARIOS.find((s) => s.id === activeScenarioId) || SCENARIOS[0];
   const timerRefs = useRef<NodeJS.Timeout[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const hasTriggeredRef = useRef<boolean>(false);
 
   const clearAllTimers = useCallback(() => {
     timerRefs.current.forEach((t) => clearTimeout(t));
@@ -231,21 +234,40 @@ export function InteractiveAgentSimulator() {
     [clearAllTimers]
   );
 
-  // Trigger once on initial mount so visitors immediately see the pipeline execute
+  // Trigger when scrolled into view so it executes only when the user actually sees it
   useEffect(() => {
-    const initialTimer = setTimeout(() => {
-      triggerSimulation(1000);
-    }, 200);
+    const el = containerRef.current;
+    if (!el) return;
 
+    if (typeof window === "undefined" || !("IntersectionObserver" in window)) {
+      setIsInViewport(true);
+      triggerSimulation(1000);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const isVisible = entry.isIntersecting;
+        setIsInViewport(isVisible);
+
+        if (isVisible && !hasTriggeredRef.current) {
+          hasTriggeredRef.current = true;
+          triggerSimulation(1000);
+        }
+      },
+      { rootMargin: "50px" }
+    );
+
+    observer.observe(el);
     return () => {
-      clearTimeout(initialTimer);
+      observer.disconnect();
       clearAllTimers();
     };
   }, [triggerSimulation, clearAllTimers]);
 
-  // Automatic looping: cycles through scenarios & auto-runs every 8.5 seconds when not hovered
+  // Automatic looping: cycles through scenarios ONLY when actively visible in viewport and not hovered
   useEffect(() => {
-    if (isHovered || userHasSelected) return;
+    if (!isInViewport || isHovered || userHasSelected) return;
 
     const interval = setInterval(() => {
       setActiveScenarioId((prevId) => {
@@ -257,7 +279,7 @@ export function InteractiveAgentSimulator() {
     }, 8500);
 
     return () => clearInterval(interval);
-  }, [isHovered, userHasSelected, triggerSimulation]);
+  }, [isInViewport, isHovered, userHasSelected, triggerSimulation]);
 
   // Handle cursor hover over any workflow pill
   const handleWorkflowHover = (id: string) => {
@@ -284,6 +306,7 @@ export function InteractiveAgentSimulator() {
 
   return (
     <div
+      ref={containerRef}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className="rounded-3xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none p-5 sm:p-7 md:p-8 transition-colors duration-300 relative group"

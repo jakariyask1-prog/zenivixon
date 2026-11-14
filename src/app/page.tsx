@@ -44,53 +44,57 @@ export default function HomePage() {
       <HeroSection />
 
       {/* 02. 🤖 Interactive Live AI Agent Simulator */}
-      <AgentSimulatorSection />
+      <div className="section-lazy">
+        <AgentSimulatorSection />
+      </div>
 
       {/* 03. What We Do */}
-      <div data-aos="fade-up">
+      <div data-aos="fade-up" className="section-lazy">
         <WhatWeDoSection />
       </div>
 
       {/* 04. ⚡ Core Architecture & Engineering Stack Ecosystem */}
-      <EngineeringStackSection />
+      <div className="section-lazy">
+        <EngineeringStackSection />
+      </div>
 
       {/* 05. 🚀 Before vs After Workflow Transformation */}
-      <div data-aos="fade-up">
+      <div data-aos="fade-up" className="section-lazy">
         <BeforeAfterComparisonSection />
       </div>
 
       {/* 06. 💰 Interactive ROI & Cost-Savings Calculator */}
-      <div data-aos="fade-up">
+      <div data-aos="fade-up" className="section-lazy">
         <RoiCalculatorSection />
       </div>
 
       {/* 07. How We Work */}
-      <div data-aos="fade-up">
+      <div data-aos="fade-up" className="section-lazy">
         <HowWeWorkSection />
       </div>
 
       {/* 08. Project Showcase */}
-      <div data-aos="fade-up">
+      <div data-aos="fade-up" className="section-lazy">
         <ProjectShowcaseSection />
       </div>
 
       {/* 09. 🎬 Video Showcase + Animated Stats */}
-      <div data-aos="fade-up">
+      <div data-aos="fade-up" className="section-lazy">
         <VideoShowcaseSection />
       </div>
 
       {/* 10. 🛡️ 7-Day Pilot Sprint */}
-      <div data-aos="fade-up">
+      <div data-aos="fade-up" className="section-lazy">
         <PilotSprintSection />
       </div>
 
       {/* 11. Why ZENIVIXON */}
-      <div data-aos="fade-up">
+      <div data-aos="fade-up" className="section-lazy">
         <WhyZenivixonSection />
       </div>
 
       {/* 12. Final CTA */}
-      <div data-aos="fade-up">
+      <div data-aos="fade-up" className="section-lazy">
         <FinalCtaSection />
       </div>
     </>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { Play, Pause, Volume2, VolumeX, Maximize2, Bot, Cpu, Globe, Network, ArrowRight, CheckCircle2 } from "lucide-react";
@@ -29,6 +30,7 @@ export function VideoShowcaseSection() {
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [isYoutubeLoaded, setIsYoutubeLoaded] = useState(false);
 
   // Play direct video when scrolled into view
   useEffect(() => {
@@ -114,6 +116,7 @@ export function VideoShowcaseSection() {
                 onClick={() => {
                   setSelectedSlug(p.slug);
                   setHasInteracted(true);
+                  setIsYoutubeLoaded(true);
                 }}
                 className={`px-4 py-2.5 rounded-xl text-xs font-bold font-heading transition-all shrink-0 flex items-center gap-2 cursor-pointer ${
                   isSelected
@@ -214,15 +217,50 @@ export function VideoShowcaseSection() {
                   </div>
                 )}
               </>
-            ) : (
+            ) : isYoutubeLoaded ? (
               <iframe
                 key={activeProject.videoUrl}
                 src={getYoutubeEmbedUrl(activeProject.videoUrl!, true)}
                 title={`${activeProject.title} Live Demonstration`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
+                loading="lazy"
                 className="w-full h-full border-0 block"
               />
+            ) : (
+              <div
+                className="relative w-full h-full cursor-pointer group/yt"
+                onClick={() => {
+                  setIsYoutubeLoaded(true);
+                  setHasInteracted(true);
+                }}
+              >
+                <Image
+                  src={activeProject.image}
+                  alt={activeProject.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                  className="object-cover object-top opacity-90 group-hover/yt:opacity-100 group-hover/yt:scale-105 transition-all duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent" />
+
+                {/* Center play button */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 z-10">
+                  <motion.div
+                    className="relative w-18 h-18 flex items-center justify-center"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <div className="absolute w-20 h-20 rounded-full bg-blue-600/30 animate-ping" />
+                    <div className="relative w-16 h-16 rounded-full bg-blue-600 shadow-lg shadow-blue-600/40 flex items-center justify-center">
+                      <Play className="w-7 h-7 text-white ml-1" fill="white" />
+                    </div>
+                  </motion.div>
+                  <span className="text-xs sm:text-sm font-semibold font-heading text-white px-4 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/10 shadow-lg">
+                    Click to Play Live Demonstration
+                  </span>
+                </div>
+              </div>
             )}
           </div>
 

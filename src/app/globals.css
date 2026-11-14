@@ -62,6 +62,12 @@
   animation-delay: 320ms;
 }
 
+/* High-performance deferred rendering for off-screen sections (skips layout/paint until near viewport) */
+.section-lazy {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
+}
+
 @layer base {
   :root {
     --bg-primary: #FCFDFE;
